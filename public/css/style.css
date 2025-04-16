@@ -2,9 +2,9 @@
 
 :root{
     --fundo-principal: #1a1a1a;
-    --Sombra: #2e2e2e	;
-    --Azul-esverdeado: #7aa7a4	;
-    --Cinza-metálico: #5a5a5a	;
+    --Sombra: #2e2e2e;
+    --Azul-esverdeado: #7aa7a4;
+    --Cinza-metálico: #5a5a5a;
     --Detalhe-ósseo: #b0a391;
     --Roxo-escuro: #4b2a58;
     --texto: #f0f0f0;
@@ -49,10 +49,10 @@ header{
 .nav-list1 p:hover{
     font-weight: 800;
     padding-bottom: 10px;
-    border-bottom: solid 4px white;
+    border-bottom: solid 4px var(--Azul-esverdeado);
 }
 #cadastro{
-    border: solid 2px white;
+    border: solid 2px var(--Azul-esverdeado);
     border-radius: 20px;
     padding: 0.5rem 1rem;
 }
@@ -105,3 +105,71 @@ header .titulo{
     margin-top: 30%;
     margin-left: 150%;
 }
+
+
+/*LOGIN E CADASTRO COMEÇA----------------------------------------------------------------------------------*/
+.container-login{
+    background: url("../assets/img/Shadow-Slave-Manhwa-Capa.png");
+    color: white;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    
+}
+.card-login{
+    background-color: rgba(9, 31, 53, 0.678);
+    padding: 1% 3%;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;    
+    position: relative;
+    left: 4rem;
+    box-shadow: 0 10px 50px #7aa7a4;
+    backdrop-filter: blur(6px);
+
+}
+.card-login input{
+    width: 60vh;
+    padding: 2% 5%;
+    font-size: 1.3rem;
+    background: none;
+    border:  none;
+    outline: none;
+    color: var(--Azul-esverdeado);
+    border-radius: 2rem;
+    border-bottom: solid 4px var(--Cinza-metálico);
+} 
+.card-login ::placeholder{
+    color: #bebebe;
+}
+.card-login p{
+    font-size: 1.4rem;
+}
+.card-login #titulo{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+.card-login #subtitulo{
+    text-align: right;
+    padding: 6% 0%;
+}
+.card-login button{
+    background-color: var(--Azul-esverdeado);
+    font-size: 1.3rem;
+    color: white;
+    padding: 2%;
+    border-radius: 2rem;
+    margin-top: 4%;
+}
+#texto_nome_usuario , #texto_senha , #texto_email , #texto_conf_senha{
+    color: #1a1a1a00;
+}
+.card-login a{
+    text-decoration: underline;
+    color: var(--Azul-esverdeado);
+}
+/*LOGIN E CADASTRO ACABA----------------------------------------------------------------------------------*/

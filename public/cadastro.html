@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Slave | Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main>
+        <div class="container-login">
+            <div class="card-login">
+                <p id="titulo">Cadastro</p>
+                <p id="texto_nome_usuario">Nome de usúario</p>
+                <input type="text" id="ipt_nome_usuario" placeholder="Nome de usúario" onclick="digitando('nome_usuario')">
+                <p id="texto_email">Email</p>
+                <input type="text" id="ipt_email" placeholder="Email" onclick="digitando('email')">
+                <p id="texto_senha">Senha</p>
+                <input type="password" id="ipt_senha" placeholder="Senha" onclick="digitando('senha')">
+                <p id="texto_conf_senha">Confirmar Senha</p>
+                <input type="password" id="ipt_conf_senha" placeholder="Confirmar Senha" onclick="digitando('conf_senha')">
+                <button onclick="cadastrar()">CADASTRAR-SE</button>
+                <p id="subtitulo">Já possui uma conta?<span><a href="login.html">Acesse aqui</a></span></p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+<script>
+function digitando(x) {
+    var texto_x = document.getElementById(`texto_${x}`);
+    var ipt_x = document.getElementById(`ipt_${x}`);
+    texto_x.style.color = "white";
+    ipt_x.style.borderBottom = "solid 4px #7aa7a4";
+}
+</script>
