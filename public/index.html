@@ -1,51 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shadow slave</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header id="header">
         <nav class="nav">
             <div>
-                <img src="../public/assets/img/logotipo.png" alt="mongrel" width="100">
+                <img src="../public/assets/img/logotipo.png" alt="mongrel" width="100" onmouseenter="trocar()" onmouseleave="voltar()" id="logotipo">
             </div>
             <div class="nav-list1">
-            <a href="#"><p style="border-bottom: solid 4px white; padding-bottom: 10px; font-weight: 800;">Inicio</p></a>
-            <a href="#"><p>Personagens</p></a>
-            <a href="#"><p>Mapa</p></a>
-            <a href="#"><p>Como funciona</p></a>
-            <a href="#"><p>Sobre mim</p></a>
+                <a href="#">
+                    <p>Inicio</p>
+                </a>
+                <a href="#">
+                    <p>Personagens</p>
+                </a>
+                <a href="#">
+                    <p>Mapa</p>
+                </a>
+                <a href="#">
+                    <p>Como funciona</p>
+                </a>
+                <a href="#">
+                    <p>Sobre mim</p>
+                </a>
             </div>
             <div class="nav-list2">
-                <a href="../public/cadastro.html"><p id="cadastro">Cadastre-se</p></a>
-                <a href="../public/login.html"><p id="entrar">Entrar</p></a>
+                <a href="../public/cadastro.html">
+                    <p id="cadastro">Cadastre-se</p>
+                </a>
+                <a href="../public/login.html">
+                    <p id="entrar">Entrar</p>
+                </a>
             </div>
         </nav>
-        <div class="header-container">
-            <div class="column-1">
-                <div class="titulo">
-                    <p>ShadowSlave: A Jornada das <span>sombras</span></p>
-                </div>
-                <div class="sub-titulo">
-                    <p>
-                    O céu, encoberto por nuvens eternas, lança um brilho pálido sobre as ruínas de uma civilização esquecida.
-                    O ar é denso, pesado, e cada passo ecoa como um aviso de que você não está sozinho.
-                    As Sombras observam — silenciosas, famintas, pacientes.
-                    <br><br>
-                    Você não lembra como chegou até aqui. Mas agora, tudo que resta é sobreviver... e lutar.
-                    Um contrato antigo pulsa sob sua pele, ligando você a uma criatura tão misteriosa quanto poderosa.
-                    Seus olhos brilham na escuridão. Ela está com você. Mas até quando?
-                    </p>
-                </div>
-                <a href="#"><p id="saber_mais">Saber mais</p></a>
-            <a href=""><img src="../public/assets/gift/seta.gif" alt="seta" width="240" id="seta"></a>
-            </div>
-            <div class="column-2">
-            </div>
-        </div>
+
     </header>
+    <main>
+        <section id="home">
+            <div class="header-container">
+                <div class="column-1">
+                    <div class="titulo">
+                        <p><span id="sombras">ShadowSlave</span> <span id="pontos">:</span> A Jornada das <span id="sombras">sombras</span></p>
+                    </div>
+                    <div class="sub-titulo">
+                        <p>
+                            O céu, encoberto por nuvens eternas, lança um brilho pálido sobre as ruínas de uma
+                            <span id="sombras">civilização esquecida.</span>
+                            O ar é denso, pesado, e cada passo ecoa como um aviso de que você não está sozinho.
+                            As <span id="sombras">Sombras</span> observam — silenciosas, famintas, pacientes.
+                            <br><br>
+                            Você não lembra como chegou até aqui. Mas agora, tudo que resta é <span id="sombras">sobreviver</span>... e lutar.
+                            Um contrato antigo pulsa sob sua pele, ligando você a uma criatura tão misteriosa quanto
+                            poderosa.
+                            Seus olhos brilham na <span id="sombras">escuridão</span>. Ela está com você. Mas até quando?
+                        </p>
+                    </div>
+                    <a href="#">
+                        <p id="saber_mais">Saber mais</p>
+                    </a>
+                    <!--<a href=""><img src="../public/assets/gift/seta.gif" alt="seta" width="240" id="seta"></a>-->
+                </div>
+                <div class="column-2">
+                    <div class="mongrel">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>
+<script>
+    function trocar() {
+        logotipo.src = "../public/assets/img/2.png"
+    }
+    function voltar() {
+        logotipo.src = "../public/assets/img/logotipo.png"
+        
+    }
+</script>

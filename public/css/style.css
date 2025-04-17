@@ -1,9 +1,14 @@
-
+@font-face {
+    font-family: 'Night';
+    src: url("../assets/fonts/NightsideDemoRegular.ttf") format('truetype');
+  }
+  
 
 :root{
     --fundo-principal: #1a1a1a;
     --Sombra: #2e2e2e;
     --Azul-esverdeado: #7aa7a4;
+    --azul-escverdeado-obscuro: #658a87;
     --Cinza-metálico: #5a5a5a;
     --Detalhe-ósseo: #b0a391;
     --Roxo-escuro: #4b2a58;
@@ -18,9 +23,9 @@ a{
     all: unset;
     cursor: pointer;
 }
-header{
-    background: url("../assets/img/fundo_mondrel.png");
-    min-height: 99vh;
+#home{
+    background: url("../assets/img/fundo.png");
+    height: 100vh;
     background-size: cover;
     background-position: center;
     color: white;
@@ -34,6 +39,10 @@ header{
     padding-top: 10px;
     backdrop-filter: blur(8px);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.212);
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    color: white;
 }
 .nav-list1{
     display: flex;
@@ -57,42 +66,59 @@ header{
     padding: 0.5rem 1rem;
 }
 #cadastro:hover{
-    background-color: white;
-    color: black;
+    background-color: var(--Azul-esverdeado);
+    color: rgb(255, 255, 255);
     
 }
 #entrar{
-    border: solid 2px white;
-    background-color: white;
-    color: black;
+    border: solid 2px var(--Azul-esverdeado);
+    background-color: var(--Azul-esverdeado);
+    color: rgb(255, 255, 255);
     border-radius: 20px;
     padding: 0.5rem 1rem;
+}
+#entrar:hover{
+    background-color: var(--azul-escverdeado-obscuro);
 }
 .header-container {
     display: flex;
     justify-content: center;
     position: relative;
 }
-header .column-1{
+#home .column-1{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-align: center;
     width: 50%;
     font-size: 1.4rem;
     gap: 2.4rem;
 }
-header .column-2{
+#home .column-2{
     width: 44%;
 }
-header .titulo{
+.mongrel{
+    min-height: 100vh;
+    background :url("../assets/img/mongrel.png");
+    background-size: cover;
+}
+.mongrel:hover{
+    min-height: 100vh;
+    background :url("../assets/img/sunny.png");
+    background-size: cover;
+}
+#home .titulo{
     padding-top: 2.9rem;
     font-size: 3rem;
+    font-family: 'Night';
+}
+#home #pontos{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 #saber_mais{
     background-color: rgb(56, 126, 126);
-    color: black;
+    color: rgb(255, 255, 255);
     padding: 0.5rem 1.4rem;
     border-radius: 10rem;
 }
@@ -105,6 +131,20 @@ header .titulo{
     margin-top: 30%;
     margin-left: 150%;
 }
+#sombras{
+    color: var(--azul-escverdeado-obscuro);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*LOGIN E CADASTRO COMEÇA----------------------------------------------------------------------------------*/
