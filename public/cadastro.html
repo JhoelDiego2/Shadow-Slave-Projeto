@@ -8,13 +8,14 @@
 </head>
 <body>
     <main>
-        <div class="container-login">
+        <div class="container-login" >
             <div class="card-login">
                 <p id="titulo">Cadastro</p>
                 <p id="texto_nome_usuario">Nome de usúario</p>
                 <input type="text" id="ipt_nome_usuario" placeholder="Nome de usúario" onclick="digitando('nome_usuario')">
                 <p id="texto_email">Email</p>
-                <input type="text" id="ipt_email" placeholder="Email" onclick="digitando('email')">
+                <span id="email_condicao"></span>
+                <input type="text" id="ipt_email" placeholder="E-mail" onclick="digitando('email')">
                 <p id="texto_senha">Senha</p>
                 <input type="password" id="ipt_senha" placeholder="Senha" onclick="digitando('senha')">
                 <p id="texto_conf_senha">Confirmar Senha</p>
@@ -27,3 +28,25 @@
 <script src="js/login-cadastro.js"></script>
 </body>
 </html>
+<script>
+    function cadastrar() {
+        //verificar
+        var nome_usuario = ipt_nome_usuario.value
+        var email = ipt_email.value
+        var senha = ipt_senha.value
+        var confirmar_senha = ipt_conf_senha.value
+        //verificar um email valido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
+        var verificar = true
+        var umarroba = false
+        while (verificar) {
+            for (let i = 1; i <= email.lenght ; i++) {
+                if (email[i] == '@' && umarroba == false) {
+                    umarroba = true
+                }
+                if (email[i] == '@' && umarroba == true) {
+                    email_condicao.innerHTML = `<style="color: white;"> E-mail inválido`
+                }
+            }
+        }
+    }
+</script>
