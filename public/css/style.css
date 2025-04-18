@@ -24,6 +24,11 @@ a{
     all: unset;
     cursor: pointer;
 }
+body{
+    background: linear-gradient(#000000, #3d3d4988), url("../assets/img/fundo_geral.png");
+    background-size: 40vh;
+    color: white;
+}
 #home{
     background: url("../assets/img/fundo.png");
     height: 100vh;
@@ -137,11 +142,182 @@ a{
 }
 
 
+/*--------------------desenvolvedor-----------------------------*/
+
+.titulo-secao{
+    text-align: center;
+    font-size: 8vh;
+    padding: 6vh 2vh;
+    z-index: 1;
+}
+
+.titulo-secao::before{
+    content: 'Desenvolvedor';
+    color: #658a87;
+    text-align: center;
+    z-index: -1;
+    position: absolute;
+    transform: translate(-1vh, 0.4vh);
+    filter: blur(2px);
+    
+}
+#desenvolvedor{
+   height: 83vh;
+}
+.container-desenvolvedor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#eu{
+    width: 50vh;
+    position: relative;
+    left: 40vh;
+    border-top-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.658);
+}
+.container-desenvolvedor div{
+    width: 50%;
+}
+.sobre-mim{
+    position: relative;
+    left: 10vh;
+    font-size: 3vh;
+    background-color: #2e2e2eb0;
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+    padding: 4vh 4vh;
+}
+.sobre-mim #sub-titulo {
+    text-align: center;
+    padding: 2vh;
+    color: var(--Azul-esverdeado);
+    font-size: 3.5vh;
+}
 
 
 
 
 
+
+
+
+
+
+
+
+
+/*--------------------desenvolvedor acaba-----------------------------*/
+
+
+
+
+
+/*----------------------------fotter------------------*/
+footer{
+    background-color: #000000;
+    display: flex;
+    justify-content: space-around;
+}
+#logotipo-footer{
+    width: 20vh;
+    padding-top:4vh ;
+}
+footer .list{
+    display: flex;
+    font-size: 3vh;
+    position: relative;
+    top: 6vh;
+    gap: 5vh;
+}
+footer .list div {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+#f-info{
+    text-align: center;
+    font-size: 3vh;
+    position: relative;
+    top: 4.5vh;
+
+}
+
+.projeto{
+    width: 35vh;
+    text-align: justify;
+    font-size: 3vh;
+    position: relative;
+    top: 4.5vh;
+
+}
+.contatos{
+    font-size: 2.5vh;
+    position: relative;
+    top: 4.5vh;
+}
+.contato a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2vh;
+
+}
+#email_imagem{
+    background: url("../assets/img/github.png");
+    background-size: cover;
+    min-height: 4vh;
+    min-width: 4vh   ;
+}
+#github_imagem{
+    background: url("../assets/img/github.png");
+    background-size: cover;
+    min-height: 4vh;
+    min-width: 4vh   ;
+}
+#linkediin_imagem{
+    background: url("../assets/img/Vector.png");
+    background-size: cover;
+    min-height: 4vh;
+    min-width: 4vh   ;
+}
+
+#numero_imagem{
+    background: url("../assets/img/logo-whatsapp.png");
+    background-size: cover;
+    min-height: 4vh;
+    min-width: 4vh   ;
+}
+#instagram_imagem{
+    background: url("../assets/img/logo-instagram.png");
+    background-size: cover;
+    min-height: 4vh;
+    min-width: 4vh   ;
+}
+.verde:hover{
+    color: var(--azul-escverdeado-obscuro);
+}
+.verde:hover #email_imagem{
+    background: url("../assets/img/logo-instagram_verde.png") no-repeat;
+}
+.verde:hover #github_imagem{
+    background: url("../assets/img/github_verder.png") no-repeat;
+}
+.verde:hover #linkediin_imagem{
+    background: url("../assets/img/Vector_verde.png") no-repeat;
+}
+.verde:hover #numero_imagem{
+    background: url("../assets/img/logo-whatsapp_verde.png") no-repeat;
+}
+.verde:hover #instagram_imagem{
+    background: url("../assets/img/logo-instagram_verde.png") no-repeat;
+}
+
+
+
+/*----------------------------fotter----------acaba--------*/
 
 
 
