@@ -16,26 +16,6 @@
     --luz: #0e2d30;
 }
 
-/* Para navegadores baseados em WebKit (Chrome, Edge, Safari) */
-::-webkit-scrollbar {
-    width: 10px;
-    /* Define a largura da barra de rolagem */
-    background-color: var(--Cinza-metálico);
-}
-
-::-webkit-scrollbar-track {
-
-    border-radius: 10px;
-    /* Cantos arredondados da trilha */
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--azul-escverdeado-obscuro);
-    /* Cor do botão de rolagem */
-    border-radius: 20px;
-    /* Cantos arredondados */
-}
-
 *{
     margin: 0;
     padding: 0;
@@ -46,9 +26,8 @@ a{
     cursor: pointer;
 }
 body{
-    background: linear-gradient(#000000, #3d3d4988), url("../assets/img/fundo_geral.png");
-    background-size: 40vh;
     color: white;
+    overflow-y: hidden;
     cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="60" viewBox="0 0 24 24"><path fill="%2314FFD3" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') ,auto;
 }
 #home{
@@ -59,34 +38,27 @@ body{
     color: white;
     backdrop-filter: blur(8px);
 }
-.nav{
+
+.nav-list1{
     display: flex;
-    justify-content: space-around;
+    gap: 2%;
+    width: 45%;
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
     font-size: 1.2rem;
     padding-top: 10px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.212);
     position: fixed;
     z-index: 2;
     width: 100%;
-    color: white;
+    color: var(--Cinza-metálico);
+    text-transform: uppercase;
 }
-.nav-list1{
-    display: flex;
-    gap: 10%;
-    width: 45%;
-}
-.nav-list2{
-    display: flex;
-    gap: 4%;
-    width: 15%;
-    margin-bottom: 1%;
-}
+
 .nav-list1 p:hover{
     font-weight: 800;
     padding-bottom: 10px;
-    border-bottom: solid 4px var(--Azul-esverdeado);
+    border-bottom: solid 2px var(--Azul-esverdeado);
 }
 #cadastro{
     border: solid 2px var(--Azul-esverdeado);
@@ -130,6 +102,7 @@ body{
     min-height: 100vh;
     background :url("../assets/img/mongrel.png");
     background-size: cover;
+    transition: 2s ease-in-out;
 }
 .mongrel:hover{
     min-height: 100vh;
@@ -154,22 +127,27 @@ body{
   
 #home .titulo{
     padding-top: 2.9rem;
-    font-size: 3rem;
+    font-size: 9.9vh;
     font-family: 'Night';
 }
 #home #pontos{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 #saber_mais{
-    background-color: rgb(56, 126, 126);
+    text-transform: uppercase;
+    background-color: rgba(56, 126, 126, 0);
     color: rgb(255, 255, 255);
-    padding: 0.5rem 1.4rem;
-    border-radius: 10rem;
+    padding: 0.8rem 11rem;
+    border: solid 4px white;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(0, 0%, 100%, 0));;
 }
 #saber_mais:hover{
-    background-color: black;
-    color: white;
-    border: solid 2px white;
+    padding: 0.8rem 14rem;
+    border-width: 2px;
 }
 #seta{
     margin-top: 30%;
@@ -177,6 +155,9 @@ body{
 }
 #sombras{
     color: var(--azul-escverdeado-obscuro);
+}
+#texto_sombras{
+    font-size: 3.5vh;
 }
 
 
@@ -387,7 +368,7 @@ footer .list div {
     backdrop-filter: blur(6px);
 
 }
-.card-login input{
+.card-login input, .esqueci_senha input{
     width: 60vh;
     padding: 2% 5%;
     font-size: 1.3rem;
@@ -428,4 +409,44 @@ footer .list div {
     text-decoration: underline;
     color: var(--Azul-esverdeado);
 }
+.esqueci_senha{
+    position: absolute;
+    top: 27%;
+    left: 35%;
+    background-color: rgba(11, 21, 31, 0.918);
+
+    padding: 2vh 5vh;
+    font-size: 3vh;
+    z-index: 2;
+    border-radius: 2vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    box-shadow: 0 15px 50px var(--luz);
+    padding-bottom: 6vh;
+
+}
+.imagem_logo{
+    background-image: url("../assets/img/logotipo.png");
+    background-size: 20vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 15vh;
+    position: relative ;
+    bottom: 5vh;
+}
+#placeholder{
+    display: flex;
+    gap: 2vh;
+    align-items: center;
+    color: #7c7c7c;
+    position: relative;
+    top: 7.2vh;
+    left: 4vh;
+    transition: 0.2s ease-in-out;
+    z-index: -1;
+    
+}
+
 /*LOGIN E CADASTRO ACABA----------------------------------------------------------------------------------*/

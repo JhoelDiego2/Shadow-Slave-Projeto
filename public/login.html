@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shadow Slave | Login</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/INICIO.css">
 </head>
 <body>
-    <main>
+    <main id="main" >
         <div class="container-login">
+           
             <div class="card-login">
                 <p id="titulo">Iniciar Sessão</p>
                 <p id="subtitulo">Não possui uma conta?<span><a href="cadastro.html">Acesse aqui</a></span></p>
@@ -17,10 +18,30 @@
                 <p id="texto_senha">Senha</p>
                 <input type="password" id="ipt_senha" placeholder="Senha" onclick="digitando('senha')">
                 <button onclick="verificar()">ENTRAR</button>
-                <p id="subtitulo">Esqueceu a senha?<span><a href="esqueci_senha.html">Acesse aqui</a></span></p>
+                <p id="subtitulo">Esqueceu a senha?<span><a onclick="activar_esqueci()">Acesse aqui</a></span></p>
             </div>
         </div>
     </main>
+    <div class="esqueci_senha" id="cartao_esqueci_senha" style="display: none;">
+        <div class="imagem_logo">
+
+        </div>
+        <p>Esqueceu a senha?</p>
+        <p >Iremos te ajudar a recuperar a sua conta</p>
+        <p id="placeholder"> <img src="../public/assets/img/github.png" alt="">Porfavor Informe o seu email</p>
+        <input type="email" onclick="esqueci()" id="ipt_esqueci_senha">
+    </div>
     <script src="js/login-cadastro.js"></script>
 </body>
 </html>
+<script>
+    function esqueci() {
+        placeholder.style="color: #7aa7a4;top: 0vh;"
+        ipt_esqueci_senha.style.borderBottom = "solid 4px #7aa7a4";
+    }
+
+    function activar_esqueci() {
+        cartao_esqueci_senha.style="display:1"
+        main.style="filter: blur(2.4px);  "
+    }
+</script>
