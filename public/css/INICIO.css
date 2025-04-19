@@ -58,6 +58,7 @@ body{
 .nav-list1 p:hover{
     font-weight: 800;
     padding-bottom: 10px;
+    color: white;
     border-bottom: solid 2px var(--Azul-esverdeado);
 }
 #cadastro{
@@ -146,8 +147,8 @@ body{
     border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(0, 0%, 100%, 0));;
 }
 #saber_mais:hover{
-    padding: 0.8rem 14rem;
-    border-width: 2px;
+    padding: 0.8rem 15rem;
+    border-width: 2.2px;
 }
 #seta{
     margin-top: 30%;
@@ -450,3 +451,49 @@ footer .list div {
 }
 
 /*LOGIN E CADASTRO ACABA----------------------------------------------------------------------------------*/
+
+/*alertas--------------------------------*/
+#div_alerta{
+    background-color: #000000;
+    width: 30vw;
+    height: 50vh;
+    position: absolute;
+    top: 25vh;
+    left: 35vw;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 3vh;
+    align-items: center;
+    box-shadow: 0 15px 50px var(--luz);
+
+}
+#sunny_chibi{
+    width: 15vw;
+    position: absolute;
+    top: -8vh;
+}
+#div_alerta button{
+    width: 90%;
+    font-size: 2.4vh;
+    padding: 0.6vh ;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+}
+#div_alerta button:hover{
+    background-color: #5a5a5a;
+    color: white;
+}
+
+#titulo_erro{
+    font-size: 2rem;
+    text-align: center;
+}
+#mensagem_erro{
+    font-size: 1rem;
+    width: 90%;
+    text-align: center;
+
+}
+/*alertas--------------------------------*/
