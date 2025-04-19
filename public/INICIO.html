@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <audio id="ost" src="../public/assets/audio/ost_shadow_slave.mp3"></audio>
     <header id="header">
         <nav class="nav-list1">
                 <a href="#">
@@ -32,7 +33,7 @@
                 <a href="../public/login.html">
                     <p id="entrar">Login</p>
                 </a>
-                <img src="../public/assets/img/lisen.png" alt="">
+                <img src="../public/assets/img/lisen.png" alt="" id="icone_musica" onclick="tocar()">
         </nav>
 
     </header>
@@ -41,7 +42,7 @@
             <div class="header-container">
                 <div class="column-1">
                     <div class="titulo">
-                        <p><span>ShadowSlave</span></p>
+                        <p><span>Shadow Slave</span></p>
                         <p><span id="sombras">A Jornada das sombras</span></p>
                     </div>
                     <div class="sub-titulo">
@@ -71,4 +72,19 @@
         logotipo.src = "../public/assets/img/logotipo.png"
         
     }
+    const musica = document.getElementById("ost");
+    var ativo =false
+    function tocar() {
+        if (ativo == false) {
+            musica.loop=true
+            musica.play();
+            ativo = true
+        }else{
+            musica.pause();
+            ativo = false
+        }
+
+    }
+
+
 </script>
