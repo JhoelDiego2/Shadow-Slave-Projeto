@@ -5,8 +5,9 @@ Bem-vindo ao **ShadowSlave**, um projeto experimental inspirado em atmosferas so
 
 Este site está sendo desenvolvido como uma **interface introdutória** de um universo narrativo. O objetivo final é criar uma experiência imersiva, com ambientação visual e narrativa forte, servindo como uma porta de entrada para um "jogo" ou ambiente interativo, a ideia no começo é que seja um jogo de cases na qual ao final é revelado o seu poder no mundo dos sonhos 
 
-<img src="./public/assets/img/Captura de pantalla 2025-04-17 000758.png">
-<img src="./public/assets/img/Captura de pantalla 2025-04-17 000810.png">
+<img src="./public/assets/img/Captura de pantalla 2025-04-20 232952.png">
+<img src="./public/assets/img/Captura de pantalla 2025-04-20 233117.png">
+<img src="./public/assets/img/Captura de pantalla 2025-04-20 233142.png">
 
 ---
 
@@ -26,6 +27,7 @@ No momento, apenas as seguintes seções estão disponíveis:
 
 - [ ] Página de criação de personagem;
 - [ ] Interface de exploração do mundo;
+- [ ] responsividade para tablets;
 - [ ] Sistema de progresso ou missões;
 - [ ] Utilização da API Web;
 
