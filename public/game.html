@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game | Shadow Slave</title>
+   <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <div id="tela_inicial" onclick="fechar_tela_inicial()">
+        <p class="clique"> ENTRAR NO MUNDO DOS SONHOS</p>
+    </div>
+</body>
+</html>
+<script>
+    var tela_inicial_ativo = true
+    function fechar_tela_inicial() {
+        if (tela_inicial_ativo == true) {
+            tela_inicial.style="display:none"
+        }
+    }
+</script>

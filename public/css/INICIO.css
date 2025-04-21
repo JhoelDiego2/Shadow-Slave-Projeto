@@ -15,21 +15,54 @@
     --texto: #f0f0f0;
     --luz: #0e2d30;
 }
+/* Para navegadores baseados em WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 10px;
+    /* Define a largura da barra de rolagem */
+    background-color: var(--Cinza-metálico);
+}
+
+::-webkit-scrollbar-track {
+
+    border-radius: 10px;
+    /* Cantos arredondados da trilha */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--azul-escverdeado-obscuro);
+    /* Cor do botão de rolagem */
+    border-radius: 20px;
+    /* Cantos arredondados */
+}
+
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+*::selection{
+    background-color: var(--azul-escverdeado-obscuro); /* Cor de fundo quando seleciona */
+    color: black; /* Cor do texto selecionado */
+}
+      
 a{
     all: unset;
     cursor: pointer;
 }
 body{
-    color: white;
-    overflow-y: hidden;
+        background: linear-gradient(#000000, #3d3d4988), url("../assets/img/fundo_geral.png");
+        background-size: 40vh;
+        color: white;
     cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="60" viewBox="0 0 24 24"><path fill="%2314FFD3" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') ,auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
+.body_after{
+    overflow-y: visible;
+}
+
+
 #home{
     background: url("../assets/img/fundo.png");
     height: 100vh;
@@ -60,6 +93,9 @@ body{
     padding-bottom: 10px;
     color: white;
     border-bottom: solid 2px var(--Azul-esverdeado);
+}
+.nav-no-page{
+    display: none;
 }
 #cadastro{
     border: solid 2px var(--Azul-esverdeado);
@@ -92,21 +128,27 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 50%;
+    width: 60%;
     font-size: 1.4rem;
     gap: 2.4rem;
+    height: 100vh;
 }
 #home .column-2{
-    width: 44%;
+    width: 40%;
 }
 .mongrel{
-    min-height: 100vh;
+    height: 129vh;
     background :url("../assets/img/mongrel.png");
     background-size: cover;
+    position: relative;
+    bottom: 13.7vh;
     transition: 2s ease-in-out;
 }
 .mongrel:hover{
-    min-height: 100vh;
+    height: 129vh;
+
+    position: relative;
+    bottom: 13.7vh;
     background :url("../assets/img/sunny.png");
     background-size: cover;
 }
@@ -127,18 +169,15 @@ body{
   }
   
 #home .titulo{
-    padding-top: 2.9rem;
-    font-size: 9.9vh;
+    font-size: 5vw;
     font-family: 'Night';
 }
-#home #pontos{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
 #saber_mais{
+    font-size: 2rem;
     text-transform: uppercase;
     background-color: rgba(56, 126, 126, 0);
     color: rgb(255, 255, 255);
-    padding: 0.8rem 11rem;
+    padding: 3vh 15vw;
     border: solid 4px white;
     border-image-slice: 1;
     border-width: 1px;
@@ -147,9 +186,35 @@ body{
     border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(0, 0%, 100%, 0));;
 }
 #saber_mais:hover{
-    padding: 0.8rem 15rem;
+    padding: 3vh 18vw;
     border-width: 2.2px;
 }
+
+
+
+#logo_letra{
+    font-size: 5vw;
+    font-family: 'Night';
+
+}
+
+.logo_normal{
+    font-size: 5vw;
+    font-family: 'Night';
+    position: absolute;
+    z-index: 3;
+    top: 25vh;
+    left: 13vw;
+    visibility: hidden;
+}
+.logo_encima{
+    visibility: visible;
+    top:1vh;
+    left: 1vw;
+    font-size: 2.5rem;
+    color: #5a5a5a;
+}
+
 #seta{
     margin-top: 30%;
     margin-left: 150%;
@@ -158,8 +223,41 @@ body{
     color: var(--azul-escverdeado-obscuro);
 }
 #texto_sombras{
-    font-size: 3.5vh;
+    font-size: 2.5rem;
 }
+.segunda-tela .texto{
+    font-size: 1.7rem;
+    padding-top: 14vh;
+}
+.segunda-tela #saber_mais{
+    font-size: 1.4rem;
+}
+.segunda-tela #saber_mais:hover{
+    padding: 3vh 14vw;
+    border-width: 2.2px;
+}
+.mongrel_segunda_tela{
+    height: 100vh;
+    background :url("../assets/img/mongrel.png");
+    background-size: cover;
+    position: relative;
+    top: 1vh;
+    transition: 2s ease-in-out;
+}
+
+
+.mongrel_segunda_tela:hover{
+    height: 100vh;
+    background :url("../assets/img/sunny.png");
+    background-size: cover;
+}
+
+.esconder{
+    display: none;
+}
+
+
+
 
 
 /*--------------------desenvolvedor-----------------------------*/
@@ -449,6 +547,9 @@ footer .list div {
     z-index: -1;
     
 }
+input:focus{
+    background: linear-gradient(360deg, #658a87 -120.05%, rgba(190, 122, 76, 0) 64.29%);
+}
 
 /*LOGIN E CADASTRO ACABA----------------------------------------------------------------------------------*/
 
@@ -497,3 +598,12 @@ footer .list div {
 
 }
 /*alertas--------------------------------*/
+
+
+#icone_inicial{
+    width: 3vw;
+    position: absolute;
+    right: 2vw;
+    top:2vh;
+    z-index: 3;
+}

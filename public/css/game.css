@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Night';
+    src: url("../assets/fonts/NightsideDemoRegular.ttf") format('truetype');
+  }
+  
+
+:root{
+    --fundo-principal: #1a1a1a;
+    --Sombra: #2e2e2e;
+    --Azul-esverdeado: #7aa7a4;
+    --azul-escverdeado-obscuro: #658a87;
+    --Cinza-metálico: #5a5a5a;
+    --Detalhe-ósseo: #b0a391;
+    --Roxo-escuro: #4b2a58;
+    --texto: #f0f0f0;
+    --luz: #0e2d30;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    all: unset;
+    cursor: pointer;
+}
+body{
+    color: white;
+    overflow-y: hidden;
+    background-color: var(--fundo-principal);
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="60" viewBox="0 0 24 24"><path fill="%2314FFD3" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') ,auto;
+}
+#tela_inicial{
+    background-color: var(--fundo-principal); 
+    color: var(--azul-escverdeado-obscuro);
+    height: 100vh;
+    font-family: 'Night';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    letter-spacing: 0.3vw;
+    transition: 0.3s ease-out;
+}
+#tela_inicial p:hover{
+    color:var(--luz);
+}
