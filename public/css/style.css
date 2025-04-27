@@ -387,7 +387,98 @@ section{
 
 
 
+#personagens{
+    padding: 10vh 2vw;
+}
+#personagens h1{
+    padding-bottom: 2vh;
+    font-size: 2rem;
+    letter-spacing: 7px;
+    color: #3db3a1;
+}
+.nav-personagem {
+    display: flex;
+    justify-content: space-between;
+}
+.nav-personagem div{
+    display: flex;
+    gap: 1vw;
+}
 
+.nav-personagem   p{
+    list-style: none;
+    padding: 0vh 2vw;
+    padding-bottom: 5px;
+    border-bottom: solid 1px #ffffff;
+    cursor: pointer;
+}
+.nav-personagem   p:hover{
+    border-bottom: solid 2px #3db3a1;
+    font-weight: 800;
+    color: #3db3a1;
+}
+.nav-personagem .atual{
+    border-bottom: solid 2px #3db3a1;
+    font-weight: 800;
+    color: #3db3a1;
+}
+#personagens .container{
+    background: radial-gradient(circle,rgba(0, 0, 0, 0.555) 0%,rgb(0, 0, 0) 55%,rgb(0, 0, 0) 100%), url("../assets/img/baixados.jpeg");
+    height: 78vh;
+    display: flex;
+    flex-direction: column;
+align-items: center;
+}
+#personagens .conteudo .column-1{
+    width: 40%;
+    height: 100%;
+    padding: 3vh 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+}
+.conteudo{
+    display: flex;
+}
+#personagens .conteudo .column-2{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}#personagens .conteudo .column-3{
+    width: 30%;
+    height: 100%;
+    padding: 3vh 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+}
+#sunny{
+    width: 90%;
+    transform: scale(1.6);
+    position: relative;
+    bottom: 28%;
+}
+#personagens h2{
+    font-size: 4rem;
+    letter-spacing: 1.2rem;
+}
+.nome_real{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 6vh;
+}
+.nome_real .esquerda{
+    padding-left: 6%;
+    width: 50%;
+    z-index: 2;
+}
+.nome_real .direita{
+    padding-left: 15%;
+    width: 50%;
+}
 
 
 
