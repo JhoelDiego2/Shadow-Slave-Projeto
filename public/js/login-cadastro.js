@@ -1,9 +1,21 @@
 // procedimento para quando ele digitar mudar a cor mas sera mudado
-function digitando(x) {
+function digitando_cad(x) {
     var texto_x = document.getElementById(`texto_${x}`);
     var ipt_x = document.getElementById(`ipt_${x}`);
-    texto_x.style.color = "white";
+    texto_x.style.color = "#7aa7a4";
+    texto_x.style.position = "relative";
+    texto_x.style.transform = "translate(-2.4vw, -6vh)";
+    texto_x.style.transition = "0.7s ease-in-out";
     ipt_x.style.borderBottom = "solid 4px #7aa7a4";
+}
+function digitando_login(x) {
+    var texto_x = document.getElementById(`texto_${x}`);
+    var ipt_x = document.getElementById(`ipt_${x}`);
+    texto_x.style.color = "black";
+    texto_x.style.position = "relative";
+    texto_x.style.transform = "translate(-2.4vw, -6vh)";
+    texto_x.style.transition = "0.7s ease-in-out";
+    ipt_x.style.borderBottom = "solid 4px black";
 }
 
 var senha = '';

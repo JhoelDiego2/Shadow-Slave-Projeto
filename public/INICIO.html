@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="br">
 
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,10 @@
         <p class="logo_normal" id="logo_que_sube" ><span>Shadow Slave</span></p>
         <nav class="nav-list1 nav-no-page" id="cabecalho_nav">
                 <a href="#">
-                    <p>Inicio</p>
+                    <p>Sobre a web novel</p>
+                </a>
+                <a href="#">
+                    <p>Historia</p>
                 </a>
                 <a href="#">
                     <p>Personagens</p>
@@ -24,15 +27,13 @@
                     <p>Mapa</p>
                 </a>
                 <a href="#">
-                    <p>Como funciona</p>
+                    <p>Jogos</p>
                 </a>
                 <a href="#">
-                    <p>Sobre mim</p>
+                    <p>Desenvolvedor</p>
                 </a>
-                <a href="../public/cadastro.html">
-                    <p id="cadastro">Cadastro</p>
-                </a>
-                <a href="../public/login.html">
+
+                <a href="../public/cadastrologin.html">
                     <p id="entrar">Login</p>
                 </a>
                 <img src="../public/assets/img/lisen.png" alt="" id="icone_musica" onclick="tocar()" >
@@ -74,19 +75,50 @@
                             Seus olhos brilham na <span id="sombras">escuridão</span>. Ela está com você. Mas até quando?
                         </p>
                     </div>
-                    <a href="../public/login.html">
+                    <a href="../public/cadastrologin.html">
                         <p id="saber_mais" ">Entrar no mundo dos sonhos</p>
                     </a>
                 </div>
                 <div class="column-2">
-                    <div class="mongrel moving-head " id="div_mongrel">
+                    <div class="mongrel moving-head " id="div_mongrel" style="display: none;">
                     </div>
                 </div>
             </div>
         </section>
     </section>
     <section id="historia">
-
+        <div class="container-historia">
+            <p id='titulo_historia'>Historia Geral...</p>
+            <div class="nav-history">
+                <ul class="abas-historia">
+                    <li class="atual"><p >Volumen 1</p></li>
+                    <li><p>Volumen 2</p></li>
+                    <li><p>Volumen 3</p></li>
+                    <li><p>Volumen 4</p></li>
+                    <li><p>Volumen 5</p></li>
+                    <li><p>Volumen 6</p></li>
+                    <li><p>Volumen 7</p></li>
+                    <li><p>Volumen 8</p></li>
+                    <li><p>Volumen 9</p></li>
+                    <li><p>Volumen 10</p></li>
+                    <li><p>Volumen 11</p></li>
+                </ul>
+            </div>
+            <div class="volumen v1">
+                <div class="column-1">
+                    <p>Sunny é apresentado como um órfão amargurado vivendo na parte baixa da Cidadela. 
+                    No Dia da Ascensão, ele é levado ao Domínio dos Sonhos, onde começa sua luta brutal
+                     pela sobrevivência.</p>
+                </div>
+                <div class="column-2">
+                    <img src="../public/assets/img/sunnt_vag.webp" >
+                </div>
+                <div class="column-3">
+                    Ele descobre seus poderes sombrios e encontra seus primeiros aliados e inimigos. O 
+                    Domínio revela ser ainda mais mortal do que ele poderia imaginar.
+                </div>
+            </div>
+        </div>
     </section>
     <section id="personagens">
 
@@ -184,6 +216,7 @@
 
 </html>
 <script>
+   // history.scrollRestoration = 'manual'
     function tirar_inicio() {
         const primeira_tela = document.getElementById("primeira_tela");
         const body_pag = document.getElementById("body_pagina");
@@ -191,6 +224,7 @@
         const cabecalho= document.getElementById("cabecalho_nav");
         const segunda_tela= document.getElementById("segunda_tela_at");
         const mongrel= document.getElementById("div_mongrel");
+        const iconeInicial = document.getElementById("icone_inicial")
         primeira_tela.classList.replace("column-1", "esconder")
         body_pag.classList.add("body_after")
         logo_segunda_tela.classList.add("logo_encima")
@@ -198,6 +232,7 @@
         segunda_tela.classList.remove("esconder")
         segunda_tela.classList.add("column-1","segunda-tela")
         mongrel.classList.add("mongrel_segunda_tela")
+        iconeInicial.classList.add("esconder")
 
         
     }
