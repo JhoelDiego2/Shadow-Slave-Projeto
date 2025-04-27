@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Slave | Projeto</title>
+   <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header id="header">
+        <nav class="nav" id="nav_principal">
+            <a href="#">
+                <p>INICIO</p>
+            </a>
+            <a href="#sobre">
+                <p>SOBRE</p>
+            </a>
+            <a href="#historia">
+                <p>HISTORIA</p>
+            </a>
+            <a href="#personagens">
+                <p>PERSONAGENS</p>
+            </a>
+            <a href="#mapa">
+                <p>MAPA</p>
+            </a>
+            <a href="#jogo">
+                <p>JOGO</p>
+            </a>
+            <a href="#desenvolvedor">
+                <p>DESENVOLVEDOR</p>
+            </a>
+
+            <a href="../public/cadastrologin.html">
+                <p id="entrar">ENTRAR</p>
+            </a>
+            <img src="..../public/assets/img/lisen.png" alt="" id="icone_musica" onclick="tocar()">
+        </nav>
+    </header>
+    <main>
+        <section id="inicio">
+            <div class="imagem_fundo">
+            </div>
+            <div class="conteudo">
+                <p id="inicio_titulo"><span class="1_letra">S</span>EJA <span class="vermelho"><span
+                            class="1_letra">B</span>EM</span>-<span class="1_letra">V</span>INDO!</p>
+                <p id="texto">
+                    Você já ouviu falar de um mundo onde sombras caminham ao lado dos vivos, e a sobrevivência é o único
+                    destino certo? Independente da
+                    sua resposta, saiba que agora você está no lugar certo. Aqui, vou te mostrar um pouco sobre essa
+                    obra magnífica, onde coragem, medo
+                    e sacrifício se misturam em uma história que vem crescendo silenciosamente, mas de forma
+                    irresistível, nos corações daqueles que ousam
+                    sonhar... mesmo na escuridão.
+                </p>
+            </div>
+            <div class="flecha">
+                <P> SABER MAIS</P>
+                <a href="#sobre">
+                    <img src="../public/assets/svg/scroll down.svg" id="flecha"></a>
+            </div>
+        </section>
+        <section id="sobre">
+            <div class="esquerda">
+                <div class="esq_titulo">
+                    <p>O QUE É </p>
+                    <h2>SHADOW SLAVE?</h2>
+                </div>
+                <div class="linha">
+
+                </div>
+                <div class="tabela">
+                    <div class="caxa_menor">
+                        <div>
+                            <div>
+                                <p class="titulo verde" style="height: 50%; border-right: none;">Quantidade de capitulos
+                                </p>
+                                <p> +1000 capitulos</p>
+                            </div>
+                            <div style="height: 50%; border-right: none;">
+                                <p class="titulo verde">emissão</p>
+                                <p> Atualizações semanais</p>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div>
+                                <p class="titulo verde">DATA DE LANÇAMENTO</p>
+                                <p> 2020 (em andamento)</p>
+                            </div>
+                            <div>
+                                <p class="titulo verde"> PLATAFORMAS</p>
+                                <p> Webnovel App, Amazon Kindle</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="caixa_maior">
+                        <p>Shadow Slave é uma web novel chinesa que acompanha a vida de Sunny,
+                            um jovem marcado pela pobreza que é jogado em um mundo cruel
+                            governado por monstros e horrores sobrenaturais. Ao longo da
+                            história, ele luta para sobreviver, evoluir e desvendar os
+                            segredos do mundo sombrio conhecido como Nightmare Spell.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="direita">
+                <div class="conteudo">
+                    <div class="voltar">
+                        <img src="../public/assets/img/switch.svg" alt="" onclick="sobre_voltar()">
+                    </div>
+                    <div class="imagens">
+                        <img src="../public/assets/img/sobre1.png" alt="" width="300" class="primeira" id="primeira">
+                        <img src="../public/assets/img/imagem_inicial.png" alt="" width="300" height="400" class="segunda"
+                            id="segunda">
+                        <img src="../public/assets/img/sobre1.png" alt="" width="300" class="terceiro" id="terceiro">
+
+                    </div>
+                    <div class="seguinte">
+                        <img src="../public/assets/img/switch.svg" alt="" onclick="sobre_voltar()">
+                    </div>
+                </div>
+                <div class="caixinhas">
+                    <div class="atual_sobre"></div>
+                    <div class="segunda_sobre"></div>
+                    <div class="terceira_sobre"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="historia">
+            <h2 class="titulo_prin">
+                HiISTORIA
+                </h1>
+                <div class="container">
+                    <div class="column-1" >
+                        <div class="img-container">
+                            <img src="../public/assets/img/h1.png">
+                        </div>
+                    </div>
+
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="column-3 ">
+                        <h2 data-aos="fade-right" data-aos-duration="1300">O Despertar</h2>
+                        <p data-aos="fade-right" data-aos-duration="1300">
+                            A jornada de Sunny começa quando ele acorda no Mundo dos Pesadelos, um reino sombrio onde
+                            humanos são forçados a enfrentar criaturas aterrorizantes e desafios mortais. Após
+                            sobreviver à sua primeira provação, Sunny descobre que possui uma habilidade única: a
+                            capacidade de se transformar em uma sombra. Com essa nova habilidade, ele precisa aprender a
+                            navegar por um mundo onde a linha entre a realidade e o pesadelo é tênue.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="column-1 ">
+                        <h2 data-aos="fade-left" data-aos-duration="1300">A Cidadela Esquecida</h2>
+                        <p data-aos="fade-left" data-aos-duration="1300">
+                            Sunny e seus companheiros são enviados para uma antiga cidadela abandonada, onde segredos
+                            sombrios e criaturas corrompidas aguardam. Lá, ele enfrenta seu primeiro grande desafio como
+                            Despertado, descobrendo mais sobre seu passado e o verdadeiro propósito do Mundo dos
+                            Pesadelos. A Cidadela também revela os primeiros indícios de uma conspiração maior,
+                            envolvendo os Senhores dos Pesadelos.
+                        </p>
+                    </div>
+
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="column-3">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-2.jpg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="column-1">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-3.jpg">
+                        </div>
+                    </div>
+
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="column-3 ">
+                        <h2 data-aos="fade-right" data-aos-duration="1300">O Labirinto das Almas Perdidas</h2>
+                        <p data-aos="fade-right" data-aos-duration="1300">
+                            Sunny é arrastado para um labirinto infinito, onde as almas dos que falharam no Mundo dos
+                            Pesadelos estão presas. Lá, ele encontra Nephis, uma guerreira misteriosa com seu próprio
+                            destino entrelaçado ao dele. Juntos, eles precisam enfrentar não apenas os horrores do
+                            labirinto, mas também as sombras de seus próprios traumas. Essa saga marca o início de uma
+                            aliança crucial para a sobrevivência de Sunny.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="column-1 ">
+                        <h2 data-aos="fade-left" data-aos-duration="1300">A Guerra das Sombras</h2>
+                        <p data-aos="fade-left" data-aos-duration="1300">
+                            Conflitos entre facções de Despertados se intensificam, e Sunny se vê no meio de uma guerra
+                            onde lealdades são testadas. Ele precisa decidir se continuará apenas sobrevivendo ou se
+                            tornará um ator principal nesse jogo de poder. Suas habilidades como Shadow Slave são
+                            colocadas à prova contra inimigos que desafiam não apenas sua força, mas também sua
+                            sanidade.
+                        </p>
+                    </div>
+
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="column-3">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-4.jpg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="column-1">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-5.jpg">
+                        </div>
+                    </div>
+
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="column-3 ">
+                        <h2 data-aos="fade-right" data-aos-duration="1300">O Templo do Pesadelo</h2>
+                        <p data-aos="fade-right" data-aos-duration="1300">
+                            Sunny e Nephis adentram um templo antigo, onde os segredos dos Primeiros Pesadelos estão
+                            guardados. Lá, eles descobrem a verdade por trás do Ciclo do Pesadelo e o papel dos Shadow
+                            Slaves. O templo também abriga uma entidade ancestral que testa a coragem e a determinação
+                            de Sunny, oferecendo-lhe um poder maior—mas a um custo terrível.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="column-1 ">
+                        <h2 data-aos="fade-left" data-aos-duration="1300">A Queda da Aurora</h2>
+                        <p data-aos="fade-left" data-aos-duration="1300">
+                            A cidade flutuante de Aurora, um dos últimos refúgios da humanidade, é invadida por
+                            pesadelos. Sunny e seus aliados precisam enfrentar uma horda de criaturas enquanto tentam
+                            salvar o que resta da civilização. Essa saga marca um ponto de virada na história, onde
+                            Sunny percebe que não pode mais fugir de seu destino—ele deve se tornar o herói que o mundo
+                            precisa, mesmo que isso signifique abraçar completamente sua natureza sombria.
+                        </p>
+                    </div>
+
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="column-3">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-6.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="column-1">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-7.jpg">
+                        </div>
+                    </div>
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="column-3 ">
+                        <h2 data-aos="fade-right" data-aos-duration="1300">O Reino das Sombras Esquecidas</h2>
+                        <p data-aos="fade-right" data-aos-duration="1300">
+                            Sunny e Nephis adentram um reino submerso onde os Primeiros Pesadelos foram selados. Lá,
+                            descobrem que as sombras são entidades conscientes e que o próprio Sunny pode ser a chave
+                            para libertá-las. Enquanto isso, um antigo inimigo ressurge, ameaçando corromper até mesmo a
+                            ligação entre Sunny e sua sombra.
+                        </p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="column-1 ">
+                        <h2 data-aos="fade-left" data-aos-duration="1300">A Traição de Noctis</h2>
+                        <p data-aos="fade-left" data-aos-duration="1300">
+                            Noctis, um aliado próximo de Sunny, revela sua verdadeira lealdade aos Senhores dos
+                            Pesadelos. Em uma batalha épica sob uma lua sangrenta, Sunny é forçado a confrontar a
+                            fragilidade de suas alianças e a aceitar que, no Mundo dos Pesadelos, até mesmo a confiança
+                            é uma ilusão. O preço da traição? A perda de um Fragmento de Memória essencial.
+                        </p>
+                    </div>
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="column-3">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-8.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="column-1">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-9.jpg">
+                        </div>
+                    </div>
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="column-3 ">
+                        <h2 data-aos="fade-right" data-aos-duration="1300">O Vulcão das Almas Perdidas</h2>
+                        <p data-aos="fade-right" data-aos-duration="1300">
+                            Para salvar Nephis de uma maldição irreversível, Sunny escala o Vulcão das Almas, onde os
+                            Despertados falecidos são consumidos pelo magma negro. Lá, ele enfrenta eco de seus próprios
+                            medos e encontra uma relíquia capaz de reescrever o destino—mas usá-la exigirá um sacrifício
+                            inimaginável: sua própria humanidade.
+                        </p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="column-1 ">
+                        <h2 data-aos="fade-left" data-aos-duration="1300">A Ascensão do Lorde das Sombras</h2>
+                        <p data-aos="fade-left" data-aos-duration="1300">
+                            Sunny finalmente abraça seu legado como o verdadeiro Lorde das Sombras, despertando um poder
+                            ancestral que ameaça destruir o equilíbrio entre o Mundo Real e o dos Pesadelos. Agora, como
+                            uma figura temida por ambos os lados, ele precisa decidir se será um tirano ou o salvador
+                            que quebrará o Ciclo dos Pesadelos de uma vez por todas.
+                        </p>
+                    </div>
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="column-3">
+                        <div class="img-container">
+                            <img src="assets/image/shadow-slave-image-10.jpg">
+                        </div>
+                    </div>
+                </div>
+
+        </section>
+        <section id="personagens">
+
+        </section>
+        <section id="mapa">
+
+        </section>
+        <section id="jogo">
+            <h1>MINI - JOGOS DISPONIVEIS</h1>
+            <div class="container">
+                <div class="column-1 ativo">
+                    <h2>Capture o sunny sombra</h2>
+                    <p>Treine seus reflexos capturando Sunny enquanto ele se move nas sombras!
+                        Sunny aparecerá em diferentes pontos da tela e mudará rapidamente de
+                        posição. O objetivo é clicar no personagem antes que ele desapareça
+                        .Habilidade Trabalhada: Agilidade e atenção.
+                    </p>
+                </div>
+                <div class="column-2">
+                    <div class="content">
+                        <div class="voltar">
+                            <img src="../public/assets/img/switch.svg" alt="">
+                        </div>
+                        <img src="../public/assets/img/sunny_xom_fundo.webp" alt="" class="jogo1" width="450">
+                        <img src="../public/assets/img/imagem_inicial.png" alt="" class="jogo2" width="450">
+                        <img src="../public/assets/img/fundo_nephis.png" alt="" class="jogo3" width="450">
+                    </div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="desenvolvedor">
+
+        </section>
+
+    </main>
+    <footer>
+        <div>
+            <img src="../public/assets/img/logotipo.png" alt="" id="logotipo-footer">
+            <p>© 2025 Shadow Slave | Jhoel</p>
+        </div>
+        <div>
+            <p id="f-info">Informações</p>
+            <div class="list">
+                <div>
+                    <a href="#home">
+                        <p class="verde">Inicio</p>
+                    </a>
+                    <a href="#home">
+                        <p class="verde">Historia</p>
+                    </a>
+                    <a href="#home">
+                        <p class="verde">Personagens</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#home">
+                        <p class="verde">Mapa</p>
+                    </a>
+                    <a href="#home">
+                        <p class="verde">Como funciona</p>
+                    </a>
+                    <a href="#home">
+                        <p class="verde">Desenvolvedor</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="projeto">
+            <p>
+                <span>Projeto individual</span>
+                Site desenvolvido para nota nas materias de Pesquisa & inovação e Socioemocional
+            </p>
+        </div>
+        <div class="contatos">
+            <div class="verde contato"><a href="">
+                    <div id="email_imagem">
+                    </div>
+                    <p>jhoel.mita@sptech.school</p>
+                </a>
+            </div>
+            <div class="verde contato "><a href="https://github.com/JhoelDiego2">
+                    <div id="github_imagem">
+                    </div>
+                    <p>JhoelDiego2 | Github</p>
+                </a>
+            </div>
+            <div class="verde contato"><a href="">
+                    <div id="linkediin_imagem">
+                    </div>
+                    <p>linkediin</p>
+                </a>
+            </div>
+            <div class="verde contato"><a href="">
+                    <div id="numero_imagem">
+                    </div>
+                    <p> (11) 84678-7175</p>
+                </a>
+            </div>
+            <div class="verde contato"><a href="">
+                    <div id="instagram_imagem">
+                    </div>
+                    <p> instagram</p>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!--<script src="https://unpkg.com/aos@next/dist/aos.js"></script>-->
+</body>
+
+</html>
+<script>
+    window.addEventListener('scroll', function () {
+        const navbar = document.getElementById('nav_principal');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    function sobre_voltar() {
+        const primeira = document.querySelector(".primeira");
+        const segunda = document.querySelector(".segunda");
+        const terceiro = document.querySelector(".terceiro");
+        // divs pequenas
+        const primeira_sobre = document.querySelector(".atual_sobre")
+        const segunda_sobre = document.querySelector(".segunda_sobre")
+        const terceiro_sobre = document.querySelector(".terceiro_sobre")
+        primeira.classList.replace("primeira", "terceiro")
+        segunda.classList.replace("segunda", "primeira")
+        terceiro.classList.replace("terceiro", "segunda")
+        //
+        primeira_sobre.classList.replace("atual_sobre", "terceiro_sobre")
+        segunda_sobre.classList.replace("segunda_sobre", "atual_sobre")
+        terceiro_sobre.classList.replace("terceiro_sobre", "segunda_sobre")
+        /* if (primeira.classList.contains('primeira')) {
+             primeira.classList.remove('primeira');
+             primeira.classList.add('terceira');
+     
+             segunda.classList.remove('segunda');
+             segunda.classList.add('primeira');
+     
+             terceiro.classList.remove('terceiro');
+             terceiro.classList.add('segunda');
+         } else if (primeira.classList.contains('terceira')) {
+             primeira.classList.remove('terceira');
+             primeira.classList.add('segunda');
+     
+             segunda.classList.remove('primeira');
+             segunda.classList.add('terceiro');
+     
+             terceiro.classList.remove('segunda');
+             terceiro.classList.add('primeira');
+         } else if (primeira.classList.contains('segunda')) {
+             primeira.classList.remove('segunda');
+             primeira.classList.add('primeira');
+     
+             segunda.classList.remove('terceiro');
+             segunda.classList.add('segunda');
+     
+             terceiro.classList.remove('primeira');
+             terceiro.classList.add('terceiro');
+         }*/
+    }
+
+</script>
