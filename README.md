@@ -3,10 +3,12 @@
 
 Bem-vindo ao **ShadowSlave**, um projeto experimental inspirado em atmosferas sombrias e universos de fantasia como *Shadow Slave*.  
 
-Este site está sendo desenvolvido como uma **interface introdutória** de um universo narrativo. O objetivo final é criar uma experiência imersiva, com ambientação visual e narrativa forte, servindo como uma porta de entrada para um "jogo" ou ambiente interativo, a ideia no começo é que seja um jogo de cases na qual ao final é revelado o seu poder no mundo dos sonhos 
+Este site está sendo desenvolvido como uma **interface introdutória** de um universo narrativo. O objetivo final é criar uma experiência imersiva, com ambientação visual e narrativa forte, servindo como uma porta de entrada para mini jogos , a ideia no começo é que sejam varios mini jogos simples com cada um dos principais personagens.
 
 <img src="./public/assets/img/Captura de pantalla 2025-04-20 232952.png">
-<img src="./public/assets/img/Captura de pantalla 2025-04-20 233117.png">
+<img src="https://i.imgur.com/vhi10os.png">
+<img src="https://i.imgur.com/mPj4UIp.png">
+<img src="https://i.imgur.com/n8ZFe4b.png">
 <img src="./public/assets/img/Captura de pantalla 2025-04-20 233142.png">
 
 ---
@@ -18,18 +20,15 @@ Este site está sendo desenvolvido como uma **interface introdutória** de um un
 No momento, apenas as seguintes seções estão disponíveis:
 
 - ✅ **Início** – com introdução ao universo e botão de entrada;
-- ✅ **Login** – estrutura inicial para entrada de usuários;
+- ✅ **Login-cadastro** – estrutura inicial para entrada de usuários;
 - ❌ Outras seções ainda serão implementadas futuramente.
 
 ---
 
 ## 🚧 Próximas Etapas
 
-- [ ] Página de criação de personagem;
-- [ ] Interface de exploração do mundo;
 - [ ] responsividade para tablets;
-- [ ] Sistema de progresso ou missões;
-- [ ] Utilização da API Web;
+- [ ] Utilização da API Web para conectar o site com o banco de dados;
 
 
 ---
@@ -40,6 +39,7 @@ No momento, apenas as seguintes seções estão disponíveis:
 - CSS3 (com animações)
 - JavaScript (básico, por enquanto)
 - Google Fonts (Cinzel, Raleway, Bebas Neue)
+- Node js
 - Photoshop
 - Figma
 
