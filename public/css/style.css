@@ -78,8 +78,20 @@ section {
     color: white;
     gap: 1vw;
     padding-right: 1vw;
-}
+    animation: slideDown 1.8s ease;
 
+}
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .nav a::after {
     content: "";
     display: block;
@@ -194,7 +206,7 @@ section {
 
 
 #sobre {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.918) 0%, rgb(0, 0, 0) 55%, rgb(0, 0, 0) 100%), url("../assets/img/imagem_sobre.png");
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.801) 10%, rgba(0, 0, 0, 0.973) 55%, rgb(0, 0, 0) 100%), linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0)),  url("../assets/img/imagem_sobre.png");
     display: flex;
     justify-content: center;
     padding: 0vh 2vw;
@@ -233,9 +245,14 @@ section {
 
 }
 
-.tabela .caxa_menor div {
+.tabela .caxa_menor div div{
     border: solid 1px #3DB3A2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    min-height: 50%;
 }
 
 .verde {
@@ -251,7 +268,7 @@ section {
 
 .caixa_maior {
     border: solid 1px #3DB3A2;
-    border-top: none;
+    border-top: solid 1px rgba(0, 0, 255, 0);
     padding: 3%;
 }
 
@@ -323,10 +340,6 @@ section {
     border-radius: 10rem;
 }
 
-.atual_sobre {
-    background-color: white;
-    order: 1;
-}
 
 .segunda_sobre {
     order: 2;
@@ -336,6 +349,10 @@ section {
     order: 3;
 }
 
+.atual_sobre {
+    background-color: white;
+    order: 1;
+}
 .seguinte {
     padding-left: 6vw;
 }
@@ -433,9 +450,10 @@ section {
 }
 
 #historia img {
-    padding: 0.2rem;
-    border: outset 2px #3db3a1;
+    padding: 1%;
+    border: outset 2px #3db3a1be;
     box-shadow: inset 5px 10px 15px #16423cb7;
+    width: 90%;
 }
 
 #historia p {
@@ -446,6 +464,8 @@ section {
 
 #personagens {
     padding: 10vh 2vw;
+    background: linear-gradient(to bottom, #000000b0 1%,  #00000000 100%)
+
 }
 
 #personagens h1 {
@@ -486,7 +506,7 @@ section {
 }
 
 #personagens .container {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.555) 0%, rgb(0, 0, 0) 55%, rgb(0, 0, 0) 100%), url("../assets/img/baixados.jpeg");
+    background: radial-gradient(circle, rgba(51, 49, 49, 0.151) 0%, rgb(0, 0, 0) 55%, rgb(0, 0, 0) 100%), url("../assets/img/baixados.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -498,7 +518,8 @@ section {
 
 #personagens .conteudo .column-1 {
     width: 40%;
-    height: 100%;
+    height: 50%;
+
     padding: 3vh 2vw;
     display: flex;
     flex-direction: column;
@@ -511,15 +532,16 @@ section {
 
 #personagens .conteudo .column-2 {
     width: 30%;
-    height: 100%;
+    height: 62%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+
 }
 
 #personagens .conteudo .column-3 {
     width: 30%;
-    height: 100%;
+    height: 50%;
     padding: 3vh 2vw;
     display: flex;
     flex-direction: column;
@@ -527,10 +549,7 @@ section {
 }
 
 #sunny {
-    width: 90%;
-    transform: scale(1.6);
-    position: relative;
-    bottom: 28%;
+    height: 90vh;
 }
 
 #personagens h2 {
@@ -694,48 +713,56 @@ section {
 
 #jogo .container {
     display: flex;
-    gap: 10vw;
+    gap: 12vw;
+    padding: 1% 0%;
 }
 
 #jogo h1 {
     text-align: center;
     font-size: 3rem;
     padding-bottom: 5vh;
+    padding-top: 10vh;
 }
 
 #jogo .column-1 {
     padding-left: 20vh;
+    gap: 10%;
 }
 
 #jogo h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .jogo1 {
     z-index: 5;
     border: solid 1px #3DB3A2;
-
+    width: 23vw;
+    margin-left: 20%;
 }
 
 .jogo2 {
     position: absolute;
+    right: 17.5%;
     z-index: 4;
     border: solid 1px #3DB3A2;
-
-
+    width: 26vw;
+    height: 18vw;
 }
 
 .jogo3 {
     position: absolute;
-    right: 10vw;
+    right: 16.3%;
     z-index: 3;
     border: solid 1px #3DB3A2;
+    width: 29vw;
+    height: 17vw;
+
 
 
 }
 
 #jogo p {
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 #jogo .column-2 {
@@ -749,13 +776,27 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10vw;
+    gap: 1vw;
 }
 
 
-
-
-
+#jogo a p{
+    display: flex;
+    justify-content: center;
+    padding: 1vh 2vw;
+    width: 30vw;
+    border: solid 4px white;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(136, 41%, 53%, 0));;
+}
+#jogo a p:hover{
+    border-width: 2.4px;
+    width: 40vw;
+}
+    
 
 
 
@@ -906,3 +947,6 @@ footer .list div {
 
 
 /*----------------------------fotter----------acaba--------*/
+img {
+    user-select: none;
+}
