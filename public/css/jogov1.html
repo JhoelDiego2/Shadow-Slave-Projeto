@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        width: 100vw;
+        height: 100vh;
+        background-color: aqua;
+        }
+    #imagem_sunny{
+        position: absolute;
+        top: 40;
+        top: left;
+        width: 20vw;
+
+    }
+</style>
+<body>
+    <div class="contianer">
+        <img src="../assets/img/sunny_chibi.png" alt="" onclick="mudar()" id="imagem_sunny">
+    </div>
+</body>
+</html>
+<script>
+    function num() {
+        return Math.floor(Math.random() * (100 - 1)) + 1
+    }
+    function mudar() {
+        let imagem_sunny = document.getElementById("imagem_sunny")
+        let left = num()
+        let rigth = num()
+        let top = num()
+        let botoom = num()
+        imagem_sunny.style.top = top + '%'
+        imagem_sunny.style.bottom = botoom + '%'
+        imagem_sunny.style.left = left + '%'
+        imagem_sunny.style.right = rigth + '%'
+    }
+
+</script>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shadow Slave | Projeto</title>
-        <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet"> 
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -45,8 +45,9 @@
             <div class="imagem_fundo">
             </div>
             <div class="conteudo">
-                <p id="inicio_titulo" data-aos="fade-right" data-aos-duration="1000"><span class="1_letra">S</span>EJA <span class="vermelho"><span
-                            class="1_letra">B</span>EM</span>-<span class="1_letra">V</span>INDO!</p>
+                <p id="inicio_titulo" data-aos="fade-right" data-aos-duration="1000"><span class="1_letra">S</span>EJA
+                    <span class="vermelho"><span class="1_letra">B</span>EM</span>-<span class="1_letra">V</span>INDO!
+                </p>
                 <p id="texto" data-aos="fade-right" data-aos-duration="2200">
                     Você já ouviu falar de um mundo onde sombras caminham ao lado dos vivos, e a sobrevivência é o único
                     destino certo? Independente da
@@ -57,7 +58,7 @@
                     sonhar... mesmo na escuridão.
                 </p>
             </div>
-            <div class="flecha" >
+            <div class="flecha">
                 <P> SABER MAIS</P>
                 <a href="#sobre">
                     <img src="../public/assets/svg/scroll down.svg" id="flecha"></a>
@@ -392,7 +393,7 @@
                 </div>
 
         </section>
-        <section id="personagens" >
+        <section id="personagens">
             <h1 data-aos="fade-right" data-aos-duration="1000">PERSONAGENS</h1>
             <nav class="nav-personagem" data-aos="fade-up" data-aos-duration="3000">
                 <div>
@@ -407,12 +408,12 @@
                     <p onclick="modret_trocar()" id="modret_aba">MODRET</p>
                 </div>
             </nav>
-            <div class="container aba-sunny" >
+            <div class="container aba-sunny">
                 <div class="nome_real" data-aos="fade-up" data-aos-duration="2000">
                     <h2 class="esquerda">LOST FROM </h2>
                     <h2 class="direita">LIGHT </h2>
                 </div>
-                <div class="conteudo" >
+                <div class="conteudo">
 
 
                     <div class="column-1" data-aos="fade-right" data-aos-duration="2000">
@@ -671,7 +672,36 @@
             </div>
         </section>
         <section id="mapa">
+            <h1 data-aos="fade-up" data-aos-duration="2000" style="letter-spacing: 10px;">MAPA</h1>
+            <div class="container">
+                <div class="imagem_mapa">
+                    <div class="mapa_cima">
+                        <div class="forgotten">
+                        </div>
+                        <div class="desert">
 
+                        </div>
+                    </div>
+                    <div class="mapa_meio">
+
+                    </div>
+                    <div class="mapa_baixo">
+
+                    </div>
+                </div>
+                <div class="informacoes-mapa i-forgotten" data-aos="fade-left" data-aos-duration="2000">
+                    <h2 class="titulo_lugar"> forgotten Island </h2>
+                    <img src="../public/assets/img/cidadelaperdida 1.png" alt="" >
+                    <p >
+                        A Forgotten Island é um reino perdido, envolto em névoas
+                        e ruínas de um passado esquecido. Shades assombram suas
+                        sombras, repetindo tragédias antigas. No centro, a Eclipse
+                        Well corrói mentes, atraindo os condenados. Quem entra
+                        raramente escapa—a ilha consome memórias e almas, deixando
+                        apenas loucura. Um lugar onde o tempo morreu.
+                    </p>
+                </div>
+            </div>
         </section>
         <section id="jogo">
             <h1 data-aos="fade-up" data-aos-duration="2000">MINI - JOGOS DISPONIVEIS</h1>
@@ -690,18 +720,18 @@
                 <div class="column-2">
                     <div class="content">
                         <div class="voltar" id="voltar_jogo">
-                            <img src="../public/assets/img/switch.svg" alt="">
+                            <img src="../public/assets/img/switch.svg" alt="" onclick="voltar_jogo()">
                         </div>
                         <img src="../public/assets/img/sunny_xom_fundo.webp" alt="" class="jogo1" width="450">
                         <img src="../public/assets/img/imagem_inicial.png" alt="" class="jogo2" width="450">
                         <img src="../public/assets/img/fundo_nephis.png" alt="" class="jogo3" width="450">
-                        <div class="seguinte" id="voltar_jogo" >
-                            <img src="../public/assets/img/switch.svg" alt="">
+                        <div class="seguinte" id="voltar_jogo">
+                            <img src="../public/assets/img/switch.svg" alt="" onclick="">
                         </div>
                     </div>
-                    
-                    <div>
-                        <div></div>
+
+                    <div class="caixinhas ">
+                        <div id="jogo_atual_c"></div>
                         <div></div>
                         <div></div>
                         <div></div>
@@ -787,7 +817,7 @@
     </footer>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+        AOS.init();
     </script>
 </body>
 

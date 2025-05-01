@@ -464,8 +464,8 @@ section {
 
 #personagens {
     padding: 10vh 2vw;
-    background: linear-gradient(to bottom, #000000b0 1%,  #00000000 100%)
-
+    background: linear-gradient(to bottom, #000000b0 1%,  #00000000 100%);
+    height: 110vh;
 }
 
 #personagens h1 {
@@ -564,6 +564,9 @@ section {
     padding: 6vh;
 }
 
+.nome_real h2{
+    user-select: none;
+}
 .nome_real .esquerda {
     padding-left: 6%;
     width: 50%;
@@ -592,10 +595,8 @@ section {
 }
 
 #nephis {
-    width: 90%;
-    transform: scale(1.25);
-    position: relative;
-    bottom: 41%;
+    height: 100vh;
+    padding-bottom: 6vh;
 }
 
 .aba-nephis span {
@@ -641,6 +642,7 @@ section {
 .aba-kai .nome_real {
     color: #63ac27;
 }
+
 .aba-kai .esquerda{
     padding: 0;
 }
@@ -683,17 +685,76 @@ section {
 
 
 
+#mapa{
+    height: 100vh;
 
+}
+#mapa h1{
+    text-align: center;
+    font-size: 3rem;
+    padding-bottom: 1vh;
+    padding-top: 10vh;
+}
+#mapa .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 2vw;
+}
+.imagem_mapa{
+    background: url("../assets/img/mapa_obsc.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 39vw;
+    background-size: cover;
+    width: 200vw;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
 
+}
+.mapa_cima{
+    display: flex;
+    height: 32%;
+    width: 100%;
+}
+.forgotten{
+    height: 100%;
+    width: 48%;
+}
+.informacoes-mapa{
+    display: flex;
+    flex-direction: column;
+    padding: 0vh 1vw;
+    width: 150%;
+    justify-content: flex-start;
+    gap: 2%;
+    align-items: center;
+    margin-right: 1vw;
+    padding-top: 1vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 1px 1px 1px 8px rgba(35, 35, 35, 0.114);
 
-
-
-
-
-
-
-
-
+}
+.titulo_lugar{
+    text-align: center;
+    font-size: 2.4rem;
+    color: white;
+    text-transform: uppercase;
+    width: 90%;
+}
+.informacoes-mapa img{
+    transform: rotate(-1deg);
+    width: 90%;
+    border-radius: 20px;
+}
+.informacoes-mapa p{
+    width: 90%;
+    color: white;
+    font-size: 1.4rem;
+    text-align: justify;
+}
 
 
 
@@ -758,7 +819,6 @@ section {
     height: 17vw;
 
 
-
 }
 
 #jogo p {
@@ -798,7 +858,14 @@ section {
 }
     
 
+#jogo .caixinhas{
+    display: flex;
+    gap: 1vw;
+}
 
+#jogo_atual_c{
+    background-color: white;
+}
 
 
 
