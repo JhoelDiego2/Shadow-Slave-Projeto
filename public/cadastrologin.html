@@ -11,17 +11,18 @@
 <body>
   <main id="main">
     <div class="imagem_fundo" id="imagem_de_fundo"></div>
+    <!--FORMULARIO DE LOGIN_________________________________________________________-->
     <div class="cadastro-login">
       <div class="column-login" id="container_login">
         <div class="card-login" id="provando">
           <p id="titulo">Iniciar Sessão</p>
           <p id="subtitulo">Não possui uma conta?<span onclick="trocar_cadastro()"
               style="color: grey; text-decoration: underline; ">Acesse aqui</span></p>
-          <div><img src="../public/assets/svg/user.svg" alt="">
+          <div><img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario">Nome de usúario</p>
           </div>
           <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')">
-          <div><img src="../public/assets/svg/lock-closed.svg" alt="">
+          <div><img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha">Senha</p>
           </div>
           <input type="password" id="ipt_senha" onclick="digitando_login('senha')">
@@ -31,26 +32,27 @@
         </div>
       </div>
       <div class="column-cadastro">
+        <!--_____________________________________________________FORMULARIO DE CADASTRO____-->
         <div class="card-login">
           <p id="titulo">Cadastro</p>
           <div>
-            <img src="../public/assets/svg/user.svg" alt="">
+            <img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario_cad">Nome de usúario</p>
           </div>
           <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')">
           <div>
-            <img src="../public/assets/svg/mail.svg" alt="">
+            <img src="assets/svg/mail.svg" alt="">
             <p id="texto_email">Email</p>
           </div>
           <span id="email_condicao"></span>
           <input type="text" id="ipt_email" onclick="digitando_cad('email')">
           <div>
-            <img src="../public/assets/svg/lock-closed.svg" alt="">
+            <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha_cad">Senha</p>
           </div>
           <input type="password" id="ipt_senha_cad" onclick="digitando_cad('senha_cad')">
           <div>
-            <img src="../public/assets/svg/lock-closed.svg" alt="">
+            <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_conf_senha">Confirmar Senha</p>
           </div>
           <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')">
@@ -68,18 +70,18 @@
     </div>
     <p>Esqueceu a senha?</p>
     <p>Iremos te ajudar a recuperar a sua conta</p>
-    <p id="placeholder"> <img src="../public/assets/img/github.png" alt="">Porfavor Informe o seu email</p>
+    <p id="placeholder"> <img src="assets/img/github.png" alt="">Porfavor Informe o seu email</p>
     <input type="email" onclick="esqueci()" id="ipt_esqueci_senha">
   </div>
   <div id="div_alerta" style="display: none;">
-    <img src="../public/assets/img/sunny_chibi.png" alt="" id="sunny_chibi">
+    <img src="assets/img/sunny_chibi.png" alt="" id="sunny_chibi">
     <p id="titulo_erro">
       Senha incorreta
     </p>
     <p id="mensagem_erro">
       Se nem sua própria senha te reconhece… quem é você, afinal?
     </p>
-    <button onclick="tirar_alerta()">OK</button>
+    <button onclick="tirar_alerta()" id="bottom_mensagem">OK</button>
   </div>
   <script src="js/login-cadastro.js"></script>
 </body>
@@ -103,6 +105,19 @@
 
 
   function tirar_alerta() {
+    div_alerta.style = "display:none"
+    main.style = "filter: blur(0px);  "
+  }
+
+
+  //jvoltar aqui arrumar error criar dois alertas um especial para o casdastro da erro 
+
+  function trocar_login_alerta(){
+    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
+    imagem_de_fundo.style.transform = "translateX(100%)"
+    imagem_de_fundo.style.backgroundSize = "cover"
+    ////tirar alerta
     div_alerta.style = "display:none"
     main.style = "filter: blur(0px);  "
   }
@@ -156,7 +171,7 @@
       mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
       verificar = false
       if (nome_usuario == 'Jhoel' && senha == 'urubu100') {
-        window.location = "../public/game.html";
+        window.location = "game.html";
       }
     }
   }

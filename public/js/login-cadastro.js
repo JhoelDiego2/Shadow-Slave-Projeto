@@ -26,12 +26,13 @@ var email_login = ''
 // funções do cadastro
 
 function cadastrar() {
-    // variaveis das input
-    var nome_usuario = ipt_nome_usuario.value
-    var email = ipt_email.value    
-    var senha = ipt_senha.value
+    // variaveis das input do cadastro
+    var nome_usuario = ipt_nome_usuario_cad.value
+    var email = ipt_email.value
+    var senha = ipt_senha_cad.value
     var conf_senha = ipt_conf_senha.value
-
+    console.log(senha)
+    console.log(conf_senha)
     // Variaveis booleanas para  validar a senha
     var valido = false;
     var contem_Maiuscula = false;
@@ -57,88 +58,168 @@ function cadastrar() {
         if (letrasMaiusculas.includes(caracter)) {
             contem_Maiuscula = true;
 
-        } 
+        }
         if (letrasMinusculas.includes(caracter)) {
             contem_Minuscula = true;
 
-        } 
-         if (numeros.includes(caracter)) {
+        }
+        if (numeros.includes(caracter)) {
             contem_Numero = true;
 
-        } 
-         if (caracteresEspeciais.includes(caracter)) {
+        }
+        if (caracteresEspeciais.includes(caracter)) {
             contem_Especial = true;
 
         }
     }
+    //verificar um email valido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
+    var umarroba = false
+    var arroba_invalido = false
 
+    for (let i = 1; i <= email.lenght; i++) {
+        if (email[i] == '@' && umarroba == false) {
+            umarroba = true
+            break
+        }
+        if (email[i] == '@' && umarroba == true) {
+            arroba_invalido = true
+        }
+    }
+
+    div_alerta.style = "display:1"
+    main.style = "filter: blur(2.4px); "
     while (valido == false) {
-        if (senha == '' || nome_usuario == '' || cnpj == '' || telefone == '') {
-            alert("Todos os campos devem ser preenchidos")
-            break
-        }
-         if (senha.length < 10) {
-            alert("A senha necessita ter 10 ou mais caracteres")
-            break
 
-        }
-         if (!contem_Maiuscula) {
-            alert('A senha deve conter pelo menos uma letra maiúscula.');
+        if (senha == '' && nome_usuario == '' && conf_senha == '' && email == '') {
+            titulo_erro.innerHTML = "Campos vazios"
+            mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
             break
-        } 
+        }
+        if (nome_usuario == '') {
+            titulo_erro.innerHTML = "Campo de usuário vazio"
+            mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
+            break
+        }
+        if (nome_usuario < 3) {
+            titulo_erro.innerHTML = "Nome curto"
+            mensagem_erro.innerHTML = "Nomes fracos desaparecem sem deixar vestígios. Escolha com mais poder"
+            break
+        }
+        if (email == '') {
+            titulo_erro.innerHTML = "E-mail vazio"
+            mensagem_erro.innerHTML = "Nem mesmo os ecos do além conseguem te alcançar sem um destino definido."
+            break
+        }
+        if (arroba_invalido == true) {
+            titulo_erro.innerHTML = "E-mail invalido"
+            mensagem_erro.innerHTML = "A mensagem se perdeu no vazio. Verifique seu e-mail."
+            break
+        }
+        if (senha == '') {
+            titulo_erro.innerHTML = "Campo de senha vazio"
+            mensagem_erro.innerHTML = "Sem defesa, você não sobreviverá na névoa. Crie sua proteção."
+            break
+        }
+        if (senha.length < 8) {
+            titulo_erro.innerHTML = "Senha Curta"
+            mensagem_erro.innerHTML = "Uma proteção tão frágil não resistirá à escuridão. Sua senha precisa de ao menos 8 carateres"
+            break
+        }
+        if (!contem_Maiuscula) {
+            titulo_erro.innerHTML = "Senha sem maiuscula"
+            mensagem_erro.innerHTML = "Onde está sua presença dominante? A senha precisa conter ao menos uma letra que comande — uma letra maiúscula."
+            break
+        }
         if (!contem_Minuscula) {
-            alert('A senha deve conter pelo menos uma letra minúscula.');
+            titulo_erro.innerHTML = "Senha sem minuscula"
+            mensagem_erro.innerHTML = "A essência sutil da sombra está ausente. Adicione uma letra minúscula à sua senha."
             break
-        } 
+        }
         if (!contem_Numero) {
-            alert('A senha deve conter pelo menos um número.');
+            titulo_erro.innerHTML = "Senha sem número"
+            mensagem_erro.innerHTML = "Sem números, você vagueia sem rumo na névoa. Invoque ao menos um dígito para seguir adiante."
             break
         }
-         if (!contem_Especial) {
-            alert('A senha deve conter pelo menos um caractere especial (ex: !@#$%).');
+        if (!contem_Especial) {
+            titulo_erro.innerHTML = "Senha sem caratere especial"
+            mensagem_erro.innerHTML = "Sua senha carece de caos. Adicione um símbolo do abismo: ! @ # $ % ..."
             break
         }
-         if (ipt_senha.value!=ipt_senha2.value){
-            alert('A senha e a confirmação devem coincidir')
+        if (senha != conf_senha) {
+            titulo_erro.innerHTML = "As senhas não coincidem"
+            mensagem_erro.innerHTML = "As duas forças estão desalinhadas. A senha e sua confirmação devem ser como espelhos — idênticas."
             break
         }
-         if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha == conf_senha)) {
-             valido = true
+        if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha == conf_senha)) {
+            valido = true
         }
-        
-
-
     }
-
-
     //verifica se os inputs estao vazios
-   
-
-
     if (valido) {
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nome_usuario,
+                emailServer: email,
+                senhaServer: senha,
+                //  idEmpresaVincularServer: idEmpresaVincular
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-
-        senha_global = ipt_senha.value;
-        email_global = ipt_email.value;
-
-        // armazena localmente:
-        localStorage.setItem('medsense_email', email_global);
-        localStorage.setItem('medsense_password', senha_global);
-
-        window.location.href = 'login.html'; 
+                if (resposta.ok) {
+                    let bottom = document.getElementById("bottom_mensagem")
+                    titulo_erro.innerHTML = "Seja bem vindo sombra"
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    bottom.onclick = trocar_login_alerta
+                    /*  setTimeout(() => {
+                          window.location = "login.html";
+                      }, "2000");
+  
+                      limparFormulario();
+                      finalizarAguardar();*/
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                //finalizarAguardar();
+            });
+        return false;
     }
-
 }
+
+
 
 // Login
 
 
-function login(){
+
+
+
+
+
+
+
+
+
+
+
+function login() {
     var senhalogin = ipt_senhaLogin.value;
-    var emaillogin = ipt_emailLogin.value; 
-    
+    var emaillogin = ipt_emailLogin.value;
+
     var storedEmail = localStorage.getItem('usuario_email');
-    var storedPassword = localStorage.getItem('usuario_password'); 
+    var storedPassword = localStorage.getItem('usuario_password');
 
     console.log("Tentando logar com:");
     console.log("Email digitado:", emaillogin);
@@ -151,12 +232,12 @@ function login(){
 
     if (!storedEmail || !storedPassword) {
         alert('Nenhum usuário cadastrado. Por favor, cadastre-se primeiro.');
-    }    
+    }
 
 
-    if (senhalogin != storedPassword) { 
+    if (senhalogin != storedPassword) {
         alert('Senha incorreta');
-    } else if (emaillogin != storedEmail) { 
+    } else if (emaillogin != storedEmail) {
         alert('Email incorreto');
     } else {
         alert('login feito')
