@@ -18,10 +18,43 @@ function digitando_login(x) {
     ipt_x.style.borderBottom = "solid 4px black";
 }
 
-var senha = '';
-var email = '';
-var senha_login = '';
-var email_login = ''
+function trocar_login() {
+    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
+    imagem_de_fundo.style.transform = "translateX(100%)"
+    imagem_de_fundo.style.backgroundSize = "cover"
+  }
+  function trocar_cadastro() {
+    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    imagem_de_fundo.style.background = "url('./assets/img/imagem_inicial.png')"
+    imagem_de_fundo.style.transform = "translateX(0%)"
+    imagem_de_fundo.style.backgroundSize = "cover"
+
+  }
+
+
+
+  function tirar_alerta() {
+    div_alerta.style = "display:none"
+    main.style = "filter: blur(0px);  "
+  }
+
+
+  //jvoltar aqui arrumar error criar dois alertas um especial para o casdastro da erro 
+
+  function trocar_login_alerta() {
+    let cad_sucesso = document.getElementById("div_cad_sucesso")
+    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    let main = document.querySelector(" main")
+    imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
+    imagem_de_fundo.style.transform = "translateX(100%)"
+    imagem_de_fundo.style.backgroundSize = "cover"
+    cad_sucesso.style.display="none" 
+    main.style = "filter: blur(0px);  "
+
+
+  }
+
 
 // funções do cadastro
 

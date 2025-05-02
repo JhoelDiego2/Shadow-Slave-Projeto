@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shadow Slave | Login</title>
+  <script src="./js/sessao.js"></script>
   <link rel="stylesheet" href="css/login-cadastro.css">
 </head>
 
@@ -98,42 +99,7 @@
 
 </html>
 <script>
-  function trocar_login() {
-    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
-    imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
-    imagem_de_fundo.style.transform = "translateX(100%)"
-    imagem_de_fundo.style.backgroundSize = "cover"
-  }
-  function trocar_cadastro() {
-    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
-    imagem_de_fundo.style.background = "url('./assets/img/imagem_inicial.png')"
-    imagem_de_fundo.style.transform = "translateX(0%)"
-    imagem_de_fundo.style.backgroundSize = "cover"
 
-  }
-
-
-
-  function tirar_alerta() {
-    div_alerta.style = "display:none"
-    main.style = "filter: blur(0px);  "
-  }
-
-
-  //jvoltar aqui arrumar error criar dois alertas um especial para o casdastro da erro 
-
-  function trocar_login_alerta() {
-    let cad_sucesso = document.getElementById("div_cad_sucesso")
-    let imagem_de_fundo = document.getElementById("imagem_de_fundo");
-    let main = document.querySelector(" main")
-    imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
-    imagem_de_fundo.style.transform = "translateX(100%)"
-    imagem_de_fundo.style.backgroundSize = "cover"
-    cad_sucesso.style.display="none" 
-    main.style = "filter: blur(0px);  "
-
-
-  }
   function esqueci() {
     placeholder.style = "color: #7aa7a4;top: 0vh;"
     ipt_esqueci_senha.style.borderBottom = "solid 4px #7aa7a4";
@@ -147,19 +113,19 @@
 
   }
   function verificar() {
-    var nome_usuario = ipt_nome_usuario.value
+    var usuario = ipt_nome_usuario.value
     var senha = ipt_senha.value
     var verificar = true
 
     while (verificar == true) {
       div_alerta.style = "display:1"
       main.style = "filter: blur(2.4px); "
-      if (nome_usuario == '' && senha == '') {
+      if (usuario == '' && senha == '') {
         titulo_erro.innerHTML = "Campos vazios"
         mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
         break
       }
-      if (nome_usuario == '') {
+      if (usuario == '') {
         titulo_erro.innerHTML = "Campo de usuário vazio"
         mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
         break
@@ -175,7 +141,7 @@
         mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
         break
       }
-      if (nome_usuario == 'nao_existe') {
+      if (usuario == 'nao_existe') {
         titulo_erro.innerHTML = "Usuário não existe"
         mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
         break
@@ -183,9 +149,55 @@
       titulo_erro.innerHTML = "Em desenvolvimento "
       mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
       verificar = false
-      if (nome_usuario == 'Jhoel' && senha == 'urubu100') {
-        window.location = "game.html";
+      }
+      if (verificar == false) {
+        
+        console.log("FORM LOGIN: ", usuario);
+        console.log("FORM SENHA: ", senha);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: usuario,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+
+                    setTimeout(function () {
+                        window.location = "game.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
       }
     }
-  }
+  
 </script>
