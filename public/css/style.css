@@ -57,9 +57,9 @@ a {
 
 body {
     background-color: var(--fundo-principal);
-    background-size: 40vh;
     color: white;
     overflow-x: hidden;
+
 }
 
 section {
@@ -81,6 +81,7 @@ section {
     animation: slideDown 1.8s ease;
 
 }
+
 @keyframes slideDown {
     0% {
         opacity: 0;
@@ -92,6 +93,7 @@ section {
         transform: translateY(0);
     }
 }
+
 .nav a::after {
     content: "";
     display: block;
@@ -206,7 +208,7 @@ section {
 
 
 #sobre {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.801) 10%, rgba(0, 0, 0, 0.973) 55%, rgb(0, 0, 0) 100%), linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0)),  url("../assets/img/imagem_sobre.png");
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.801) 10%, rgba(0, 0, 0, 0.973) 55%, rgb(0, 0, 0) 100%), linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0)), url("../assets/img/imagem_sobre.png");
     display: flex;
     justify-content: center;
     padding: 0vh 2vw;
@@ -245,7 +247,7 @@ section {
 
 }
 
-.tabela .caxa_menor div div{
+.tabela .caxa_menor div div {
     border: solid 1px #3DB3A2;
     display: flex;
     flex-direction: column;
@@ -353,6 +355,7 @@ section {
     background-color: white;
     order: 1;
 }
+
 .seguinte {
     padding-left: 6vw;
 }
@@ -464,7 +467,7 @@ section {
 
 #personagens {
     padding: 10vh 2vw;
-    background: linear-gradient(to bottom, #000000b0 1%,  #00000000 100%);
+    background: linear-gradient(to bottom, #000000b0 1%, #00000000 100%);
     height: 110vh;
 }
 
@@ -564,9 +567,10 @@ section {
     padding: 6vh;
 }
 
-.nome_real h2{
+.nome_real h2 {
     user-select: none;
 }
+
 .nome_real .esquerda {
     padding-left: 6%;
     width: 50%;
@@ -590,8 +594,9 @@ section {
 .aba-sunny span {
     color: #3db3a1;
 }
-.aba-sunny{
-    box-shadow:10px 10px 10px 0px #3db3a156;
+
+.aba-sunny {
+    box-shadow: 10px 10px 10px 0px #3db3a156;
 }
 
 #nephis {
@@ -606,68 +611,88 @@ section {
 .aba-nephis .nome_real {
     color: #bd2c00;
 }
-.aba-nephis{
-    box-shadow:10px 10px 10px 0px rgba(255, 3, 3, 0.39);
+
+.aba-nephis {
+    box-shadow: 10px 10px 10px 0px rgba(255, 3, 3, 0.39);
 }
-.aba-cassie{
-    box-shadow:10px 10px 10px 0px #4b2a58;
+
+.aba-cassie {
+    box-shadow: 10px 10px 10px 0px #4b2a58;
 }
+
 .aba-cassie span {
     color: #954eb1;
 }
+
 .aba-cassie .nome_real {
     color: #954eb1;
 }
-.aba-cassie .esquerda{
+
+.aba-cassie .esquerda {
     padding: 0;
 }
-.aba-effie{
-    box-shadow:10px 10px 10px 0px #111377be;
+
+.aba-effie {
+    box-shadow: 10px 10px 10px 0px #111377be;
 }
+
 .aba-effie span {
     color: #181ab1;
 }
+
 .aba-effie .nome_real {
     color: #111377;
 }
-.aba-effie .esquerda{
+
+.aba-effie .esquerda {
     padding: 0;
 }
-.aba-kai{
-    box-shadow:10px 10px 10px 0px #63ac2783;
+
+.aba-kai {
+    box-shadow: 10px 10px 10px 0px #63ac2783;
 }
+
 .aba-kai span {
     color: #63ac27;
 }
+
 .aba-kai .nome_real {
     color: #63ac27;
 }
 
-.aba-kai .esquerda{
+.aba-kai .esquerda {
     padding: 0;
 }
-.aba-jet{
-    box-shadow:10px 10px 10px 0px #c5852491;
+
+.aba-jet {
+    box-shadow: 10px 10px 10px 0px #c5852491;
 }
+
 .aba-jet span {
     color: #c58524;
 }
+
 .aba-jet .nome_real {
     color: #c58524;
 }
-.aba-jet .esquerda{
-    padding-left:20% ;
+
+.aba-jet .esquerda {
+    padding-left: 20%;
 }
-.aba-modret{
-    box-shadow:10px 10px 10px 0px #94949473;
+
+.aba-modret {
+    box-shadow: 10px 10px 10px 0px #94949473;
 }
+
 .aba-modret span {
     color: #949494;
 }
+
 .aba-modret .nome_real {
     color: #949494;
 }
-.aba-modret .esquerda{
+
+.aba-modret .esquerda {
     padding: 0;
 }
 
@@ -685,23 +710,26 @@ section {
 
 
 
-#mapa{
+#mapa {
     height: 100vh;
 
 }
-#mapa h1{
+
+#mapa h1 {
     text-align: center;
     font-size: 3rem;
     padding-bottom: 1vh;
     padding-top: 10vh;
 }
+
 #mapa .container {
     display: flex;
     justify-content: center;
     width: 100%;
     gap: 2vw;
 }
-.imagem_mapa{
+
+.imagem_mapa {
     background: url("../assets/img/mapa_obsc.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -713,16 +741,19 @@ section {
     justify-self: center;
 
 }
-.mapa_cima{
+
+.mapa_cima {
     display: flex;
     height: 32%;
     width: 100%;
 }
-.forgotten{
+
+.forgotten {
     height: 100%;
     width: 48%;
 }
-.informacoes-mapa{
+
+.informacoes-mapa {
     display: flex;
     flex-direction: column;
     padding: 0vh 1vw;
@@ -737,19 +768,22 @@ section {
     box-shadow: 1px 1px 1px 8px rgba(35, 35, 35, 0.114);
 
 }
-.titulo_lugar{
+
+.titulo_lugar {
     text-align: center;
     font-size: 2.4rem;
     color: white;
     text-transform: uppercase;
     width: 90%;
 }
-.informacoes-mapa img{
+
+.informacoes-mapa img {
     transform: rotate(-1deg);
     width: 90%;
     border-radius: 20px;
 }
-.informacoes-mapa p{
+
+.informacoes-mapa p {
     width: 90%;
     color: white;
     font-size: 1.4rem;
@@ -767,7 +801,10 @@ section {
 
 
 
+#jogo {
+    height: 100vh;
 
+}
 
 
 
@@ -840,7 +877,7 @@ section {
 }
 
 
-#jogo a p{
+#jogo a p {
     display: flex;
     justify-content: center;
     padding: 1vh 2vw;
@@ -850,31 +887,128 @@ section {
     border-width: 1px;
     border-left: none;
     border-right: none;
-    border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(136, 41%, 53%, 0));;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(136, 41%, 53%, 0));
+    ;
 }
-#jogo a p:hover{
+
+#jogo a p:hover {
     border-width: 2.4px;
     width: 40vw;
 }
-    
 
-#jogo .caixinhas{
+
+#jogo .caixinhas {
     display: flex;
     gap: 1vw;
 }
 
-#jogo_atual_c{
+#jogo_atual_c {
     background-color: white;
 }
 
 
 
 
+#desenvolvedor {
+    height: 98vh;
+}
+
+#desenvolvedor h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    padding-top: 10vh;
+}
+
+#desenvolvedor .container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 7vw;
+    height: 81vh;
+}
+
+#eu {
+    width: 41%;
+
+}
+
+.sobre_mim {
+    width: 51%;
+}
 
 
+.sobre_mim h4 {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+}
+
+#desenvolvedor .sobre_mim h1 {
+    padding-top: 2vh;
+    text-transform: uppercase;
+    text-align: left;
+    padding-bottom: 3vh;
+    word-spacing: 0.4rem;
+    font-size: 3rem;
+}
+
+.sobre_mim p {
+    font-size: 1.2rem;
+    padding-bottom: 2vh;
+}
+
+.tecnologias {
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    border: solid 1px #f5f5f586;
+    border-radius: 10px;
+    width: 98%;
+    justify-self: center;
+    box-shadow: inset -4px -4px 7px 2px rgba(29, 118, 134, 0.568);
+    border-left: none;
+    margin-bottom: 4vh;
+    position: relative;
+
+}
+
+.tecnologias div img {
+    width: 40px;
+    display: inline-block;
 
 
+}
 
+.tecnologias div {
+    display: flex;
+    gap: 2vw;
+    animation: desliçamento 2.3s linear infinite alternate;
+
+}
+
+
+@keyframes desliçamento {
+    0% {
+        transform: translateX(30%);
+
+    }
+    5%{
+        transform: translateX(29%);
+    }
+    6%{
+        transform: translateX(29%);
+    }
+    7%{
+        transform: translateX(29%);
+    }
+    100% {
+        transform: translateX(-30%) 
+
+    }
+
+}
 
 
 
@@ -900,6 +1034,8 @@ footer {
     display: flex;
     justify-content: space-around;
     height: 30vh;
+    z-index: 10;
+
 }
 
 #logotipo-footer {
@@ -1014,6 +1150,7 @@ footer .list div {
 
 
 /*----------------------------fotter----------acaba--------*/
-img {
+
+h1,h2,h3,img {
     user-select: none;
 }

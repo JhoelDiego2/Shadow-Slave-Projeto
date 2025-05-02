@@ -6,21 +6,35 @@
     <title>Document</title>
 </head>
 <style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
     .container{
         width: 100vw;
         height: 100vh;
-        background-color: aqua;
+        background-color: rgb(0, 0, 0);
+        position: absolute;
+        overflow: hidden;
         }
     #imagem_sunny{
-        position: absolute;
+        position: relative;
         top: 40;
         top: left;
         width: 20vw;
+    }
+    .clique{
+        animation: clique 0.1s linear;
+    }
 
+    @keyframes clique{
+        to{
+            transform: scale(0.9);
+        }
     }
 </style>
 <body>
-    <div class="contianer">
+    <div class="container">
         <img src="../assets/img/sunny_chibi.png" alt="" onclick="mudar()" id="imagem_sunny">
     </div>
 </body>
@@ -29,6 +43,7 @@
     function num() {
         return Math.floor(Math.random() * (100 - 1)) + 1
     }
+    let efeito = false
     function mudar() {
         let imagem_sunny = document.getElementById("imagem_sunny")
         let left = num()
@@ -39,6 +54,14 @@
         imagem_sunny.style.bottom = botoom + '%'
         imagem_sunny.style.left = left + '%'
         imagem_sunny.style.right = rigth + '%'
+        if (efeito == true) {
+            imagem_sunny.classList.remove("clique")
+            efeito = true
+            imagem_sunny.classList.add("clique")
+        } else {
+            imagem_sunny.classList.add("clique")
+            efeito = true
+        }
     }
 
 </script>

@@ -254,46 +254,108 @@ function cadastrar() {
 
 // Login
 
+function esqueci() {
+    placeholder.style = "color: #7aa7a4;top: 0vh;"
+    ipt_esqueci_senha.style.borderBottom = "solid 4px #7aa7a4";
 
 
+  }
+  function activar_esqueci() {
+    cartao_esqueci_senha.style = "display:1"
+    main.style = "filter: blur(2.4px);  "
+    provando.style = "display:none"
 
+  }
+  function verificar() {
+    var usuario = ipt_nome_usuario.value
+    var senha = ipt_senha.value
+    var verificar = true
 
+    while (verificar == true) {
+      div_alerta.style = "display:1"
+      main.style = "filter: blur(2.4px); "
+      if (usuario == '' && senha == '') {
+        titulo_erro.innerHTML = "Campos vazios"
+        mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+        break
+      }
+      if (usuario == '') {
+        titulo_erro.innerHTML = "Campo de usuário vazio"
+        mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
+        break
+      }
+      if (senha == '') {
+        titulo_erro.innerHTML = "Campo de senha vazio"
+        mensagem_erro.innerHTML = "Sem uma chave, não há porta que se abra. Nem mesmo as escondidas na escuridão."
+        break
+      }
+      // voltar para colocar o certo
+      if (senha == 'incorreta') {
+        titulo_erro.innerHTML = " Senha incorreta"
+        mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
+        break
+      }
+      if (usuario == 'nao_existe') {
+        titulo_erro.innerHTML = "Usuário não existe"
+        mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
+        break
+      }
+      titulo_erro.innerHTML = "Em desenvolvimento "
+      mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
+      verificar = false
+      }
+      if (verificar == false) {
+        
+        console.log("FORM LOGIN: ", usuario);
+        console.log("FORM SENHA: ", senha);
 
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: usuario,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
+            if (resposta.ok) {
+                console.log(resposta);
 
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
+                    setTimeout(function () {
+                        window.location = "game.html";
+                    }, 2000); // apenas para exibir o loading
+                    let div_alerta = document.getElementById("div_alerta")
+                    let div_cad = document.getElementById("div_cad_sucesso")
+                    div_alerta.style.display="none"
+                    div_cad.style.display="flex"
+                    titulo.cad.innerHTML= "Login com Sucesso"
+                    mensagem_cad.innerHTML = `As sombras reconheceram sua presença. Bem-vindo de volta, ${NOME_USUARIO}.`
+                    bottom_mensagem_cad.innerHTML = `ENTRANDO...`
+                });
 
+            } else {
 
+                console.log("Houve um erro ao tentar realizar o login!");
 
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
 
-function login() {
-    var senhalogin = ipt_senhaLogin.value;
-    var emaillogin = ipt_emailLogin.value;
+        }).catch(function (erro) {
+            console.log(erro);
+        })
 
-    var storedEmail = localStorage.getItem('usuario_email');
-    var storedPassword = localStorage.getItem('usuario_password');
-
-    console.log("Tentando logar com:");
-    console.log("Email digitado:", emaillogin);
-    console.log("Senha digitada:", senhalogin);
-    console.log("Email armazenado:", storedEmail);
-    console.log("Senha armazenada:", storedPassword);
-
-
-
-
-    if (!storedEmail || !storedPassword) {
-        alert('Nenhum usuário cadastrado. Por favor, cadastre-se primeiro.');
+        return false;
+      }
     }
-
-
-    if (senhalogin != storedPassword) {
-        alert('Senha incorreta');
-    } else if (emaillogin != storedEmail) {
-        alert('Email incorreto');
-    } else {
-        alert('login feito')
-        //window.location.href = 'game.html';
-    }
-}
-

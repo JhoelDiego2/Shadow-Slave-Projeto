@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="br-pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game | Shadow Slave</title>
-   <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/game.css">
 </head>
+
 <body>
-    <div id="tela_inicial" onclick="fechar_tela_inicial()">
+    <div id="tela_inicial" onclick="fechar_tela_inicial()" style="display: none;">
         <p class="clique"> ENTRAR NO MUNDO DOS SONHOS</p>
     </div>
+    <header>
+        <div>
+            <img src="./assets/img/sunny_xom_fundo.webp" alt="">
+            <p>Seja bem vindo desperto:</p>
+            <p id b_usuario>Nome do usuario</p>
+        </div>
+        <nav>
+            <p onclick="mostrarjogos()">Jogar</p>
+            <p onclick="mostrardeshbord()"><img src="" alt="">
+                Estatisticas
+            </p>
+            <p onclick="configuracao()"><img src="" alt="">
+                Perfil
+            </p>
+            <p onclick="limparSessao()"><img src="" alt="">
+                Sair
+            </p>
+        </nav>
+
+    </header>
+    <main>
+        <section id="inicio">
+            <p id="shadow">Shadow</p>
+            <p id="slave"> Slave</p>
+        </section>
+    </main>
 </body>
+
 </html>
 <script>
     var tela_inicial_ativo = true
     function fechar_tela_inicial() {
         if (tela_inicial_ativo == true) {
-            tela_inicial.style="display:none"
+            tela_inicial.style = "display:none"
         }
     }
 </script>
