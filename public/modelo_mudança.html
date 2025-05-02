@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="br-pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        color: white;
+    }
+    #div_cad_sucesso {
+        background-color: #000000;
+        width: 30vw;
+        height: 50vh;
+        position: absolute;
+        top: 25vh;
+        left: 35vw;
+        border-radius: 9px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 3vh;
+        align-items: center;
+        box-shadow: 0 15px 50px var(--luz);
+
+    }
+
+    #sunny_cad {
+        width: 17vw;
+        position: relative;
+        top: 8vh;
+    }
+
+    #bottom_mensagem {
+        width: 90%;
+        font-size: 2.4vh;
+        padding: 0.6vh;
+        border-radius: 10px;
+        margin-bottom: 5vh;
+        text-align: center;
+        color: rgb(0, 0, 0);
+        z-index: 10;
+        font-weight: 800;
+    }
+
+    #titulo_cad {
+        font-size: 2rem;
+        text-align: center;
+    }
+    #bottom_mensagem::after{
+        content: '';
+        display: block;
+        background-color: white;
+        width: 90%;
+        height: 8%;
+        position: absolute;
+        top: 41vh;
+        animation: esperar 2s ease;
+        z-index: -1;
+
+        }
+    @keyframes esperar{
+        0%{
+            width: 1%;
+            border-bottom-right-radius:  10px;
+            border-top-right-radius:  10px;
+        }
+        90%{
+            border-bottom-right-radius:  10px;
+            border-top-right-radius:  10px;
+        }
+        100%{
+            width: 90%;
+        }
+    }
+
+
+
+    #mensagem_cad {
+        font-size: 1rem;
+        width: 90%;
+        text-align: center;
+
+    }
+</style>
+
+<body>
+    <div id="div_cad_sucesso">
+        <img src="assets/img/sunny_feliz.png" alt="" id="sunny_cad">
+        <p id="titulo_cad">
+            Cadastro realizado com sucesso
+        </p>
+        <p id="mensagem_cad">
+            Sunny sorri nas trevas — o pacto está feito e o ouro já brilha no seu destino!
+        </p>
+        <p   id="bottom_mensagem" onclick="trocar_login_alerta()">FAZER LOGIN</p>
+    </div>
+</body>
+
+</html>
+<script>
+    addEventListener 
+    function trocar_login_alerta() {
+        let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+        imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
+        imagem_de_fundo.style.transform = "translateX(100%)"
+        imagem_de_fundo.style.backgroundSize = "cover"
+        ////tirar alerta
+        div_alerta.style = "display:none"
+        main.style = "filter: blur(0px);  "
+    }
+</script>

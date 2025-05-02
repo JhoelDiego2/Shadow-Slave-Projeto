@@ -644,6 +644,82 @@ input:focus{
     text-align: center;
 
 }
+
+
+
+#div_cad_sucesso {
+    background-color: #000000;
+    width: 30vw;
+    height: 50vh;
+    position: absolute;
+    top: 25vh;
+    left: 35vw;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 3vh;
+    align-items: center;
+    box-shadow: 0 15px 50px var(--luz);
+
+}
+
+#sunny_cad {
+    width: 17vw;
+    position: relative;
+}
+
+#bottom_mensagem_cad{
+    width: 90%;
+    font-size: 2.4vh;
+    padding: 0.6vh;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    z-index: 10;
+    font-weight: 800;
+}
+
+#titulo_cad {
+    font-size: 2rem;
+    text-align: center;
+}
+#bottom_mensagem_cad::after{
+    content: '';
+    display: block;
+    background-color: white;
+    width: 90%;
+    height: 8%;
+    position: absolute;
+    top: 41vh;
+    animation: esperar 2s ease;
+    z-index: -1;
+
+    }
+@keyframes esperar{
+    0%{
+        width: 1%;
+        border-bottom-right-radius:  10px;
+        border-top-right-radius:  10px;
+    }
+    90%{
+        border-bottom-right-radius:  10px;
+        border-top-right-radius:  10px;
+    }
+    100%{
+        width: 90%;
+    }
+}
+
+
+
+#mensagem_cad {
+    font-size: 1rem;
+    width: 90%;
+    text-align: center;
+
+}
 /*alertas--------------------------------*/
 
 

@@ -71,6 +71,30 @@ body{
     color: white;
     backdrop-filter: blur(8px);
 }
+.carregamento_pagina{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 30;
+    animation:  carregaento 3s ease;
+
+}
+@keyframes carregaento{
+    0%{
+        background: radial-gradient(circle, rgba(255, 255, 255, 0) 0.1%, black 5%, rgb(0, 0, 0) 100%);
+    }
+    50%{
+        background: radial-gradient(circle, rgba(255, 255, 255, 0) 0.1%, black 5%, rgb(0, 0, 0) 100%);
+        transform: scale(4.0);
+    }
+    100%{
+        background: radial-gradient(circle, rgba(255, 255, 255, 0) 0.1%, black 5%, rgb(0, 0, 0) 100%);
+        transform: scale(400.0);
+    }
+
+}
+
 
 .nav-list1{
     display: flex;
@@ -153,19 +177,25 @@ body{
     background-size: cover;
 }
 .moving-head {
-    animation: headMove 8s infinite alternate ease-in-out;
+    animation: headMove 20s infinite  cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
   
   @keyframes headMove {
-    0% {
-      transform: rotate(0deg) scale(1);
+    0%   { 
+        transform: rotate(0deg); 
     }
-    50% {
-      transform: rotate(1deg) scale(1.01);
+    25%  { 
+        transform: rotate(4deg);
+     }
+    50%  { 
+        transform: rotate(-4deg); 
     }
+    75%  { 
+        transform: rotate(4deg);
+     }
     100% {
-      transform: rotate(-1deg) scale(1);
-    }
+         transform: rotate(0deg); 
+        }
   }
   
 #home .titulo{

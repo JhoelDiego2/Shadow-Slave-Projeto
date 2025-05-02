@@ -152,6 +152,7 @@ function cadastrar() {
         }
         if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha == conf_senha)) {
             valido = true
+            div_alerta.style.display="none"
         }
     }
     //verifica se os inputs estao vazios
@@ -175,11 +176,29 @@ function cadastrar() {
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    let bottom = document.getElementById("bottom_mensagem")
-                    titulo_erro.innerHTML = "Seja bem vindo sombra"
-                    mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-                    bottom.onclick = trocar_login_alerta
+                    let cad_sucesso = document.getElementById("div_cad_sucesso")
+                    let main = document.querySelector(" main")
+                    let text_nome = document.getElementById(`texto_nome_usuario`);
+                    let text_senha = document.getElementById(`texto_senha`);
+                    let nome_login = document.getElementById(`ipt_nome_usuario`);
+                    let senha_login = document.getElementById(`ipt_senha`);
+                    cad_sucesso.style.display="flex" 
+                    main.style.filter="blur(2px)"
+                    ipt_nome_usuario.value = nome_usuario;
+                    ipt_senha.value = senha;
+
+                    text_nome.style.color = "black";
+                    text_nome.style.position = "relative";
+                    text_nome.style.transform = "translate(-2.4vw, -6vh)";
+                    text_nome.style.transition = "0.7s ease-in-out";
+                    nome_login.style.borderBottom = "solid 4px black";
+        
+                    text_senha.style.color = "black";
+                    text_senha.style.position = "relative";
+                    text_senha.style.transform = "translate(-2.4vw, -6vh)";
+                    text_senha.style.transition = "0.7s ease-in-out";
+                    senha_login.style.borderBottom = "solid 4px black";
+
                     /*  setTimeout(() => {
                           window.location = "login.html";
                       }, "2000");

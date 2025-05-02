@@ -21,11 +21,11 @@
           <div><img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario">Nome de usúario</p>
           </div>
-          <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')">
+          <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')" >
           <div><img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha">Senha</p>
           </div>
-          <input type="password" id="ipt_senha" onclick="digitando_login('senha')">
+          <input type="password" id="ipt_senha" onclick="digitando_login('senha')" >
           <button onclick="verificar()">ENTRAR</button>
           <p id="subtitulo">Esqueceu a senha?<span><a onclick="activar_esqueci()"
                 style="color: grey; text-decoration: underline;">Acesse aqui</a></span></p>
@@ -39,13 +39,13 @@
             <img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario_cad">Nome de usúario</p>
           </div>
-          <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')">
+          <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')" >
           <div>
             <img src="assets/svg/mail.svg" alt="">
             <p id="texto_email">Email</p>
           </div>
           <span id="email_condicao"></span>
-          <input type="text" id="ipt_email" onclick="digitando_cad('email')">
+          <input type="text" id="ipt_email" onclick="digitando_cad('email')" >
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha_cad">Senha</p>
@@ -55,8 +55,8 @@
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_conf_senha">Confirmar Senha</p>
           </div>
-          <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')">
-          <button onclick="cadastrar()">CADASTRAR-SE</button>
+          <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')" >
+          <button onclick="cadastrar()">CADASTRAR-SE</button >
           <p id="subtitulo">Já possui uma conta?<span onclick="trocar_login()"
               style="color: #658a87; text-decoration: underline;">Acesse aqui</span></p>
         </div>
@@ -83,6 +83,16 @@
     </p>
     <button onclick="tirar_alerta()" id="bottom_mensagem">OK</button>
   </div>
+  <div id="div_cad_sucesso"  style="display: none;">
+    <img src="assets/img/sunny_feliz.png" alt="" id="sunny_cad">
+    <p id="titulo_cad">
+        Cadastro realizado com sucesso
+    </p>
+    <p id="mensagem_cad">
+        Sunny sorri nas trevas — o pacto está feito e o ouro já brilha no seu destino!
+    </p>
+    <p   id="bottom_mensagem_cad" onclick="trocar_login_alerta()">FAZER LOGIN</p>
+</div>
   <script src="js/login-cadastro.js"></script>
 </body>
 
@@ -112,14 +122,17 @@
 
   //jvoltar aqui arrumar error criar dois alertas um especial para o casdastro da erro 
 
-  function trocar_login_alerta(){
+  function trocar_login_alerta() {
+    let cad_sucesso = document.getElementById("div_cad_sucesso")
     let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    let main = document.querySelector(" main")
     imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
     imagem_de_fundo.style.transform = "translateX(100%)"
     imagem_de_fundo.style.backgroundSize = "cover"
-    ////tirar alerta
-    div_alerta.style = "display:none"
+    cad_sucesso.style.display="none" 
     main.style = "filter: blur(0px);  "
+
+
   }
   function esqueci() {
     placeholder.style = "color: #7aa7a4;top: 0vh;"
