@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <style>
-    body{
+    body {
         margin: 0;
         padding: 0;
     }
-    .container{
+
+    .container {
         width: 100vw;
         height: 100vh;
         background-color: rgb(0, 0, 0);
         position: absolute;
         overflow: hidden;
-        }
-    #imagem_sunny{
+    }
+
+    #imagem_sunny {
         position: relative;
         top: 40;
         top: left;
         width: 20vw;
     }
-    .clique{
+
+    .clique {
         animation: clique 0.1s linear;
     }
 
-    @keyframes clique{
-        to{
+    .clique-dois {
+        animation: clique 0.1s linear;
+    }
+
+    @keyframes clique {
+        to {
             transform: scale(0.9);
+            border: solid 19px white;
         }
     }
 </style>
+
 <body>
     <div class="container">
-        <img src="../assets/img/sunny_chibi.png" alt="" onclick="mudar()" id="imagem_sunny">
+        <img src="../assets/img/sunny_chibi.png" alt="" onclick="mudar()" id="imagem_sunny" class="clique">
     </div>
 </body>
+
 </html>
 <script>
     function num() {
         return Math.floor(Math.random() * (100 - 1)) + 1
     }
-    let efeito = false
     function mudar() {
         let imagem_sunny = document.getElementById("imagem_sunny")
         let left = num()
         let rigth = num()
         let top = num()
         let botoom = num()
+        let ativo = false
         imagem_sunny.style.top = top + '%'
         imagem_sunny.style.bottom = botoom + '%'
         imagem_sunny.style.left = left + '%'
         imagem_sunny.style.right = rigth + '%'
-        if (efeito == true) {
-            imagem_sunny.classList.remove("clique")
-            efeito = true
-            imagem_sunny.classList.add("clique")
-        } else {
-            imagem_sunny.classList.add("clique")
-            efeito = true
+        while (ativo == false) {
+            if (imagem_sunny.classList.contains("clique")) {
+                imagem_sunny.classList.replace("clique", "clique-dois")
+                ativo = true
+                break
+            }
+            if (imagem_sunny.classList.contains("clique-dois"))
+                imagem_sunny.classList.replace("clique-dois", "clique")
+                ativo = true
+                break
         }
+        console.log(imagem_sunny)
     }
+
 
 </script>

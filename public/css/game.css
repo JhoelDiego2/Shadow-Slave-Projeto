@@ -27,8 +27,7 @@ a{
 }
 body{
     color: white;
-    overflow-y: hidden;
-    background: url("../assets/img/shadowCore.webp");
+    background:linear-gradient(to right, rgb(0, 0, 0) -100%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0) 100%), url("../assets/img/fundo_aba_jogo.png");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -49,20 +48,24 @@ body{
     color:var(--luz);
 }
 header{
-    background: linear-gradient(to left, rgb(0, 0, 0) 1%, rgba(19, 19, 19, 0.288) 30%, rgba(0, 0, 0, 0) 100%),linear-gradient(to right,rgba(255, 255, 255, 0.103) 1%, rgba(19, 19, 19, 0.233) 30%, rgba(3, 3, 3, 0.007) 100%);
-    height: 100vh;
-    width: 15vw;
-    margin-left: 3vw;
+    /*background: linear-gradient(to left, rgb(0, 0, 0) 1%, rgba(19, 19, 19, 0.288) 30%, rgba(0, 0, 0, 0) 100%),linear-gradient(to right,rgba(255, 255, 255, 0.103) 1%, rgba(19, 19, 19, 0.233) 30%, rgba(3, 3, 3, 0.007) 100%);
+   */
+    background-color: #000000;
+   height: 100vh;
+    width: 22vw;
+    margin-left: 2vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 7vh;
+    box-shadow: 1px -1px 20px 5px rgb(99, 97, 97);
 }
 nav{
     display: flex;
     flex-direction: column;
     gap: 1vw;
+    width: 90%;
 
 }
 nav p{
@@ -71,11 +74,13 @@ nav p{
     text-transform: uppercase;
     padding: 3% 0%;
     border: solid 4px rgba(255, 255, 255, 0.534);
+    width: 100%;
     border-image-slice: 1;
     border-width: 1px;
     border-left: none;
     border-right: none;
     border-image-source: linear-gradient(270deg, hsla(0, 0%, 31%, 0.116), #646464, hsla(0, 0%, 100%, 0.123));;
+    cursor: pointer;
 }
 nav p:hover{
     border-width: 2px;
@@ -107,29 +112,148 @@ header div{
     text-align: center;
 }
 header div img{
-    width: 80%;
-    border-radius: 100px;
+    width: 70%;
+    border-radius: 1000px;
     border: solid 1px black;
-    box-shadow: 1px -1px 20px 10px rgb(99, 97, 97);
+    box-shadow: 1px -1px 20px 1px rgb(99, 97, 97);
+    padding: 4px;
 }
 main{
     width: 90%;
-}
-#inicio{
-    font-size: 6rem;
-    text-align: center;
-    position: relative;
-    display: flex;
-    width: 100%;
     height: 100%;
 }
-#shadow{
-    position: relative;
-    top: 8%;
-    left: 9%;
+.avatar_opção{
+    width: 5.5vw;
+    border-radius: 1000px;
 }
-#slave{
+#configuracao{
+    background-color: #000000e8;
+    position: absolute;
+    top: 13vh;
+    left: 30vw;
+    backdrop-filter: blur(10px);
+    box-shadow: 1px -1px 20px 1px rgb(99, 97, 97);
+    border-radius: 10px;
+    display: flex;
+    width: 50%;
+    height: 70%;
+    padding: 4vh 2vw;
+    gap: 4vw;
+}
+.c-esquerda{
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+    justify-content: center;
+    font-size: 1.3rem;
+    text-transform: uppercase;
     position: relative;
-    top: 8%;
-    left: 30%;
+}
+.c-esquerda::after{
+    content: '';
+    display: block;
+    background-color: #ffffff;
+    width: 5px;
+    height: 50vh;
+    position: absolute;
+    left: 25vh;
+    border-radius: 10px;
+}
+
+.c-direita{
+    padding: 4vh 1vw;
+    display: flex;
+    flex-direction: column;
+}
+.c-direita h3{
+    font-size: 2rem;
+    text-transform: uppercase;
+    word-spacing: 40px;
+    padding-bottom: 1.7vw;
+    text-align: center;
+}
+#avatar_atual{
+    width: 6vw;
+    border-radius: 1000px;
+    align-self: center;
+    padding: 2px;
+    border: solid 1px black;
+    box-shadow: 1px -1px 20px 1px rgb(99, 97, 97);
+}
+.avatar div{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+.avatar div .c-cima{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.avatar div .c-baixo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 5%;
+}
+.c-direita .botao{
+    font-size: 1.2rem;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 2% 0%;
+    border: solid 4px rgba(255, 255, 255, 0.534);
+    width: 100%;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 31%, 0.116), #646464, hsla(0, 0%, 100%, 0.123));;
+    cursor: pointer;
+    animation: p_carregamento 2s infinite linear alternate;
+}
+.conta{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.conta input{
+    width: 22vw;
+    padding: 2vh 3.2vw;
+    font-size: 1.3rem;
+    background-color: #ffffff00;
+
+    border: none;
+    border-bottom: solid 2px grey;
+    z-index: 20;
+    color: white;
+    position: relative;
+}
+.conta select {
+    width: 22vw;
+    padding: 2vh 4vw;
+
+    background-color: #ffffff00;
+    border: none;
+    border-bottom: solid 2px grey;
+    color: rgb(0, 0, 0);
+    font-size: 1.3rem;
+}
+.conta .botao{
+    margin-top: 5vh;
+}
+.conta-form div{
+    display: flex;
+    gap: 1vw;
+    position: relative;
+    top: 5.7vh;
+    left: 0.3vw;
+    align-items: flex-end;
+    font-size: 1.3rem;
+    color: grey;
+    user-select: none;
+}
+.conta .icone_senha{
+   position: absolute;
+   right: 1vw;
 }

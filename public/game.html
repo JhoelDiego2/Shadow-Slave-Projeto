@@ -19,23 +19,114 @@
             <p id b_usuario>Nome do usuario</p>
         </div>
         <nav>
-            <p onclick="mostrarjogos()">Jogar</p>
+            <p onclick="mostrarjogos()">
+                <img src="assets/svg/game.png" alt="">
+                Jogar
+            </p>
             <p onclick="mostrardeshbord()"><img src="" alt="">
+                <img src="assets/svg/bar-chart-sharp.png" alt="">
                 Estatisticas
             </p>
             <p onclick="configuracao()"><img src="" alt="">
-                Perfil
+                <img src="assets/svg/bar-chart-sharp.png" alt="">
+                perfil
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
+                <img src="assets/svg/bar-chart-sharp.png" alt="">
                 Sair
             </p>
         </nav>
 
     </header>
     <main>
-        <section id="inicio">
-            <p id="shadow">Shadow</p>
-            <p id="slave"> Slave</p>
+        <section id="configuracao">
+            <div class="c-esquerda">
+                <p onclick="mostraravatares()">
+                    <img src="assets/svg/game.png" alt="">
+                    Avatar
+                </p>
+                <p onclick="mostrarconta()"><img src="" alt="">
+                    <img src="assets/svg/bar-chart-sharp.png" alt="">
+                    Conta
+                </p>
+                <p onclick="configuracao()"><img src="" alt="">
+                    <img src="assets/svg/bar-chart-sharp.png" alt="">
+                    Segurança
+                </p>
+            </div>
+            <div class="c-direita avatar" style="display: none;">
+                <h3>Personalizar avatar</h3>
+                <img src="./assets/img/sunny_xom_fundo.webp" alt="" id="avatar_atual">
+                <div>
+                    <div class="c-cima">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+
+                    </div>
+                    <div class="c-baixo">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+                        <img src="./assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção">
+
+                    </div>
+                </div>
+                <p class="botao">Atualizar Avatar</p>
+            </div>
+            <div class="c-direita conta" style="display: none;">
+                <h3>Atualizar Conta</h3>
+                <div class="conta-form">
+                    <div>
+                        <img src="assets/svg/mail.svg" alt="">
+                        <p id="texto_email_atualizar">Email</p>
+                    </div>
+                    <input type="text" id="ipt_email_atualizar" onclick="digitando_atualizar('email_atualizar')">
+                    <div><img src="assets/svg/user.svg" alt="">
+                        <p id="texto_nome_atualizar">Nome de usúario</p>
+                    </div>
+                    <input type="text" id="ipt_nome_atualizar" onclick="digitando_atualizar('nome_atualizar')">
+                    <div><img src="assets/svg/user.svg" alt="">
+                        <p id="texto_nome_real">Nome real</p>
+                    </div>
+                    <select name="nome_real" id="ipt_nome_real" onclick="digitando_atualizar('nome_real')">
+                        <option value="n_sunny"> </option>
+                        <option value="n_sunny">Lost from LIGHT</option>
+                        <option value="n_sunny">Lost from LIGHT</option>
+                        <option value="n_sunny">Lost from LIGHT</option>
+                        <option value="n_sunny">Lost from LIGHT</option>
+                    </select>
+                </div>
+                <p class="botao">Atualizar Conta</p>
+            </div>
+            <div class="c-direita conta seguranca" >
+                <h3>Alterar senha</h3>
+                <div class="conta-form">
+                    <div>
+                        <img src="assets/svg/mail.svg" alt="">
+                        <p id="texto_senha_atual">Senha Atual</p>
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha">
+                    </div>
+                    <input type="text" id="ipt_senha_atual" onclick="digitando_atualizar('senha_atual')">
+                    <div>
+                        <img src="assets/svg/mail.svg" alt="">
+                        <p id="texto_senha_nova">Nova Senha</p>
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha">
+
+                    </div>
+                    <input type="text" id="ipt_senha_nova" onclick="digitando_atualizar('senha_nova')">
+                    <div>
+                        <img src="assets/svg/mail.svg" alt="">
+                        <p id="texto_senha_conf">Confirmar Senha</p>
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha">
+
+                    </div>
+                    <input type="text" id="ipt_senha_conf" onclick="digitando_atualizar('senha_conf')">
+
+                </div>
+                <p class="botao">Alterar Senha</p>
+            </div>
         </section>
     </main>
 </body>

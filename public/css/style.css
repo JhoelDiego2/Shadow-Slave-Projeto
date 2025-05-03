@@ -527,18 +527,22 @@ section {
     display: flex;
     flex-direction: column;
     gap: 10vh;
+    animation: fade-esquerda 2s ease-out;
 }
 
 .conteudo {
     display: flex;
+    position: relative;
 }
 
 #personagens .conteudo .column-2 {
     width: 30%;
-    height: 62%;
+    height: 122%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    position: relative;
+    bottom: 0;
 
 }
 
@@ -549,10 +553,16 @@ section {
     display: flex;
     flex-direction: column;
     gap: 10vh;
+    animation: fade-direita 2s ease-out;
+
 }
 
 #sunny {
     height: 90vh;
+}
+#personagens .conteudo .column-2 img{
+    position: absolute;
+    bottom: 0;
 }
 
 #personagens h2 {
@@ -565,6 +575,7 @@ section {
     width: 100%;
     justify-content: space-between;
     padding: 6vh;
+    animation: fade-up 2s ease-out;
 }
 
 .nome_real h2 {
@@ -601,7 +612,7 @@ section {
 
 #nephis {
     height: 100vh;
-    padding-bottom: 6vh;
+    margin-bottom: 1vh;
 }
 
 .aba-nephis span {
@@ -612,6 +623,11 @@ section {
     color: #bd2c00;
 }
 
+.aba-nephis .esquerda {
+    margin-left: 2vw;
+    z-index: 2;
+}
+
 .aba-nephis {
     box-shadow: 10px 10px 10px 0px rgba(255, 3, 3, 0.39);
 }
@@ -619,6 +635,11 @@ section {
 .aba-cassie {
     box-shadow: 10px 10px 10px 0px #4b2a58;
 }
+#cassie {
+    height: 100vh;
+    margin-bottom: 10vh;
+}
+
 
 .aba-cassie span {
     color: #954eb1;
@@ -633,23 +654,35 @@ section {
 }
 
 .aba-effie {
-    box-shadow: 10px 10px 10px 0px #111377be;
+    box-shadow: 10px 10px 10px 0px #c5852491;
+
+}
+#effie {
+    height: 90vh;
+    margin-bottom: 10vh;
 }
 
 .aba-effie span {
-    color: #181ab1;
+
+    color: #c58524;
+
 }
 
 .aba-effie .nome_real {
-    color: #111377;
+    color: #c58524;
+
 }
 
 .aba-effie .esquerda {
-    padding: 0;
+    padding: 3;
 }
 
 .aba-kai {
     box-shadow: 10px 10px 10px 0px #63ac2783;
+}
+#kai {
+    height: 90vh;
+    margin-bottom: 5.5vh;
 }
 
 .aba-kai span {
@@ -658,30 +691,42 @@ section {
 
 .aba-kai .nome_real {
     color: #63ac27;
+
 }
 
 .aba-kai .esquerda {
     padding: 0;
+    z-index: 0;
 }
 
 .aba-jet {
-    box-shadow: 10px 10px 10px 0px #c5852491;
+    box-shadow: 10px 10px 10px 0px #111377be;
+
+}
+#jet {
+    height: 90vh;
+    margin-bottom: 10vh;
 }
 
+
 .aba-jet span {
-    color: #c58524;
+    color: #181ab1;
 }
 
 .aba-jet .nome_real {
-    color: #c58524;
+    color: #111377;
 }
 
 .aba-jet .esquerda {
-    padding-left: 20%;
+    padding-left: 25vw;
 }
 
 .aba-modret {
     box-shadow: 10px 10px 10px 0px #94949473;
+}
+#modret {
+    height: 90vh;
+    margin-bottom: 5.7vh;
 }
 
 .aba-modret span {
@@ -693,9 +738,33 @@ section {
 }
 
 .aba-modret .esquerda {
-    padding: 0;
+    padding-left: 9vw;
 }
-
+.fade-direita{
+    animation: fade-direita 2s ease-out;
+}
+@keyframes fade-direita{
+    from{
+        transform: translateX(60%);
+        opacity: 0
+    }
+}
+@keyframes fade-esquerda{
+    from{
+        transform: translateX(-60%);
+        opacity: 0
+    }
+}
+@keyframes fade-up{
+    from{
+        transform: translateY(30%);
+        opacity: 0;
+        z-index: 2;
+    }
+    to{
+        z-index: 2;
+    }
+}
 
 
 

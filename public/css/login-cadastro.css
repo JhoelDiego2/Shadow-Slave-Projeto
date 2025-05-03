@@ -62,7 +62,14 @@ body{
     overflow-y: visible;
 }
 
-
+#sair_icone{
+    position: absolute;
+    width: 4vw;
+    top: 2vh;
+    left: 2vh;
+    transform: rotate(180deg);
+    z-index: 20;
+}
 #home{
     background: url("../assets/img/fundo.png");
     height: 100vh;

@@ -20,12 +20,17 @@ function digitando_login(x) {
 
 function trocar_login() {
     let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    let sair_icone = document.getElementById("sair_icone")
     imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
     imagem_de_fundo.style.transform = "translateX(100%)"
     imagem_de_fundo.style.backgroundSize = "cover"
+    sair_icone.src="assets/svg/sair.svg"
   }
   function trocar_cadastro() {
     let imagem_de_fundo = document.getElementById("imagem_de_fundo");
+    let sair_icone = document.getElementById("sair_icone")
+    sair_icone.src="assets/svg/sair_branco.svg"
+
     imagem_de_fundo.style.background = "url('./assets/img/imagem_inicial.png')"
     imagem_de_fundo.style.transform = "translateX(0%)"
     imagem_de_fundo.style.backgroundSize = "cover"
