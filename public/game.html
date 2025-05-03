@@ -16,7 +16,7 @@
         <div>
             <img src="./assets/img/sunny_xom_fundo.webp" alt="">
             <p>Seja bem vindo desperto:</p>
-            <p id b_usuario>Nome do usuario</p>
+            <p id="b_usuario">Nome do usuario</p>
         </div>
         <nav>
             <p onclick="mostrarjogos()">
@@ -133,6 +133,8 @@
 
 </html>
 <script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    console.LOG(NOME_USUARIO)
     var tela_inicial_ativo = true
     function fechar_tela_inicial() {
         if (tela_inicial_ativo == true) {
