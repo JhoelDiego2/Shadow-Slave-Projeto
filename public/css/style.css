@@ -59,7 +59,173 @@ body {
     background-color: var(--fundo-principal);
     color: white;
     overflow-x: hidden;
+    overflow-y: hidden;
 
+}
+.body_after{
+    overflow-y: visible;
+}
+
+
+#pagina_mongrel{
+    background: url("../assets/img/fundo.png");
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    backdrop-filter: blur(8px);
+    z-index: 100;
+}
+.carregamento_pagina{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 30;
+    animation:  carregaento 2s ease;
+
+}
+@keyframes carregaento{
+    0%{
+        background: radial-gradient(circle, rgba(255, 255, 255, 0) 0.1%, black 5%, rgb(0, 0, 0) 100%);
+    }
+    50%{
+        background: radial-gradient(circle, rgba(255, 255, 255, 0) 0.1%, black 5%, rgb(0, 0, 0) 100%);
+        transform: scale(4.0);
+    }
+    100%{
+        background: radial-gradient(circle, rgba(255, 255, 255, 0) 0.1%, black 5%, rgb(0, 0, 0) 100%);
+        transform: scale(400.0);
+    }
+
+}
+
+#pagina_mongrel .header-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+#pagina_mongrel .column-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    font-size: 1.4rem;
+    gap: 2.4rem;
+    height: 100vh;
+}
+#pagina_mongrel .column-2{
+    width: 40%;
+}
+#pagina_mongrel  .mongrel{
+    height: 129vh;
+    background :url("../assets/img/mongrel.png");
+    background-size: cover;
+    position: relative;
+    bottom: 13.7vh;
+    transition: 2s ease-in-out;
+}
+#pagina_mongrel  .mongrel:hover{
+    height: 129vh;
+
+    position: relative;
+    bottom: 13.7vh;
+    background :url("../assets/img/sunny.png");
+    background-size: cover;
+}
+#pagina_mongrel  .moving-head {
+    animation: headMove 20s infinite  cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+  
+  @keyframes headMove {
+    0%   { 
+        transform: rotate(0deg); 
+    }
+    25%  { 
+        transform: rotate(3deg);
+     }
+    50%  { 
+        transform: rotate(-3deg); 
+    }
+    75%  { 
+        transform: rotate(3deg);
+     }
+    100% {
+         transform: rotate(0deg); 
+        }
+  }
+  
+#pagina_mongrel .titulo{
+    font-size: 5vw;
+    font-family: 'Night';
+}
+#pagina_mongrel #saber_mais{
+    font-size: 2rem;
+    text-transform: uppercase;
+    background-color: rgba(56, 126, 126, 0);
+    color: rgb(255, 255, 255);
+    padding: 3vh 15vw;
+    border: solid 4px white;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #fff, hsla(0, 0%, 100%, 0));;
+}
+#pagina_mongrel #saber_mais:hover{
+    padding: 3vh 18vw;
+    border-width: 2.2px;
+}
+
+
+
+#pagina_mongrel #logo_letra{
+    font-size: 5vw;
+    font-family: 'Night';
+
+}
+
+
+
+#pagina_mongrel #sombras{
+    color: var(--azul-escverdeado-obscuro);
+}
+#pagina_mongrel #texto_sombras{
+    font-size: 2.5rem;
+
+}
+#pagina_mongrel #icone_inicial{
+    width: 3vw;
+    position: absolute;
+    right: 2vw;
+    top:2vh;
+    z-index: 3;
+}
+.logo_normal{
+    font-size: 3vw;
+    font-family: 'Night';
+    position: absolute;
+    z-index: 20;
+    top: 1vw;
+    left: 2vw;
+    color: #fafafa98;
+display: none;
+}
+.logo_animacao{
+    display: block;
+    animation: logo_encima 4s ease;
+
+}
+@keyframes logo_encima{
+    from{
+        top: 25vh;
+        left: 13vw;
+    font-size: 5vw;
+    color: white;
+
+    }
 }
 
 section {
@@ -128,6 +294,9 @@ section {
 
 #icone_musica {
     height: 4vh;
+}
+#icone_musica:hover{
+    transform: scale(1.2);
 }
 
 #inicio {
@@ -296,32 +465,44 @@ section {
 
 .direita .imagens {
     display: flex;
+    position: relative;
 }
 
 .primeira {
     order: 1;
-    z-index: 3;
+    z-index: 4;
     border: solid 1px #3DB3A2;
-
+    width: 20vw;
 }
 
 .segunda {
     order: 2;
     position: absolute;
-    right: 14vw;
-    transform: scale(0.8);
-    z-index: 2;
+    left: 3vw;
+    z-index: 3;
     border: solid 1px #3DB3A2;
-
+    width: 20vw;
+    transform: scale(0.9);
 
 }
 
 .terceiro {
     order: 3;
     position: absolute;
-    right: 11vw;
-    transform: scale(0.7);
     border: solid 1px #3DB3A2;
+    z-index: 2;
+    width: 20vw;
+    left: 6vw;
+    transform: scale(0.8);
+}
+.quarto{
+    order: 4;
+    position: absolute;
+    border: solid 1px #3DB3A2;
+    z-index: 1;
+    width: 20vw;
+    left: 9vw;
+    transform: scale(0.7);
 
 }
 
@@ -340,21 +521,10 @@ section {
     width: 2vh;
     border: solid 1px white;
     border-radius: 10rem;
+    
 }
 
 
-.segunda_sobre {
-    order: 2;
-}
-
-.terceiro_sobre {
-    order: 3;
-}
-
-.atual_sobre {
-    background-color: white;
-    order: 1;
-}
 
 .seguinte {
     padding-left: 6vw;
@@ -521,7 +691,7 @@ section {
 
 #personagens .conteudo .column-1 {
     width: 40%;
-    height: 50%;
+    height: 100%;
 
     padding: 3vh 2vw;
     display: flex;
@@ -533,15 +703,15 @@ section {
 .conteudo {
     display: flex;
     position: relative;
+    height: 100%;
 }
 
 #personagens .conteudo .column-2 {
     width: 30%;
-    height: 122%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    position: relative;
     bottom: 0;
 
 }
@@ -612,7 +782,6 @@ section {
 
 #nephis {
     height: 100vh;
-    margin-bottom: 1vh;
 }
 
 .aba-nephis span {
@@ -637,7 +806,6 @@ section {
 }
 #cassie {
     height: 100vh;
-    margin-bottom: 10vh;
 }
 
 
@@ -659,7 +827,6 @@ section {
 }
 #effie {
     height: 90vh;
-    margin-bottom: 10vh;
 }
 
 .aba-effie span {
@@ -682,7 +849,6 @@ section {
 }
 #kai {
     height: 90vh;
-    margin-bottom: 5.5vh;
 }
 
 .aba-kai span {
@@ -705,7 +871,6 @@ section {
 }
 #jet {
     height: 90vh;
-    margin-bottom: 10vh;
 }
 
 
@@ -726,7 +891,6 @@ section {
 }
 #modret {
     height: 90vh;
-    margin-bottom: 5.7vh;
 }
 
 .aba-modret span {
@@ -1198,26 +1362,32 @@ footer .list div {
 
 .verde:hover #email_imagem {
     background: url("../assets/img/logo-instagram_verde.png") no-repeat;
+    background-size: cover;
 }
 
 .verde:hover #github_imagem {
     background: url("../assets/img/github_verder.png") no-repeat;
+    background-size: cover;
+
 }
 
 .verde:hover #linkediin_imagem {
     background: url("../assets/img/Vector_verde.png") no-repeat;
+    background-size: cover;
+
 }
 
 .verde:hover #numero_imagem {
     background: url("../assets/img/logo-whatsapp_verde.png") no-repeat;
+    background-size: cover;
+
 }
 
 .verde:hover #instagram_imagem {
     background: url("../assets/img/logo-instagram_verde.png") no-repeat;
+    background-size: cover;
+
 }
-
-
-
 /*----------------------------fotter----------acaba--------*/
 
 h1,h2,h3,img {

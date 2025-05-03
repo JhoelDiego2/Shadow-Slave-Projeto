@@ -7,51 +7,113 @@ window.addEventListener('scroll', function () {
         navbar.classList.remove('scrolled');
     }
 });
+const musica = document.getElementById("ost");
+const elemento = document.querySelector(".carregamento_pagina")
+
+elemento.addEventListener('animationend', () => {
+    elemento.style.display = 'none';
+});
+history.scrollRestoration = 'manual'
+
+function tirar_inicio() {
+    const pagina_mongrel = document.getElementById("pagina_mongrel")
+    const logo_encima = document.querySelector(".logo_normal")
+    const inicio = document.getElementById("inicio")
+    const header = document.getElementById("header")
+    const body = document.getElementById("body")
+    inicio.style.display="flex"
+    header.style.display="flex"
+    pagina_mongrel.style.display = "none"
+    logo_encima.classList.add("logo_animacao")
+    body.classList.add("body_after")
+
+}
+var ativo = true
+function tocar() {
+    const icone_musica = document.getElementById("icone_musica")
+    const icone_inicial = document.getElementById("icone_inicial")
+    if (ativo == false) {
+        musica.loop = true
+        musica.play();
+        ativo = true
+        musica
+        icone_musica.src="assets/svg/volume-high-sharp.svg"
+        icone_inicial.src="assets/svg/volume-high-sharp.svg"
+    } else {
+        musica.pause();
+        ativo = false
+        icone_musica.src="assets/svg/volume-mute-sharp.svg"
+        icone_inicial.src="assets/svg/volume-mute-sharp.svg"
+    }
+
+}
+
+function sobre_seguinte() {
+    const primeira = document.querySelector(".primeira");
+    const segunda = document.querySelector(".segunda");
+    const terceiro = document.querySelector(".terceiro");
+    const quarto = document.querySelector(".quarto");
+    //efeito
+
+    primeira.classList.replace("primeira", "quarto")
+    segunda.classList.replace("segunda", "primeira")
+    terceiro.classList.replace("terceiro", "segunda")
+    quarto.classList.replace("quarto", "terceiro")
+
+    mudar_caixinhas()
+}
 
 function sobre_voltar() {
     const primeira = document.querySelector(".primeira");
     const segunda = document.querySelector(".segunda");
     const terceiro = document.querySelector(".terceiro");
-    // divs pequenas
-    const primeira_sobre = document.querySelector(".atual_sobre")
-    const segunda_sobre = document.querySelector(".segunda_sobre")
-    const terceiro_sobre = document.querySelector(".terceiro_sobre")
-    primeira.classList.replace("primeira", "terceiro")
-    segunda.classList.replace("segunda", "primeira")
-    terceiro.classList.replace("terceiro", "segunda")
-    //
-    primeira_sobre.classList.replace("atual_sobre", "terceiro_sobre")
-    segunda_sobre.classList.replace("segunda_sobre", "atual_sobre")
-    terceiro_sobre.classList.replace("terceiro_sobre", "segunda_sobre")
-    /* if (primeira.classList.contains('primeira')) {
-         primeira.classList.remove('primeira');
-         primeira.classList.add('terceira');
- 
-         segunda.classList.remove('segunda');
-         segunda.classList.add('primeira');
- 
-         terceiro.classList.remove('terceiro');
-         terceiro.classList.add('segunda');
-     } else if (primeira.classList.contains('terceira')) {
-         primeira.classList.remove('terceira');
-         primeira.classList.add('segunda');
- 
-         segunda.classList.remove('primeira');
-         segunda.classList.add('terceiro');
- 
-         terceiro.classList.remove('segunda');
-         terceiro.classList.add('primeira');
-     } else if (primeira.classList.contains('segunda')) {
-         primeira.classList.remove('segunda');
-         primeira.classList.add('primeira');
- 
-         segunda.classList.remove('terceiro');
-         segunda.classList.add('segunda');
- 
-         terceiro.classList.remove('primeira');
-         terceiro.classList.add('terceiro');
-     }*/
+    const quarto = document.querySelector(".quarto");
+    primeira.classList.replace("primeira", "segunda")
+    segunda.classList.replace("segunda", "terceiro")
+    terceiro.classList.replace("terceiro", "quarto")
+    quarto.classList.replace("quarto", "primeira")
+    mudar_caixinhas()
 }
+function mudar_caixinhas() {
+
+    // divs pequenas
+    const primeira_sobre = document.getElementById("primeiro_sobre")
+    const segunda_sobre = document.getElementById("segunda_sobre")
+    const terceiro_sobre = document.getElementById("terceira_sobre")
+    const quarto_sobre = document.getElementById("quarto_sobre")
+
+    const primeira_apos = document.getElementById("primeira");
+    const segunda_apos = document.getElementById("segunda");
+    const terceiro_apos = document.getElementById("terceiro");
+    const quarto_apos = document.getElementById("quarto");
+
+    primeira_sobre.style = "background-color: background-color: #00000000;"
+    segunda_sobre.style = "background-color: background-color: #00000000;"
+    quarto_sobre.style = "background-color: background-color: #00000000;"
+    terceiro_sobre.style = "background-color: background-color: #00000000;"
+
+    //
+    if (primeira_apos.classList.contains("primeira")) {
+        primeira_sobre.style = "background-color: white"
+    }
+    if (segunda_apos.classList.contains("primeira")) {
+        segunda_sobre.style = "background-color: white"
+
+    }
+    if (terceiro_apos.classList.contains("primeira")) {
+        terceiro_sobre.style = "background-color: white"
+    }
+    if (quarto_apos.classList.contains("primeira")) {
+        quarto_sobre.style = "background-color: white"
+    }
+
+}
+
+
+
+
+
+
 var sunny_aba = document.getElementById("sunny_aba");
 var nephis_aba = document.getElementById("nephis_aba");
 var cassie_aba = document.getElementById("cassie_aba");

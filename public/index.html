@@ -9,8 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <header id="header">
+<body id="body">
+    <audio id="ost" src="../public/assets/audio/ost_shadow_slave.mp3"></audio>
+    <div class="carregamento_pagina"></div>
+    <p class="logo_normal" id="logo_que_sube"><span>Shadow Slave</span></p>
+    <header id="header" style="display: none;">
         <nav class="nav" id="nav_principal">
             <a href="#">
                 <p>INICIO</p>
@@ -37,14 +40,42 @@
             <a href="cadastrologin.html">
                 <p id="entrar">ENTRAR</p>
             </a>
-            <img src="assets/img/lisen.png" alt="" id="icone_musica" onclick="tocar()">
+            <img src="assets/svg/volume-mute-sharp.svg" alt="" id="icone_musica" onclick="tocar()">
         </nav>
     </header>
     <main>
-        <section id="inicio">
+        <section id="pagina_mongrel">
+            <img src="assets/svg/volume-mute-sharp.svg" alt="" id="icone_inicial" onclick="tocar()">
+            <div class="header-container">
+                <div class="column-1" id="primeira_tela" data-aos="fade-right" data-aos-duration="1000">
+
+                    <!--primeiro-->
+                    <div class="titulo">
+                        <p id="logo_letra"><span>Shadow Slave</span></p>
+                        <p><span id="sombras">A Jornada das sombras</span></p>
+                    </div>
+                    <div class="sub-titulo  " >
+                        <p><i id="texto_sombras">
+                                "Somente aqueles que abraçam sua sombra descobrem a verdadeira essência do que são
+                                capazes."
+                            </i> </p>
+                    </div>
+                    <a href="#" >
+                        <p id="saber_mais" onclick="tirar_inicio()" data-aos="fade-up" data-aos-duration="1000">Saber mais</p>
+                    </a>
+                    <!--segundo-->
+
+                </div>
+                <div class=" column-2" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="mongrel moving-head " id="div_mongrel">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="inicio" style="display: none">
             <div class="imagem_fundo">
             </div>
-            <div class="conteudo">
+            <div class="conteudo fade-esquerda" >
                 <p id="inicio_titulo" data-aos="fade-right" data-aos-duration="1000"><span class="1_letra">S</span>EJA
                     <span class="vermelho"><span class="1_letra">B</span>EM</span>-<span class="1_letra">V</span>INDO!
                 </p>
@@ -111,23 +142,25 @@
             <div class="direita">
                 <div class="conteudo">
                     <div class="voltar">
-                        <img src="assets/img/switch.svg" alt="" onclick="sobre_voltar()">
+                        <img src="assets/img/switch.svg" alt="" onclick="sobre_voltar()" id="conteudo_atras">
                     </div>
                     <div class="imagens">
                         <img src="assets/img/sobre1.png" alt="" width="300" class="primeira" id="primeira">
-                        <img src="assets/img/imagem_inicial.png" alt="" width="300" height="400" class="segunda"
+                        <img src="assets/img/capa_shadow.png" alt="" width="300" height="400" class="segunda"
                             id="segunda">
-                        <img src="assets/img/sobre1.png" alt="" width="300" class="terceiro" id="terceiro">
+                        <img src="assets/img/3.png" alt="" width="300" class="terceiro" id="terceiro">
+                        <img src="assets/img/4.png" alt="" width="300" class="quarto" id="quarto">
 
                     </div>
                     <div class="seguinte">
-                        <img src="assets/img/switch.svg" alt="" onclick="sobre_voltar()">
+                        <img src="assets/img/switch.svg" alt="" onclick="sobre_seguinte()" id="conteudo_seguinte">
                     </div>
                 </div>
                 <div class="caixinhas">
-                    <div class="atual_sobre"></div>
-                    <div class="segunda_sobre"></div>
-                    <div class="terceira_sobre"></div>
+                    <div id="primeiro_sobre" style="background-color: aliceblue;"></div>
+                    <div id="segunda_sobre"></div>
+                    <div id="terceira_sobre"></div>
+                    <div id="quarto_sobre"></div>
                 </div>
             </div>
         </section>
@@ -744,7 +777,8 @@
             <div class="container">
                 <img src="assets/img/eu.png" alt="" id="eu" data-aos="fade-right" data-aos-duration="2000">
                 <div class="sobre_mim" data-aos="fade-left" data-aos-duration="2000">
-                    <h4><span class="verde">desenvolvedor full-stack</span> &nbsp;&nbsp;| &nbsp;&nbsp; <span class="verde">quem sou eu?</span></h4>
+                    <h4><span class="verde">desenvolvedor full-stack</span> &nbsp;&nbsp;| &nbsp;&nbsp; <span
+                            class="verde">quem sou eu?</span></h4>
                     <h1><span class="verde">Olá</span> meu nome é <span class="verde">jhoel</span></h1>
                     <p>Por que escolhi fazer meu projeto sobre Shadow Slave?</p>
                     <p>Sou boliviano e moro no Brasil há 4 anos. No começo, foi muito difícil me adaptar à nova vida,
@@ -769,7 +803,7 @@
                             <img src="assets/svg/logo-html5.svg" alt="">
                             <img src="assets/svg/logo-javascript.svg" alt="">
                             <img src="assets/svg/logo-tux.svg" alt="">
-                            
+
                         </div>
                     </div>
                 </div>
