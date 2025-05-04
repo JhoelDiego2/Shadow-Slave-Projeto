@@ -1,14 +1,19 @@
+
 // sessão
 function validarSessao() {
-    var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
+    var nomeReal = sessionStorage.NOME_REAL_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");
+    var b_nome_real = document.getElementById("b_nome_real");
 
-    if (email != null && nome != null) {
+    if (idUsuario != null && nome != null && nomeReal != null) {
         b_usuario.innerHTML = nome;
+        b_nome_real.innerHTML = nomeReal;
     } else {
-        window.location = "../login.html";
+        console.log("usuario nao cadastrado ou elemenetos nao encontrados ")
+        // window.location = "../login.html";
     }
 }
 

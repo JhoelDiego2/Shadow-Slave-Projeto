@@ -11,5 +11,14 @@ router.post("/cadastrar", function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
+router.post("/atualizar_senha", function (req, res) {
+    usuarioController.atualizar_senha(req, res);
+});
+router.post("/atualizar_conta", function (req, res) {
+    usuarioController.atualizar_conta(req, res);
+});
+router.post("/atualizar_avatar", function (req, res) {
+    usuarioController.atualizar_avatar(req, res);
+});
 
 module.exports = router;

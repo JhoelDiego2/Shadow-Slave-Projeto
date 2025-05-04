@@ -19,8 +19,9 @@ CREATE TABLE usuario(
     email VARCHAR(45) UNIQUE,
     senha VARCHAR (45),
     dtCadastro DATE DEFAULT (CURRENT_DATE), 
-    avatar char(1) DEFAULT '1', 
-    nomeReal VARCHAR(45) DEFAULT 'Lost from light'
+    avatar VARCHAR(7) DEFAULT 'sunny', 
+    nomeReal VARCHAR(45) DEFAULT 'Lost from Light'
+    constraint ckAvatar check (avatar in ('sunny', 'nephis', 'cassie', 'effie', 'kai', 'jet', 'modret', 'mongrel'))
 );
 CREATE TABLE games (
     idGames INT PRIMARY KEY AUTO_INCREMENT,

@@ -1,3 +1,5 @@
+history.scrollRestoration = 'manual'
+
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('nav_principal');
     if (window.scrollY > 50) {
@@ -13,7 +15,7 @@ const elemento = document.querySelector(".carregamento_pagina")
 elemento.addEventListener('animationend', () => {
     elemento.style.display = 'none';
 });
-history.scrollRestoration = 'manual'
+
 
 function tirar_inicio() {
     const pagina_mongrel = document.getElementById("pagina_mongrel")
@@ -122,13 +124,13 @@ var kai_aba = document.getElementById("kai_aba");
 var jet_aba = document.getElementById("jet_aba");
 var modret_aba = document.getElementById("modret_aba");
 ///containers
-var sunny = document.querySelector(".aba-sunny");
-var nephis = document.querySelector(".aba-nephis");
-var cassie = document.querySelector(".aba-cassie");
-var effie = document.querySelector(".aba-effie");
-var kai = document.querySelector(".aba-kai");
-var jet = document.querySelector(".aba-jet");
-var modret = document.querySelector(".aba-modret");
+var sunny_container = document.querySelector(".aba-sunny");
+var nephis_container  = document.querySelector(".aba-nephis");
+var cassie_container  = document.querySelector(".aba-cassie");
+var effie_container  = document.querySelector(".aba-effie");
+var kai_container  = document.querySelector(".aba-kai");
+var jet_container  = document.querySelector(".aba-jet");
+var modret_container  = document.querySelector(".aba-modret");
 
 function tirar_classe() {
     sunny_aba.classList.remove("atual")
@@ -140,53 +142,53 @@ function tirar_classe() {
     modret_aba.classList.remove("atual")
 }
 function tirar_display() {
-    sunny.style.display = "none"
-    nephis.style.display = "none"
-    cassie.style.display = "none"
-    effie.style.display = "none"
-    jet.style.display = "none"
-    kai.style.display = "none"
-    modret.style.display = "none"
+    sunny_container.style.display = "none"
+    nephis_container.style.display = "none"
+    cassie_container.style.display = "none"
+    effie_container.style.display = "none"
+    jet_container.style.display = "none"
+    kai_container.style.display = "none"
+    modret_container.style.display = "none"
 }
 function sunny_trocar() {
     tirar_classe()
     tirar_display()
     sunny_aba.classList.add("atual")
-    sunny.style.display = "flex"
+    sunny_container.style.display = "flex"
 }
 function nephis_trocar() {
     tirar_classe()
     tirar_display()
     nephis_aba.classList.add("atual")
-    nephis.style.display = "flex"
+    nephis_container.style.display = "flex"
 }
 function cassie_trocar() {
     tirar_classe()
     tirar_display()
     cassie_aba.classList.add("atual")
-    cassie.style.display = "flex"
+    cassie_container.style.display = "flex"
 }
 function effie_trocar() {
     tirar_classe()
     tirar_display()
     effie_aba.classList.add("atual")
-    effie.style.display = "flex"
+    effie_container.style.display = "flex"
 }
 function kai_trocar() {
     tirar_classe()
     tirar_display()
     kai_aba.classList.add("atual")
-    kai.style.display = "flex"
+    kai_container.style.display = "flex"
 }
 function jet_trocar() {
     tirar_classe()
     tirar_display()
     jet_aba.classList.add("atual")
-    jet.style.display = "flex"
+    jet_container.style.display = "flex"
 }
 function modret_trocar() {
     tirar_classe()
     tirar_display()
     modret_aba.classList.add("atual")
-    modret.style.display = "flex"
+    modret_container.style.display = "flex"
 }

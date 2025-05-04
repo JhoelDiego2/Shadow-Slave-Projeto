@@ -332,18 +332,23 @@ function esqueci() {
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.AVATAR_USUARIO = json.avatar;
+                    sessionStorage.NOME_REAL_USUARIO= json.nomeReal;
 
                     setTimeout(function () {
                         window.location = "game.html";
                     }, 2000); // apenas para exibir o loading
                     let div_alerta = document.getElementById("div_alerta")
                     let div_cad = document.getElementById("div_cad_sucesso")
+                    let titulo_cad = document.getElementById("titulo_cad")
+                    let mensagem_cad = document.getElementById("mensagem_cad")
+                    let bottom_mensagem_cad= document.getElementById("bottom_mensagem_cad")
                     div_alerta.style.display="none"
                     div_cad.style.display="flex"
-                    titulo.cad.innerHTML= "Login com Sucesso"
-                    mensagem_cad.innerHTML = `As sombras reconheceram sua presença. Bem-vindo de volta, ${NOME_USUARIO}.`
+                    titulo_cad.innerHTML= "Login com Sucesso"
+                    mensagem_cad.innerHTML = `As sombras reconheceram sua presença. Bem-vindo de volta, ${usuario}.`
                     bottom_mensagem_cad.innerHTML = `ENTRANDO...`
                 });
 

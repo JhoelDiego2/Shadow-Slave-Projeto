@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game | Shadow Slave</title>
+    <script src="js/sessao.js"></script>
     <link rel="stylesheet" href="css/game.css">
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div id="tela_inicial" onclick="fechar_tela_inicial()" style="display: none;">
         <p class="clique"> ENTRAR NO MUNDO DOS SONHOS</p>
     </div>
@@ -36,9 +37,10 @@
     </div>
     <header>
         <div>
-            <img src="assets/img/sunny_xom_fundo.webp" alt="">
+            <img id="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="" >
             <p>Seja bem vindo desperto:</p>
             <p id="b_usuario">Nome do usuario</p>
+            <p id="b_nome_real">Nome real</p>
         </div>
         <nav>
             <p onclick="mostrarjogos()">
@@ -82,21 +84,21 @@
                 <img src="assets/img/sunny_xom_fundo.webp" alt="" id="avatar_atual">
                 <div>
                     <div class="c-cima">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção" onclick="trocar_avatar(sunny)" id="avatar_sunny">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção"onclick="trocar_avatar(nephis)"id="avatar_nephis">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção"onclick="trocar_avatar(cassie)" id="avatar_cassie">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção"onclick="trocar_avatar(effie)" id="avatar_effie">
+                        <img src="assets/img/sunny-chibi-2.png" alt="" class="avatar_opção" onclick="trocar_avatar(sunny, 'sunny')" id="avatar_sunny">
+                        <img src="assets/img/nephis-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(nephis, 'nephis')"id="avatar_nephis">
+                        <img src="assets/img/cassie-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(cassie, 'cassie')" id="avatar_cassie">
+                        <img src="assets/img/effie-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(effie, 'effie')" id="avatar_effie">
 
                     </div>
                     <div class="c-baixo">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção"onclick="trocar_avatar(kai)" id="avatar_kai">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção"onclick="trocar_avatar(jet)" id="avatar_jet">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção"onclick="trocar_avatar(modret)" id="avatar_modret">
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="avatar_opção" onclick="trocar_avatar(noctis)" id="avatar_noctis">
+                        <img src="assets/img/kai-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(kai, 'kai')" id="avatar_kai">
+                        <img src="assets/img/jet-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(jet, 'jet')" id="avatar_jet">
+                        <img src="assets/img/modret-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(modret, 'modret')" id="avatar_modret">
+                        <img src="assets/img/mongrel-chibi.png" alt="" class="avatar_opção" onclick="trocar_avatar(mongrel, 'mongrel')" id="avatar_noctis">
 
                     </div>
                 </div>
-                <p class="botao">Atualizar Avatar</p>
+                <p class="botao" onclick="atualizar_avatar()">Atualizar Avatar</p>
             </div>
             <div class="c-direita conta" style="display: none;" id="conf_conta">
                 <h3>Atualizar Conta</h3>

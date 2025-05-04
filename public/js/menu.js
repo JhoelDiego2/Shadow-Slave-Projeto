@@ -1,3 +1,48 @@
+//icones url 
+const avatar_bd = document.getElementById("b_avatar")
+
+const sunny = "assets/img/sunny-chibi-2.png"
+const nephis = "assets/img/nephis-chibi.png"
+const cassie = "assets/img/cassie-chibi.png"
+const effie = "assets/img/effie-chibi.png"
+const kai = "assets/img/kai-chibi.png"
+const jet = "assets/img/jet-chibi.png"
+const modret = "assets/img/modret-chibi.png"
+const mongrel = "assets/img/mongrel-chibi.png"
+
+// para colocar o avatar 
+function prencherAvatar() {
+    avatar =sessionStorage.AVATAR_USUARIO
+    if (avatar == "sunny") {
+        avatar_bd.src=sunny
+    } 
+    if (avatar == "nephis") {
+        avatar_bd.src= nephis
+    } 
+    if (avatar == "cassie") {
+        avatar_bd.src=cassie
+    } 
+    if (avatar == "effie") {
+        avatar_bd.src=effie
+    } 
+    if (avatar == "kai") {
+        avatar_bd.src=kai
+    } 
+    if (avatar == "jet") {
+        avatar_bd.src=jet
+    }
+    if (avatar == "modret") {
+        avatar_bd.src=modret
+    }
+    if (avatar == "mongrel") {
+        avatar_bd.src=mongrel
+    }
+}
+
+window.addEventListener('load', prencherAvatar);
+
+
+
 function digitando_atualizar(x) {
     var texto_x = document.getElementById(`texto_${x}`);
     var ipt_x = document.getElementById(`ipt_${x}`);
@@ -102,10 +147,11 @@ function tirar_alerta() {
 function atualizar_senha() {
     // variaveis das input do cadastro
     let senha_atual = document.getElementById("ipt_senha_atual").value
-    let senha = document.getElementById("ipt_senha_nova").value
+    let senha_nova = document.getElementById("ipt_senha_nova").value
     let conf_senha = document.getElementById("ipt_senha_conf").value
+    let idUsuario = sessionStorage.ID_USUARIO;
     console.log(senha_atual)
-    console.log(senha)
+    console.log(senha_nova)
     console.log(conf_senha)
     // Variaveis booleanas para  validar a senha
     var valido = false;
@@ -126,8 +172,8 @@ function atualizar_senha() {
     var caracter = 0
 
     // varre a string 'senha' aplicando a verificação de todas as regras da senha 
-    for (i; i < senha.length; i++) {
-        caracter = senha[i];
+    for (i; i < senha_nova.length; i++) {
+        caracter = senha_nova[i];
 
         if (letrasMaiusculas.includes(caracter)) {
             contem_Maiuscula = true;
@@ -146,13 +192,13 @@ function atualizar_senha() {
 
         }
     }
-    //verificar um email valido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
+    //verificar um email_atualizarvalido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
 
     div_alerta.style.display = "flex"
 
     while (valido == false) {
 
-        if (senha_atual == '' && senha == '' && conf_senha == '') {
+        if (senha_atual == '' && senha_nova == '' && conf_senha == '') {
             titulo_erro.innerHTML = "Campos vazios"
             mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
             break
@@ -162,7 +208,7 @@ function atualizar_senha() {
             mensagem_erro.innerHTML = "Sem defesa, você não poderá modificar-la. Me diga a sua proteção."
             break
         }
-        if (senha == '') {
+        if (senha_nova == '') {
             titulo_erro.innerHTML = "Campo de senha nova vazio"
             mensagem_erro.innerHTML = "Sem defesa, você não sobreviverá na névoa. Crie sua proteção."
             break
@@ -192,94 +238,72 @@ function atualizar_senha() {
             mensagem_erro.innerHTML = "Sua senha carece de caos. Adicione um símbolo do abismo: ! @ # $ % ..."
             break
         }
-        if (senha != conf_senha) {
+        if (senha_nova != conf_senha) {
             titulo_erro.innerHTML = "As senhas não coincidem"
             mensagem_erro.innerHTML = "As duas forças estão desalinhadas. A senha e sua confirmação devem ser como espelhos — idênticas."
             break
         }
-        if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha == conf_senha)) {
+        if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha_nova == conf_senha)) {
             valido = true
             div_alerta.style.display = "none"
         }
     }
     //verifica se os inputs estao vazios
+    if (valido) {
+        // Enviando o valor da nova input
+        fetch("/usuarios/atualizar_senha", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                senha_atualServer: senha_atual,
+                senha_novaServer: senha_nova,
+                conf_senhaServer: conf_senha,
+                idUsuarioServer: idUsuario
+                //  idEmpresaVincularServer: idEmpresaVincular
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-    /* aqui modificar depois
-    
-            if (valido) {
-                // Enviando o valor da nova input
-                fetch("/usuarios/cadastrar", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        // crie um atributo que recebe o valor recuperado aqui
-                        // Agora vá para o arquivo routes/usuario.js
-                        nomeServer: nome_usuario,
-                        emailServer: email,
-                        senhaServer: senha,
-                        //  idEmpresaVincularServer: idEmpresaVincular
-                    }),
-                })
-                    .then(function (resposta) {
-                        console.log("resposta: ", resposta);
-        
-                        if (resposta.ok) {
-                            let cad_sucesso = document.getElementById("div_cad_sucesso")
-                            let main = document.querySelector(" main")
-                            let text_nome = document.getElementById(`texto_nome_usuario`);
-                            let text_senha = document.getElementById(`texto_senha`);
-                            let nome_login = document.getElementById(`ipt_nome_usuario`);
-                            let senha_login = document.getElementById(`ipt_senha`);
-                            cad_sucesso.style.display="flex" 
-                            main.style.filter="blur(2px)"
-                            ipt_nome_usuario.value = nome_usuario;
-                            ipt_senha.value = senha;
-        
-                            text_nome.style.color = "black";
-                            text_nome.style.position = "relative";
-                            text_nome.style.transform = "translate(-2.4vw, -6vh)";
-                            text_nome.style.transition = "0.7s ease-in-out";
-                            nome_login.style.borderBottom = "solid 4px black";
-                
-                            text_senha.style.color = "black";
-                            text_senha.style.position = "relative";
-                            text_senha.style.transform = "translate(-2.4vw, -6vh)";
-                            text_senha.style.transition = "0.7s ease-in-out";
-                            senha_login.style.borderBottom = "solid 4px black";
-        
-                            /*  setTimeout(() => {
-                                  window.location = "login.html";
-                              }, "2000");
-          
-                              limparFormulario();
-                              finalizarAguardar();*/
-    //             } else {
-    //                throw "Houve um erro ao tentar realizar o cadastro!";
-    //             }
-    //         })
-    //        .catch(function (resposta) {
-    //             console.log(`#ERRO: ${resposta}`);
-    //finalizarAguardar();
-    //          });
-    //      return false;
-    //   }
+                if (resposta.ok) {
+                    let cad_sucesso = document.getElementById("div_cad_sucesso")
+                    cad_sucesso.style.display = "flex"
+                    /*  setTimeout(() => {
+                          window.location = "login.html";
+                      }, "2000");
+  
+                      limparFormulario();
+                      finalizarAguardar();*/
+                } else {
+                    throw "Houve um erro ao tentar realizar a atualização da senha!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                //finalizarAguardar();
+            });
+        return false;
+    }
 
 
 }
 function atualizar_conta() {
     // variaveis das input do cadastro
-    let nome_usuario = document.getElementById("ipt_nome_atualizar").value
-    let email = document.getElementById("ipt_email_atualizar").value
+    let nome_usuario_atualizar = document.getElementById("ipt_nome_atualizar").value
+    let email_atualizar = document.getElementById("ipt_email_atualizar").value
     let nome_real = document.getElementById("ipt_nome_real").value
+    let idUsuario = sessionStorage.ID_USUARIO;
     var valido = false;
 
-    //verificar um email valido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
+    //verificar um email_atualizarvalido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
     var umarroba = false
     var arroba_invalido = false
 
-    for (let i = 1; i <= email.lenght; i++) {
+    for (let i = 1; i <= email_atualizar.lenght; i++) {
         if (email[i] == '@' && umarroba == false) {
             umarroba = true
             break
@@ -292,22 +316,22 @@ function atualizar_conta() {
     div_alerta.style.display = "flex"
     while (valido == false) {
 
-        if (nome_usuario == '' && email == '' && nome_real == '') {
+        if (nome_usuario_atualizar == '' && email_atualizar == '' && nome_real == '') {
             titulo_erro.innerHTML = "Campos vazios"
             mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
             break
         }
-        if (nome_usuario == '') {
+        if (nome_usuario_atualizar == '') {
             titulo_erro.innerHTML = "Campo de usuário vazio"
             mensagem_erro.innerHTML = "Nem um nome novo? Até as sombras têm identidade nova."
             break
         }
-        if (nome_usuario < 3) {
+        if (nome_usuario_atualizar < 3) {
             titulo_erro.innerHTML = "Nome curto"
             mensagem_erro.innerHTML = "Nomes fracos desaparecem sem deixar vestígios. Escolha com mais poder"
             break
         }
-        if (email == '') {
+        if (email_atualizar == '') {
             titulo_erro.innerHTML = "E-mail vazio"
             mensagem_erro.innerHTML = "Nem mesmo os ecos do além conseguem te alcançar sem um destino definido."
             break
@@ -326,88 +350,102 @@ function atualizar_conta() {
         alert("aeeporra")
         if (valido == true) {
             div_alerta.style.display = "none"
-            
+
         }
 
     }
-    //verifica se os inputs estao vazios
-    /*      if (valido) {
-              // Enviando o valor da nova input
-              fetch("/usuarios/cadastrar", {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                      // crie um atributo que recebe o valor recuperado aqui
-                      // Agora vá para o arquivo routes/usuario.js
-                      nomeServer: nome_usuario,
-                      emailServer: email,
-                      senhaServer: senha,
-                      //  idEmpresaVincularServer: idEmpresaVincular
-                  }),
-              })
-                  .then(function (resposta) {
-                      console.log("resposta: ", resposta);
-      
-                      if (resposta.ok) {
-                          let cad_sucesso = document.getElementById("div_cad_sucesso")
-                          let main = document.querySelector(" main")
-                          let text_nome = document.getElementById(`texto_nome_usuario`);
-                          let text_senha = document.getElementById(`texto_senha`);
-                          let nome_login = document.getElementById(`ipt_nome_usuario`);
-                          let senha_login = document.getElementById(`ipt_senha`);
-                          cad_sucesso.style.display="flex" 
-                          main.style.filter="blur(2px)"
-                          ipt_nome_usuario.value = nome_usuario;
-                          ipt_senha.value = senha;
-      
-                          text_nome.style.color = "black";
-                          text_nome.style.position = "relative";
-                          text_nome.style.transform = "translate(-2.4vw, -6vh)";
-                          text_nome.style.transition = "0.7s ease-in-out";
-                          nome_login.style.borderBottom = "solid 4px black";
-              
-                          text_senha.style.color = "black";
-                          text_senha.style.position = "relative";
-                          text_senha.style.transform = "translate(-2.4vw, -6vh)";
-                          text_senha.style.transition = "0.7s ease-in-out";
-                          senha_login.style.borderBottom = "solid 4px black";
-      
-                          /*  setTimeout(() => {
-                                window.location = "login.html";
-                            }, "2000");
-        
-                            limparFormulario();
-                            finalizarAguardar();*/
-    //                  } else {
-    //                        throw "Houve um erro ao tentar realizar o cadastro!";
-    //                   }
-    //               })
-    //              .catch(function (resposta) {
-    //                  console.log(`#ERRO: ${resposta}`);
-    //finalizarAguardar();
-    //             });
-    //           return false;
-    //    }
+    if (valido) {
+        // Enviando o valor da nova input
+        fetch("/usuarios/atualizar_conta", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nome_usuario_atualizar,
+                emailServer: email_atualizar,
+                nomeRealServer: nome_real,
+                idUsuarioServer: idUsuario
+                //  idEmpresaVincularServer: idEmpresaVincular
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    let cad_sucesso = document.getElementById("div_cad_sucesso")
+                    cad_sucesso.style.display = "flex"
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.NOME_REAL_USUARIO= json.nomeReal;
+                    /*  setTimeout(() => {
+                          window.location = "login.html";
+                      }, "2000");
+  
+                      limparFormulario();
+                      finalizarAguardar();*/
+                } else {
+                    throw "Houve um erro ao tentar atualizar a conta!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                //finalizarAguardar();
+            });
+        return false;
+    }
 }
 
 
 /*avatar comeca aqui -----------*/
-const avatar_atual = document.getElementById("avatar_atual")
-const sunny= 'assets/img/sunny_xom_fundo.webp'
-const nephis = 'assets/img/nephis_aba_imagem.png'
-const cassie = 'assets/img/nephis_aba_imagem.png'
-const effie = 'assets/img/sunny_xom_fundo.webp'
-const kai = 'assets/img/nephis_aba_imagem.png'
-const jet = 'assets/img/sunny_xom_fundo.webp'
-const modret = 'assets/img/nephis_aba_imagem.png'
-const noctis = 'assets/img/sunny_xom_fundo.webp'
-function trocar_avatar(x) {
-    avatar_atual.src= x
+let ultimo_avatar = ''
+let ultimo_avatar_nome = ''
+function trocar_avatar(x, y) {
+    avatar_atual.src = x
+    ultimo_avatar = x
+    ultimo_avatar_nome = y
 }
 
+function atualizar_avatar() {
+    let idUsuario = sessionStorage.ID_USUARIO;
+    avatar_bd.src = ultimo_avatar
+    fetch("/usuarios/atualizar_avatar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            avatarServer: ultimo_avatar_nome, 
+            idUsuarioServer: idUsuario
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
 
+            if (resposta.ok) {
+                let cad_sucesso = document.getElementById("div_cad_sucesso")
+                cad_sucesso.style.display = "flex"
+                sessionStorage.AVATAR_USUARIO = json.avatar;
+
+                /*  setTimeout(() => {
+                      window.location = "login.html";
+                  }, "2000");
+
+                  limparFormulario();
+                  finalizarAguardar();*/
+            } else {
+                throw "Houve um erro ao tentar atualizarO AVATAR!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
+        });
+    return false;
+}
 
 
 
