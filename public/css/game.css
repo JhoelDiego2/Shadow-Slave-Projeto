@@ -398,7 +398,7 @@ main{
     height: 50vh;
     position: absolute;
     top: 25vh;
-    left: 35vw;
+    left: 39vw;
     border-radius: 9px;
     display: flex;
     flex-direction: column;
@@ -424,6 +424,7 @@ main{
     color: rgb(0, 0, 0);
     z-index: 10;
     font-weight: 800;
+    cursor: pointer;
 }
 
 #titulo_cad {
@@ -438,7 +439,7 @@ main{
     height: 8%;
     position: absolute;
     top: 41vh;
-    animation: esperar 2s ease;
+    animation: esperar 1s ease;
     z-index: -1;
 
     }
@@ -464,7 +465,17 @@ main{
     width: 90%;
     text-align: center;
 
-}/**acabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/
+}
+.fundo_alertas{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000025;
+    z-index: 40;
+    backdrop-filter: blur(2px);
+}
+
+/**acabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/
 
 */
 img{

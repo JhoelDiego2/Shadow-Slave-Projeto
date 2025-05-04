@@ -74,24 +74,24 @@ function cadastrar(req, res) {
 }
 function atualizar_senha(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var senha_atual = req.body.senha_atualServer;
-    var senha_nova = req.body.senha_novaServer;
-    var conf_senha = req.body.conf_senhaServer;
+    var senha = req.body.senhaServer;
+    var senhaNova = req.body.senhaNovaServer;
+    var confSenha = req.body.confSenhaServer;
     var idUsuario = req.body.idUsuarioServer;
 
     // Faça as validações dos valores
-    if (senha_atual == undefined) {
+    if (senha == undefined) {
         res.status(400).send("Sua senha atual está undefined!");
-    } else if (senha_nova == undefined) {
+    } else if (senhaNova == undefined) {
         res.status(400).send("Sua senha nova está undefined!");
-    } else if (conf_senha == undefined) {
+    } else if (confSenha == undefined) {
         res.status(400).send("Sua confirmação de senha está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
     }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizar_senha(senha, idUsuario)
+        usuarioModel.atualizar_senha(senha, senhaNova, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);

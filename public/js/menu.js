@@ -1,6 +1,5 @@
 //icones url 
 const avatar_bd = document.getElementById("b_avatar")
-
 const sunny = "assets/img/sunny-chibi-2.png"
 const nephis = "assets/img/nephis-chibi.png"
 const cassie = "assets/img/cassie-chibi.png"
@@ -9,39 +8,45 @@ const kai = "assets/img/kai-chibi.png"
 const jet = "assets/img/jet-chibi.png"
 const modret = "assets/img/modret-chibi.png"
 const mongrel = "assets/img/mongrel-chibi.png"
-
+const main = document.getElementById("div_main")
+const configuracao = document.getElementById("configuracao")
+const conf_avatar = document.getElementById("conf_avatar")
+const conf_conta = document.getElementById("conf_conta")
+const conf_seguranca = document.getElementById("conf_seguranca")
+const alerta_suceso = document.getElementById("div_cad_sucesso")
+const fundo_alertas = document.querySelector(".fundo_alertas")
+let senha_atual_visivel = false
+let senha_nova_visivel = false
 // para colocar o avatar 
 function prencherAvatar() {
-    avatar =sessionStorage.AVATAR_USUARIO
+    avatar = sessionStorage.AVATAR_USUARIO
     if (avatar == "sunny") {
-        avatar_bd.src=sunny
-    } 
+        avatar_bd.src = sunny
+    }
     if (avatar == "nephis") {
-        avatar_bd.src= nephis
-    } 
+        avatar_bd.src = nephis
+    }
     if (avatar == "cassie") {
-        avatar_bd.src=cassie
-    } 
+        avatar_bd.src = cassie
+    }
     if (avatar == "effie") {
-        avatar_bd.src=effie
-    } 
+        avatar_bd.src = effie
+    }
     if (avatar == "kai") {
-        avatar_bd.src=kai
-    } 
+        avatar_bd.src = kai
+    }
     if (avatar == "jet") {
-        avatar_bd.src=jet
+        avatar_bd.src = jet
     }
     if (avatar == "modret") {
-        avatar_bd.src=modret
+        avatar_bd.src = modret
     }
     if (avatar == "mongrel") {
-        avatar_bd.src=mongrel
+        avatar_bd.src = mongrel
     }
 }
 
 window.addEventListener('load', prencherAvatar);
-
-
 
 function digitando_atualizar(x) {
     var texto_x = document.getElementById(`texto_${x}`);
@@ -52,8 +57,7 @@ function digitando_atualizar(x) {
     texto_x.style.transition = "0.7s ease-in-out";
     ipt_x.style.borderBottom = "solid 2px white";
 }
-let senha_atual_visivel = false
-let senha_nova_visivel = false
+
 function mostrarSenhaAtual() {
     const atual = document.getElementById("ipt_senha_atual")
     const icone = document.getElementById("icone_senha_atual")
@@ -89,8 +93,7 @@ function mostrarSenhaNova() {
 
     }
 }
-const main = document.getElementById("div_main")
-const configuracao = document.getElementById("configuracao")
+
 function mostrarConfiguracao() {
     configuracao.style.display = "flex"
     main.style.display = "flex"
@@ -111,14 +114,8 @@ function fechar_configuracao() {
         configuracao.style.animation = "pop_up_animacao 1s ease-out "
     }, 1000);
 }
-
-
-
-
 ///areaconfiguracoes
-const conf_avatar = document.getElementById("conf_avatar")
-const conf_conta = document.getElementById("conf_conta")
-const conf_seguranca = document.getElementById("conf_seguranca")
+
 function ocultar_conf_direito() {
     conf_avatar.style.display = "none"
     conf_conta.style.display = "none"
@@ -141,6 +138,7 @@ function mostrarAlterSenha() {
 }
 function tirar_alerta() {
     div_alerta.style = "display:none"
+    fundo_alertas.style.display = "none"
 }
 
 //senha----------------------
@@ -195,6 +193,8 @@ function atualizar_senha() {
     //verificar um email_atualizarvalido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
 
     div_alerta.style.display = "flex"
+    fundo_alertas.style.display = "flex"
+
 
     while (valido == false) {
 
@@ -213,7 +213,7 @@ function atualizar_senha() {
             mensagem_erro.innerHTML = "Sem defesa, você não sobreviverá na névoa. Crie sua proteção."
             break
         }
-        if (senha.length < 8) {
+        if (senha_nova.length < 8) {
             titulo_erro.innerHTML = "Senha Curta"
             mensagem_erro.innerHTML = "Uma proteção tão frágil não resistirá à escuridão. Sua senha precisa de ao menos 8 carateres"
             break
@@ -246,6 +246,8 @@ function atualizar_senha() {
         if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha_nova == conf_senha)) {
             valido = true
             div_alerta.style.display = "none"
+            fundo_alertas.style.display = "none"
+
         }
     }
     //verifica se os inputs estao vazios
@@ -259,9 +261,9 @@ function atualizar_senha() {
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                senha_atualServer: senha_atual,
-                senha_novaServer: senha_nova,
-                conf_senhaServer: conf_senha,
+                senhaServer: senha_atual,
+                senhaNovaServer: senha_nova,
+                confSenhaServer: conf_senha,
                 idUsuarioServer: idUsuario
                 //  idEmpresaVincularServer: idEmpresaVincular
             }),
@@ -272,6 +274,8 @@ function atualizar_senha() {
                 if (resposta.ok) {
                     let cad_sucesso = document.getElementById("div_cad_sucesso")
                     cad_sucesso.style.display = "flex"
+                    fundo_alertas.style.display = "flex"
+
                     /*  setTimeout(() => {
                           window.location = "login.html";
                       }, "2000");
@@ -314,6 +318,8 @@ function atualizar_conta() {
     }
 
     div_alerta.style.display = "flex"
+    fundo_alertas.style.display = "flex"
+
     while (valido == false) {
 
         if (nome_usuario_atualizar == '' && email_atualizar == '' && nome_real == '') {
@@ -347,9 +353,10 @@ function atualizar_conta() {
             break
         }
         valido = true
-        alert("aeeporra")
+
         if (valido == true) {
             div_alerta.style.display = "none"
+            fundo_alertas.style.display = "none"
 
         }
 
@@ -377,8 +384,10 @@ function atualizar_conta() {
                 if (resposta.ok) {
                     let cad_sucesso = document.getElementById("div_cad_sucesso")
                     cad_sucesso.style.display = "flex"
+                    fundo_alertas.style.display = "flex"
+
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.NOME_REAL_USUARIO= json.nomeReal;
+                    sessionStorage.NOME_REAL_USUARIO = json.nomeReal;
                     /*  setTimeout(() => {
                           window.location = "login.html";
                       }, "2000");
@@ -399,8 +408,7 @@ function atualizar_conta() {
 
 
 /*avatar comeca aqui -----------*/
-let ultimo_avatar = ''
-let ultimo_avatar_nome = ''
+
 function trocar_avatar(x, y) {
     avatar_atual.src = x
     ultimo_avatar = x
@@ -418,7 +426,7 @@ function atualizar_avatar() {
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
-            avatarServer: ultimo_avatar_nome, 
+            avatarServer: ultimo_avatar_nome,
             idUsuarioServer: idUsuario
         }),
     })
@@ -428,6 +436,8 @@ function atualizar_avatar() {
             if (resposta.ok) {
                 let cad_sucesso = document.getElementById("div_cad_sucesso")
                 cad_sucesso.style.display = "flex"
+                fundo_alertas.style.display = "flex"
+
                 sessionStorage.AVATAR_USUARIO = json.avatar;
 
                 /*  setTimeout(() => {
@@ -447,24 +457,12 @@ function atualizar_avatar() {
     return false;
 }
 
+function fechar_alerta_atualizacao() {
+    alerta_suceso.style.display = "none"
+    fundo_alertas.style.display = "none"
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*avatar comeca aqui -----------*/
+function fechar_alertas_geral() {
+    fechar_alerta_atualizacao()
+    tirar_alerta()
+}

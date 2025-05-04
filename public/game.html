@@ -10,6 +10,7 @@
 </head>
 
 <body onload="validarSessao()">
+    <!--POPUP E DIV COM DISPLAY NONE-->
     <div id="tela_inicial" onclick="fechar_tela_inicial()" style="display: none;">
         <p class="clique"> ENTRAR NO MUNDO DOS SONHOS</p>
     </div>
@@ -28,13 +29,16 @@
       <div id="div_cad_sucesso"  style="display: none;">
         <img src="assets/img/sunny_feliz.png" alt="" id="sunny_cad">
         <p id="titulo_cad">
-            Cadastro realizado com sucesso
+            Atualização feita com sucesso
         </p>
         <p id="mensagem_cad">
             Sunny sorri nas trevas — o pacto está feito e o ouro já brilha no seu destino!
         </p>
-        <p   id="bottom_mensagem_cad" onclick="trocar_login_alerta()">FAZER LOGIN</p>
+        <p   id="bottom_mensagem_cad" onclick="fechar_alerta_atualizacao()">OK</p>
     </div>
+    <div class="fundo_alertas" onclick="fechar_alertas_geral()" style="display: none;"></div>
+    <!--POPUP E DIV COM DISPLAY NONE-->
+
     <header>
         <div>
             <img id="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="" >
@@ -117,10 +121,14 @@
                     </div>
                     <select name="nome_real" id="ipt_nome_real" onclick="digitando_atualizar('nome_real')">
                         <option value=""> </option>
-                        <option value="n_sunny">Lost from LIGHT</option>
-                        <option value="n_sunny">Lost from LIGHT</option>
-                        <option value="n_sunny">Lost from LIGHT</option>
-                        <option value="n_sunny">Lost from LIGHT</option>
+                        <option value="Lost From Light">Lost From Light</option>
+                        <option value="Start Of Change">Start Of Change</option>
+                        <option value="Song Of The Fallen">Song Of The Fallen</option>
+                        <option value="Raised By Wolves">Raised By Wolves</option>
+                        <option value="Nightingale">Nightingale</option>
+                        <option value="Soul Reaper">Soul Reaper</option>
+                        <option value="Prince of Nothing">Prince of Nothing</option>
+                        <option value="Lost From Fate">Lost From Fate</option>
                     </select>
                 </div>
                 <p class="botao" onclick="atualizar_conta()">Atualizar Conta</p>
