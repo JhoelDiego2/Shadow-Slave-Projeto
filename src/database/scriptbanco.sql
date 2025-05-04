@@ -5,16 +5,13 @@
 /*
 comandos para executar no mysql
 */
-
 CREATE DATABASE shadowSlave;
 USE shadowSlave;
 
-describe usuario;
 
-
-CREATE USER 'apiShadowSlave'@'localhost' IDENTIFIED BY '69791845';
+/*CREATE USER 'apiShadowSlave'@'localhost' IDENTIFIED BY '69791845';
 GRANT INSERT, UPDATE, SELECT ON shadowSlave.* TO 'apiShadowSlave'@'localhost';
-FLUSH PRIVILEGES;
+FLUSH PRIVILEGES;*/
 
 CREATE TABLE usuario(
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -25,14 +22,13 @@ CREATE TABLE usuario(
     avatar char(1) DEFAULT '1', 
     nomeReal VARCHAR(45) DEFAULT 'Lost from light'
 );
-
-create table games (
+CREATE TABLE games (
     idGames INT PRIMARY KEY AUTO_INCREMENT,
     sunnyGame INT,
     nephisGame INT,
     kaiGame INT, 
     fkUsuario INT,
-    constraint fkUsuarioGames FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+    CONSTRAINT fkUsuarioGames FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE feedback (
@@ -40,16 +36,16 @@ CREATE TABLE feedback (
     stars INT ,
     feedbackDate DATE DEFAULT (CURRENT_DATE), 
     fkUsuario INT NOT NULL,
-    CONSTRAINT pkComposta PRIMARY KEY (idFeedback, fkUsuario)
-    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
+    CONSTRAINT pkComposta PRIMARY KEY (idFeedback, fkUsuario),
+    CONSTRAINT fkFeedbackUsuario FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
 );
 
-create table forum(
+CREATE TABLE forum(
     idForum INT PRIMARY KEY AUTO_INCREMENT,
     mensagem VARCHAR (250),
     data_insercao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     fkUsuario INT,
-    constraINT fkUsuarioForum FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+    CONSTRAINT fkUsuarioForum FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
 

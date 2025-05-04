@@ -60,6 +60,7 @@ header{
     align-items: center;
     gap: 7vh;
     box-shadow: 1px -1px 20px 5px rgb(99, 97, 97);
+    z-index: 20;
 }
 nav{
     display: flex;
@@ -139,6 +140,37 @@ main{
     height: 70%;
     padding: 4vh 2vw;
     gap: 4vw;
+    animation: pop_up_animacao 1s ease-out ;
+
+}
+.saida{
+    animation: pop_up_saida 1s ease-out ;
+}
+@keyframes pop_up_saida{
+    55%{
+        z-index: 2;
+    }
+    100%{
+        transform: translateX(-150%);
+        z-index: -1;
+        opacity: 0.5;
+    }
+
+    
+}
+@keyframes pop_up_animacao{
+  /*  0%{
+        transform: scale(0.5);
+    }*/
+    0%{
+        transform: translateX(-150%);
+        z-index: -1;
+        opacity: 0.5;
+    }
+    55%{
+        z-index: 2;
+    }
+    
 }
 .c-esquerda{
     display: flex;
@@ -158,6 +190,12 @@ main{
     position: absolute;
     left: 25vh;
     border-radius: 10px;
+}
+.c-esquerda p{
+    cursor: pointer;
+}
+.c-esquerda p:hover{
+    transform: scale(1.1);
 }
 
 .c-direita{
@@ -218,6 +256,7 @@ main{
     align-items: center;
 }
 .conta input{
+    outline: none;
     width: 22vw;
     padding: 2vh 3.2vw;
     font-size: 1.3rem;
@@ -256,4 +295,178 @@ main{
 .conta .icone_senha{
    position: absolute;
    right: 1vw;
+   z-index: 40;
+   cursor: pointer;
+}
+#icone_fechar_configuracao{
+    position: absolute;
+    right: 2vw;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+.visivel{
+    display: flex;
+}
+.main_embassado{
+    width:78.7%;
+    height: 100%;
+    background-color: #000000b2;
+    position: absolute;
+    right: 0;
+    backdrop-filter: blur(5px);
+}
+.conta select{
+    outline: none;
+    color: white;
+    z-index: 30;
+}
+.conta select option{
+    background-color: #000000;
+
+}
+
+.avatar_opção{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*alerta personalizado ------------------------*/
+/*alertas--------------------------------*/
+#div_alerta{
+    background-color: #000000;
+    width: 30vw;
+    height: 50vh;
+    position: absolute;
+    top: 25vh;
+    left: 35vw;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 3vh;
+    align-items: center;
+    box-shadow: 0 15px 50px var(--luz);
+    z-index: 50;
+}
+#sunny_chibi{
+    width: 15vw;
+    position: absolute;
+    top: -8vh;
+}
+#div_alerta button{
+    width: 90%;
+    font-size: 2.4vh;
+    padding: 0.6vh ;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+}
+#div_alerta button:hover{
+    background-color: #5a5a5a;
+    color: white;
+}
+
+#titulo_erro{
+    font-size: 2rem;
+    text-align: center;
+}
+#mensagem_erro{
+    font-size: 1rem;
+    width: 90%;
+    text-align: center;
+
+}
+
+
+
+#div_cad_sucesso {
+    background-color: #000000;
+    width: 30vw;
+    height: 50vh;
+    position: absolute;
+    top: 25vh;
+    left: 35vw;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 3vh;
+    align-items: center;
+    box-shadow: 0 15px 50px var(--luz);
+    z-index: 50;
+}
+
+#sunny_cad {
+    width: 17vw;
+    position: relative;
+}
+
+#bottom_mensagem_cad{
+    width: 90%;
+    font-size: 2.4vh;
+    padding: 0.6vh;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    z-index: 10;
+    font-weight: 800;
+}
+
+#titulo_cad {
+    font-size: 2rem;
+    text-align: center;
+}
+#bottom_mensagem_cad::after{
+    content: '';
+    display: block;
+    background-color: white;
+    width: 90%;
+    height: 8%;
+    position: absolute;
+    top: 41vh;
+    animation: esperar 2s ease;
+    z-index: -1;
+
+    }
+@keyframes esperar{
+    0%{
+        width: 1%;
+        border-bottom-right-radius:  10px;
+        border-top-right-radius:  10px;
+    }
+    90%{
+        border-bottom-right-radius:  10px;
+        border-top-right-radius:  10px;
+    }
+    100%{
+        width: 90%;
+    }
+}
+
+
+
+#mensagem_cad {
+    font-size: 1rem;
+    width: 90%;
+    text-align: center;
+
+}/**acabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/
+
+*/
+img{
+    user-select: none;
 }
