@@ -302,6 +302,8 @@ function atualizar_conta() {
     let nome_real = document.getElementById("ipt_nome_real").value
     let idUsuario = sessionStorage.ID_USUARIO;
     var valido = false;
+    var b_usuario = document.getElementById("b_usuario");
+    var b_nome_real = document.getElementById("b_nome_real");
 
     //verificar um email_atualizarvalido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
     var umarroba = false
@@ -385,7 +387,8 @@ function atualizar_conta() {
                     let cad_sucesso = document.getElementById("div_cad_sucesso")
                     cad_sucesso.style.display = "flex"
                     fundo_alertas.style.display = "flex"
-
+                    //    b_usuario.innerHTML = nome_usuario_atualizar
+                    //    b_nome_real.innerHTML = nome_real
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.NOME_REAL_USUARIO = json.nomeReal;
                     /*  setTimeout(() => {
@@ -465,4 +468,57 @@ function fechar_alerta_atualizacao() {
 function fechar_alertas_geral() {
     fechar_alerta_atualizacao()
     tirar_alerta()
+}
+let section_jogos_visivel = false
+const section_games = document.getElementById("section_games")
+function mostrarjogos() {
+    const primeiro = document.querySelector(".primeiro")
+    const primeiro_desc = primeiro.querySelector(".descricao_jogo")
+
+    if (section_jogos_visivel == false) {
+        section_games.classList.remove("section-games-saida")
+        section_games.style.display = "flex"
+        section_games.classList.add("section-games-entrada")
+        section_jogos_visivel = true
+    } else {
+        section_games.classList.remove("section-games-entrada")
+        section_games.classList.add("section-games-saida")
+        setTimeout(() => {
+            section_games.style.display = "none"
+            section_jogos_visivel = false
+        }, 2000)
+    }
+}
+function seguinte_jogo() {
+    const primeiro = document.querySelector(".primeiro")
+    const segundo = document.querySelector(".segundo")
+    const terceiro = document.querySelector(".terceiro")
+    const quarto = document.querySelector(".quarto")
+    const quinto = document.querySelector(".quinto")
+    const segundo_desc = segundo.querySelector(".descricao_jogo")
+    const primeiro_desc = primeiro.querySelector(".descricao_jogo")
+    const quinto_desc = quinto.querySelector(".descricao_jogo")
+
+    segundo_desc.style.display = "flex"
+    quinto_desc.style.display = "none"
+    primeiro_desc.classList.add("descricao_jogo_primeiro")
+    primeiro.classList.add("card-segundo")
+    segundo.classList.add("card-segundo")
+    terceiro.classList.add("card-segundo")
+    quarto.classList.add("card-segundo")
+    quinto.classList.add("card-segundo")
+
+    setTimeout(() => {
+        primeiro.classList.replace("primeiro", "quinto")
+        segundo.classList.replace("segundo", "primeiro")
+        terceiro.classList.replace("terceiro", "segundo")
+        quarto.classList.replace("quarto", "terceiro")
+        quinto.classList.replace("quinto", "quarto")
+        primeiro.classList.remove("card-segundo")
+        segundo.classList.remove("card-segundo")
+        terceiro.classList.remove("card-segundo")
+        quarto.classList.remove("card-segundo")
+        quinto.classList.remove("card-segundo")
+        primeiro_desc.classList.remove("descricao_jogo_primeiro")
+    }, 2000)
 }

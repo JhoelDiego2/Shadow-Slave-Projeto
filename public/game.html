@@ -14,19 +14,19 @@
     <div id="tela_inicial" onclick="fechar_tela_inicial()" style="display: none;">
         <p class="clique"> ENTRAR NO MUNDO DOS SONHOS</p>
     </div>
-    <div  id="div_main" style="display: none;" onclick="fechar_tudo()" >
+    <div id="div_main" style="display: none;" onclick="fechar_tudo()">
     </div>
     <div id="div_alerta" style="display: none;">
         <img src="assets/img/sunny_chibi.png" alt="" id="sunny_chibi">
         <p id="titulo_erro">
-          Senha incorreta
+            Senha incorreta
         </p>
         <p id="mensagem_erro">
-          Se nem sua própria senha te reconhece… quem é você, afinal?
+            Se nem sua própria senha te reconhece… quem é você, afinal?
         </p>
         <button onclick="tirar_alerta()" id="bottom_mensagem">OK</button>
-      </div>
-      <div id="div_cad_sucesso"  style="display: none;">
+    </div>
+    <div id="div_cad_sucesso" style="display: none;">
         <img src="assets/img/sunny_feliz.png" alt="" id="sunny_cad">
         <p id="titulo_cad">
             Atualização feita com sucesso
@@ -34,14 +34,14 @@
         <p id="mensagem_cad">
             Sunny sorri nas trevas — o pacto está feito e o ouro já brilha no seu destino!
         </p>
-        <p   id="bottom_mensagem_cad" onclick="fechar_alerta_atualizacao()">OK</p>
+        <p id="bottom_mensagem_cad" onclick="fechar_alerta_atualizacao()">OK</p>
     </div>
     <div class="fundo_alertas" onclick="fechar_alertas_geral()" style="display: none;"></div>
     <!--POPUP E DIV COM DISPLAY NONE-->
 
     <header>
         <div>
-            <img id="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="" >
+            <img id="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="">
             <p>Seja bem vindo desperto:</p>
             <p id="b_usuario">Nome do usuario</p>
             <p id="b_nome_real">Nome real</p>
@@ -66,9 +66,10 @@
         </nav>
 
     </header>
-    <main >
+    <main>
         <section id="configuracao" style="display: none;">
-            <img src="assets/img/close-circle-sharp.png" alt="" id="icone_fechar_configuracao" onclick="fechar_configuracao()">
+            <img src="assets/img/close-circle-sharp.png" alt="" id="icone_fechar_configuracao"
+                onclick="fechar_configuracao()">
             <div class="c-esquerda">
                 <p onclick="mostrarAvatares()">
                     <img src="assets/svg/game.png" alt="">
@@ -83,22 +84,30 @@
                     Segurança
                 </p>
             </div>
-            <div class="c-direita avatar" id="conf_avatar" >
+            <div class="c-direita avatar" id="conf_avatar">
                 <h3>Personalizar avatar</h3>
                 <img src="assets/img/sunny_xom_fundo.webp" alt="" id="avatar_atual">
                 <div>
                     <div class="c-cima">
-                        <img src="assets/img/sunny-chibi-2.png" alt="" class="avatar_opção" onclick="trocar_avatar(sunny, 'sunny')" id="avatar_sunny">
-                        <img src="assets/img/nephis-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(nephis, 'nephis')"id="avatar_nephis">
-                        <img src="assets/img/cassie-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(cassie, 'cassie')" id="avatar_cassie">
-                        <img src="assets/img/effie-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(effie, 'effie')" id="avatar_effie">
+                        <img src="assets/img/sunny-chibi-2.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(sunny, 'sunny')" id="avatar_sunny">
+                        <img src="assets/img/nephis-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(nephis, 'nephis')" id="avatar_nephis">
+                        <img src="assets/img/cassie-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(cassie, 'cassie')" id="avatar_cassie">
+                        <img src="assets/img/effie-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(effie, 'effie')" id="avatar_effie">
 
                     </div>
                     <div class="c-baixo">
-                        <img src="assets/img/kai-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(kai, 'kai')" id="avatar_kai">
-                        <img src="assets/img/jet-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(jet, 'jet')" id="avatar_jet">
-                        <img src="assets/img/modret-chibi.png" alt="" class="avatar_opção"onclick="trocar_avatar(modret, 'modret')" id="avatar_modret">
-                        <img src="assets/img/mongrel-chibi.png" alt="" class="avatar_opção" onclick="trocar_avatar(mongrel, 'mongrel')" id="avatar_noctis">
+                        <img src="assets/img/kai-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(kai, 'kai')" id="avatar_kai">
+                        <img src="assets/img/jet-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(jet, 'jet')" id="avatar_jet">
+                        <img src="assets/img/modret-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(modret, 'modret')" id="avatar_modret">
+                        <img src="assets/img/mongrel-chibi.png" alt="" class="avatar_opção"
+                            onclick="trocar_avatar(mongrel, 'mongrel')" id="avatar_noctis">
 
                     </div>
                 </div>
@@ -133,32 +142,120 @@
                 </div>
                 <p class="botao" onclick="atualizar_conta()">Atualizar Conta</p>
             </div>
-            <div class="c-direita conta seguranca" style="display: none;" id="conf_seguranca" >
+            <div class="c-direita conta seguranca" style="display: none;" id="conf_seguranca">
                 <h3>Alterar senha</h3>
                 <div class="conta-form">
                     <div>
                         <img src="assets/svg/mail.svg" alt="">
                         <p id="texto_senha_atual">Senha Atual</p>
-                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha" onclick="mostrarSenhaAtual()" id="icone_senha_atual" >
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
+                            onclick="mostrarSenhaAtual()" id="icone_senha_atual">
                     </div>
                     <input type="password" id="ipt_senha_atual" onclick="digitando_atualizar('senha_atual')">
                     <div>
                         <img src="assets/svg/mail.svg" alt="">
                         <p id="texto_senha_nova">Nova Senha</p>
-                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha" onclick="mostrarSenhaNova()" id="icone_senha_nova">
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
+                            onclick="mostrarSenhaNova()" id="icone_senha_nova">
 
                     </div>
                     <input type="password" id="ipt_senha_nova" onclick="digitando_atualizar('senha_nova')">
                     <div>
                         <img src="assets/svg/mail.svg" alt="">
                         <p id="texto_senha_conf">Confirmar Senha</p>
-                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha" onclick="mostrarSenhaNova()"id="icone_senha_conf">
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
+                            onclick="mostrarSenhaNova()" id="icone_senha_conf">
 
                     </div>
                     <input type="password" id="ipt_senha_conf" onclick="digitando_atualizar('senha_conf')">
 
                 </div>
                 <p class="botao" onclick="atualizar_senha()">Alterar Senha</p>
+            </div>
+        </section>
+        <section id="section_games" style="display: none;" >
+            <div class="parte-cima">
+                <h2>
+                    Selecionar um jogo
+                </h2>
+                <p>
+                    Só os fortes sobrevivem... Você vai fugir ou lutar?
+                </p>
+                <img src="assets/img/sunny_chibi.png" alt="">
+            </div>
+
+            <div class="carrosel">
+                <div class="div_carrosel_desfocado">
+                    <img src="assets/img/switch.svg" alt="" onclick="seguinte_jogo()" id="voltar_seguinte_jogo">
+                </div>
+                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo_sunny()">
+                    <div>
+                        <h4>
+                            Sunny
+                        </h4>
+                        <p class="nome_jogo">Sombras Fugitivas</p>
+                        <p class="descricao_jogo " style="display: flex;">Clique em Sunny antes que ele desapareça nas sombras — seja rápido ou
+                            perca o rastro!</p>
+                        <img src="assets/img/cassie-chibi.png" alt="">
+                    </div>
+                </div>
+                <div class="card segundo" id="jogo_nephis">
+                    <div>
+
+                        <h4>
+                            Nephis
+                        </h4>
+                        <p class="nome_jogo">Sangue & Vontade</p>
+                        <p class="descricao_jogo">Empunhe a espada de Nephis e derrote todos que cruzarem seu caminho —
+                            o
+                            fim justifica o sangue.</p>
+                        <img src="assets/img/cassie-chibi.png" alt="">
+                    </div>
+
+                </div>
+                <div class="card terceiro" id="jogo_kai">
+                    <div>
+
+                        <h4>
+                            kai
+                        </h4>
+                        <p class="nome_jogo"> Verdade Oculta</p>
+                        <p class="descricao_jogo">Responda ao quiz de Kai com sabedoria — ele enxerga mentiras, e
+                            mentirosos
+                            pagarão o preço.</p>
+                        <img src="assets/img/cassie-chibi.png" alt="">
+                    </div>
+
+                </div>
+                <div class="card quarto" id="jogo_cassie">
+                    <div>
+
+                        <h4>
+                            cassie
+                        </h4>
+                        <p class="nome_jogo">Corrida no Escuro</p>
+                        <p class="descricao_jogo">Controle Cassie em uma corrida guiada pelos sons — ajude-a a
+                            sobreviver,
+                            mesmo sem ver.
+
+                        </p>
+                        <img src="assets/img/cassie-chibi.png" alt="">
+                    </div>
+
+                </div>
+                <div class="card quinto" id="jogo_jet">
+                    <div>
+
+                        <h4>
+                            jet
+                        </h4>
+                        <p class="nome_jogo">Código Quebrado</p>
+                        <p class="descricao_jogo">Ajude Jet a decodificar sequências em binário antes que o firewall te
+                            alcance — só os rápidos e precisos sobrevivem.</p>
+                        <img src="assets/img/cassie-chibi.png" alt="">
+                    </div>
+
+                </div>
             </div>
         </section>
     </main>

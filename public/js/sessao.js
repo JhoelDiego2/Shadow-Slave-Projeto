@@ -1,8 +1,8 @@
 
 // sessão
 function validarSessao() {
-    var nome = sessionStorage.NOME_USUARIO;
     var idUsuario = sessionStorage.ID_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
     var nomeReal = sessionStorage.NOME_REAL_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");

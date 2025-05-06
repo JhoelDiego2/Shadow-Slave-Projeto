@@ -244,10 +244,14 @@ function cadastrar() {
                       limparFormulario();
                       finalizarAguardar();*/
                 } else {
+                    div_alerta.style.display="flex"
+                    titulo_erro.innerHTML = "Opa, algo deu errado no cadastro "
+                      mensagem_erro.innerHTML = "Houve um erro ao tentar realizar o cadastro!"
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
             .catch(function (resposta) {
+                
                 console.log(`#ERRO: ${resposta}`);
                 //finalizarAguardar();
             });
@@ -272,6 +276,9 @@ function esqueci() {
 
   }
   function verificar() {
+    const titulo_erro = document.getElementById("titulo_erro")
+    const mensagem_erro = document.getElementById("mensagem_erro")
+    const div_alerta = document.getElementById("div_alerta")
     var usuario = ipt_nome_usuario.value
     var senha = ipt_senha.value
     var verificar = true
@@ -295,18 +302,13 @@ function esqueci() {
         break
       }
       // voltar para colocar o certo
-      if (senha == 'incorreta') {
-        titulo_erro.innerHTML = " Senha incorreta"
-        mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
-        break
-      }
+      /*
       if (usuario == 'nao_existe') {
         titulo_erro.innerHTML = "Usuário não existe"
         mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
         break
-      }
-      titulo_erro.innerHTML = "Em desenvolvimento "
-      mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
+      }*/
+     div_alerta.style.display="none"
       verificar = false
       }
       if (verificar == false) {
@@ -353,7 +355,9 @@ function esqueci() {
                 });
 
             } else {
-
+                div_alerta.style.display="flex"
+               titulo_erro.innerHTML = "Opa, usuario ou senha errados "
+                 mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
