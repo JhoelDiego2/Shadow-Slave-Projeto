@@ -522,3 +522,21 @@ function seguinte_jogo() {
         primeiro_desc.classList.remove("descricao_jogo_primeiro")
     }, 2000)
 }
+
+let estatisticas_visivel = false
+function mostrardeshbord() {
+    const estatisticas = document.getElementById("estatisticas")
+    if (estatisticas_visivel) {
+        estatisticas.classList.remove("section-games-entrada")
+        estatisticas.classList.add("section-games-saida")
+        setTimeout(() => {
+            estatisticas.style.display = "none"
+            estatisticas_visivel = false
+        }, 2000)
+    } else {     
+        estatisticas.classList.remove("section-games-saida")
+        estatisticas.style.display = "flex"
+        estatisticas.classList.add("section-games-entrada")
+        estatisticas_visivel = true
+    }
+}

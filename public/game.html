@@ -43,8 +43,8 @@
         <div>
             <img id="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="">
             <p>Seja bem vindo desperto:</p>
-            <p id="b_usuario">Nome do usuario</p>
-            <p id="b_nome_real">Nome real</p>
+            <p id="b_usuario">undefied</p>
+            <p id="b_nome_real">undefied</p>
         </div>
         <nav>
             <p onclick="mostrarjogos()">
@@ -173,7 +173,7 @@
                 <p class="botao" onclick="atualizar_senha()">Alterar Senha</p>
             </div>
         </section>
-        <section id="section_games" style="display: none;" >
+        <section id="section_games" style="display: none;">
             <div class="parte-cima">
                 <h2>
                     Selecionar um jogo
@@ -188,18 +188,19 @@
                 <div class="div_carrosel_desfocado">
                     <img src="assets/img/switch.svg" alt="" onclick="seguinte_jogo()" id="voltar_seguinte_jogo">
                 </div>
-                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo_sunny()">
+                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo(sunny, 'sunny')">
                     <div>
                         <h4>
                             Sunny
                         </h4>
                         <p class="nome_jogo">Sombras Fugitivas</p>
-                        <p class="descricao_jogo " style="display: flex;">Clique em Sunny antes que ele desapareça nas sombras — seja rápido ou
+                        <p class="descricao_jogo " style="display: flex;">Clique em Sunny antes que ele desapareça nas
+                            sombras — seja rápido ou
                             perca o rastro!</p>
                         <img src="assets/img/cassie-chibi.png" alt="">
                     </div>
                 </div>
-                <div class="card segundo" id="jogo_nephis">
+                <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo(nephis, 'nephis')">
                     <div>
 
                         <h4>
@@ -213,7 +214,7 @@
                     </div>
 
                 </div>
-                <div class="card terceiro" id="jogo_kai">
+                <div class="card terceiro" id="jogo_kai" onclick="abrir_jogo(kai, 'kai')">
                     <div>
 
                         <h4>
@@ -227,7 +228,7 @@
                     </div>
 
                 </div>
-                <div class="card quarto" id="jogo_cassie">
+                <div class="card quarto" id="jogo_cassie" onclick="abrir_jogo(cassie, 'cassie')">
                     <div>
 
                         <h4>
@@ -239,11 +240,11 @@
                             mesmo sem ver.
 
                         </p>
-                        <img src="assets/img/cassie-chibi.png" alt="">
+                        <img src="assets/img/cassie-chibi.png" alt="" >
                     </div>
 
                 </div>
-                <div class="card quinto" id="jogo_jet">
+                <div class="card quinto" id="jogo_jet" onclick="abrir_jogo(jet, 'jet')">
                     <div>
 
                         <h4>
@@ -256,6 +257,36 @@
                     </div>
 
                 </div>
+            </div>
+        </section>
+        <section id="estatisticas" style="display: none;">
+            <h2>Estatisticas</h2>
+            <div class="area-kpi">
+                <div class="kpi">
+                    <p class="kpi-texto">Usuarios no mundo dos sonhos</p>
+                    <p class="dado">1</p>
+                </div>
+                <div class="kpi">
+                    <p class="kpi-texto">Média de Jogos Concluídos</p>
+                    <p class="dado">1</p>
+
+                </div>
+                <div class="kpi">
+                    <p class="kpi-texto">Taxa de Crescimento de Usuários</p>
+                    <p class="dado">1</p>
+
+                </div>
+                <div class="kpi">
+                    <p class="kpi-texto">Taxa de Crescimento de Usuários</p>
+                    <p class="dado">1</p>
+
+                </div>
+            </div>
+            <div class="container-graficos">
+                <canvas></canvas>
+                <canvas></canvas>
+                <canvas></canvas>
+                <canvas></canvas>
             </div>
         </section>
     </main>
@@ -272,4 +303,10 @@
             tela_inicial.style = "display:none"
         }
     }
+    function abrir_jogo(x, y) {
+    const jogo = document.getElementById(`jogo_${y}`) 
+    const imagem = jogo.querySelector("div")
+    imagem.classList.add("animacao_jogo_abrir")
+    setTimeout(()=>{ a = 3},5000)
+}
 </script>

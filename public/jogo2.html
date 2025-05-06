@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        display: flex;
+        width: 50vw;
+        height: 100vh;
+        background-color: bisque;
+        justify-content: center;
+        align-items: center;
+    }
+    .jogador{
+        background-color: aqua;
+    }
+</style>
+<body>
+    <div class="jogador">
+        <div onclick="ponto()" style="height: 10vw; width: 10vw;"></div>
+    </div>
+    <div>
+        <div></div>
+    </div>
+</body>
+</html>
+<script>
+    var pontos = 0
+    let preto = false
+    function ponto() {
+        pontos++
+        var jogador =  document.querySelector(".jogador")
+        if (preto) {
+            jogador.style="background-color: grey"
+            preto = false
+        } else {
+            
+            jogador.style="background-color: black"
+            preto = true
+
+        }
+    }
+</script>

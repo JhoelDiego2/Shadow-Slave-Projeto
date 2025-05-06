@@ -163,6 +163,7 @@ main {
     padding: 4vh 2vw;
     gap: 4vw;
     animation: pop_up_animacao 1s ease-out;
+    z-index: 100;
 
 }
 
@@ -625,7 +626,7 @@ img {
     align-items: center;
     bottom: 2vw;
     left: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 
 }
 
@@ -734,29 +735,54 @@ img {
     top: 2vh;
     transform: scale(2.1);
 }
+.animacao_jogo_abrir{
+    animation: abrir_jogo 2s ease ;
+
+}
+
+@keyframes abrir_jogo{
+    100%{
+        left: 0vw;
+        position: fixed;
+        height: 97vh;
+        width: 76.5vw;
+        top: 0vh;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        z-index: 100;
+    }
+}
+
+
 #jogo_sunny div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0.055) 20%, rgba(0, 0, 0, 0) 100%),
-    linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0)),
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0.226) 20%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
     url('../assets/img/sunny-game-img.webp');
     background-size: cover;
 }
 #jogo_nephis div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.404) 1%,rgba(0, 0, 0, 0.37) 20%, rgba(0, 0, 0, 0.623) 100%), url('../assets/img/nephis-game-img.webp');
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.856) 100%),     linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
+     url('../assets/img/nephis-game-img.webp');
     background-size: cover;
-}
-#jogo_kai div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0.144) 20%, rgba(0, 0, 0, 0.288) 100%), url('../assets/img/Kai\ -\ Nightingale.jpeg');
-    background-size: cover;
-    background-position: right;
     
 }
+#jogo_kai div{
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%),     linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
+     url('../assets/img/Kai\ -\ Nightingale.jpeg');
+    background-size: cover;
+    background-position: right;
+}
+
 #jogo_cassie div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0.144) 20%, rgba(0, 0, 0, 0.288) 100%), url('../assets/img/Cassie.jpeg');
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%),     linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
+     url('../assets/img/Cassie.jpeg');
     background-size: cover;
     background-position: center;
+
 }
 #jogo_jet div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0.144) 20%, rgba(0, 0, 0, 0.288) 100%), url('../assets/img/jet-jogo-img.jpeg');
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%),     linear-gradient(to top, rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0)),
+     url('../assets/img/jet-jogo-img.jpeg');
     background-size: cover;
     background-position: left;
 
@@ -810,4 +836,56 @@ img {
 .quinto{
     order: 5;
     
+}
+#estatisticas{
+    background-color: #000000d0;
+    backdrop-filter: blur(24px);
+    height: 96vh;
+    width: 96%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    margin-top: 2vh;
+    position: relative;
+    box-shadow: -9px 1px  10px 1px rgb(44, 44, 44);
+}
+#estatisticas h2{
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    padding: 2vh 2vw
+}
+.area-kpi{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+.kpi{
+    background-color: #0000008c;
+    box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.116);
+    height: 17vh;
+    width: 14vw;
+    border-radius: 10px;
+}
+.kpi-texto{
+    background-color: #3a3a3a83;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    padding: 0vh 1vw;
+}
+.dado{
+    font-size: 2rem;
+    background-color: #00000000;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0px 10px 6px 1px rgb(0, 0, 0);
 }
