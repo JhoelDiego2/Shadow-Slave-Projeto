@@ -19,7 +19,7 @@ CREATE TABLE usuario(
     email VARCHAR(45) UNIQUE,
     senha VARCHAR (45),
     dtCadastro DATE DEFAULT (CURRENT_DATE), 
-    avatar char(1) DEFAULT '1', 
+    avatar varchar(7) DEFAULT 'sunny', 
     nomeReal VARCHAR(45) DEFAULT 'Lost from light'
 );
 desc usuario;
@@ -39,7 +39,7 @@ CREATE TABLE games (
 CREATE TABLE feedback (
 	idFeedback INT AUTO_INCREMENT,
     stars INT ,
-    feedbackDate DATE DEFAULT (CURRENT_DATE), 
+    dtFeedback DATE DEFAULT (CURRENT_DATE), 
     fkUsuario INT NOT NULL,
     CONSTRAINT pkComposta PRIMARY KEY (idFeedback, fkUsuario),
     CONSTRAINT fkFeedbackUsuario FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)

@@ -74,24 +74,18 @@ function cadastrar(req, res) {
 }
 function atualizar_senha(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var senha = req.body.senhaServer;
     var senhaNova = req.body.senhaNovaServer;
-    var confSenha = req.body.confSenhaServer;
     var idUsuario = req.body.idUsuarioServer;
 
     // Faça as validações dos valores
-    if (senha == undefined) {
-        res.status(400).send("Sua senha atual está undefined!");
-    } else if (senhaNova == undefined) {
+    if (senhaNova == undefined) {
         res.status(400).send("Sua senha nova está undefined!");
-    } else if (confSenha == undefined) {
-        res.status(400).send("Sua confirmação de senha está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
     }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizar_senha(senha, senhaNova, idUsuario)
+        usuarioModel.atualizar_senha( senhaNova, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -103,6 +97,39 @@ function atualizar_senha(req, res) {
                         "\nHouve um erro ao realizar a atualização da senha! Erro: ",
                         erro.sqlMessage
                     );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+function procurar_senha_atualizar(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var idUsuario = req.body.idUsuarioServer;
+
+    // Faça as validações dos valores
+    if (idUsuario == undefined) {
+        res.status(400).send("Seu id usuario está undefined!");
+    }else {
+            usuarioModel.procurar_senha_atualizar(idUsuario)
+            .then(
+                function (resultadoProcuraSenha) {
+                    console.log(`\nResultados encontrados: ${resultadoProcuraSenha.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoProcuraSenha)}`); // transforma JSON em String
+
+                    if (resultadoProcuraSenha.length == 1) {
+                        res.json({
+                            senha: resultadoProcuraSenha[0].senha, 
+                        });
+                    } else if (resultadoProcuraSenha.length == 0) {
+                        res.status(403).send("senha nao coincide eu acho ");
+                    } else {
+                        res.status(403).send("nao faco ideia !");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );
@@ -178,6 +205,7 @@ module.exports = {
     autenticar,
     cadastrar,
     atualizar_senha,
+    procurar_senha_atualizar, 
     atualizar_conta,
     atualizar_avatar
 }

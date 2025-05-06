@@ -148,12 +148,8 @@ function atualizar_senha() {
     let senha_nova = document.getElementById("ipt_senha_nova").value
     let conf_senha = document.getElementById("ipt_senha_conf").value
     let idUsuario = sessionStorage.ID_USUARIO;
-    console.log(senha_atual)
-    console.log(senha_nova)
-    console.log(conf_senha)
     // Variaveis booleanas para  validar a senha
     var valido = false;
-
     var contem_Maiuscula = false;
     var contem_Minuscula = false;
     var contem_Numero = false;
@@ -252,49 +248,74 @@ function atualizar_senha() {
     }
     //verifica se os inputs estao vazios
     if (valido) {
-        // Enviando o valor da nova input
-        fetch("/usuarios/atualizar_senha", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                senhaServer: senha_atual,
-                senhaNovaServer: senha_nova,
-                confSenhaServer: conf_senha,
-                idUsuarioServer: idUsuario
-                //  idEmpresaVincularServer: idEmpresaVincular
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    let cad_sucesso = document.getElementById("div_cad_sucesso")
-                    cad_sucesso.style.display = "flex"
-                    fundo_alertas.style.display = "flex"
-
-                    /*  setTimeout(() => {
-                          window.location = "login.html";
-                      }, "2000");
-  
-                      limparFormulario();
-                      finalizarAguardar();*/
-                } else {
-                    throw "Houve um erro ao tentar realizar a atualização da senha!";
-                }
+        function procurar_senha_atualizar(idUsuario, senha_atual, senha_nova) {
+            fetch("/usuarios/procurar_senha_atualizar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: idUsuario
+                }),
             })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-                //finalizarAguardar();
-            });
-        return false;
+                .then(function (resposta) {
+                    console.log("ESTOU NO THEN DO procurar_senha_atualizar()!");
+
+                    if (resposta.ok) {
+                        return resposta.json();
+                    } else {
+                        throw "Houve um erro ao tentar realizar a busca da senha!";
+                    }
+                })
+                .then(function (json) {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    console.log("procura_de_senha_deu_certo");
+
+                    let senha_atual_bd = json.senha;
+
+                    if (senha_atual_bd == senha_atual) {
+                        // Se a senha atual confere, faz a atualização
+                        return fetch("/usuarios/atualizar_senha", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                senhaNovaServer: senha_nova,
+                                idUsuarioServer: idUsuario
+                            }),
+                        });
+                    } else {
+                        const div_alerta =document.getElementById("div_alerta")
+                        const titulo =document.getElementById("titulo_erro")
+                        const mensagem =document.getElementById("mensagem_erro")
+                        div_alerta.style.display="flex"
+                        titulo.innerHTML="Senha Atual Incorreta"
+                        mensagem.innerHTML="enha atual não coincide com a senha do banco de dados"
+
+                        throw "Senha atual não coincide com a senha do banco de dados";
+                    }
+                })
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        let cad_sucesso = document.getElementById("div_cad_sucesso");
+                        cad_sucesso.style.display = "flex";
+                        fundo_alertas.style.display = "flex";
+                    } else {
+                        throw "Houve um erro ao tentar realizar a atualização da senha!";
+                    }
+                })
+                .catch(function (erro) {
+                    console.log(`#ERRO: ${erro}`);
+                    alert(erro);
+                });
+        }
+
+        procurar_senha_atualizar(idUsuario, senha_atual, senha_nova);
     }
-
-
 }
+
 function atualizar_conta() {
     // variaveis das input do cadastro
     let nome_usuario_atualizar = document.getElementById("ipt_nome_atualizar").value
@@ -387,10 +408,10 @@ function atualizar_conta() {
                     let cad_sucesso = document.getElementById("div_cad_sucesso")
                     cad_sucesso.style.display = "flex"
                     fundo_alertas.style.display = "flex"
-                    //    b_usuario.innerHTML = nome_usuario_atualizar
-                    //    b_nome_real.innerHTML = nome_real
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.NOME_REAL_USUARIO = json.nomeReal;
+                    sessionStorage.setItem('NOME_USUARIO', nome_usuario_atualizar);
+                    sessionStorage.setItem('NOME_REAL_USUARIO', nome_real);
+                    b_nome_real.innerHTML=nome_real
+                    b_usuario.innerHTML=nome_usuario_atualizar
                     /*  setTimeout(() => {
                           window.location = "login.html";
                       }, "2000");
@@ -440,6 +461,7 @@ function atualizar_avatar() {
                 let cad_sucesso = document.getElementById("div_cad_sucesso")
                 cad_sucesso.style.display = "flex"
                 fundo_alertas.style.display = "flex"
+                sessionStorage.setItem('AVATAR_USUARIO', ultimo_avatar_nome);
 
                 sessionStorage.AVATAR_USUARIO = json.avatar;
 
@@ -533,7 +555,7 @@ function mostrardeshbord() {
             estatisticas.style.display = "none"
             estatisticas_visivel = false
         }, 2000)
-    } else {     
+    } else {
         estatisticas.classList.remove("section-games-saida")
         estatisticas.style.display = "flex"
         estatisticas.classList.add("section-games-entrada")

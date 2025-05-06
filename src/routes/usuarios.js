@@ -14,6 +14,9 @@ router.post("/autenticar", function (req, res) {
 router.post("/atualizar_senha", function (req, res) {
     usuarioController.atualizar_senha(req, res);
 });
+router.post("/procurar_senha_atualizar", function (req, res) {
+    usuarioController.procurar_senha_atualizar(req, res);
+});
 router.post("/atualizar_conta", function (req, res) {
     usuarioController.atualizar_conta(req, res);
 });
