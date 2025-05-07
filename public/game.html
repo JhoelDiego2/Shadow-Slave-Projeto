@@ -188,7 +188,7 @@
                 <div class="div_carrosel_desfocado">
                     <img src="assets/img/switch.svg" alt="" onclick="seguinte_jogo()" id="voltar_seguinte_jogo">
                 </div>
-                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo(sunny, 'sunny')">
+                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo_sunny()">
                     <div>
                         <h4>
                             Sunny
@@ -289,8 +289,27 @@
                 <canvas></canvas>
             </div>
         </section>
+        <section id="section_sunny" style="display: none;" >
+            <h6 onclick="tela_cheia('sunny')">Score</h6>
+            <h6 id="contador_sunny">0</h6>
+            <h5 id="cronometro_sunny">0:20</h5>
+            <div id="sunny-carregando" >
+                <div class="carregamento_menu">
+                    <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu_jogo">
+                <h2>Selecione a dificuldade:</h2>
+                <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
+                <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>
+                <p onclick="sunny_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
+                <p onclick="iniciar_jogo_sunny()">COMECAR</p>
+            </div>
+            <img src="assets/img/sunny_chibi.png" alt="" id="sunny_player" onclick="mudar_posicao()">
+        </section>
     </main>
     <script src="js/menu.js"></script>
+    <script src="js/games.js"></script>
 </body>
 
 </html>
@@ -301,10 +320,5 @@
             tela_inicial.style = "display:none"
         }
     }
-    function abrir_jogo(x, y) {
-    const jogo = document.getElementById(`jogo_${y}`) 
-    const imagem = jogo.querySelector("div")
-    imagem.classList.add("animacao_jogo_abrir")
-    setTimeout(()=>{ a = 3},5000)
-}
+
 </script>

@@ -561,7 +561,7 @@ img {
     box-shadow: -9px 1px  10px 1px rgb(44, 44, 44);
 }
 .section-games-entrada{
-    animation: section_entrada 2s
+    animation: section_entrada 1s
 
 }
 .section-games-saida{
@@ -667,6 +667,7 @@ img {
     justify-content: flex-end;
     border-bottom-left-radius:30px;
     border-bottom-right-radius: 30px;
+    
 }
 
 .card div h4 {
@@ -735,10 +736,7 @@ img {
     top: 2vh;
     transform: scale(2.1);
 }
-.animacao_jogo_abrir{
-    animation: abrir_jogo 2s ease ;
 
-}
 
 @keyframes abrir_jogo{
     100%{
@@ -759,7 +757,13 @@ img {
     linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
     url('../assets/img/sunny-game-img.webp');
     background-size: cover;
+
 }
+.animacao_jogo_abrir{
+    animation: abrir_jogo 2s ease ;
+
+}
+
 #jogo_nephis div{
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.856) 100%),     linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
      url('../assets/img/nephis-game-img.webp');
@@ -837,7 +841,7 @@ img {
     order: 5;
     
 }
-#estatisticas{
+#estatisticas, #section_sunny{
     background-color: #000000d0;
     backdrop-filter: blur(24px);
     height: 96vh;
@@ -888,4 +892,174 @@ img {
     align-items: center;
     justify-content: center;
     box-shadow: inset 0px 10px 6px 1px rgb(0, 0, 0);
+}
+#sunny-carregando{
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.445) 55%, black 100%),
+    url('../assets/img/sunny-game-img.webp');
+    background-size: cover;
+    left: 0vw;
+    position: fixed;
+    height: 97vh;
+    width: 76.5vw;
+    top: 0vh;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+}
+.carregamento_menu{
+    color: #658a87;
+    position: absolute;
+    bottom: 0;
+    width: 50VW;
+    padding: 0vh 2vw;
+    height: 6vh;
+    font-size: 2.6rem;
+    bottom: 4vh;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    font-weight: 700;
+}
+.carregamento_menu span{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    background-color:#658a87;
+    bottom: 6vh;
+}
+.pula{
+    animation: loading 400ms ease infinite alternate;
+
+}
+@keyframes loading {
+    0%{
+        top: 10px;
+        height: 5px;
+        border-radius: 50px 50px 25px 25px;
+    box-shadow: 0px 5px 5px 4px rgb(0, 0, 0);
+        background-color: #b1f5f0;
+    }
+    40%{
+        height: 20px;
+        border-radius: 50%;
+    }
+    100%{
+        top: -20px;
+    }
+}
+.carregamento_menu p{
+    animation: letra 1s ease infinite;
+}
+@keyframes letra {
+    0%{
+        color: #b1f5f0;
+
+    }
+}
+
+#section_sunny{
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.507) 1%, rgba(0, 0, 0, 0.61) 55%, black 100%),  url("../assets/img/fundo_game_sunny.png");
+    background-size: cover;
+    overflow: hidden;
+    animation: inicio-secao 2s ;
+    z-index: 30;
+    position: relative;
+}
+@keyframes inicio-secao {
+    from{
+        height: 56vh;
+        width: 20vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        border-bottom-left-radius:30px;
+        border-bottom-right-radius: 30px;
+    }
+}
+.menu_jogo{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-self: center;
+    align-self: center;
+    background-color: #00000062;
+    backdrop-filter: blur(5px);
+    padding-left: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    justify-content: center;
+    z-index: 10;
+}
+.menu_jogo h2{
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    padding-bottom: 7vh;
+}
+.menu_jogo p{
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #9b9b9b;
+    width: 30%;
+}
+section .opcao_atual_jogo{
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+}
+
+.menu_jogo p:hover{
+    color: white;
+    font-weight: 800;
+    border: solid 6px rgba(255, 255, 255, 0.534);
+    border-image-slice: 1;
+    border-width: 3px;
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #646464, hsl(0, 0%, 100%));
+    cursor: pointer; 
+}
+#sunny_player{
+    width: 10vw;
+    position: absolute;
+    bottom: -6vh;
+}
+#section_sunny h6{
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+.aparicao{
+    animation: aparicao 0.5s ease;
+
+}
+
+@keyframes aparicao{
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+.clique {
+    animation: clique 0.5s ease;
+}
+
+@keyframes clique {
+    to {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+}
+.jogo_tela_cheia{
+    transform: scaleX(1.31) scaleY(1.03);
+    left: -10.7vw;
+}
+#cronometro_sunny{
+    font-size: 3rem;
+    position: absolute;
+    left: 1vw;
+    top: 1vh;
 }

@@ -562,3 +562,31 @@ function mostrardeshbord() {
         estatisticas_visivel = true
     }
 }
+function bolinha() {
+    let index = 0; // Começa do 0, já que os arrays começam do índice 0
+    const carregamento = document.querySelector(".carregamento_menu");
+    const bolinhas = carregamento.querySelectorAll("span");
+
+    function animar() {
+        if (index < bolinhas.length) {
+            bolinhas[index].classList.add("pula"); // Corrigido: "pula" com aspas corretas
+            index++;
+            setTimeout(animar, 100); // Chama a si mesmo a cada 600ms
+        }
+    }
+
+    animar();
+}
+
+function abrir_jogo_sunny() {
+    const seccao_menu = document.getElementById("section_games") 
+    const seccao = document.getElementById("section_sunny") 
+    const menu_carregando = document.getElementById("sunny-carregando")
+    seccao_menu.style.display="none"
+    seccao.style.display="flex"
+    bolinha()
+    setTimeout(
+        ()=>  menu_carregando.style.display="none", 3000
+    )
+    
+}
