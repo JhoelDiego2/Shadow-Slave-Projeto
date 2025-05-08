@@ -34,6 +34,8 @@ body {
     background-size: cover;
     display: flex;
     overflow: hidden;
+    height: 100vh;
+    width: 100vw;
 }
 
 #tela_inicial {
@@ -411,7 +413,7 @@ main {
     gap: 3vh;
     align-items: center;
     box-shadow: 0 15px 50px var(--luz);
-    z-index: 50;
+    z-index: 200;
 }
 
 #sunny_chibi {
@@ -558,23 +560,25 @@ img {
     justify-self: center;
     margin-top: 2vh;
     position: relative;
-    box-shadow: -9px 1px  10px 1px rgb(44, 44, 44);
+    box-shadow: -9px 1px 10px 1px rgb(44, 44, 44);
 }
-.section-games-entrada{
+
+.section-games-entrada {
     animation: section_entrada 1s
-
 }
-.section-games-saida{
+
+.section-games-saida {
     animation: section_saida 2s
-
 }
+
 @keyframes section_saida {
-    to{
+    to {
         transform: translateX(120%);
     }
 }
-@keyframes section_entrada{
-    from{
+
+@keyframes section_entrada {
+    from {
         transform: translateX(120%);
     }
 }
@@ -613,7 +617,7 @@ img {
     text-transform: uppercase;
     align-self: flex-start;
     padding-left: 4vh;
-    width:50vw;
+    width: 50vw;
 }
 
 .carrosel {
@@ -665,9 +669,9 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    border-bottom-left-radius:30px;
+    border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    
+
 }
 
 .card div h4 {
@@ -710,19 +714,22 @@ img {
     display: none;
     animation: descricao_subida 1s ease;
 }
-.card div .descricao_jogo_primeiro{
-    animation: descricao_descida 2s ease ;
-    
+
+.card div .descricao_jogo_primeiro {
+    animation: descricao_descida 2s ease;
+
 }
+
 @keyframes descricao_subida {
-    0%{
+    0% {
         transform: translateY(100%);
         opacity: 0;
     }
 
 }
+
 @keyframes descricao_descida {
-    100%{
+    100% {
         transform: translateY(70%);
         opacity: 0;
     }
@@ -738,8 +745,8 @@ img {
 }
 
 
-@keyframes abrir_jogo{
-    100%{
+@keyframes abrir_jogo {
+    100% {
         left: 0vw;
         position: fixed;
         height: 97vh;
@@ -752,47 +759,51 @@ img {
 }
 
 
-#jogo_sunny div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0.226) 20%, rgba(0, 0, 0, 0.5) 100%),
-    linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
-    url('../assets/img/sunny-game-img.webp');
+#jogo_sunny div {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.226) 20%, rgba(0, 0, 0, 0.5) 100%),
+        linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
+        url('../assets/img/sunny-game-img.webp');
     background-size: cover;
 
 }
-.animacao_jogo_abrir{
-    animation: abrir_jogo 2s ease ;
+
+.animacao_jogo_abrir {
+    animation: abrir_jogo 2s ease;
 
 }
 
-#jogo_nephis div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.856) 100%),     linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
-     url('../assets/img/nephis-game-img.webp');
+#jogo_nephis div {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.856) 100%), linear-gradient(to top, rgb(0, 0, 0) 1%, rgba(0, 0, 0, 0)),
+        url('../assets/img/nephis-game-img.webp');
     background-size: cover;
-    
+
 }
-#jogo_kai div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%),     linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
-     url('../assets/img/Kai\ -\ Nightingale.jpeg');
+
+#jogo_kai div {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%), linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
+        url('../assets/img/Kai\ -\ Nightingale.jpeg');
     background-size: cover;
     background-position: right;
 }
 
-#jogo_cassie div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%),     linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
-     url('../assets/img/Cassie.jpeg');
+#jogo_cassie div {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%), linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
+        url('../assets/img/Cassie.jpeg');
     background-size: cover;
     background-position: center;
 
 }
-#jogo_jet div{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%,rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%),     linear-gradient(to top, rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0)),
-     url('../assets/img/jet-jogo-img.jpeg');
+
+#jogo_jet div {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%), linear-gradient(to top, rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0)),
+        url('../assets/img/jet-jogo-img.jpeg');
     background-size: cover;
     background-position: left;
 
 }
-#section_games .card-segundo{
-    animation: prueba 2s ease ;
+
+#section_games .card-segundo {
+    animation: prueba 2s ease;
 }
 
 @keyframes prueba {
@@ -807,7 +818,7 @@ img {
     scale: 1.5;
 }
 
-.div_carrosel_desfocado{
+.div_carrosel_desfocado {
     background: linear-gradient(to left, black 1%, rgba(0, 0, 0, 0.781) 30%, rgba(0, 0, 0, 0.644) 59%, rgba(0, 0, 0, 0));
     position: absolute;
     width: 13vw;
@@ -818,30 +829,38 @@ img {
     align-items: center;
     z-index: 19;
 }
+
 #voltar_seguinte_jogo {
     scale: 1.5;
     transform: rotate(180deg);
     z-index: 20;
 }
-.primeiro{
+
+.primeiro {
     order: 0;
 }
-.segundo{
+
+.segundo {
     order: 1;
-    
+
 }
-.terceiro{
+
+.terceiro {
     order: 2;
 }
-.quarto{
+
+.quarto {
     order: 3;
-    
+
 }
-.quinto{
+
+.quinto {
     order: 5;
-    
+
 }
-#estatisticas, #section_sunny{
+
+#estatisticas,
+#section_sunny {
     background-color: #000000d0;
     backdrop-filter: blur(24px);
     height: 96vh;
@@ -852,14 +871,16 @@ img {
     justify-self: center;
     margin-top: 2vh;
     position: relative;
-    box-shadow: -9px 1px  10px 1px rgb(44, 44, 44);
+    box-shadow: -9px 1px 10px 1px rgb(44, 44, 44);
 }
-#estatisticas h2{
+
+#estatisticas h2 {
     font-size: 2.8rem;
     text-transform: uppercase;
     padding: 2vh 2vw
 }
-.area-kpi{
+
+.area-kpi {
     width: 100%;
     height: 20vh;
     display: flex;
@@ -867,14 +888,16 @@ img {
     align-items: center;
     gap: 2vw;
 }
-.kpi{
+
+.kpi {
     background-color: #0000008c;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.116);
     height: 17vh;
     width: 14vw;
     border-radius: 10px;
 }
-.kpi-texto{
+
+.kpi-texto {
     background-color: #3a3a3a83;
     font-size: 1.3rem;
     text-align: center;
@@ -884,7 +907,8 @@ img {
     align-items: center;
     padding: 0vh 1vw;
 }
-.dado{
+
+.dado {
     font-size: 2rem;
     background-color: #00000000;
     height: 50%;
@@ -893,9 +917,10 @@ img {
     justify-content: center;
     box-shadow: inset 0px 10px 6px 1px rgb(0, 0, 0);
 }
-#sunny-carregando{
+
+#sunny-carregando {
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.445) 55%, black 100%),
-    url('../assets/img/sunny-game-img.webp');
+        url('../assets/img/sunny-game-img.webp');
     background-size: cover;
     left: 0vw;
     position: fixed;
@@ -908,7 +933,8 @@ img {
     display: flex;
     justify-content: center;
 }
-.carregamento_menu{
+
+.carregamento_menu {
     color: #658a87;
     position: absolute;
     bottom: 0;
@@ -923,65 +949,76 @@ img {
     gap: 3vw;
     font-weight: 700;
 }
-.carregamento_menu span{
+
+.carregamento_menu span {
     position: relative;
     width: 20px;
     height: 20px;
     border-radius: 100px;
-    background-color:#658a87;
+    background-color: #658a87;
     bottom: 6vh;
 }
-.pula{
+
+.pula {
     animation: loading 400ms ease infinite alternate;
 
 }
+
 @keyframes loading {
-    0%{
+    0% {
         top: 10px;
         height: 5px;
         border-radius: 50px 50px 25px 25px;
-    box-shadow: 0px 5px 5px 4px rgb(0, 0, 0);
+        box-shadow: 0px 5px 5px 4px rgb(0, 0, 0);
         background-color: #b1f5f0;
     }
-    40%{
+
+    40% {
         height: 20px;
         border-radius: 50%;
     }
-    100%{
+
+    100% {
         top: -20px;
     }
 }
-.carregamento_menu p{
+
+.carregamento_menu p {
     animation: letra 1s ease infinite;
 }
+
 @keyframes letra {
-    0%{
+    0% {
         color: #b1f5f0;
 
     }
 }
 
-#section_sunny{
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.507) 1%, rgba(0, 0, 0, 0.61) 55%, black 100%),  url("../assets/img/fundo_game_sunny.png");
+#section_sunny {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.507) 1%, rgba(0, 0, 0, 0.61) 55%, black 100%), url("../assets/img/fundo_game_sunny.png");
     background-size: cover;
     overflow: hidden;
-    animation: inicio-secao 2s ;
+    animation: inicio-secao 2s;
     z-index: 30;
     position: relative;
+    display: flex;
+
 }
+
 @keyframes inicio-secao {
-    from{
+    from {
         height: 56vh;
         width: 20vw;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
-        border-bottom-left-radius:30px;
+        border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
     }
 }
-.menu_jogo{
+
+.menu_jogo {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -996,23 +1033,26 @@ img {
     justify-content: center;
     z-index: 10;
 }
-.menu_jogo h2{
+
+.menu_jogo h2 {
     font-size: 2.4rem;
     text-transform: uppercase;
     padding-bottom: 7vh;
 }
-.menu_jogo p{
+
+.menu_jogo p {
     font-size: 2rem;
     text-transform: uppercase;
     color: #9b9b9b;
     width: 30%;
 }
-section .opcao_atual_jogo{
+
+section .opcao_atual_jogo {
     color: rgb(255, 255, 255);
     font-weight: 800;
 }
 
-.menu_jogo p:hover{
+.menu_jogo p:hover {
     color: white;
     font-weight: 800;
     border: solid 6px rgba(255, 255, 255, 0.534);
@@ -1021,28 +1061,26 @@ section .opcao_atual_jogo{
     border-left: none;
     border-right: none;
     border-image-source: linear-gradient(270deg, hsla(0, 0%, 100%, 0), #646464, hsl(0, 0%, 100%));
-    cursor: pointer; 
+    cursor: pointer;
 }
-#sunny_player{
-    width: 10vw;
-    position: absolute;
-    bottom: -6vh;
-}
-#section_sunny h6{
+
+#section_sunny h6 {
     font-size: 2rem;
     text-transform: uppercase;
 }
-.aparicao{
+
+.aparicao {
     animation: aparicao 0.5s ease;
 
 }
 
-@keyframes aparicao{
-    from{
+@keyframes aparicao {
+    from {
         opacity: 0;
         transform: scale(0.9);
     }
 }
+
 .clique {
     animation: clique 0.5s ease;
 }
@@ -1053,13 +1091,163 @@ section .opcao_atual_jogo{
         opacity: 0;
     }
 }
-.jogo_tela_cheia{
-    transform: scaleX(1.31) scaleY(1.03);
-    left: -10.7vw;
-}
-#cronometro_sunny{
+
+#cronometro_sunny {
     font-size: 3rem;
     position: absolute;
     left: 1vw;
     top: 1vh;
+}
+
+#botao_tela_cheia {
+    position: absolute;
+    left: 2vw;
+    bottom: 2vw;
+    width: 40px;
+}
+
+@keyframes tela_cheia_entrada {
+    50% {
+        transform: translateY(-2%);
+    }
+
+    100% {
+        width: 100dvw;
+        height: 101dvh;
+        transform: translateX(-8.7%) translateY(-2%);
+    }
+}
+
+@keyframes tela_cheia_saida {
+    0% {
+        transform: translateX(-8.7%) translateY(-2%);
+    }
+
+    100% {
+        height: 96vh;
+        width: 96%;
+        transform: translateX(0%) translateY(0%);
+
+    }
+}
+
+#main .jogo_tela_cheia {
+    width: 100dvw;
+    height: 101dvh;
+    transform: translateX(-8.7%) translateY(-2%);
+}
+
+.resultados_jogo {
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px white;
+    width: 40vw;
+    height: 60vh;
+    position: absolute;
+    top: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    padding: 4vh 3vw;
+    background-position: center;
+}
+
+.resultados_jogo img {
+    width: 6rem;
+    transform: scale(2.0) translateY(-20%);
+}
+
+.resultados_jogo h2 {
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+.resultados_jogo h4 {
+    font-size: 1.4rem;
+}
+
+.resultados_jogo p {
+    font-size: 2rem;
+}
+
+.resultados_jogo button {
+    background-color: #00000000;
+    color: white;
+    padding: 1vh;
+    font-size: 1.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    border: solid 4px rgba(255, 255, 255, 0.534);
+    width: 80%;
+    border-image-slice: 1;
+    border-width: 1.2px;
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 31%, 0), #ffffff, hsla(0, 0%, 100%, 0));
+    ;
+    cursor: pointer;
+}
+
+.resultados_jogo button:hover {
+    width: 100%;
+    border-width: 2px;
+    font-size: 1.5rem;
+}
+
+#main .section_preta {
+    background: radial-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.808));
+}
+
+#main .section_jogo_dificil {
+    animation: sunny_dificil 10ms infinite alternate;
+}
+#main .sunny_player_dificil{
+    animation: player_dificil 1s infinite  alternate;
+
+}
+
+#sunny_player {
+    background: url("../assets/img/sunny_chibi.png");
+    width: 9vw;
+    height: 9vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    position: absolute;
+
+}
+
+@keyframes sunny_dificil {
+    0%{
+        transform: rotate(1deg);
+    }
+    100%{
+        transform: rotate(-1deg);
+
+    }
+}
+@keyframes player_dificil {
+    0%{
+        transform: translateY(20%);
+    }
+    25%{
+         background:url("../assets/img/sunny_chibi.png");
+    }
+    50%{
+        transform: translateX(27%);
+    }
+    75%{
+        background:url("../assets/img/sunny_chibi.png");
+    }
+    100%{
+        transform: translateY(-30%);
+
+    }
+}
+
+#main h6, h5, img, div{
+    user-select: none;
 }

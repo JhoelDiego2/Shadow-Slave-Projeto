@@ -19,7 +19,7 @@ function validarSessao() {
 
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login-cadastro.html";
+    window.location = "cadastrologin.html";
 }
 
 // carregamento (loading)

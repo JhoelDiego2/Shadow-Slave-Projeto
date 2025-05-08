@@ -56,17 +56,17 @@
                 Estatisticas
             </p>
             <p onclick="mostrarConfiguracao()"><img src="" alt="">
-                <img src="assets/svg/bar-chart-sharp.png" alt="">
+                <img src="assets/svg/user.svg" alt="">
                 perfil
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
-                <img src="assets/svg/bar-chart-sharp.png" alt="">
+                <img src="assets/svg/sair_branco.svg" alt="">
                 Sair
             </p>
         </nav>
 
     </header>
-    <main>
+    <main id="main">
         <section id="configuracao" style="display: none;">
             <img src="assets/img/close-circle-sharp.png" alt="" id="icone_fechar_configuracao"
                 onclick="fechar_configuracao()">
@@ -146,14 +146,14 @@
                 <h3>Alterar senha</h3>
                 <div class="conta-form">
                     <div>
-                        <img src="assets/svg/mail.svg" alt="">
+                        <img src="assets/svg/senha_grey.svg" alt="">
                         <p id="texto_senha_atual">Senha Atual</p>
                         <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
                             onclick="mostrarSenhaAtual()" id="icone_senha_atual">
                     </div>
                     <input type="password" id="ipt_senha_atual" onclick="digitando_atualizar('senha_atual')">
                     <div>
-                        <img src="assets/svg/mail.svg" alt="">
+                        <img src="assets/svg/senha_grey.svg"alt="">
                         <p id="texto_senha_nova">Nova Senha</p>
                         <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
                             onclick="mostrarSenhaNova()" id="icone_senha_nova">
@@ -161,7 +161,7 @@
                     </div>
                     <input type="password" id="ipt_senha_nova" onclick="digitando_atualizar('senha_nova')">
                     <div>
-                        <img src="assets/svg/mail.svg" alt="">
+                        <img src="assets/svg/senha_grey.svg" alt="">
                         <p id="texto_senha_conf">Confirmar Senha</p>
                         <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
                             onclick="mostrarSenhaNova()" id="icone_senha_conf">
@@ -289,23 +289,33 @@
                 <canvas></canvas>
             </div>
         </section>
-        <section id="section_sunny" style="display: none;" >
-            <h6 onclick="tela_cheia('sunny')">Score</h6>
+        <section id="section_sunny" style="display: none;">
+            <h6 >Score</h6>
             <h6 id="contador_sunny">0</h6>
             <h5 id="cronometro_sunny">0:20</h5>
-            <div id="sunny-carregando" >
-                <div class="carregamento_menu">
+            <img src="assets/svg/scan-outline.svg" alt="" id="botao_tela_cheia" onclick="tela_cheia('sunny')">
+            <div id="sunny-carregando" style="display: nne;">
+                <div class="carregamento_menu" >
                     <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class="menu_jogo">
+            <div class="menu_jogo" style="display: nne;" >
                 <h2>Selecione a dificuldade:</h2>
                 <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
                 <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>
                 <p onclick="sunny_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
                 <p onclick="iniciar_jogo_sunny()">COMECAR</p>
+                <p onclick="ir_para_menu_geral()">SAIR</p>
             </div>
-            <img src="assets/img/sunny_chibi.png" alt="" id="sunny_player" onclick="mudar_posicao()">
+            <div id="sunny_player" onclick="mudar_posicao()"></div>
+            <div class="resultados_jogo" style="display: none;">
+                <img src="assets/img/sunny_chibi.png" alt="">
+                <h2>Ascensão Sombria</h2>
+                <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
+                <p>score: <span>x</span></p>
+                <button onclick="iniciar_jogo_sunny()">Tentar Novamente</button>
+                <button onclick="ir_para_menu()">Sair</button>
+            </div>
         </section>
     </main>
     <script src="js/menu.js"></script>

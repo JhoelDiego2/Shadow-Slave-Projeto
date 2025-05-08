@@ -566,7 +566,10 @@ function bolinha() {
     let index = 0; // Começa do 0, já que os arrays começam do índice 0
     const carregamento = document.querySelector(".carregamento_menu");
     const bolinhas = carregamento.querySelectorAll("span");
-
+    //for para q depois eu condiga ativar novamente a função
+    for (let index = 0; index < bolinhas.length; index++) {
+        bolinhas[index].classList.remove("pula")
+    }
     function animar() {
         if (index < bolinhas.length) {
             bolinhas[index].classList.add("pula"); // Corrigido: "pula" com aspas corretas
@@ -574,7 +577,6 @@ function bolinha() {
             setTimeout(animar, 100); // Chama a si mesmo a cada 600ms
         }
     }
-
     animar();
 }
 
@@ -588,5 +590,18 @@ function abrir_jogo_sunny() {
     setTimeout(
         ()=>  menu_carregando.style.display="none", 3000
     )
-    
 }
+
+/*
+function ativar_pop_u(x, y, z) {
+    const div_alerta = document.getElementById("div_alerta")
+    const titulo =document.getElementById("titulo_erro")
+    const mensagem =document.getElementById("mensagem_erro")
+    const botom = document.getElementById("bottom_mensagem")
+    div_alerta.style.display = "flex"
+    fundo_alertas.style.display = "flex"
+    titulo.innerHTML= x
+    mensagem.innerHTML= y
+    buttom.innerHTML=z
+
+}*/
