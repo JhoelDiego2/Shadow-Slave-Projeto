@@ -860,7 +860,7 @@ img {
 }
 
 #estatisticas,
-#section_sunny {
+#section_sunny, #section_nephis {
     background-color: #000000d0;
     backdrop-filter: blur(24px);
     height: 96vh;
@@ -872,6 +872,7 @@ img {
     margin-top: 2vh;
     position: relative;
     box-shadow: -9px 1px 10px 1px rgb(44, 44, 44);
+    z-index: 204;
 }
 
 #estatisticas h2 {
@@ -918,7 +919,7 @@ img {
     box-shadow: inset 0px 10px 6px 1px rgb(0, 0, 0);
 }
 
-#sunny-carregando {
+#sunny-carregando, #nephis-carregando{
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.445) 55%, black 100%),
         url('../assets/img/sunny-game-img.webp');
     background-size: cover;
@@ -932,6 +933,12 @@ img {
     z-index: 100;
     display: flex;
     justify-content: center;
+}
+#section_nephis #nephis-carregando{
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.445) 55%, black 100%),
+    url('../assets/img/nephis-game-img.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .carregamento_menu {
@@ -961,7 +968,6 @@ img {
 
 .pula {
     animation: loading 400ms ease infinite alternate;
-
 }
 
 @keyframes loading {
@@ -970,7 +976,7 @@ img {
         height: 5px;
         border-radius: 50px 50px 25px 25px;
         box-shadow: 0px 5px 5px 4px rgb(0, 0, 0);
-        background-color: #b1f5f0;
+        background-color: #ffffff;
     }
 
     40% {
@@ -984,13 +990,12 @@ img {
 }
 
 .carregamento_menu p {
-    animation: letra 1s ease infinite;
+    animation: letra 500ms ease infinite;
 }
 
 @keyframes letra {
     0% {
         color: #b1f5f0;
-
     }
 }
 
@@ -998,11 +1003,10 @@ img {
     background: radial-gradient(circle, rgba(0, 0, 0, 0.507) 1%, rgba(0, 0, 0, 0.61) 55%, black 100%), url("../assets/img/fundo_game_sunny.png");
     background-size: cover;
     overflow: hidden;
-    animation: inicio-secao 2s;
+   /* animation: inicio-secao 2s;*/
     z-index: 30;
     position: relative;
     display: flex;
-
 }
 
 @keyframes inicio-secao {
@@ -1104,6 +1108,14 @@ section .opcao_atual_jogo {
     left: 2vw;
     bottom: 2vw;
     width: 40px;
+    z-index: 20;
+    cursor: pointer;
+}
+#main .tela_cheia_entrada{
+    animation: tela_cheia_entrada 2s;
+}
+#main .tela_cheia_saida{
+    animation: tela_cheia_saida 2s;
 }
 
 @keyframes tela_cheia_entrada {
@@ -1152,8 +1164,21 @@ section .opcao_atual_jogo {
     text-align: center;
     padding: 4vh 3vw;
     background-position: center;
+    animation: scala_pequena 2s ;
 }
+@keyframes scala_pequena {
+    0%{
+        transform: scale(0.2);
+    }
+    90%{
+        transform: scale(1.2);
+        
+    }
+    100%{
+         transform: scale(1.0);
 
+    }
+}
 .resultados_jogo img {
     width: 6rem;
     transform: scale(2.0) translateY(-20%);
@@ -1217,7 +1242,24 @@ section .opcao_atual_jogo {
     background-repeat: no-repeat;
     border-radius: 10px;
     position: absolute;
+}
+#main .section_jogo_dificil_cheia{
+    animation: sunny_dificil_cheia 10ms infinite alternate;
 
+}
+@keyframes sunny_dificil_cheia {
+    0%{
+        transform: rotate(1deg) translateX(-8.7%) translateY(-2%);
+        width: 100dvw;
+        height: 101dvh;
+    }
+    100%{
+        transform: rotate(-1deg) translateX(-8.7%) translateY(-2%);
+        width: 100dvw;
+        height: 101dvh;
+
+    }
+    
 }
 
 @keyframes sunny_dificil {
@@ -1250,4 +1292,171 @@ section .opcao_atual_jogo {
 
 #main h6, h5, img, div{
     user-select: none;
+}
+/*nephis_game*/
+#section_nephis .carregamento_menu p{
+    color: #300707;
+    animation: letra-nephis 500ms infinite;
+}
+#section_nephis .carregamento_menu span{
+   background-color: #300707;
+}
+@keyframes letra-nephis {
+    0% {
+        color: #c72323;
+    }
+}
+#section_nephis{
+    display: flex;
+    flex-direction: row;
+}
+ #section_nephis .column-1{
+    align-self: flex-start;
+    width: 50%;
+    height: 100%;
+    background: url("../assets/img/nephis_luta.png");
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1vh 1vw;
+    position: relative;
+}
+#section_nephis .column-2{
+    align-self: flex-end;
+    width: 56%;
+    height: 100%;
+    background: url("../assets/img/cassie_luta.png");
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1vh 1vw;
+    position: relative;
+    /*animation-delay: 15s;*/
+}
+#main .pisca{
+    animation: pisca 1s infinite ;
+}
+
+@keyframes pisca {
+    0%{
+        box-shadow: 10px 0px 10px 1px rgb(133, 34, 34);
+    }
+    2%{
+        box-shadow: none;
+    }
+    50%{
+        box-shadow: 10px 0px 10px 2px rgb(133, 34, 34);
+    }
+    75%{
+        box-shadow: none;
+        
+    }
+    100%{
+        box-shadow: 10px 0px 10px 6px rgb(133, 34, 34);
+        transform: scale(1.01);
+    }
+}
+
+#section_nephis h6 {
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+#section_nephis h5 {
+    font-size: 1.5rem;
+    color: #ff0000;
+    font-weight: 800;
+    
+}
+
+#limite_vida, #limite_vida_enemigo{
+    background-color: #1c52539a;
+    width: 17vw;
+    height: 6vh;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.7vh 1vw 0.7vh 0.1vw;
+    border: solid 5px rgb(0, 0, 0);
+    box-shadow: inset 10px 10px 10px 10px rgb(0, 0, 0);
+    backdrop-filter: blur(10px);
+}
+
+#section_nephis #vida_usuario, #vida_maquina{
+    width: 100vw;
+    background-color: rgb(48, 128, 91);
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 20px;
+}   
+#limite_vida_enemigo{
+    transform: scaleX(-1)
+}
+#section_nephis button{
+    align-self: center;
+    height: 10vw;
+    width: 10vw;
+    position: absolute;
+    top: 50vh;
+    border-radius: 1000px;
+    background: url("../assets/img/Ai\ Symbol\ Art.jpeg");
+    background-size: cover;
+    box-shadow: 0px 0px 20px 3px rgb(255, 255, 255);
+}
+#main .ataque_maquina{
+    animation: clique_ataque 200ms infinite alternate;
+}
+@keyframes clique_ataque {
+    to{
+        transform: scale(1.2);
+    }
+}
+#section_nephis #cronometro_nephis{
+    font-size: 3rem;
+    position:absolute;
+    top: 8vh;
+    right: 37vw;
+}
+.score_maquina{
+    position: absolute;
+    left: 2vw;
+}
+.contador_maquina{
+    position: absolute;
+    left: 5vw;
+    top: 6vh;
+}
+#score_leta_nephis{
+    position: absolute;
+    right: 2vw;
+}
+#contador_nephis{
+    position: absolute;
+    right: 5vw;
+    top: 6vh;
+
+}
+.icone_nephis_jogo{
+    width: 100px;
+    background-color: #000000;
+    border-radius: 100px;
+
+}
+.area_vida{
+    display: flex;
+    width: 75%;
+    position: relative;
+
+}
+.column-2 .area_vida{
+    position: absolute;
+    right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    text-align: end;
 }

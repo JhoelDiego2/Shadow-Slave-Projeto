@@ -93,12 +93,8 @@ function mostrarSenhaNova() {
 
     }
 }
+let configuracao_visivel = false
 
-function mostrarConfiguracao() {
-    configuracao.style.display = "flex"
-    main.style.display = "flex"
-    main.classList.add("main_embassado")
-}
 function fechar_tudo() {
     fechar_configuracao()
 }
@@ -113,6 +109,20 @@ function fechar_configuracao() {
         main.classList.remove("main_embassado");
         configuracao.style.animation = "pop_up_animacao 1s ease-out "
     }, 1000);
+    configuracao_visivel = false
+}
+function mostrarConfiguracao() {
+    if (configuracao_visivel) {
+        fechar_configuracao()
+        configuracao_visivel = false
+    } else {
+        configuracao.style.display = "flex"
+        main.style.display = "flex"
+        main.classList.add("main_embassado")
+        configuracao_visivel = true
+
+    }
+
 }
 ///areaconfiguracoes
 
@@ -586,11 +596,26 @@ function abrir_jogo_sunny() {
     const menu_carregando = document.getElementById("sunny-carregando")
     seccao_menu.style.display="none"
     seccao.style.display="flex"
+    
     bolinha()
     setTimeout(
         ()=>  menu_carregando.style.display="none", 3000
     )
 }
+function abrir_jogo_nephis() {
+    const seccao_menu = document.getElementById("section_games") 
+    const seccao = document.getElementById("section_nephis") 
+    const menu_carregando = document.getElementById("nephis-carregando")
+    seccao_menu.style.display="none"
+    seccao.style.display="flex"
+    
+    bolinha()
+    setTimeout(
+        ()=>  menu_carregando.style.display="none", 3000
+    )
+}
+
+
 
 /*
 function ativar_pop_u(x, y, z) {

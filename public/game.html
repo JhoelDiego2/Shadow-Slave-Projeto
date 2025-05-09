@@ -83,6 +83,10 @@
                     <img src="assets/svg/bar-chart-sharp.png" alt="">
                     Segurança
                 </p>
+                <p onclick="mostrarDeletarConta()"><img src="" alt="">
+                    <img src="assets/svg/bar-chart-sharp.png" alt="">
+                    Segurança
+                </p>
             </div>
             <div class="c-direita avatar" id="conf_avatar">
                 <h3>Personalizar avatar</h3>
@@ -153,7 +157,7 @@
                     </div>
                     <input type="password" id="ipt_senha_atual" onclick="digitando_atualizar('senha_atual')">
                     <div>
-                        <img src="assets/svg/senha_grey.svg"alt="">
+                        <img src="assets/svg/senha_grey.svg" alt="">
                         <p id="texto_senha_nova">Nova Senha</p>
                         <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
                             onclick="mostrarSenhaNova()" id="icone_senha_nova">
@@ -200,7 +204,7 @@
                         <img src="assets/img/cassie-chibi.png" alt="">
                     </div>
                 </div>
-                <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo(nephis, 'nephis')">
+                <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo_nephis()">
                     <div>
 
                         <h4>
@@ -240,7 +244,7 @@
                             mesmo sem ver.
 
                         </p>
-                        <img src="assets/img/cassie-chibi.png" alt="" >
+                        <img src="assets/img/cassie-chibi.png" alt="">
                     </div>
 
                 </div>
@@ -290,32 +294,93 @@
             </div>
         </section>
         <section id="section_sunny" style="display: none;">
-            <h6 >Score</h6>
+            <h6>Score</h6>
             <h6 id="contador_sunny">0</h6>
             <h5 id="cronometro_sunny">0:20</h5>
             <img src="assets/svg/scan-outline.svg" alt="" id="botao_tela_cheia" onclick="tela_cheia('sunny')">
             <div id="sunny-carregando" style="display: nne;">
-                <div class="carregamento_menu" >
+                <div class="carregamento_menu">
                     <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class="menu_jogo" style="display: nne;" >
-                <h2>Selecione a dificuldade:</h2>
-                <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
-                <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>
-                <p onclick="sunny_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
-                <p onclick="iniciar_jogo_sunny()">COMECAR</p>
-                <p onclick="ir_para_menu_geral()">SAIR</p>
+            <div class=" menu_jogo" style="display: nne;">
+                    <h2>Selecione a dificuldade:</h2>
+                    <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
+                    <!--   <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>-->
+                    <p onclick="sunny_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
+                    <p onclick="iniciar_jogo_sunny()">COMECAR</p>
+                    <p onclick="ir_para_menu_geral('sunny')">SAIR</p>
+                </div>
+                <div id="sunny_player" onclick="mudar_posicao()"></div>
+                <div class="resultados_jogo" style="display: none;">
+                    <img src="assets/img/sunny_chibi.png" alt="">
+                    <h2>Ascensão Sombria</h2>
+                    <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
+                    <p>score: <span>x</span></p>
+                    <button onclick="iniciar_jogo_sunny()">Tentar Novamente</button>
+                    <button onclick="ir_para_menu()">Sair</button>
+                </div>
+        </section>
+        <section id="section_nephis" style="display: noe;">
+            <img src="assets/svg/scan-outline.svg" alt="" id="botao_tela_cheia" onclick="tela_cheia('nephis')">
+            <div id="nephis-carregando" style="display: none;">
+                <div class="carregamento_menu">
+                    <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
+                </div>
             </div>
-            <div id="sunny_player" onclick="mudar_posicao()"></div>
-            <div class="resultados_jogo" style="display: none;">
-                <img src="assets/img/sunny_chibi.png" alt="">
-                <h2>Ascensão Sombria</h2>
-                <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
-                <p>score: <span>x</span></p>
-                <button onclick="iniciar_jogo_sunny()">Tentar Novamente</button>
-                <button onclick="ir_para_menu()">Sair</button>
-            </div>
+            <div class=" menu_jogo" style="display: none;">
+                    <h2>Selecione a dificuldade:</h2>
+                    <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
+                    <p onclick="nephis_nivel_jogo('medio')" id="s_medio">Medio</p>
+                    <p onclick="nephis_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
+                    <p onclick="iniciar_jogo_nephis()">COMECAR</p>
+                    <p onclick="ir_para_menu_geral('nephis')">SAIR</p>
+                </div>
+                <div class="resultados_jogo" style="display: none;">
+                    <img src="assets/img/nephis_chibi.png" alt="">
+                    <h2>Ascensão Sombria</h2>
+                    <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
+                    <p>score: <span>x</span></p>
+                    <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
+                    <button onclick="ir_para_menu()">Sair</button>
+                </div>
+                <div class="column-1">
+                    <div class="area_vida">
+                        <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo" id="b_avatar">
+                        <div>
+                            <h5 id="b_usuario" >Jhoel</h5>
+                            <div id="limite_vida">
+                                <div id="vida_usuario"></div>
+                            </div>
+                            <h5 id="b_nome_real">Lost From Fate</h5>
+                        </div>
+                    </div>
+                    <h6 id="score_leta_nephis">Score</h6>
+                    <h6 id="contador_nephis">0</h6>
+                    <button onclick="ataque_nephis()">
+
+                    </button>
+                </div>
+                <h5 id="cronometro_nephis" onclick="ataque_maquina()">0:00</h5>
+
+                <div class="column-2">
+                    <div class="area_vida">
+                        <div>
+                            <h5 id="enemigo_nome">Cassie</h5>
+                            <div id="limite_vida_enemigo">
+                                <div id="vida_maquina"></div>
+                            </div>
+                            <h5 id="enemigo_nomeReal">Song Of The Fallen</h5>
+                        </div>
+                        <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo" id="b_avatar">
+                    </div>
+                    
+                    <h6 class="score_maquina">Score</h6>
+                    <h6 class="contador_maquina">0</h6>
+                    <button id="botao_maquina">
+
+                    </button>
+                </div>
         </section>
     </main>
     <script src="js/menu.js"></script>
