@@ -572,9 +572,10 @@ function mostrardeshbord() {
         estatisticas_visivel = true
     }
 }
-function bolinha() {
+function bolinha(nome) {
     let index = 0; // Começa do 0, já que os arrays começam do índice 0
-    const carregamento = document.querySelector(".carregamento_menu");
+    const seccao = document.getElementById(`section_${nome}`) 
+    const carregamento = seccao.querySelector(".carregamento_menu");
     const bolinhas = carregamento.querySelectorAll("span");
     //for para q depois eu condiga ativar novamente a função
     for (let index = 0; index < bolinhas.length; index++) {
@@ -597,7 +598,7 @@ function abrir_jogo_sunny() {
     seccao_menu.style.display="none"
     seccao.style.display="flex"
     
-    bolinha()
+    bolinha('sunny')
     setTimeout(
         ()=>  menu_carregando.style.display="none", 3000
     )
@@ -608,8 +609,7 @@ function abrir_jogo_nephis() {
     const menu_carregando = document.getElementById("nephis-carregando")
     seccao_menu.style.display="none"
     seccao.style.display="flex"
-    
-    bolinha()
+    bolinha('nephis')
     setTimeout(
         ()=>  menu_carregando.style.display="none", 3000
     )

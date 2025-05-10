@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/game.css">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao()" id="body">
     <!--POPUP E DIV COM DISPLAY NONE-->
     <div id="tela_inicial" onclick="fechar_tela_inicial()" style="display: none;">
         <p class="clique"> ENTRAR NO MUNDO DOS SONHOS</p>
@@ -57,7 +57,7 @@
             </p>
             <p onclick="mostrarConfiguracao()"><img src="" alt="">
                 <img src="assets/svg/user.svg" alt="">
-                perfil
+                Perfil
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
                 <img src="assets/svg/sair_branco.svg" alt="">
@@ -297,13 +297,13 @@
             <h6>Score</h6>
             <h6 id="contador_sunny">0</h6>
             <h5 id="cronometro_sunny">0:20</h5>
-            <img src="assets/svg/scan-outline.svg" alt="" id="botao_tela_cheia" onclick="tela_cheia('sunny')">
+            <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia" onclick="tela_cheia('sunny')">
             <div id="sunny-carregando" style="display: nne;">
                 <div class="carregamento_menu">
                     <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class=" menu_jogo" style="display: nne;">
+            <div class=" menu_jogo" style="display: noe;">
                     <h2>Selecione a dificuldade:</h2>
                     <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
                     <!--   <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>-->
@@ -312,43 +312,35 @@
                     <p onclick="ir_para_menu_geral('sunny')">SAIR</p>
                 </div>
                 <div id="sunny_player" onclick="mudar_posicao()"></div>
-                <div class="resultados_jogo" style="display: none;">
+                <div class="resultados_jogo resultados_sunny" style="display: none;">
                     <img src="assets/img/sunny_chibi.png" alt="">
                     <h2>Ascensão Sombria</h2>
                     <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
                     <p>score: <span>x</span></p>
                     <button onclick="iniciar_jogo_sunny()">Tentar Novamente</button>
-                    <button onclick="ir_para_menu()">Sair</button>
+                    <button onclick="ir_para_menu('sunny')"">Sair</button>
                 </div>
         </section>
-        <section id="section_nephis" style="display: noe;">
-            <img src="assets/svg/scan-outline.svg" alt="" id="botao_tela_cheia" onclick="tela_cheia('nephis')">
+        <section id="section_nephis" style="display: none;">
+            <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia" onclick="tela_cheia('nephis')">
             <div id="nephis-carregando" style="display: none;">
                 <div class="carregamento_menu">
                     <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class=" menu_jogo" style="display: none;">
+            <div class="menu_jogo" style="display: noe;">
                     <h2>Selecione a dificuldade:</h2>
-                    <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
-                    <p onclick="nephis_nivel_jogo('medio')" id="s_medio">Medio</p>
-                    <p onclick="nephis_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
+                    <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="n_facil">Facil</p>
+                    <p onclick="nephis_nivel_jogo('medio')" id="n_medio">Medio</p>
+                    <p onclick="nephis_nivel_jogo('dificil')" id="n_dificil">Dificil</p>
                     <p onclick="iniciar_jogo_nephis()">COMECAR</p>
                     <p onclick="ir_para_menu_geral('nephis')">SAIR</p>
-                </div>
-                <div class="resultados_jogo" style="display: none;">
-                    <img src="assets/img/nephis_chibi.png" alt="">
-                    <h2>Ascensão Sombria</h2>
-                    <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
-                    <p>score: <span>x</span></p>
-                    <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
-                    <button onclick="ir_para_menu()">Sair</button>
                 </div>
                 <div class="column-1">
                     <div class="area_vida">
                         <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo" id="b_avatar">
                         <div>
-                            <h5 id="b_usuario" >Jhoel</h5>
+                            <h5 id="b_usuario">Jhoel</h5>
                             <div id="limite_vida">
                                 <div id="vida_usuario"></div>
                             </div>
@@ -357,13 +349,13 @@
                     </div>
                     <h6 id="score_leta_nephis">Score</h6>
                     <h6 id="contador_nephis">0</h6>
-                    <button onclick="ataque_nephis()">
+                    <button onclick="ataque_nephis()" class="botao_jogo_nephis">
 
                     </button>
                 </div>
                 <h5 id="cronometro_nephis" onclick="ataque_maquina()">0:00</h5>
 
-                <div class="column-2">
+                <div class="column-2" id="boss_cassie" style="display: nne;">
                     <div class="area_vida">
                         <div>
                             <h5 id="enemigo_nome">Cassie</h5>
@@ -372,14 +364,21 @@
                             </div>
                             <h5 id="enemigo_nomeReal">Song Of The Fallen</h5>
                         </div>
-                        <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo" id="b_avatar">
+                        <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo" id="avatar_enemigo">
                     </div>
-                    
+
                     <h6 class="score_maquina">Score</h6>
                     <h6 class="contador_maquina">0</h6>
-                    <button id="botao_maquina">
+                    <button id="botao_maquina" class="botao_jogo_nephis">
 
                     </button>
+                </div>
+                <div class="resultados_jogo resultados_nephis" style="display: none;">
+                    <h2>Ascensão Sombria</h2>
+                    <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
+                    <p>score: <span>x</span></p>
+                    <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
+                    <button onclick="ir_para_menu('nephis')">Sair</button>
                 </div>
         </section>
     </main>
