@@ -42,10 +42,11 @@
 
     <header>
         <div>
-            <img id="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="">
-            <p>Seja bem vindo desperto:</p>
-            <p id="b_usuario">undefied</p>
-            <p id="b_nome_real">undefied</p>
+            <img class="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="">
+            <p>Seja bem vindo:</p>
+            <p class="b_usuario">nome</p>
+            <p class="b_nome_real">nome Real</p>
+            <p class="b_rank_atual">rank</p>
         </div>
         <nav>
             <p onclick="mostrarjogos()">
@@ -59,6 +60,10 @@
             <p onclick="mostrarConfiguracao()"><img src="" alt="">
                 <img src="assets/svg/user.svg" alt="">
                 Perfil
+            </p>
+            <p onclick="mostrarForum()"><img src="" alt="">
+                <img src="assets/svg/user.svg" alt="">
+                Forum
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
                 <img src="assets/svg/sair_branco.svg" alt="">
@@ -91,7 +96,7 @@
             </div>
             <div class="c-direita avatar" id="conf_avatar">
                 <h3>Personalizar avatar</h3>
-                <img src="assets/img/sunny_xom_fundo.webp" alt="" id="avatar_atual">
+                <img src="assets/img/sunny_xom_fundo.webp" alt="" class="b_avatar" id="avatar_atual">
                 <div>
                     <div class="c-cima">
                         <img src="assets/img/sunny-chibi-2.png" alt="" class="avatar_opção"
@@ -264,26 +269,26 @@
                 </div>
             </div>
         </section>
-        <section id="estatisticas" style="display: nne;">
+        <section id="estatisticas" style="display: none;">
             <h2>Estatisticas</h2>
             <div class="area-kpi">
                 <div class="kpi">
                     <p class="kpi-texto">Modalidade preferida</p>
-                    <p class="dado">1</p>
+                    <p class="dado" id="b_modalidade_usuario">1</p>
                 </div>
                 <div class="kpi">
                     <p class="kpi-texto">Jogos Concluídos</p>
-                    <p class="dado">1</p>
+                    <p class="dado" id="b_jogos_usuario">1</p>
 
                 </div>
                 <div class="kpi">
                     <p class="kpi-texto">Média de cliques</p>
-                    <p class="dado">1</p>
+                    <p class="dado" id="b_media_usuario">1</p>
 
                 </div>
                 <div class="kpi">
                     <p class="kpi-texto">Jogos ganhados</p>
-                    <p class="dado">1</p>
+                    <p class="dado" id="b_ganhos_usuario">1</p>
 
                 </div>
             </div>
@@ -296,21 +301,21 @@
                     </div>
                     <div class="gradico_dificuldade grafico">
                         <h3>Dificuldades jogadas</h3>
-                        <canvas id="grafico_dificuldade" width="293"" height="200"></canvas>
+                        <canvas id="grafico_dificuldade" width="293"" height=" 200"></canvas>
                     </div>
                 </div>
                 <div class="lateral_direita">
                     <div class="progresso_rank grafico">
                         <h3>Progresso de rank: <span>200p</span> </h3>
-                        
+
                         <div class="div_limite">
                             <div class="limite_ranking">
                                 <div>
-                                    <p>
-                                        Santo
+                                    <p class="b_rank_atual">
+                                        Adormecido
                                     </p>
-                                    <p style="position: absolute; right: 10vw;">
-                                        Titã <span>500p</span> 
+                                    <p style="position: absolute; right: 10vw;" class="b_rank_seguinte">
+                                        Desperto <span>500p</span>
                                     </p>
                                 </div>
                             </div>
@@ -353,15 +358,15 @@
                     <button onclick="ir_para_menu('sunny')"">Sair</button>
                 </div>
         </section>
-        <section id=" section_nephis" style="display: none;">
+        <section id="section_nephis" style="display: none;">
                         <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia"
                             onclick="tela_cheia('nephis')">
-                        <div id="nephis-carregando" style="display: none;">
+                        <div id="nephis-carregando" style="display: nne;">
                             <div class="carregamento_menu">
                                 <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class=" menu_jogo" style="display: noe;">
+            <div class="menu_jogo" style="display: noe;">
                                 <h2>Selecione a dificuldade:</h2>
                                 <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="n_facil">Facil</p>
                                 <p onclick="nephis_nivel_jogo('medio')" id="n_medio">Medio</p>
@@ -371,14 +376,14 @@
                             </div>
                             <div class="column-1">
                                 <div class="area_vida">
-                                    <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo"
-                                        id="b_avatar">
+                                    <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo b_avatar"
+                                        >
                                     <div>
-                                        <h5 id="b_usuario">Jhoel</h5>
+                                        <h5 class="b_usuario">Jhoel</h5>
                                         <div id="limite_vida">
                                             <div id="vida_usuario"></div>
                                         </div>
-                                        <h5 id="b_nome_real">Lost From Fate</h5>
+                                        <h5 class="b_nome_real">Lost From Fate</h5>
                                     </div>
                                 </div>
                                 <h6 id="score_leta_nephis">Score</h6>

@@ -24,41 +24,41 @@ function trocar_login() {
     imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
     imagem_de_fundo.style.transform = "translateX(100%)"
     imagem_de_fundo.style.backgroundSize = "cover"
-    sair_icone.src="assets/svg/sair.svg"
-  }
-  function trocar_cadastro() {
+    sair_icone.src = "assets/svg/sair.svg"
+}
+function trocar_cadastro() {
     let imagem_de_fundo = document.getElementById("imagem_de_fundo");
     let sair_icone = document.getElementById("sair_icone")
-    sair_icone.src="assets/svg/sair_branco.svg"
+    sair_icone.src = "assets/svg/sair_branco.svg"
 
     imagem_de_fundo.style.background = "url('./assets/img/imagem_inicial.png')"
     imagem_de_fundo.style.transform = "translateX(0%)"
     imagem_de_fundo.style.backgroundSize = "cover"
 
-  }
+}
 
 
 
-  function tirar_alerta() {
+function tirar_alerta() {
     div_alerta.style = "display:none"
     main.style = "filter: blur(0px);  "
-  }
+}
 
 
-  //jvoltar aqui arrumar error criar dois alertas um especial para o casdastro da erro 
+//jvoltar aqui arrumar error criar dois alertas um especial para o casdastro da erro 
 
-  function trocar_login_alerta() {
+function trocar_login_alerta() {
     let cad_sucesso = document.getElementById("div_cad_sucesso")
     let imagem_de_fundo = document.getElementById("imagem_de_fundo");
     let main = document.querySelector(" main")
     imagem_de_fundo.style.background = "url('./assets/img/fundo_nephis.png')"
     imagem_de_fundo.style.transform = "translateX(100%)"
     imagem_de_fundo.style.backgroundSize = "cover"
-    cad_sucesso.style.display="none" 
+    cad_sucesso.style.display = "none"
     main.style = "filter: blur(0px);  "
 
 
-  }
+}
 
 
 // funções do cadastro
@@ -190,7 +190,7 @@ function cadastrar() {
         }
         if (contem_Maiuscula && contem_Especial && contem_Minuscula && contem_Numero && (senha == conf_senha)) {
             valido = true
-            div_alerta.style.display="none"
+            div_alerta.style.display = "none"
         }
     }
     //verifica se os inputs estao vazios
@@ -220,8 +220,8 @@ function cadastrar() {
                     let text_senha = document.getElementById(`texto_senha`);
                     let nome_login = document.getElementById(`ipt_nome_usuario`);
                     let senha_login = document.getElementById(`ipt_senha`);
-                    cad_sucesso.style.display="flex" 
-                    main.style.filter="blur(2px)"
+                    cad_sucesso.style.display = "flex"
+                    main.style.filter = "blur(2px)"
                     ipt_nome_usuario.value = nome_usuario;
                     ipt_senha.value = senha;
 
@@ -230,7 +230,7 @@ function cadastrar() {
                     text_nome.style.transform = "translate(-2.4vw, -6vh)";
                     text_nome.style.transition = "0.7s ease-in-out";
                     nome_login.style.borderBottom = "solid 4px black";
-        
+
                     text_senha.style.color = "black";
                     text_senha.style.position = "relative";
                     text_senha.style.transform = "translate(-2.4vw, -6vh)";
@@ -244,14 +244,14 @@ function cadastrar() {
                       limparFormulario();
                       finalizarAguardar();*/
                 } else {
-                    div_alerta.style.display="flex"
+                    div_alerta.style.display = "flex"
                     titulo_erro.innerHTML = "Opa, algo deu errado no cadastro "
-                      mensagem_erro.innerHTML = "Houve um erro ao tentar realizar o cadastro!"
+                    mensagem_erro.innerHTML = "Houve um erro ao tentar realizar o cadastro!"
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
             .catch(function (resposta) {
-                
+
                 console.log(`#ERRO: ${resposta}`);
                 //finalizarAguardar();
             });
@@ -268,14 +268,14 @@ function esqueci() {
     ipt_esqueci_senha.style.borderBottom = "solid 4px #7aa7a4";
 
 
-  }
-  function activar_esqueci() {
+}
+function activar_esqueci() {
     cartao_esqueci_senha.style = "display:1"
     main.style = "filter: blur(2.4px);  "
     provando.style = "display:none"
 
-  }
-  function verificar() {
+}
+function verificar() {
     const titulo_erro = document.getElementById("titulo_erro")
     const mensagem_erro = document.getElementById("mensagem_erro")
     const div_alerta = document.getElementById("div_alerta")
@@ -284,35 +284,35 @@ function esqueci() {
     var verificar = true
 
     while (verificar == true) {
-      div_alerta.style = "display:1"
-      main.style = "filter: blur(2.4px); "
-      if (usuario == '' && senha == '') {
-        titulo_erro.innerHTML = "Campos vazios"
-        mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
-        break
-      }
-      if (usuario == '') {
-        titulo_erro.innerHTML = "Campo de usuário vazio"
-        mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
-        break
-      }
-      if (senha == '') {
-        titulo_erro.innerHTML = "Campo de senha vazio"
-        mensagem_erro.innerHTML = "Sem uma chave, não há porta que se abra. Nem mesmo as escondidas na escuridão."
-        break
-      }
-      // voltar para colocar o certo
-      /*
-      if (usuario == 'nao_existe') {
-        titulo_erro.innerHTML = "Usuário não existe"
-        mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
-        break
-      }*/
-     div_alerta.style.display="none"
-      verificar = false
-      }
-      if (verificar == false) {
-        
+        div_alerta.style = "display:1"
+        main.style = "filter: blur(2.4px); "
+        if (usuario == '' && senha == '') {
+            titulo_erro.innerHTML = "Campos vazios"
+            mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+            break
+        }
+        if (usuario == '') {
+            titulo_erro.innerHTML = "Campo de usuário vazio"
+            mensagem_erro.innerHTML = "Nem um nome? Até as sombras têm identidade."
+            break
+        }
+        if (senha == '') {
+            titulo_erro.innerHTML = "Campo de senha vazio"
+            mensagem_erro.innerHTML = "Sem uma chave, não há porta que se abra. Nem mesmo as escondidas na escuridão."
+            break
+        }
+        // voltar para colocar o certo
+        /*
+        if (usuario == 'nao_existe') {
+          titulo_erro.innerHTML = "Usuário não existe"
+          mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
+          break
+        }*/
+        div_alerta.style.display = "none"
+        verificar = false
+    }
+    if (verificar == false) {
+
         console.log("FORM LOGIN: ", usuario);
         console.log("FORM SENHA: ", senha);
 
@@ -337,7 +337,9 @@ function esqueci() {
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.AVATAR_USUARIO = json.avatar;
-                    sessionStorage.NOME_REAL_USUARIO= json.nomeReal;
+                    sessionStorage.NOME_REAL_USUARIO = json.nomeReal;
+                    sessionStorage.RANK_USUARIO = json.rankUsuario;
+                    sessionStorage.SCORES_USUARIO = JSON.stringify(json.scores)
 
                     setTimeout(function () {
                         window.location = "game.html";
@@ -346,18 +348,18 @@ function esqueci() {
                     let div_cad = document.getElementById("div_cad_sucesso")
                     let titulo_cad = document.getElementById("titulo_cad")
                     let mensagem_cad = document.getElementById("mensagem_cad")
-                    let bottom_mensagem_cad= document.getElementById("bottom_mensagem_cad")
-                    div_alerta.style.display="none"
-                    div_cad.style.display="flex"
-                    titulo_cad.innerHTML= "Login com Sucesso"
+                    let bottom_mensagem_cad = document.getElementById("bottom_mensagem_cad")
+                    div_alerta.style.display = "none"
+                    div_cad.style.display = "flex"
+                    titulo_cad.innerHTML = "Login com Sucesso"
                     mensagem_cad.innerHTML = `As sombras reconheceram sua presença. Bem-vindo de volta, ${usuario}.`
                     bottom_mensagem_cad.innerHTML = `ENTRANDO...`
                 });
 
             } else {
-                div_alerta.style.display="flex"
-               titulo_erro.innerHTML = "Opa, usuario ou senha errados "
-                 mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
+                div_alerta.style.display = "flex"
+                titulo_erro.innerHTML = "Opa, usuario ou senha errados "
+                mensagem_erro.innerHTML = "Procure onde você se perdeu. Porque aqui, você não está."
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
@@ -371,5 +373,5 @@ function esqueci() {
         })
 
         return false;
-      }
     }
+}

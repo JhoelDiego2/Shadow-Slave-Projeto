@@ -22,7 +22,7 @@ const data_jogo = {
             'rgb(21, 197, 174)'       // borda do "Difícil"
         ],
         borderWidth: 2,
-                    radius: '95%',
+        radius: '95%',
         hoverOffset: 20
     }]
 };
@@ -122,7 +122,7 @@ const data_var_temp = {
         borderColor: '#551c36',
         backgroundColor: '#551c36',
         tension: 0.1,
-                            radius: '80%',
+        radius: '80%',
     },
     ]
 };
@@ -191,3 +191,37 @@ const config_var_umidade = {
 };
 const myChart_var_umidade = document.getElementById('grafico_ganho');
 new Chart(myChart_var_umidade, config_var_umidade);
+
+
+
+//////conexão bd
+const scoresJSON = sessionStorage.SCORES_USUARIO
+const scores = JSON.parse(scoresJSON);
+console.log(scores)
+const b_modalidade_usuario= document.getElementById('b_modalidade_usuario')
+const b_jogos_usuario= document.getElementById('b_jogos_usuario')
+const b_media_usuario= document.getElementById('b_media_usuario')
+const b_ganhos_usuario= document.getElementById('b_ganhos_usuario')
+let i_modalidade_sunny = 0
+let i_modalidade_nephis = 0
+function exibir_kpi() {
+    let vt_modalidade = []
+    let jogosConcluidos = scores.length
+    for (let i = 0; i < scores.length; i++) {
+        vt_modalidade.push(scores[i].fkGame)
+    }
+    for (let i = 0; i < vt_modalidade.length; i++) {
+        if ((vt_modalidade[i] == 1) || (vt_modalidade[i] == 2) || (vt_modalidade[i] == 3)) {
+            i_modalidade_sunny++
+        }else{
+            i_modalidade_nephis++
+        }
+    }
+    if (i_modalidade_sunny > i_modalidade_nephis) {
+        b_modalidade_usuario.innerHTML = 'Sunny Game'
+    }else{
+        b_modalidade_usuario.innerHTML = 'Nephis Game'
+    }
+    b_jogos_usuario.innerHTML = jogosConcluidos
+}
+window.addEventListener('load', exibir_kpi);

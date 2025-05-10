@@ -1,5 +1,6 @@
 //icones url 
-const avatar_bd = document.getElementById("b_avatar")
+const avatar_bd = document.querySelectorAll(".b_avatar")
+console.log(avatar_bd)
 const sunny = "assets/img/sunny-chibi-2.png"
 const nephis = "assets/img/nephis-chibi.png"
 const cassie = "assets/img/cassie-chibi.png"
@@ -21,28 +22,44 @@ let senha_nova_visivel = false
 function prencherAvatar() {
     avatar = sessionStorage.AVATAR_USUARIO
     if (avatar == "sunny") {
-        avatar_bd.src = sunny
+        avatar_bd[0].src = sunny
+        avatar_bd[1].src = sunny
+        avatar_bd[2].src = sunny
     }
     if (avatar == "nephis") {
-        avatar_bd.src = nephis
+        avatar_bd[0].src = nephis
+        avatar_bd[1].src = nephis
+        avatar_bd[2].src = nephis
     }
     if (avatar == "cassie") {
-        avatar_bd.src = cassie
+        avatar_bd[0].src = cassie
+        avatar_bd[1].src = cassie
+        avatar_bd[2].src = cassie
     }
     if (avatar == "effie") {
-        avatar_bd.src = effie
+        avatar_bd[0].src = effie
+        avatar_bd[1].src = effie
+        avatar_bd[2].src = effie
     }
     if (avatar == "kai") {
-        avatar_bd.src = kai
+        avatar_bd[0].src = kai
+        avatar_bd[1].src = kai
+        avatar_bd[2].src = kai
     }
     if (avatar == "jet") {
-        avatar_bd.src = jet
+        avatar_bd[0].src = jet
+        avatar_bd[1].src = jet
+        avatar_bd[2].src = jet
     }
     if (avatar == "modret") {
-        avatar_bd.src = modret
+        avatar_bd[0].src = modret
+        avatar_bd[1].src = modret
+        avatar_bd[2].src = modret
     }
     if (avatar == "mongrel") {
-        avatar_bd.src = mongrel
+        avatar_bd[0].src = mongrel
+        avatar_bd[1].src = mongrel
+        avatar_bd[2].src = mongrel
     }
 }
 
@@ -451,7 +468,9 @@ function trocar_avatar(x, y) {
 
 function atualizar_avatar() {
     let idUsuario = sessionStorage.ID_USUARIO;
-    avatar_bd.src = ultimo_avatar
+    avatar_bd[0].src = ultimo_avatar
+    avatar_bd[1].src = ultimo_avatar
+    avatar_bd[2].src = ultimo_avatar
     fetch("/usuarios/atualizar_avatar", {
         method: "POST",
         headers: {

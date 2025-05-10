@@ -22,6 +22,8 @@ CREATE TABLE usuario(
     avatar varchar(7) DEFAULT 'sunny', 
     nomeReal VARCHAR(45) DEFAULT 'Lost from light'
 );
+alter table usuario  add column rankUsuario varchar(45) default 'Adormecido';
+alter table usuario add constraint ckRank check(rankusuario in ('Adormecido', 'Desperto', 'Transcendente' 'Ascendido', 'Santo', 'Tirano', 'Devorador')); 
 desc usuario;
 alter table usuario drop column avatar;
 alter table usuario add column avatar varchar(7) default 'sunny';
@@ -32,6 +34,9 @@ CREATE TABLE game (
 	nome VARCHAR(45), 
     dificuldade VARCHAR(20)
 );
+
+
+
 INSERT INTO game(nome, dificuldade) values
 	('sunnyGame','facil'),
 	('sunnyGame','medio'),

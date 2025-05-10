@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+var gameModel = require("../models/gameModel");
 //////
 function autenticar(req, res) {
     var nome = req.body.nomeServer;
@@ -16,12 +17,27 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        res.json({
-                            idUsuario: resultadoAutenticar[0].idUsuario,
-                            nome: resultadoAutenticar[0].nome,
-                            avatar: resultadoAutenticar[0].avatar,
-                            nomeReal: resultadoAutenticar[0].nomeReal, 
-                        });
+                        console.log(resultadoAutenticar);
+
+                        gameModel.listar_score(resultadoAutenticar[0].idUsuario)
+                            .then((resultado) => {
+
+                                if (resultado.length > 0) {
+                                    res.json({
+                                        idUsuario: resultadoAutenticar[0].idUsuario,
+                                        nome: resultadoAutenticar[0].nome,
+                                        avatar: resultadoAutenticar[0].avatar,
+                                        nomeReal: resultadoAutenticar[0].nomeReal,
+                                        rankUsuario: resultadoAutenticar[0].rankUsuario,
+                                        scores: resultado
+                                    });
+                                } else {
+                                    res.status(204).json({ scores: [] });
+                                }
+
+
+                            })
+
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("usuario e/ou senha inválido(s)");
                     } else {
@@ -82,10 +98,10 @@ function atualizar_senha(req, res) {
         res.status(400).send("Sua senha nova está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
-    }else {
+    } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizar_senha( senhaNova, idUsuario)
+        usuarioModel.atualizar_senha(senhaNova, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -109,8 +125,8 @@ function procurar_senha_atualizar(req, res) {
     // Faça as validações dos valores
     if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
-    }else {
-            usuarioModel.procurar_senha_atualizar(idUsuario)
+    } else {
+        usuarioModel.procurar_senha_atualizar(idUsuario)
             .then(
                 function (resultadoProcuraSenha) {
                     console.log(`\nResultados encontrados: ${resultadoProcuraSenha.length}`);
@@ -118,7 +134,7 @@ function procurar_senha_atualizar(req, res) {
 
                     if (resultadoProcuraSenha.length == 1) {
                         res.json({
-                            senha: resultadoProcuraSenha[0].senha, 
+                            senha: resultadoProcuraSenha[0].senha,
                         });
                     } else if (resultadoProcuraSenha.length == 0) {
                         res.status(403).send("senha nao coincide eu acho ");
@@ -151,10 +167,10 @@ function atualizar_conta(req, res) {
         res.status(400).send("Seu novo nome real  está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
-    }else {
+    } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizar_conta( nome, email, nomeReal, idUsuario)
+        usuarioModel.atualizar_conta(nome, email, nomeReal, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -173,7 +189,7 @@ function atualizar_conta(req, res) {
 }
 function atualizar_avatar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var avatar= req.body.avatarServer;
+    var avatar = req.body.avatarServer;
     var idUsuario = req.body.idUsuarioServer;
 
     // Faça as validações dos valores
@@ -181,9 +197,9 @@ function atualizar_avatar(req, res) {
         res.status(400).send("Seu novo avatar está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
-    }else {
+    } else {
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizar_avatar( avatar, idUsuario)
+        usuarioModel.atualizar_avatar(avatar, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -205,7 +221,7 @@ module.exports = {
     autenticar,
     cadastrar,
     atualizar_senha,
-    procurar_senha_atualizar, 
+    procurar_senha_atualizar,
     atualizar_conta,
     atualizar_avatar
 }

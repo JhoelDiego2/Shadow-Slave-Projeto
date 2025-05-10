@@ -4,13 +4,20 @@ function validarSessao() {
     var idUsuario = sessionStorage.ID_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var nomeReal = sessionStorage.NOME_REAL_USUARIO;
+    var rankUsuario = sessionStorage.RANK_USUARIO
 
-    var b_usuario = document.getElementById("b_usuario");
-    var b_nome_real = document.getElementById("b_nome_real");
-
+    var b_usuario = document.querySelectorAll(".b_usuario");
+    var b_nome_real = document.querySelectorAll(".b_nome_real");
+    var b_rank_atual = document.querySelectorAll(".b_rank_atual")
+    //console.log(b_usuario)
+    //console.log(b_nome_real)
     if (idUsuario != null && nome != null && nomeReal != null) {
-        b_usuario.innerHTML = nome;
-        b_nome_real.innerHTML = nomeReal;
+        b_usuario[0].innerHTML = nome;
+        b_usuario[1].innerHTML = nome;
+        b_nome_real[0].innerHTML = nomeReal;
+        b_nome_real[1].innerHTML = nomeReal;
+        b_rank_atual[0].innerHTML = rankUsuario
+        b_rank_atual[1].innerHTML = rankUsuario
     } else {
         console.log("usuario nao cadastrado ou elemenetos nao encontrados ")
         // window.location = "../login.html";
@@ -20,22 +27,5 @@ function validarSessao() {
 function limparSessao() {
     sessionStorage.clear();
     window.location = "cadastrologin.html";
-}
-
-// carregamento (loading)
-function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
-}
-
-function finalizarAguardar(texto) {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
-
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
-    }
 }
 

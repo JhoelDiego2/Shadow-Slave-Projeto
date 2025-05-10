@@ -109,8 +109,27 @@ function pontuar_sunny(req, res) {
     }
 }
 
+function listar_score(req, res) {
+  var fkUsuario = req.params.idUsuario;
+
+  gameModel.listar_score(fkUsuario).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([]);
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao listar o score: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+
+
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
+    listar_score,
     cadastrar,
 }

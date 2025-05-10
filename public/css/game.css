@@ -66,7 +66,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 7vh;
+    padding: 1vh 0vw;
     box-shadow: 1px -1px 20px 5px rgb(99, 97, 97);
     z-index: 20;
 }
@@ -74,7 +74,7 @@ header {
 nav {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 0.6vw;
     width: 90%;
 
 }
@@ -126,7 +126,7 @@ nav p:hover {
 header div {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     align-items: center;
     font-size: 1.3rem;
     padding-bottom: 5vh;
@@ -981,11 +981,13 @@ canvas {
     background-color: #08634f;
     border-radius: 20px;
     box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.301);
+    align-items: center;
 
 }
 
 .limite_ranking div p {
     margin: 0vh 1vw;
+    font-size: 1.5rem;
 }
 
 .grafico {
