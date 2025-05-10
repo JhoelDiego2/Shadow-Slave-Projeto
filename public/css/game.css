@@ -860,7 +860,8 @@ img {
 }
 
 #estatisticas,
-#section_sunny, #section_nephis {
+#section_sunny,
+#section_nephis {
     background-color: #000000d0;
     backdrop-filter: blur(24px);
     height: 96vh;
@@ -876,35 +877,38 @@ img {
 }
 
 #estatisticas h2 {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     text-transform: uppercase;
-    padding: 2vh 2vw
+    padding: 1vh 2vw;
+
 }
 
 .area-kpi {
     width: 100%;
-    height: 20vh;
+    height: 13vh;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2vw;
+    text-align: center;
 }
 
 .kpi {
     background-color: #0000008c;
     box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.116);
-    height: 17vh;
+    height: 13vh;
     width: 14vw;
     border-radius: 10px;
+
 }
 
 .kpi-texto {
     background-color: #3a3a3a83;
     font-size: 1.3rem;
-    text-align: center;
     width: 100%;
     height: 50%;
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 0vh 1vw;
 }
@@ -919,7 +923,111 @@ img {
     box-shadow: inset 0px 10px 6px 1px rgb(0, 0, 0);
 }
 
-#sunny-carregando, #nephis-carregando{
+.container-graficos {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 3vh 6vw;
+    gap: 3vw;
+}
+
+.lateral_esquerda {
+    width: 30%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.lateral_direita {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+canvas {
+    background-color: #0e2d3000;
+}
+
+.progresso_rank {
+    width: 100%;
+    height: 20vh;
+}
+.limite_ranking span{
+    font-size: 1rem;
+}
+
+.limite_ranking {
+    background-color: #3f3f3f;
+    height: 85%;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.603);
+    padding: 2px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.limite_ranking div {
+    height: 100%;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-size: 2rem;
+    background-color: #08634f;
+    border-radius: 20px;
+    box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.301);
+
+}
+
+.limite_ranking div p {
+    margin: 0vh 1vw;
+}
+
+.grafico {
+    box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.301);
+    background-color: #000000;
+    border-radius: 10px;
+}
+
+.div_limite {
+    height: 60%;
+    width: 100%;
+    background-color: #00000083;
+    padding: 2vh 2vw;
+}
+
+#estatisticas h3 {
+    background-color: #3a3a3a83;
+    font-size: 1.3rem;
+    text-align: center;
+    width: 100%;
+    height: 7vh;
+    padding: 2vh 1vw;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#sunny-carregando,
+#nephis-carregando {
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.445) 55%, black 100%),
         url('../assets/img/sunny-game-img.webp');
     background-size: cover;
@@ -934,9 +1042,10 @@ img {
     display: flex;
     justify-content: center;
 }
-#section_nephis #nephis-carregando{
+
+#section_nephis #nephis-carregando {
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.445) 55%, black 100%),
-    url('../assets/img/nephis-game-img.webp');
+        url('../assets/img/nephis-game-img.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1003,7 +1112,7 @@ img {
     background: radial-gradient(circle, rgba(0, 0, 0, 0.507) 1%, rgba(0, 0, 0, 0.61) 55%, black 100%), url("../assets/img/fundo_game_sunny.png");
     background-size: cover;
     overflow: hidden;
-   /* animation: inicio-secao 2s;*/
+    /* animation: inicio-secao 2s;*/
     z-index: 30;
     position: relative;
     display: flex;
@@ -1077,7 +1186,8 @@ section .opcao_atual_jogo {
     animation: aparicao 0.5s ease;
 
 }
-.aparicao_dificli{
+
+.aparicao_dificli {
     animation: aparicao 200ms ease;
 
 }
@@ -1092,10 +1202,12 @@ section .opcao_atual_jogo {
 #main .clique {
     animation: clique 200ms ease;
 }
-#main .clique_medio{
+
+#main .clique_medio {
     animation: clique 180ms ease;
 }
-#main .clique_dificil{
+
+#main .clique_dificil {
     animation: clique 160ms ease;
 }
 
@@ -1143,21 +1255,25 @@ section .opcao_atual_jogo {
     text-align: center;
     padding: 4vh 3vw;
     background-position: center;
-    animation: scala_pequena 2s ;
+    animation: scala_pequena 2s;
 }
+
 @keyframes scala_pequena {
-    0%{
+    0% {
         transform: scale(0.2);
     }
-    90%{
+
+    90% {
         transform: scale(1.2);
-        
+
     }
-    100%{
-         transform: scale(1.0);
+
+    100% {
+        transform: scale(1.0);
 
     }
 }
+
 .resultados_jogo img {
     width: 6rem;
     transform: scale(2.0) translateY(-20%);
@@ -1205,8 +1321,9 @@ section .opcao_atual_jogo {
 #main .section_jogo_dificil {
     animation: sunny_dificil 10ms infinite alternate;
 }
-#main .sunny_player_dificil{
-    animation: player_dificil 1s infinite  alternate;
+
+#main .sunny_player_dificil {
+    animation: player_dificil 1s infinite alternate;
 
 }
 
@@ -1219,74 +1336,91 @@ section .opcao_atual_jogo {
     border-radius: 10px;
     position: absolute;
 }
-#main .section_jogo_dificil_cheia{
+
+#main .section_jogo_dificil_cheia {
     animation: sunny_dificil_cheia 10ms infinite alternate;
 
 }
+
 @keyframes sunny_dificil_cheia {
-    0%{
+    0% {
         transform: rotate(1deg) translateX(-8.7%) translateY(-2%);
         width: 100dvw;
         height: 101dvh;
     }
-    100%{
+
+    100% {
         transform: rotate(-1deg) translateX(-8.7%) translateY(-2%);
         width: 100dvw;
         height: 101dvh;
 
     }
-    
+
 }
 
 @keyframes sunny_dificil {
-    0%{
+    0% {
         transform: rotate(1deg);
     }
-    100%{
+
+    100% {
         transform: rotate(-1deg);
 
     }
 }
+
 @keyframes player_dificil {
-    0%{
+    0% {
         transform: translateY(20%);
     }
-    25%{
-         background:url("../assets/img/sunny_chibi.png");
+
+    25% {
+        background: url("../assets/img/sunny_chibi.png");
     }
-    50%{
+
+    50% {
         transform: translateX(27%);
     }
-    75%{
-        background:url("../assets/img/sunny_chibi.png");
+
+    75% {
+        background: url("../assets/img/sunny_chibi.png");
     }
-    100%{
+
+    100% {
         transform: translateY(-30%);
 
     }
 }
 
-#main h6, h5, img, div{
+#main h6,
+h5,
+img,
+div {
     user-select: none;
 }
+
 /*nephis_game*/
-#section_nephis .carregamento_menu p{
+#section_nephis .carregamento_menu p {
     color: #300707;
     animation: letra-nephis 500ms infinite;
 }
-#section_nephis .carregamento_menu span{
-   background-color: #300707;
+
+#section_nephis .carregamento_menu span {
+    background-color: #300707;
 }
+
 @keyframes letra-nephis {
     0% {
         color: #c72323;
     }
 }
-#section_nephis{
+
+#section_nephis {
     display: flex;
     flex-direction: row;
 }
- #section_nephis .column-1{
+
+#section_nephis .column-1 {
     align-self: flex-start;
     width: 50%;
     height: 100%;
@@ -1301,7 +1435,7 @@ section .opcao_atual_jogo {
     position: relative;
 }
 
-#section_nephis .column-2{
+#section_nephis .column-2 {
     align-self: flex-end;
     width: 56%;
     height: 100%;
@@ -1316,25 +1450,30 @@ section .opcao_atual_jogo {
     position: relative;
     /*animation-delay: 15s;*/
 }
-#main .pisca{
-    animation: pisca 1s infinite ;
+
+#main .pisca {
+    animation: pisca 1s infinite;
 }
 
 @keyframes pisca {
-    0%{
+    0% {
         box-shadow: 10px 0px 10px 1px rgb(133, 34, 34);
     }
-    2%{
+
+    2% {
         box-shadow: none;
     }
-    50%{
+
+    50% {
         box-shadow: 10px 0px 10px 2px rgb(133, 34, 34);
     }
-    75%{
+
+    75% {
         box-shadow: none;
-        
+
     }
-    100%{
+
+    100% {
         box-shadow: 10px 0px 10px 6px rgb(133, 34, 34);
         transform: scale(1.01);
     }
@@ -1344,14 +1483,16 @@ section .opcao_atual_jogo {
     font-size: 2rem;
     text-transform: uppercase;
 }
+
 #section_nephis h5 {
     font-size: 1.5rem;
     color: #ff0000;
     font-weight: 800;
-    
+
 }
 
-#limite_vida, #limite_vida_enemigo{
+#limite_vida,
+#limite_vida_enemigo {
     background-color: #1c52539a;
     width: 17vw;
     height: 6vh;
@@ -1365,16 +1506,20 @@ section .opcao_atual_jogo {
     backdrop-filter: blur(10px);
 }
 
-#section_nephis #vida_usuario, #vida_maquina{
+#section_nephis #vida_usuario,
+#vida_maquina {
     width: 100vw;
     background-color: rgb(48, 128, 91);
     border-top-right-radius: 70px;
     border-bottom-right-radius: 20px;
-}   
-#limite_vida_enemigo{
+}
+
+#limite_vida_enemigo {
     transform: scaleX(-1)
 }
-#section_nephis .column-1 button, .column-2 button{
+
+#section_nephis .column-1 button,
+.column-2 button {
     align-self: center;
     height: 10vw;
     width: 10vw;
@@ -1385,71 +1530,85 @@ section .opcao_atual_jogo {
     background-size: cover;
     box-shadow: 0px 0px 20px 3px rgb(255, 255, 255);
 }
-#main .ataque_maquina{
+
+#main .ataque_maquina {
     animation: clique_ataque 200ms infinite alternate;
 }
+
 @keyframes clique_ataque {
-    to{
+    to {
         transform: scale(1.2);
     }
 }
-#section_nephis #cronometro_nephis{
+
+#section_nephis #cronometro_nephis {
     font-size: 3rem;
-    position:absolute;
+    position: absolute;
     top: 8vh;
     right: 37vw;
 }
-.score_maquina{
+
+.score_maquina {
     position: absolute;
     left: 2vw;
 }
-.contador_maquina{
+
+.contador_maquina {
     position: absolute;
     left: 5vw;
     top: 6vh;
 }
-#score_leta_nephis{
+
+#score_leta_nephis {
     position: absolute;
     right: 2vw;
 }
-#contador_nephis{
+
+#contador_nephis {
     position: absolute;
     right: 5vw;
     top: 6vh;
 
 }
-.icone_nephis_jogo{
+
+.icone_nephis_jogo {
     width: 100px;
     background-color: #000000;
     border-radius: 100px;
 
 }
-.area_vida{
+
+.area_vida {
     display: flex;
     width: 75%;
     position: relative;
 
 }
-.column-2 .area_vida{
+
+.column-2 .area_vida {
     position: absolute;
     right: 10px;
     display: flex;
     justify-content: flex-end;
     text-align: end;
 }
-.resultados_nephis img{
+
+.resultados_nephis img {
     border-radius: 100px;
 }
+
 .resultados_nephis {
-    background:radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.562) 55%, black 100%) ,   url("../assets/img/nephis_luta.png");
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0.562) 55%, black 100%), url("../assets/img/nephis_luta.png");
     background-position: center;
     background-size: cover;
     position: absolute;
     left: 25%;
 }
+
 #body #main .section_preta {
     background: radial-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.808));
 }
+
 @keyframes tela_cheia_entrada {
     50% {
         transform: translateY(-2%);
@@ -1474,13 +1633,15 @@ section .opcao_atual_jogo {
 
     }
 }
-#main .column-2-medio{
-    background: url('../assets/img/sunny_boss.jpeg') ;
+
+#main .column-2-medio {
+    background: url('../assets/img/sunny_boss.jpeg');
     background-size: cover;
     background-position: center;
 }
-#main .column-2-dificil{
-    background: url('../assets/img/fundo_mondrel.png') ;
+
+#main .column-2-dificil {
+    background: url('../assets/img/fundo_mondrel.png');
     background-size: cover;
     background-position: right;
 }

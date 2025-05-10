@@ -7,6 +7,7 @@
     <title>Game | Shadow Slave</title>
     <script src="js/sessao.js"></script>
     <link rel="stylesheet" href="css/game.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body onload="validarSessao()" id="body">
@@ -263,34 +264,65 @@
                 </div>
             </div>
         </section>
-        <section id="estatisticas" style="display: none;">
+        <section id="estatisticas" style="display: nne;">
             <h2>Estatisticas</h2>
             <div class="area-kpi">
                 <div class="kpi">
-                    <p class="kpi-texto">Usuarios no mundo dos sonhos</p>
+                    <p class="kpi-texto">Modalidade preferida</p>
                     <p class="dado">1</p>
                 </div>
                 <div class="kpi">
-                    <p class="kpi-texto">Média de Jogos Concluídos</p>
-                    <p class="dado">1</p>
-
-                </div>
-                <div class="kpi">
-                    <p class="kpi-texto">Taxa de Crescimento de Usuários</p>
+                    <p class="kpi-texto">Jogos Concluídos</p>
                     <p class="dado">1</p>
 
                 </div>
                 <div class="kpi">
-                    <p class="kpi-texto">Taxa de Crescimento de Usuários</p>
+                    <p class="kpi-texto">Média de cliques</p>
+                    <p class="dado">1</p>
+
+                </div>
+                <div class="kpi">
+                    <p class="kpi-texto">Jogos ganhados</p>
                     <p class="dado">1</p>
 
                 </div>
             </div>
             <div class="container-graficos">
-                <canvas></canvas>
-                <canvas></canvas>
-                <canvas></canvas>
-                <canvas></canvas>
+                <div class="lateral_esquerda">
+
+                    <div class="grafico_jogo grafico">
+                        <h3>Modalidades jogadas</h3>
+                        <canvas id="grafico_jogo" width="293" height="200"></canvas>
+                    </div>
+                    <div class="gradico_dificuldade grafico">
+                        <h3>Dificuldades jogadas</h3>
+                        <canvas id="grafico_dificuldade" width="293"" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="lateral_direita">
+                    <div class="progresso_rank grafico">
+                        <h3>Progresso de rank: <span>200p</span> </h3>
+                        
+                        <div class="div_limite">
+                            <div class="limite_ranking">
+                                <div>
+                                    <p>
+                                        Santo
+                                    </p>
+                                    <p style="position: absolute; right: 10vw;">
+                                        Titã <span>500p</span> 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grafico_ranking grafico">
+                        <h3>
+                            Partidas ganhadas ao longo do mês
+                        </h3>
+                        <canvas id="grafico_ganho"></canvas>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="section_sunny" style="display: none;">
@@ -321,69 +353,73 @@
                     <button onclick="ir_para_menu('sunny')"">Sair</button>
                 </div>
         </section>
-        <section id="section_nephis" style="display: none;">
-            <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia" onclick="tela_cheia('nephis')">
-            <div id="nephis-carregando" style="display: none;">
-                <div class="carregamento_menu">
-                    <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
+        <section id=" section_nephis" style="display: none;">
+                        <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia"
+                            onclick="tela_cheia('nephis')">
+                        <div id="nephis-carregando" style="display: none;">
+                            <div class="carregamento_menu">
+                                <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class="menu_jogo" style="display: noe;">
-                    <h2>Selecione a dificuldade:</h2>
-                    <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="n_facil">Facil</p>
-                    <p onclick="nephis_nivel_jogo('medio')" id="n_medio">Medio</p>
-                    <p onclick="nephis_nivel_jogo('dificil')" id="n_dificil">Dificil</p>
-                    <p onclick="iniciar_jogo_nephis()">COMECAR</p>
-                    <p onclick="ir_para_menu_geral('nephis')">SAIR</p>
-                </div>
-                <div class="column-1">
-                    <div class="area_vida">
-                        <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo" id="b_avatar">
-                        <div>
-                            <h5 id="b_usuario">Jhoel</h5>
-                            <div id="limite_vida">
-                                <div id="vida_usuario"></div>
+            <div class=" menu_jogo" style="display: noe;">
+                                <h2>Selecione a dificuldade:</h2>
+                                <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="n_facil">Facil</p>
+                                <p onclick="nephis_nivel_jogo('medio')" id="n_medio">Medio</p>
+                                <p onclick="nephis_nivel_jogo('dificil')" id="n_dificil">Dificil</p>
+                                <p onclick="iniciar_jogo_nephis()">COMECAR</p>
+                                <p onclick="ir_para_menu_geral('nephis')">SAIR</p>
                             </div>
-                            <h5 id="b_nome_real">Lost From Fate</h5>
-                        </div>
-                    </div>
-                    <h6 id="score_leta_nephis">Score</h6>
-                    <h6 id="contador_nephis">0</h6>
-                    <button onclick="ataque_nephis()" class="botao_jogo_nephis">
+                            <div class="column-1">
+                                <div class="area_vida">
+                                    <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo"
+                                        id="b_avatar">
+                                    <div>
+                                        <h5 id="b_usuario">Jhoel</h5>
+                                        <div id="limite_vida">
+                                            <div id="vida_usuario"></div>
+                                        </div>
+                                        <h5 id="b_nome_real">Lost From Fate</h5>
+                                    </div>
+                                </div>
+                                <h6 id="score_leta_nephis">Score</h6>
+                                <h6 id="contador_nephis">0</h6>
+                                <button onclick="ataque_nephis()" class="botao_jogo_nephis">
 
-                    </button>
-                </div>
-                <h5 id="cronometro_nephis" onclick="ataque_maquina()">0:00</h5>
-
-                <div class="column-2" id="boss_cassie" style="display: nne;">
-                    <div class="area_vida">
-                        <div>
-                            <h5 id="enemigo_nome">Cassie</h5>
-                            <div id="limite_vida_enemigo">
-                                <div id="vida_maquina"></div>
+                                </button>
                             </div>
-                            <h5 id="enemigo_nomeReal">Song Of The Fallen</h5>
-                        </div>
-                        <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo" id="avatar_enemigo">
-                    </div>
+                            <h5 id="cronometro_nephis" onclick="ataque_maquina()">0:00</h5>
 
-                    <h6 class="score_maquina">Score</h6>
-                    <h6 class="contador_maquina">0</h6>
-                    <button id="botao_maquina" class="botao_jogo_nephis">
+                            <div class="column-2" id="boss_cassie" style="display: nne;">
+                                <div class="area_vida">
+                                    <div>
+                                        <h5 id="enemigo_nome">Cassie</h5>
+                                        <div id="limite_vida_enemigo">
+                                            <div id="vida_maquina"></div>
+                                        </div>
+                                        <h5 id="enemigo_nomeReal">Song Of The Fallen</h5>
+                                    </div>
+                                    <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo"
+                                        id="avatar_enemigo">
+                                </div>
 
-                    </button>
-                </div>
-                <div class="resultados_jogo resultados_nephis" style="display: none;">
-                    <h2>Ascensão Sombria</h2>
-                    <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
-                    <p>score: <span>x</span></p>
-                    <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
-                    <button onclick="ir_para_menu('nephis')">Sair</button>
-                </div>
+                                <h6 class="score_maquina">Score</h6>
+                                <h6 class="contador_maquina">0</h6>
+                                <button id="botao_maquina" class="botao_jogo_nephis">
+
+                                </button>
+                            </div>
+                            <div class="resultados_jogo resultados_nephis" style="display: none;">
+                                <h2>Ascensão Sombria</h2>
+                                <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
+                                <p>score: <span>x</span></p>
+                                <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
+                                <button onclick="ir_para_menu('nephis')">Sair</button>
+                            </div>
         </section>
     </main>
     <script src="js/menu.js"></script>
     <script src="js/games.js"></script>
+    <script src="js/deshbord.js"></script>
 </body>
 
 </html>
