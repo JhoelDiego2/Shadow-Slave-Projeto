@@ -14,6 +14,38 @@ const column_1 = document.querySelector(".column-1")
 const column_2 = document.querySelector(".column-2")
 const botom_nephis_game = document.querySelectorAll(".botao_jogo_nephis")
 let tempo_int_maquina = 0
+let fkGame = 0
+let tempo_sunny_game = 20
+function pontuacao_sunny() {
+    let fkUsuario = sessionStorage.ID_USUARIO;
+    fetch("/game/pontuar_sunny", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // Enviando os dados para o servidor
+            fkGameServer: fkGame, 
+            fkUsuarioServer: fkUsuario, 
+            scoreServer: i_sunny,
+            tempoServer: tempo_sunny_game,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            console.log("score guardada no banco de dados");
+        } else {
+            throw "Houve um erro ao tentar realizar o cadastro do score da nephis!";
+        }
+    })
+    .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
 
 function resultados_jogo_fuc(nome, titulo, descricao, score) {
     console.log("Chamou resultados_jogo_fuc") // para testar
@@ -76,6 +108,7 @@ function comecar_cronometro() {
     intervalo_cronometro = setInterval(() => {
         temp_cronometro--
         if (temp_cronometro == 0) {
+            pontuacao_sunny()
             parar_jogo_sunny()
         }
         if (temp_cronometro >= 10) {
@@ -102,6 +135,13 @@ function iniciar_jogo_sunny() {
     const botao_tela = s_sunny.querySelector(".botao_tela_cheia")
     let contador_sunny = document.getElementById("contador_sunny")
     let score_atual = 0
+    if (nivel_jogo_sunny == 'facil') {
+        
+        fkGame=1
+    }
+        if (nivel_jogo_sunny == 'dificil') {
+        fkGame=3
+    }
     botao_tela.style.display = "none"
     i_sunny = 0
     contador_sunny.innerHTML = i_sunny
@@ -112,7 +152,7 @@ function iniciar_jogo_sunny() {
     s_sunny.classList.remove("section_preta")
     comecar_cronometro()
     if (nivel_jogo_sunny == 'dificil') {
-        alert("dfsaf")
+        
         exp = setInterval(() => {
             score_atual = i_sunny
             mudar_posicao()
@@ -271,6 +311,36 @@ function ir_para_menu_geral(x) {
 }
 
 // acabou sunny -----------------------------
+function pontuacao_nephis() {
+    let fkUsuario = sessionStorage.ID_USUARIO;
+    fetch("/game/pontuar_nephis", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            // Enviando os dados para o servidor
+            fkGameServer: fkGame, 
+            fkUsuarioServer: fkUsuario, 
+            scoreServer: i_nephis,
+            tempoServer: nephis_tempo,
+        }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            console.log("score guardada no banco de dados");
+        } else {
+            throw "Houve um erro ao tentar realizar o cadastro do score da nephis!";
+        }
+    })
+    .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+}
 
 let jogo_nephis_ativo = true
 let i_nephis = 0
@@ -293,6 +363,7 @@ function ataque_nephis() {
 
     if (vida_maquina_largura == 0) {
         jogo_nephis_ativo = false
+        pontuacao_nephis()
         clearInterval(intervalo_maquina)
         clearInterval(cronometro_nephis)
         if ((i_nephis > score_nephis_maq) && nivel_jogo_nephis == 'dificil') {
@@ -358,6 +429,7 @@ function ataque_maquina() {
 
         if (vida_usuario_largura == 0) {
             jogo_nephis_ativo = false
+            pontuacao_nephis()
             botom_nephis_game[1].style.animation="none"
             if ((score_nephis_maq > i_nephis) && (nivel_jogo_nephis == 'dificil' && i_nephis > 90)) {
                 resultados_jogo_fuc('nephis',
@@ -427,18 +499,21 @@ function iniciar_jogo_nephis() {
         enemigo_nomeReal.innerHTML = 'Song of the Fallen'
         avatar_enemigo.src = "assets/img/cassie-chibi.png"
         tempo_int_maquina = 200
+        fkGame = 4
     } else if (nivel_jogo_nephis == 'medio') {
         enemigo_nome.innerHTML = 'Sunny'
         enemigo_nomeReal.innerHTML = 'Lost from light'
         avatar_enemigo.src = "assets/img/sunny_chibi.png"
         column_2.classList.add("column-2-medio")
         tempo_int_maquina = 180
+        fkGame = 5
     } else {
         enemigo_nome.innerHTML = 'Mongrel'
         enemigo_nomeReal.innerHTML = 'Lost From Fate'
         avatar_enemigo.src = "assets/img/mongrel-chibi.png"
         column_2.classList.add("column-2-dificil")
         tempo_int_maquina = 160
+        fkGame = 6
     }
     vida_usuario.style.backgroundColor = "green"
     vida_maquina.style.backgroundColor = "green"
@@ -450,7 +525,6 @@ function iniciar_jogo_nephis() {
     botom_nephis_game[1].classList.remove("section_preta")
         ataque_maquina()
 }
-
 
 
 

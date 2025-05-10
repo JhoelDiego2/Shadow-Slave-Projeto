@@ -27,14 +27,30 @@ alter table usuario drop column avatar;
 alter table usuario add column avatar varchar(7) default 'sunny';
 alter table usuario add constraint ckAvatar check (avatar in ('sunny', 'nephis', 'cassie', 'effie', 'kai', 'jet', 'modret', 'mongrel'));
 select * from usuario;
-CREATE TABLE games (
-    idGames INT PRIMARY KEY AUTO_INCREMENT,
-    sunnyGame INT,
-    nephisGame INT,
-    kaiGame INT, 
-    fkUsuario INT,
-    CONSTRAINT fkUsuarioGames FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+CREATE TABLE game (
+    idGame INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45), 
+    dificuldade VARCHAR(20)
 );
+INSERT INTO game(nome, dificuldade) values
+	('sunnyGame','facil'),
+	('sunnyGame','medio'),
+	('sunnyGame','dificil'),
+	('nephisGame','facil'),
+	('nephisGame','medio'),
+	('nephisGame','dificil');
+select * from game;
+
+CREATE TABLE score(
+	idScore INT AUTO_INCREMENT, 
+    fkGame INT, 
+    fkUsuario INT, 
+    score FLOAT, 
+    tempo FLOAT, 
+	CONSTRAINT pkCompostaScore PRIMARY KEY (idScore, fkGame, fkUsuario), 
+    CONSTRAINT fkGameScore FOREIGN KEY (fkGame) REFERENCES game(idGame), 
+	CONSTRAINT fkUsuarioScore FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+); 
 
 CREATE TABLE feedback (
 	idFeedback INT AUTO_INCREMENT,
@@ -42,7 +58,7 @@ CREATE TABLE feedback (
     dtFeedback DATE DEFAULT (CURRENT_DATE), 
     fkUsuario INT NOT NULL,
     CONSTRAINT pkComposta PRIMARY KEY (idFeedback, fkUsuario),
-    CONSTRAINT fkFeedbackUsuario FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
+    CONSTRAINT fkFeedbackUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
 CREATE TABLE forum(
@@ -53,4 +69,4 @@ CREATE TABLE forum(
     CONSTRAINT fkUsuarioForum FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
 
-
+select * from score;
