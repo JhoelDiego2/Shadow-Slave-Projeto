@@ -1,24 +1,94 @@
+// 'Adormecido', 'Desperto', 'Transcendente' 'Ascendido', 'Santo', 'Tirano', 'Devorador'
+const sistema_progressao = {
+    'Adormecido': 100,
+    'Desperto': 200,
+    'Transcendente': 300,
+    'Ascendido': 400,
+    'Santo': 500,
+    'Tirano': 600,
+    'Devorador': 1000,
+}
+let rankUsuario_atual = sessionStorage.RANK_USUARIO;
+let proximoRank = ''
+rankUsuario_atual == 'Adormecido' ? (proximoRank = 'Desperto') : null
+rankUsuario_atual == 'Desperto' ? (proximoRank = 'Transcendente') : null
+rankUsuario_atual == 'Transcendente' ? (proximoRank = 'Ascendido') : null
+rankUsuario_atual == 'Ascendido' ? (proximoRank = 'Santo') : null
+rankUsuario_atual == 'Santo' ? (proximoRank = 'Tirano') : null
 
+
+let i_modalidade_sunny = 0
+let i_modalidade_nephis = 0
+let i_facil = 0
+let i_medio = 0
+let i_dificil = 0
+let i_pontuacao_total = 0 
+//////conexão bd
+
+const scoresJSON = sessionStorage.SCORES_USUARIO
+const scores = JSON.parse(scoresJSON);
+console.log(scores)
+const b_modalidade_usuario = document.getElementById('b_modalidade_usuario')
+const b_jogos_usuario = document.getElementById('b_jogos_usuario')
+const b_media_usuario = document.getElementById('b_media_usuario')
+const b_ganhos_usuario = document.getElementById('b_ganhos_usuario')
+const pontuacao_total_atual = document.getElementById('pontuacao_total_atual')
+const b_rank_seguinte = document.querySelector('.b_rank_seguinte')
+
+function exibir_kpi() {
+    let vt_modalidade = []
+    let jogosConcluidos = scores.length
+    for (let i = 0; i < scores.length; i++) {
+        vt_modalidade.push(scores[i].fkGame)
+        i_pontuacao_total = i_pontuacao_total + (scores[i].score)
+    }
+    for (let i = 0; i < vt_modalidade.length; i++) {
+        if ((vt_modalidade[i] == 1) || (vt_modalidade[i] == 2) || (vt_modalidade[i] == 3)) {
+            i_modalidade_sunny++
+        } else {
+            i_modalidade_nephis++
+        }
+        if ((vt_modalidade[i] == 1) || (vt_modalidade == 4)) {
+            i_facil++
+        } else if ((vt_modalidade[i] == 2) || (vt_modalidade == 5)) {
+            i_medio++
+        } else if ((vt_modalidade[i] == 3) || (vt_modalidade == 6)) {
+            i_dificil++
+        }
+
+    }
+    if (i_modalidade_sunny > i_modalidade_nephis) {
+        b_modalidade_usuario.innerHTML = 'Sunny Game'
+    } else {
+        b_modalidade_usuario.innerHTML = 'Nephis Game'
+    }
+    b_jogos_usuario.innerHTML = jogosConcluidos
+    pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
+    b_rank_seguinte.innerHTML= proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
+    plotar_graficos()
+    
+}
+window.addEventListener('load', exibir_kpi);
+
+function plotar_graficos() {
+    
 
 /////---------------
 const data_jogo = {
     labels: [
-        'Fácil',
-        'Medio',
-        'Dificil'
+        'Nephis',
+        'Sunny'
     ],
     datasets: [{
-        label: 'Status dos Armazéns (%)',
-        data: [60, 20, 20],
+        label: 'Quantidade de vezes jogada: ',
+        data: [i_modalidade_nephis, i_modalidade_sunny],
 
         backgroundColor: [
             'rgba(139, 139, 139, 0.4)', //verde
-            'rgba(81, 29, 124, 0.26)',  // Amarelo 
             'rgba(33, 117, 106, 0.43)', // vermelho
         ],
         borderColor: [
             'rgb(139, 139, 139)',      // borda do "Fácil"
-            'rgb(80, 12, 136)',    // borda do "Médio"
             'rgb(21, 197, 174)'       // borda do "Difícil"
         ],
         borderWidth: 2,
@@ -39,7 +109,7 @@ const config_jogo = {
                 labels: {
                     color: 'white', // Cor da fonte da legenda
                     font: {
-                        size: 17
+                        size: 15
                     }
                 }
             },
@@ -60,8 +130,8 @@ const data_dificuldade = {
         'Dificil'
     ],
     datasets: [{
-        label: 'Nivel de dificuldade: ',
-        data: [60, 20, 20],
+        label: 'Quantidade de vezes jogada: ',
+        data: [i_facil, i_medio, i_dificil],
         backgroundColor: [
             'rgba(139, 139, 139, 0.4)', //verde
             'rgba(81, 29, 124, 0.26)',  // Amarelo 
@@ -192,36 +262,5 @@ const config_var_umidade = {
 const myChart_var_umidade = document.getElementById('grafico_ganho');
 new Chart(myChart_var_umidade, config_var_umidade);
 
-
-
-//////conexão bd
-const scoresJSON = sessionStorage.SCORES_USUARIO
-const scores = JSON.parse(scoresJSON);
-console.log(scores)
-const b_modalidade_usuario= document.getElementById('b_modalidade_usuario')
-const b_jogos_usuario= document.getElementById('b_jogos_usuario')
-const b_media_usuario= document.getElementById('b_media_usuario')
-const b_ganhos_usuario= document.getElementById('b_ganhos_usuario')
-let i_modalidade_sunny = 0
-let i_modalidade_nephis = 0
-function exibir_kpi() {
-    let vt_modalidade = []
-    let jogosConcluidos = scores.length
-    for (let i = 0; i < scores.length; i++) {
-        vt_modalidade.push(scores[i].fkGame)
-    }
-    for (let i = 0; i < vt_modalidade.length; i++) {
-        if ((vt_modalidade[i] == 1) || (vt_modalidade[i] == 2) || (vt_modalidade[i] == 3)) {
-            i_modalidade_sunny++
-        }else{
-            i_modalidade_nephis++
-        }
-    }
-    if (i_modalidade_sunny > i_modalidade_nephis) {
-        b_modalidade_usuario.innerHTML = 'Sunny Game'
-    }else{
-        b_modalidade_usuario.innerHTML = 'Nephis Game'
-    }
-    b_jogos_usuario.innerHTML = jogosConcluidos
+    //  setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
 }
-window.addEventListener('load', exibir_kpi);
