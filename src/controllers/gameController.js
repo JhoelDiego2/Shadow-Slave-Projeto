@@ -125,11 +125,48 @@ function listar_score(req, res) {
   });
 }
 
+function listar_linha(req, res) {
 
+    var fkUsuario = req.params.fkUsuario;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    gameModel.listar_linha(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarMedidasEmTempoReal(req, res) {
+
+    var fkUsuario = req.params.fkUsuario;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    gameModel.buscarMedidasEmTempoReal(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
     listar_score,
+    listar_linha,
     cadastrar,
+    buscarMedidasEmTempoReal,
 }

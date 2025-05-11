@@ -35,17 +35,38 @@ function pontuar_sunny(fkGame, fkUsuario, score, tempo) {
     return database.executar(instrucaoSql);
 }
 function listar_score(fkUsuario) {/*ebaixo troquei entrqar() com atuenticar() caso der errado*/
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticar(): ", fkUsuario)
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_score(): ", fkUsuario)
     var instrucaoSql = `
-        SELECT fkGame, score, tempo FROM score WHERE fkUsuario = '${fkUsuario}'
+        SELECT fkGame, score, DATE_FORMAT(horario,'%H:%i:%s') as horario FROM score WHERE fkUsuario = '${fkUsuario}'
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function listar_linha(fkUsuario) {
+console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_linha(): ", fkUsuario)
+    var instrucaoSql = `
+        SELECT score, DATE_FORMAT(horario,'%H:%i:%s') as horario  FROM score  WHERE fkUsuario = ${fkUsuario}
+                             LIMIT 1
+                    
+                    `;
 
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function buscarMedidasEmTempoReal(fkUsuario) {
+console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_linha(): ", fkUsuario)
+
+    var instrucaoSql = ` SELECT score, DATE_FORMAT(horario,'%H:%i:%s') as horario  FROM score  WHERE fkUsuario = ${fkUsuario}
+                    ORDER BY horario DESC         LIMIT 1`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
     listar_score,
+    listar_linha,
     cadastrar, 
+    buscarMedidasEmTempoReal
 };

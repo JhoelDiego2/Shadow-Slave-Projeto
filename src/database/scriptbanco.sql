@@ -7,8 +7,6 @@ comandos para executar no mysql
 */
 CREATE DATABASE shadowSlave;
 USE shadowSlave;
-
-
 /*CREATE USER 'apiShadowSlave'@'localhost' IDENTIFIED BY '69791845';
 GRANT INSERT, UPDATE, SELECT ON shadowSlave.* TO 'apiShadowSlave'@'localhost';
 FLUSH PRIVILEGES;*/
@@ -56,7 +54,10 @@ CREATE TABLE score(
     CONSTRAINT fkGameScore FOREIGN KEY (fkGame) REFERENCES game(idGame), 
 	CONSTRAINT fkUsuarioScore FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 ); 
+alter table score add column horario datetime default current_timestamp;
+select * from score; -- ate o 8
 
+update score set horario = '2025-05-10 18:10:23' where idScore = 8;
 CREATE TABLE feedback (
 	idFeedback INT AUTO_INCREMENT,
     stars INT ,
