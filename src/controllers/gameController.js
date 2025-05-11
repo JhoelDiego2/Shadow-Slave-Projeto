@@ -195,6 +195,25 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function atualizar_grafico_pizza(req, res) {
+
+    var fkUsuario = req.params.fkUsuario;
+
+    console.log(`Recuperando kpis em tempo real`);
+
+    gameModel.atualizar_grafico_pizza(fkUsuario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas kpis pízza.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -202,4 +221,5 @@ module.exports = {
     listar_linha,
     cadastrar,
     buscarMedidasEmTempoReal,
+    atualizar_grafico_pizza
 }

@@ -23,4 +23,7 @@ router.post("/listar_linha", function (req, res) {
 router.get("/tempo-real/:fkUsuario", function (req, res) {
     gameController.buscarMedidasEmTempoReal(req, res);
 })
+router.get("/tempo-real-pizza/:fkUsuario", function (req, res) {
+    gameController.atualizar_grafico_pizza(req, res);
+})
 module.exports = router;

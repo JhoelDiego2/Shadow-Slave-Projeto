@@ -1,6 +1,7 @@
 // 'Adormecido', 'Desperto', 'Transcendente' 'Ascendido', 'Santo', 'Tirano', 'Devorador'
 var fkUsuario = sessionStorage.ID_USUARIO;
 let proximaAtualizacao;
+let proximaAtualizacao_pizza;
 const sistema_progressao = {
     'Adormecido': 100,
     'Desperto': 200,
@@ -39,10 +40,18 @@ const pontuacao_total_atual = document.getElementById('pontuacao_total_atual')
 const b_rank_seguinte = document.querySelector('.b_rank_seguinte')
 let LINHAS_USUARIO = []
 let scores = []
-
+let primeira_vez = true
 function exibir_kpi() {
-
-
+     i_modalidade_sunny = 0
+     i_modalidade_nephis = 0
+     i_facil = 0
+     i_medio = 0
+     i_dificil = 0
+     i_pontuacao_total = 0
+     jogosConcluidos = 0
+     modalidade_moda = 0
+     soma_media_cliques = 0
+     quantidade_modalidades = 0
     for (let i = 0; i < scores.length; i++) {
         jogosConcluidos = jogosConcluidos + scores[i].total_partidas
         i_pontuacao_total = i_pontuacao_total + (scores[i].total_cliques)
@@ -75,7 +84,10 @@ function exibir_kpi() {
     pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
     b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
     b_media_usuario.innerHTML = (soma_media_cliques / quantidade_modalidades).toFixed(2)
-    plotar_graficos();
+    if (primeira_vez) {
+        plotar_graficos();
+        primeira_vez = false
+    }
 }
 
 function obter_dado_linha() {
@@ -169,8 +181,8 @@ function plotar_graficos() {
 
     };
     const ctx_jogo = document.getElementById('grafico_jogo');
-    new Chart(ctx_jogo, config_jogo);
-
+    // new Chart(ctx_jogo, config_jogo);
+    const graficoJogo = new Chart(ctx_jogo, config_jogo);
 
 
     /////---------------
@@ -221,7 +233,8 @@ function plotar_graficos() {
 
     };
     const ctx_dificuldade = document.getElementById('grafico_dificuldade');
-    new Chart(ctx_dificuldade, config_dificuldade);
+    // new Chart(ctx_dificuldade, config_dificuldade);
+    const graficoDificuldade = new Chart(ctx_dificuldade, config_dificuldade);
 
 
 
@@ -253,11 +266,11 @@ function plotar_graficos() {
          labels_ganho.push(registro.horario);
          data_ganho.datasets[0].data.push(registro.score);
      }*/
-for (let i = LINHAS_USUARIO.length - 1; i >= 0; i--) {
-    var registro = LINHAS_USUARIO[i];
-    labels_ganho.push(registro.horario);
-    data_ganho.datasets[0].data.push(registro.score);
-}
+    for (let i = LINHAS_USUARIO.length - 1; i >= 0; i--) {
+        var registro = LINHAS_USUARIO[i];
+        labels_ganho.push(registro.horario);
+        data_ganho.datasets[0].data.push(registro.score);
+    }
 
     const config_ganho = {
         type: 'line',
@@ -266,7 +279,12 @@ for (let i = LINHAS_USUARIO.length - 1; i >= 0; i--) {
 
     const ctx_ganho = document.getElementById('grafico_ganho').getContext('2d');
     const graficoGanho = new Chart(ctx_ganho, config_ganho);
-    setTimeout(() => atualizarGrafico(fkUsuario, data_ganho, graficoGanho), 2000);
+    setTimeout(() => {
+         atualizarGrafico(fkUsuario, data_ganho, graficoGanho)
+        atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificuldade, graficoDificuldade)
+
+    }, 2000);
+
 }
 function atualizarGrafico(fkUsuario, data_ganho, graficoGanho) {
     fetch(`/game/tempo-real/${fkUsuario}`, { cache: 'no-store' }).then(function (response) {
@@ -307,6 +325,30 @@ function atualizarGrafico(fkUsuario, data_ganho, graficoGanho) {
     })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+function atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificuldade, graficoDificuldade) {
+    fetch(`/game/tempo-real-pizza/${fkUsuario}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (json) {
+                scores = json // Armazena os scores
+                console.log(scores)
+                exibir_kpi()
+                data_jogo.datasets[0].data = [i_modalidade_nephis, i_modalidade_sunny];
+                graficoJogo.update()
+                data_dificuldade.datasets[0].data = [i_facil, i_medio, i_dificil];
+                graficoDificuldade.update()
+                proximaAtualizacao_pizza = setTimeout(() => atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificuldade, graficoDificuldade), 2000);
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao_pizza = setTimeout(() => atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificuldade, graficoDificuldade), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico pizza: ${error.message}`);
         });
 
 }
