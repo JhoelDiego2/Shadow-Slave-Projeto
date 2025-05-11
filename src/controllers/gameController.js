@@ -108,7 +108,7 @@ function pontuar_sunny(req, res) {
             );
     }
 }
-
+/*
 function listar_score(req, res) {
   var fkUsuario = req.params.idUsuario;
 
@@ -123,26 +123,59 @@ function listar_score(req, res) {
     console.log("Houve um erro ao listar o score: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
-}
+}*/
+function listar_score(req, res) {
+    var fkUsuario = req.body.fkUsuarioServer;
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkusuario está undefined!");
+    } else {
+        gameModel.listar_score(fkUsuario)
+            .then(function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
 
+                if (resultado.length > 0) {
+                    console.log(resultado);
+                    res.json({
+                        scores: resultado
+                    });
+                } else {
+                    res.status(204).json({ scores: [] });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar a busca das linhas! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
 function listar_linha(req, res) {
+    var fkUsuario = req.body.fkUsuarioServer;
+    if (fkUsuario == undefined) {
+        res.status(400).send("Seu fkusuario está undefined!");
+    } else {
+        gameModel.listar_linha(fkUsuario)
+            .then(function (resultado_linha) {
+                console.log(`\nResultados encontrados: ${resultado_linha.length}`);
 
-    var fkUsuario = req.params.fkUsuario;
-
-    console.log(`Recuperando medidas em tempo real`);
-
-    gameModel.listar_linha(fkUsuario).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
+                if (resultado_linha.length > 0) {
+                    console.log(resultado_linha);
+                    res.json({
+                        linhas: resultado_linha
+                    });
+                } else {
+                    res.status(204).json({ linhas: [] });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar a busca das linhas! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
 }
+
+
+
+
 function buscarMedidasEmTempoReal(req, res) {
 
     var fkUsuario = req.params.fkUsuario;

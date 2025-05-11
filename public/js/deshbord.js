@@ -19,47 +19,54 @@ rankUsuario_atual == 'Ascendido' ? (proximoRank = 'Santo') : null
 rankUsuario_atual == 'Santo' ? (proximoRank = 'Tirano') : null
 
 
-let i_modalidade_sunny = 2
-let i_modalidade_nephis = 2
-let i_facil = 2
-let i_medio = 2
-let i_dificil = 2
-let i_pontuacao_total = 2
+let i_modalidade_sunny = 0
+let i_modalidade_nephis = 0
+let i_facil = 0
+let i_medio = 0
+let i_dificil = 0
+let i_pontuacao_total = 0
+let jogosConcluidos = 0
+let modalidade_moda = 0
+let soma_media_cliques = 0
+let quantidade_modalidades = 0
 //////conexão bd
 
-const scoresJSON = sessionStorage.SCORES_USUARIO
-const scores = JSON.parse(scoresJSON);
-console.log(scores)
 const b_modalidade_usuario = document.getElementById('b_modalidade_usuario')
 const b_jogos_usuario = document.getElementById('b_jogos_usuario')
 const b_media_usuario = document.getElementById('b_media_usuario')
 const b_ganhos_usuario = document.getElementById('b_ganhos_usuario')
 const pontuacao_total_atual = document.getElementById('pontuacao_total_atual')
 const b_rank_seguinte = document.querySelector('.b_rank_seguinte')
+let LINHAS_USUARIO = []
+let scores = []
 
 function exibir_kpi() {
-    let vt_modalidade = []
-    let jogosConcluidos = scores.length
+
+
     for (let i = 0; i < scores.length; i++) {
-        vt_modalidade.push(scores[i].fkGame)
-        i_pontuacao_total = i_pontuacao_total + (scores[i].score)
-    }
-    for (let i = 0; i < vt_modalidade.length; i++) {
-        if ((vt_modalidade[i] == 1) || (vt_modalidade[i] == 2) || (vt_modalidade[i] == 3)) {
-            i_modalidade_sunny++
-        } else {
-            i_modalidade_nephis++
+        jogosConcluidos = jogosConcluidos + scores[i].total_partidas
+        i_pontuacao_total = i_pontuacao_total + (scores[i].total_cliques)
+        if (scores[i].total_partidas > modalidade_moda) {
+            modalidade_moda = scores[i].fkGame
         }
-        if ((vt_modalidade[i] == 1) || (vt_modalidade == 4)) {
-            i_facil++
-        } else if ((vt_modalidade[i] == 2) || (vt_modalidade == 5)) {
-            i_medio++
-        } else if ((vt_modalidade[i] == 3) || (vt_modalidade == 6)) {
-            i_dificil++
+        if (scores[i].fkGame == 1 || scores[i].fkGame == 2 || scores[i].fkGame == 3) {
+            i_modalidade_sunny = i_modalidade_sunny + scores[i].total_partidas
+        } else if (scores[i].fkGame == 4 || scores[i].fkGame == 5 || scores[i].fkGame == 6) {
+            i_modalidade_nephis = i_modalidade_nephis + scores[i].total_partidas
+            soma_media_cliques = soma_media_cliques + scores[i].media_cliques_por_segundo
+            quantidade_modalidades++
+        }
+        if (scores[i].fkGame == 1 || scores[i].fkGame == 4) {
+            i_facil = i_facil + scores[i].total_partidas
+        } else if (scores[i].fkGame == 2 || scores[i].fkGame == 5) {
+            i_medio = i_medio + scores[i].total_partidas
+        } else if (scores[i].fkGame == 3 || scores[i].fkGame == 6) {
+            i_dificil = i_dificil + scores[i].total_partidas
         }
 
+
     }
-    if (i_modalidade_sunny > i_modalidade_nephis) {
+    if (modalidade_moda == 1 || modalidade_moda == 2 || modalidade_moda == 3) {
         b_modalidade_usuario.innerHTML = 'Sunny Game'
     } else {
         b_modalidade_usuario.innerHTML = 'Nephis Game'
@@ -67,13 +74,55 @@ function exibir_kpi() {
     b_jogos_usuario.innerHTML = jogosConcluidos
     pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
     b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
-    plotar_graficos()
-
+    b_media_usuario.innerHTML = (soma_media_cliques / quantidade_modalidades).toFixed(2)
+    plotar_graficos();
 }
-window.addEventListener('load', exibir_kpi);
+
+function obter_dado_linha() {
+    // Primeira requisição: listar_score
+    fetch("/game/listar_score", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fkUsuarioServer: fkUsuario
+        })
+    }).then(function (resposta1) {
+        if (resposta1.ok) {
+            resposta1.json().then(function (json1) {
+                scores = json1.scores; // Armazena os scores
+
+                // Segunda requisição: listar_linha
+                fetch("/game/listar_linha", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        fkUsuarioServer: fkUsuario
+                    })
+                }).then(function (resposta2) {
+                    if (resposta2.ok) {
+                        resposta2.json().then(function (json2) {
+                            LINHAS_USUARIO = json2.linhas; // Armazena as linhas
+                            exibir_kpi(); // Exibe os KPIs
+                        });
+                    }
+                }).catch(function (erro) {
+                    console.log("Erro no segundo fetch:", erro);
+                });
+            });
+        }
+    }).catch(function (erro) {
+        console.log("Erro no primeiro fetch:", erro);
+    });
+}
+
+
+window.addEventListener('load', obter_dado_linha);
 
 function plotar_graficos() {
-
 
     /////---------------
     const data_jogo = {
@@ -182,20 +231,33 @@ function plotar_graficos() {
     const data_ganho = {
         labels: labels_ganho,
         datasets: [{
-            label: 'Partidas ganhadas',
+            label: 'Score',
             data: [],
-            fill: false,
+            fill: true,
             borderColor: 'rgb(21, 197, 174)',
             backgroundColor: 'rgba(33, 117, 106, 0.43)',
             tension: 0.1,
+            borderWidth: 4,
+
         }]
     };
+    //   let total_de_dados = scores.length;
+    // let i_dados = 0;
 
-    for (let i = 0; i < scores.length; i++) {
-        var registro = scores[i];
-        labels_ganho.push(registro.horario);
-        data_ganho.datasets[0].data.push(registro.score);
-    }
+    /* if (total_de_dados > 15) {
+         i_dados = total_de_dados - 15;
+     }
+ 
+     for (i_dados; i_dados < total_de_dados; i_dados++) {
+         var registro = scores[i_dados];
+         labels_ganho.push(registro.horario);
+         data_ganho.datasets[0].data.push(registro.score);
+     }*/
+for (let i = LINHAS_USUARIO.length - 1; i >= 0; i--) {
+    var registro = LINHAS_USUARIO[i];
+    labels_ganho.push(registro.horario);
+    data_ganho.datasets[0].data.push(registro.score);
+}
 
     const config_ganho = {
         type: 'line',

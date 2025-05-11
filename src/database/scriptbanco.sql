@@ -55,7 +55,17 @@ CREATE TABLE score(
 	CONSTRAINT fkUsuarioScore FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 ); 
 alter table score add column horario datetime default current_timestamp;
-select * from score; -- ate o 8
+select * from score; 
+insert into score values
+	(default, 6, 19, 72, 17, '2025-05-10 23:12:59'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:13:00'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:13:02'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:13:20'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:13:40'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:13:50'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:14:01'),
+    (default, 6, 19, 72, 17, '2025-05-10 23:14:10');
+    
 
 update score set horario = '2025-05-10 18:10:23' where idScore = 8;
 CREATE TABLE feedback (
@@ -76,3 +86,26 @@ CREATE TABLE forum(
 );
 
 select * from score;
+insert into score values
+	(default, 3, 19, 18, 18,  default);
+desc score;
+
+SELECT fkGame, score, DATE_FORMAT(horario,'%H:%i:%s') as horario FROM score WHERE fkUsuario = 19;
+select fkGame, count(idScore) as soma_jogo from score group by fkGame order by fkGame;
+SELECT fkGame, SUM(score) AS total_cliques, SUM(tempo) AS tempo_total_segundos, SUM(score) /SUM(tempo) AS media_cliques_por_segundo
+	FROM score GROUP BY fkGame ORDER BY fkGame;
+SELECT fkGame, min(tempo) as menor_sunny from score  group by fkGame order by fkGame;
+--  select com os tres 
+SELECT 
+  fkGame,
+  COUNT(idScore) AS total_partidas,
+  SUM(score) AS total_cliques,
+  SUM(tempo) AS tempo_total_segundos,
+  SUM(score) / SUM(tempo) AS media_cliques_por_segundo,
+  MIN(tempo) AS menor_tempo
+FROM score
+GROUP BY fkGame
+ORDER BY fkGame;
+
+SELECT score, DATE_FORMAT(horario,'%H:%i:%s') as horario  FROM score  WHERE fkUsuario = 19
+                    ORDER BY horario asc  LIMIT 15;
