@@ -880,7 +880,19 @@ img {
     font-size: 2.3rem;
     text-transform: uppercase;
     padding: 1vh 2vw;
-
+    display: flex;
+    gap: 5vw;
+}
+.estatisticas_atual{
+    border-bottom: solid 1px white;
+}
+.estatisticas_nao_atual{
+    color: #ffffffb7;
+}
+#estatisticas h2 span:hover{
+    border-bottom: solid 1px white;
+    color: white;
+    cursor: pointer;
 }
 
 .area-kpi {
@@ -891,6 +903,7 @@ img {
     align-items: center;
     gap: 2vw;
     text-align: center;
+    margin-top: 2vh;
 }
 
 .kpi {
@@ -928,7 +941,7 @@ img {
     flex-direction: row;
     width: 100%;
     height: 100%;
-    padding: 3vh 6vw;
+    padding: 1.5vh 6vw;
     gap: 3vw;
 }
 
@@ -955,7 +968,8 @@ canvas {
     width: 100%;
     height: 20vh;
 }
-.limite_ranking span{
+
+.limite_ranking span {
     font-size: 1rem;
 }
 
@@ -1010,16 +1024,27 @@ canvas {
     width: 100%;
     height: 7vh;
     padding: 2vh 1vw;
+    display: flex;
+    justify-content: center;
 }
 
+#select_dificuldade {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    position: relative;
+    left: 10px;
+    height: 6vh;
+    width: 5vw;
+    bottom: 1.63vh;
+    font-size: 1.2rem;
+}
 
-
-
-
-
-
-
-
+#select_dificuldade option {
+    background-color: #000000;
+    font-size: 1.2rem;
+    
+}
 
 
 
@@ -1337,6 +1362,7 @@ section .opcao_atual_jogo {
     background-repeat: no-repeat;
     border-radius: 10px;
     position: absolute;
+    z-index: 9;
 }
 
 #main .section_jogo_dificil_cheia {
@@ -1400,6 +1426,51 @@ img,
 div {
     user-select: none;
 }
+
+.area_vida_sunny{
+    position: absolute;
+    bottom: 1vh;
+    width: 60vw;
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+    height: 7vh;
+    font-size: 1.5rem;
+    flex-direction: column;
+    z-index: 0;
+    text-transform: uppercase;
+}
+.limitador_sunny{
+    width: 76%;
+    height: 40%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3vw;
+    border: solid 4px rgb(255, 255, 255);
+    width: 100%;
+    border-image-slice: 1;
+    border-width: 3px;  
+    border-left: none;
+    border-right: none;
+    border-image-source: linear-gradient(270deg, hsla(0, 0%, 31%, 0.116), #ffffff, hsla(0, 0%, 100%, 0.123));
+    
+    
+}
+.limitador_sunny div{
+    background-color: #08634f;
+    width: 7.5%;
+    height: 70%;
+    border-radius: 1px;
+    animation: brilho 2s infinite alternate;
+}
+@keyframes brilho {
+    from {
+        box-shadow: 0px 0px 1px 1px rgb(180, 180, 180);
+    }
+}
+
 
 /*nephis_game*/
 #section_nephis .carregamento_menu p {

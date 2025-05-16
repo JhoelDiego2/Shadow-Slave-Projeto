@@ -375,3 +375,27 @@ function verificar() {
         return false;
     }
 }
+
+let senha_visivel = false
+function mostrar_senha() {
+    alert('aaaaaa')
+    const senha = document.getElementById("ipt_senha_cad")
+    const conf_senha = document.getElementById("ipt_conf_senha")
+    const icone = document.getElementById("icone_senha_cad")
+    const icone_2 = document.getElementById("icone_senha_cad_conf")
+    if (senha_visivel == false) {
+        senha.type = "text"
+        conf_senha.type = "text"
+        icone.src = "assets/svg/visible-password-icon.svg"
+        icone_2.src = "assets/svg/visible-password-icon.svg"
+        senha_visivel = true
+
+    } else {
+        senha.type = "password"
+        conf_senha.type = "password"
+        icone.src = "assets/svg/invisible-password-icon.svg"
+        icone_2.src = "assets/svg/invisible-password-icon.svg"
+        senha_visivel = false
+
+    }
+}

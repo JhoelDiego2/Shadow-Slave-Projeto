@@ -75,6 +75,7 @@ function pontuar_sunny(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var fkGame= req.body.fkGameServer;
     var fkUsuario = req.body.fkUsuarioServer;
+    var resultado = req.body.resultadoServer;
     var score = req.body.scoreServer;
     var tempo = req.body.tempoServer;
 
@@ -91,7 +92,7 @@ function pontuar_sunny(req, res) {
     }  else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        gameModel.pontuar_sunny(fkGame, fkUsuario, score, tempo)
+        gameModel.pontuar_sunny(fkGame, fkUsuario, resultado, score, tempo)
             .then(
                 function (resultado) {
                     res.json(resultado);

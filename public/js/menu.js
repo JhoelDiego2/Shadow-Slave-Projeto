@@ -585,6 +585,7 @@ function mostrardeshbord() {
             estatisticas_visivel = false
         }, 2000)
     } else {
+        obter_dado_linha()
         estatisticas.classList.remove("section-games-saida")
         estatisticas.style.display = "flex"
         estatisticas.classList.add("section-games-entrada")
@@ -649,3 +650,18 @@ function ativar_pop_u(x, y, z) {
     buttom.innerHTML=z
 
 }*/
+
+function mudar_grafico() {
+    var grafico_atual = document.getElementById('select_dificuldade').value
+    const grafico_um = document.getElementById('grafico_dificuldade')
+    const grafico_dois = document.getElementById('grafico_dificuldade_dois')
+    if (grafico_atual == 'Sunny_Game') {
+        grafico_um.style.display = 'flex'
+        grafico_dois.style.display = 'none'
+    }
+    if (grafico_atual == 'Nephis_Game') {
+        grafico_um.style.display = 'none'
+        grafico_dois.style.display = 'flex'
+
+    }
+}

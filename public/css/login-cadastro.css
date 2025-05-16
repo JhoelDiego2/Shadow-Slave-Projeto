@@ -54,8 +54,8 @@ body{
         background: linear-gradient(#000000, #3d3d4988), url("../assets/img/fundo_geral.png");
         background-size: 40vh;
         color: white;
-    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="60" viewBox="0 0 24 24"><path fill="%2314FFD3" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') ,auto;
-    overflow-x: hidden;
+   /* cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="60" viewBox="0 0 24 24"><path fill="%2314FFD3" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>') ,auto;
+ */   overflow-x: hidden;
     overflow-y: hidden;
 }
 .body_after{
@@ -507,8 +507,8 @@ footer .list div {
     color: var(--azul-escverdeado-obscuro);
     border-radius: 0.5rem;
     border-bottom: solid 4px var(--luz);
-    z-index: 3;
-    padding-left: 3.3vw;
+  z-index: 3;
+  padding-left: 3.3vw;
 } 
 .card-login ::placeholder{
     color: #bebebe;

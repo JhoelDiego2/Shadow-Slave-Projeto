@@ -43,7 +43,7 @@
     <header>
         <div>
             <img class="b_avatar" src="assets/img/sunny_xom_fundo.webp" alt="">
-            <p>Seja bem vindo:</p>
+            <p>Seja bem-vindo:</p>
             <p class="b_usuario">nome</p>
             <p class="b_nome_real">nome Real</p>
             <p class="b_rank_atual">rank</p>
@@ -55,7 +55,7 @@
             </p>
             <p onclick="mostrardeshbord()"><img src="" alt="">
                 <img src="assets/svg/bar-chart-sharp.png" alt="">
-                Estatisticas
+                Estatísticas
             </p>
             <p onclick="mostrarConfiguracao()"><img src="" alt="">
                 <img src="assets/svg/user.svg" alt="">
@@ -63,7 +63,7 @@
             </p>
             <p onclick="mostrarForum()"><img src="" alt="">
                 <img src="assets/svg/user.svg" alt="">
-                Forum
+                Forúm
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
                 <img src="assets/svg/sair_branco.svg" alt="">
@@ -270,25 +270,26 @@
             </div>
         </section>
         <section id="estatisticas" style="display: none;">
-            <h2>Estatisticas</h2>
+            <h2>Estatísticas <span id="estatisticas_individual" class="estatisticas_atual">Individual</span><span
+                    id="estatisticas_regional" class="estatisticas_nao_atual">Regional</span></h2>
             <div class="area-kpi">
                 <div class="kpi">
                     <p class="kpi-texto">Modalidade Mais Jogada</p>
-                    <p class="dado" id="b_modalidade_usuario">1</p>
+                    <p class="dado" id="b_modalidade_usuario">Nenhuma</p>
                 </div>
                 <div class="kpi">
-                    <p class="kpi-texto">Jogos Concluídos</p>
-                    <p class="dado" id="b_jogos_usuario">1</p>
+                    <p class="kpi-texto">Partidas Concluídas</p>
+                    <p class="dado" id="b_jogos_usuario">0</p>
 
                 </div>
                 <div class="kpi">
                     <p class="kpi-texto">Média de Cliques Nephis Game</p>
-                    <p class="dado" id="b_media_usuario">1</p>
+                    <p class="dado" id="b_media_usuario">0</p>
 
                 </div>
                 <div class="kpi">
                     <p class="kpi-texto">Menor Tempo Sunny Game</p>
-                    <p class="dado" id="b_ganhos_usuario">Vou mudar</p>
+                    <p class="dado" id="b_ganhos_usuario">20</p>
 
                 </div>
             </div>
@@ -300,8 +301,15 @@
                         <canvas id="grafico_jogo" width="293" height="200"></canvas>
                     </div>
                     <div class="gradico_dificuldade grafico">
-                        <h3>Dificuldades jogadas</h3>
+                        <h3>Dificuldades jogadas
+                            <select id="select_dificuldade" oninput="mudar_grafico()">
+                                <option value="Sunny_Game">Sunny Game</option>
+                                <option value="Nephis_Game">Nephis Game</option>
+                            </select>
+                        </h3>
                         <canvas id="grafico_dificuldade" width="293"" height=" 200"></canvas>
+                        <canvas id="grafico_dificuldade_dois" width="293"" height=" 200"
+                            style="display: none;"></canvas>
                     </div>
                 </div>
                 <div class="lateral_direita">
@@ -325,37 +333,56 @@
                         <h3>
                             Progresso de Score nas Últimas 15 partidas
                         </h3>
-                        <canvas id="grafico_ganho"></canvas>
+                        <canvas id="grafico_ganho" height="300" width="634"></canvas>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="section_sunny" style="display: none;">
+        <section id="section_sunny" style="display: nne;">
             <h6>Score</h6>
             <h6 id="contador_sunny">0</h6>
             <h5 id="cronometro_sunny">0:20</h5>
             <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia" onclick="tela_cheia('sunny')">
-            <div id="sunny-carregando" style="display: nne;">
+            <div id="sunny-carregando" style="display: none;">
                 <div class="carregamento_menu">
                     <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class=" menu_jogo" style="display: noe;">
+            <div class="menu_jogo" style="display: nne;">
                     <h2>Selecione a dificuldade:</h2>
                     <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
-                    <!--   <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>-->
+                    <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>
                     <p onclick="sunny_nivel_jogo('dificil')" id="s_dificil">Dificil</p>
+                    <p onclick="sunny_nivel_jogo('hardcore')" id="s_hardcore">Hardcore</p>
                     <p onclick="iniciar_jogo_sunny()">COMECAR</p>
                     <p onclick="ir_para_menu_geral('sunny')">SAIR</p>
                 </div>
-                <div id="sunny_player" onclick="mudar_posicao()"></div>
+                <div id="sunny_player" onclick="mudar_posicao()" style="display: noe;"></div>
                 <div class="resultados_jogo resultados_sunny" style="display: none;">
                     <img src="assets/img/sunny_chibi.png" alt="">
                     <h2>Ascensão Sombria</h2>
                     <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
-                    <p>score: <span>x</span></p>
+                    <p>Score: <span class="resultado_score">x</span></p>
+                    <p>Tempo: <span class="resultado_tempo">x</span></p>
                     <button onclick="iniciar_jogo_sunny()">Tentar Novamente</button>
                     <button onclick="ir_para_menu('sunny')"">Sair</button>
+                </div>
+                <div class="area_vida_sunny">
+                    <p>Vida Sunny</p>
+                    <div class="limitador_sunny">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 </div>
         </section>
         <section id="section_nephis" style="display: none;">
@@ -376,8 +403,7 @@
                             </div>
                             <div class="column-1">
                                 <div class="area_vida">
-                                    <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo b_avatar"
-                                        >
+                                    <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo b_avatar">
                                     <div>
                                         <h5 class="b_usuario">Jhoel</h5>
                                         <div id="limite_vida">
@@ -422,9 +448,9 @@
                             </div>
         </section>
     </main>
+    <script src="js/deshbord.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/games.js"></script>
-    <script src="js/deshbord.js"></script>
 </body>
 
 </html>

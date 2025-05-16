@@ -23,13 +23,13 @@ function pontuar_nephis(fkGame, fkUsuario, score, tempo) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function pontuar_sunny(fkGame, fkUsuario, score, tempo) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_sunny():", fkGame,fkUsuario, score, tempo);
+function pontuar_sunny(fkGame, fkUsuario,resultado,  score, tempo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_sunny():", fkGame,fkUsuario,resultado, score, tempo);
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO score (fkGame, fkUsuario, score, tempo) VALUES
-            ('${fkGame}','${fkUsuario}', '${score}', '${tempo}');
+        INSERT INTO score (fkGame, fkUsuario, resultado, score, tempo) VALUES
+            ('${fkGame}','${fkUsuario}', '${resultado}', '${score}', '${tempo}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -40,7 +40,7 @@ function listar_score(fkUsuario) {
         SELECT fkGame, COUNT(idScore) AS total_partidas, SUM(score) AS total_cliques,
                 SUM(tempo) AS tempo_total_segundos, SUM(score) / SUM(tempo) AS media_cliques_por_segundo,
                 MIN(tempo) AS menor_tempo
-        FROM score  GROUP BY fkGame  ORDER BY fkGame;
+        FROM score  WHERE fkUsuario = '${fkUsuario}'  GROUP BY fkGame  ORDER BY fkGame;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -69,7 +69,7 @@ function atualizar_grafico_pizza(fkUsuario) {
         SELECT fkGame, COUNT(idScore) AS total_partidas, SUM(score) AS total_cliques,
                 SUM(tempo) AS tempo_total_segundos, SUM(score) / SUM(tempo) AS media_cliques_por_segundo,
                 MIN(tempo) AS menor_tempo
-        FROM score  GROUP BY fkGame  ORDER BY fkGame;
+        FROM score WHERE fkUsuario = '${fkUsuario}'   GROUP BY fkGame  ORDER BY fkGame;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

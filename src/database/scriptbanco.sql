@@ -109,3 +109,13 @@ ORDER BY fkGame;
 
 SELECT score, DATE_FORMAT(horario,'%H:%i:%s') as horario  FROM score  WHERE fkUsuario = 19
                     ORDER BY horario asc  LIMIT 15;
+
+
+        SELECT fkGame, COUNT(idScore) AS total_partidas, SUM(score) AS total_cliques,
+                SUM(tempo) AS tempo_total_segundos, SUM(score) / SUM(tempo) AS media_cliques_por_segundo,
+                MIN(tempo) AS menor_tempo
+        FROM score where fkUsuario = 19 
+        GROUP BY fkGame   ORDER BY fkGame;
+        
+        select * from usuario;
+                select * from score;

@@ -50,12 +50,18 @@
           <input type="text" id="ipt_email" onclick="digitando_cad('email')" >
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
-            <p id="texto_senha_cad">Senha</p>
+            <p id="texto_senha_cad">Senha </p>
+            <img src="assets/svg/invisible-password-icon.svg" style="width: 1.5vw; position: absolute; right: 0.8vw; z-index: 2; cursor: pointer;" 
+            onclick="msotrar_senha()" id="icone_senha_cad">
+
           </div>
-          <input type="password" id="ipt_senha_cad" onclick="digitando_cad('senha_cad')">
+          <input type="password" id="ipt_senha_cad" onclick="digitando_cad('senha_cad')" style="z-index: 1;">
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_conf_senha">Confirmar Senha</p>
+            <img src="assets/svg/invisible-password-icon.svg" style="width: 1.5vw; position: absolute; right: 0.8vw; z-index: 10;" 
+              onclick="msotrar_senha()" id="icone_senha_cad_conf"
+            >
           </div>
           <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')" >
           <button onclick="cadastrar()">CADASTRAR-SE</button >
