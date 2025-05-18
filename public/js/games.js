@@ -18,7 +18,7 @@ let fkGame = 0
 let intervalo_sunny_dificuldade = 0
 let tempo_sobra_sunny = 0
 let tempo_sunny_game = 0
-let resultados_game =  ''
+let resultados_game = ''
 function pontuacao_sunny() {
     let fkUsuario = sessionStorage.ID_USUARIO;
     fetch("/game/pontuar_sunny", {
@@ -52,24 +52,37 @@ function pontuacao_sunny() {
 }
 
 function resultados_jogo_fuc(nome, titulo, descricao, score, tempo) {
-    console.log("Chamou resultados_jogo_fuc") // para testar
-    const resultados_jogo = document.querySelector(`.resultados_${nome}`)
-    const m_titulo = resultados_jogo.querySelector("h2")
-    const m_descricao = resultados_jogo.querySelector("h4")
-    const m_score = resultados_jogo.querySelector(".resultado_score")
-    const m_tempo = resultados_jogo.querySelector(".resultado_tempo")
-    const s_nome = document.getElementById(`section_${nome}`)
-    botom_nephis_game[0].classList.add("section_preta")
-    botom_nephis_game[0].onclick = null;
-    botom_nephis_game[1].classList.add("section_preta")
-    column_1.classList.add("section_preta")
-    column_2.classList.add("section_preta")
-    resultados_jogo.style.display = "flex"
-    s_nome.classList.add("section_preta")
-    m_titulo.innerHTML = titulo
-    m_descricao.innerHTML = descricao
-    m_score.innerHTML = score
-    m_tempo.innerHTML = tempo
+    console.log("Chamou resultados_jogo_fuc"); // Teste
+
+    let s_nome = null;
+    let resultados_jogo = null;
+
+    if (nome === 'sunny') {
+        resultados_jogo = document.querySelector(`.resultados_${nome}`);
+        s_nome = document.getElementById('section_sunny');
+    } else if (nome === 'nephis') {
+        resultados_jogo = document.querySelector('.resultados_nephis');
+        s_nome = document.getElementById('section_nephis');
+
+        botom_nephis_game[0].classList.add("section_preta");
+        botom_nephis_game[0].onclick = null;
+        botom_nephis_game[1].classList.add("section_preta");
+    }
+
+    const m_titulo = resultados_jogo.querySelector("h2");
+    const m_descricao = resultados_jogo.querySelector("h4");
+    const m_score = resultados_jogo.querySelector(".resultado_score");
+    const m_tempo = resultados_jogo.querySelector(".resultado_tempo");
+
+    column_1.classList.add("section_preta");
+    column_2.classList.add("section_preta");
+    resultados_jogo.style.display = "flex";
+    s_nome.classList.add("section_preta");
+
+    m_titulo.innerHTML = titulo;
+    m_descricao.innerHTML = descricao;
+    m_score.innerHTML = score;
+    m_tempo.innerHTML = tempo;
 }
 
 
@@ -83,102 +96,102 @@ function parar_jogo_sunny() {
     s_sunny.classList.remove("section_jogo_dificil_cheia")
     sunny_player.classList.remove("sunny_player_dificil")
 
-if (nivel_jogo_sunny == 'facil') {
-    if (i_sunny >= 22 && resultados_game == 'Vitoria') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você deu seus primeiros passos nas sombras. Um novo caminho se abre.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else if (i_sunny >= 12 && resultados_game == 'Derrota') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você ainda está aprendendo a dominar as trevas. Continue tentando.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'As sombras te engoliram... Mas há sempre uma próxima chance.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
+    if (nivel_jogo_sunny == 'facil') {
+        if (i_sunny >= 22 && resultados_game == 'Vitoria') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você deu seus primeiros passos nas sombras. Um novo caminho se abre.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else if (i_sunny >= 12 && resultados_game == 'Derrota') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você ainda está aprendendo a dominar as trevas. Continue tentando.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'As sombras te engoliram... Mas há sempre uma próxima chance.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        }
+    } else if (nivel_jogo_sunny == 'medio') {
+        if (i_sunny >= 45 && resultados_game == 'Vitoria') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você está no caminho certo para se tornar um verdadeiro mestre das sombras.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else if (i_sunny >= 25 && resultados_game == 'Derrota') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você resistiu bravamente, mas ainda precisa evoluir.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'As sombras foram cruéis desta vez.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        }
+    } else if (nivel_jogo_sunny == 'dificil') {
+        if (i_sunny >= 67 && resultados_game == 'Vitoria') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você enfrentou o abismo e saiu vitorioso. Seu nome será lembrado.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else if (i_sunny >= 38 && resultados_game == 'Derrota') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Mesmo na derrota, sua bravura brilhou na escuridão.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'A escuridão te venceu, mas ela ainda pode ser dominada.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        }
+    } else if (nivel_jogo_sunny == 'hardcore') {
+        if (i_sunny >= 90 && resultados_game == 'Vitoria') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você dominou as sombras e se tornou uma lenda entre os despertos.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else if (i_sunny >= 50 && resultados_game == 'Derrota') {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'Você lutou bravamente, mas ainda precisa dominar seus medos.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        } else {
+            resultados_jogo_fuc('sunny',
+                `${resultados_game}`,
+                'As trevas o consumiram... Tente novamente e descubra sua força.',
+                `${i_sunny}`,
+                `${tempo_sunny_game}`
+            );
+        }
     }
-} else if (nivel_jogo_sunny == 'medio') {
-    if (i_sunny >= 45 && resultados_game == 'Vitoria') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você está no caminho certo para se tornar um verdadeiro mestre das sombras.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else if (i_sunny >= 25 && resultados_game == 'Derrota') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você resistiu bravamente, mas ainda precisa evoluir.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'As sombras foram cruéis desta vez.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    }
-} else if (nivel_jogo_sunny == 'dificil') {
-    if (i_sunny >= 67 && resultados_game == 'Vitoria') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você enfrentou o abismo e saiu vitorioso. Seu nome será lembrado.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else if (i_sunny >= 38 && resultados_game == 'Derrota') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Mesmo na derrota, sua bravura brilhou na escuridão.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'A escuridão te venceu, mas ela ainda pode ser dominada.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    }
-} else if (nivel_jogo_sunny == 'hardcore') {
-    if (i_sunny >= 90 && resultados_game == 'Vitoria') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você dominou as sombras e se tornou uma lenda entre os despertos.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else if (i_sunny >= 50 && resultados_game == 'Derrota') {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'Você lutou bravamente, mas ainda precisa dominar seus medos.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    } else {
-        resultados_jogo_fuc('sunny',
-            `${resultados_game}`,
-            'As trevas o consumiram... Tente novamente e descubra sua força.',
-            `${i_sunny}`,
-            `${tempo_sunny_game}`
-        );
-    }
-}
 
 }
-let temp_cronometro = 30 * 1000; 
+let temp_cronometro = 30 * 1000;
 function comecar_cronometro() {
     let cronometro = document.getElementById("cronometro_sunny");
 
@@ -204,13 +217,13 @@ function comecar_cronometro() {
                 resultados_game = 'Derrota'
             }
             tempo_sobra_sunny = temp_cronometro
-            tempo_sunny_game = ((30000 - tempo_sobra_sunny)/1000).toFixed(2)
+            tempo_sunny_game = ((30000 - tempo_sobra_sunny) / 1000).toFixed(2)
             clearInterval(intervalo_cronometro);
             cronometro.style.color = "red";
             pontuacao_sunny();
             parar_jogo_sunny();
         }
-    }, 10); 
+    }, 10);
 }
 
 function aleatorio() {
@@ -228,33 +241,33 @@ function iniciar_jogo_sunny() {
     let score_atual = 0
     div_atual = 11
     let div_atual_momento = 0
-     score_atual = i_sunny
-     div_atual_momento = div_atual
-     mudar_posicao()
-     i_sunny = score_atual
-     div_atual = div_atual_momento
+    score_atual = i_sunny
+    div_atual_momento = div_atual
+    mudar_posicao()
+    i_sunny = score_atual
+    div_atual = div_atual_momento
 
     for (let i = 0; i < limitador_sunny_div.length; i++) {
-        limitador_sunny_div[i].style.opacity='1'
+        limitador_sunny_div[i].style.opacity = '1'
         limitador_sunny_div[i].style.backgroundColor = 'green'
     }
     if (nivel_jogo_sunny == 'facil') {
         fkGame = 1
-    }else if (nivel_jogo_sunny == 'medio') {
+    } else if (nivel_jogo_sunny == 'medio') {
         fkGame = 2
         intervalo_sunny_dificuldade = 1000
-    }else if(nivel_jogo_sunny == 'dificil'){
+    } else if (nivel_jogo_sunny == 'dificil') {
         fkGame = 3
         intervalo_sunny_dificuldade = 900
-    }else{
+    } else {
         fkGame = 4
-        intervalo_sunny_dificuldade = 750
+        intervalo_sunny_dificuldade = 600
     }
     botao_tela.style.display = "none"
     i_sunny = 0
     contador_sunny.innerHTML = i_sunny
     sunny_player.style.display = "flex"
-    temp_cronometro = 30 * 1000;
+    temp_cronometro = 20 * 1000;
     menu_jogo.style.display = "none"
     resultados_jogo.style.display = "none"
     s_sunny.classList.remove("section_preta")
@@ -274,11 +287,11 @@ function iniciar_jogo_sunny() {
 
         }, intervalo_sunny_dificuldade)
     }
-    if ((nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'hardcore' )   && tela_cheia_ativo == false) {
+    if ((nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'hardcore') && tela_cheia_ativo == false) {
         s_sunny.classList.add("section_jogo_dificil")
         //   sunny_player.classList.add("sunny_player_dificil")
     }
-    if ((nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'hardcore' )   && tela_cheia_ativo == true) {
+    if ((nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'hardcore') && tela_cheia_ativo == true) {
         s_sunny.classList.add("section_jogo_dificil_cheia")
         //  sunny_player.classList.add("sunny_player_dificil")
     }
@@ -320,11 +333,11 @@ function mudar_posicao() {
     }
     if (nivel_jogo_sunny == 'facil') {
         i_sunny = i_sunny + 2
-    }else if (nivel_jogo_sunny == 'medio') {
-        i_sunny = i_sunny +4
-    }else if (nivel_jogo_sunny == 'dificil') {
-        i_sunny = i_sunny +6
-    }else{
+    } else if (nivel_jogo_sunny == 'medio') {
+        i_sunny = i_sunny + 4
+    } else if (nivel_jogo_sunny == 'dificil') {
+        i_sunny = i_sunny + 6
+    } else {
         i_sunny = i_sunny + 9
     }
     if (i_sunny > 20) {
@@ -490,29 +503,40 @@ function ataque_nephis() {
     cont_nephis.innerHTML = i_nephis
     vida_maquina.style.width = `${vida_maquina_largura}%`
 
-    if (vida_maquina_largura == 0) {
+    if (vida_maquina_largura <= 0) {
         jogo_nephis_ativo = false
-        pontuacao_nephis()
+         pontuacao_nephis()
         clearInterval(intervalo_maquina)
         clearInterval(cronometro_nephis)
         if ((i_nephis > score_nephis_maq) && nivel_jogo_nephis == 'dificil') {
             resultados_jogo_fuc('nephis',
-                'Corte Impecável',
+                'Vitoria',
                 'Você atacou com precisão cirúrgica. Nephis reconheceria sua disciplina.',
-                `${i_nephis}`
+                `${i_nephis}`, 
+                    `${nephis_tempo}`
+
             )
+            resultados_game = 'Vitoria'
         } else if ((i_nephis > score_nephis_maq) && score_nephis_maq > 90) {
             resultados_jogo_fuc('nephis',
-                'Triunfo por Um Fio',
+                'Vitoria',
                 'O último golpe foi seu. Nephis permaneceu firme enquanto a escuridão vacilava.',
-                `${i_nephis}`
+                `${i_nephis}`, 
+                    `${nephis_tempo}`
+
             )
+            resultados_game = 'Vitoria'
+
         } else if (i_nephis > score_nephis_maq) {
             resultados_jogo_fuc('nephis',
-                'Vitória Silenciosa',
+                'Vitoria',
                 'Com 100 cortes precisos, Nephis não hesitou. A sombra foi vencida antes mesmo de perceber.',
-                `${i_nephis}`
+                `${i_nephis}`,
+                `${nephis_tempo}`
+
             )
+            resultados_game = 'Vitoria'
+
         }
     }
 }
@@ -556,28 +580,36 @@ function ataque_maquina() {
         vida_usuario.style.width = `${vida_usuario_largura}%`
         contador_maq.innerHTML = score_nephis_maq
 
-        if (vida_usuario_largura == 0) {
+        if (vida_usuario_largura <= 0) {
             jogo_nephis_ativo = false
-            pontuacao_nephis()
+             pontuacao_nephis()
             botom_nephis_game[1].style.animation = "none"
             if ((score_nephis_maq > i_nephis) && (nivel_jogo_nephis == 'dificil' && i_nephis > 90)) {
                 resultados_jogo_fuc('nephis',
-                    'Foi quase desta vez ',
+                    'Derrota',
                     'O inimigo venceu por um instante. Nephis reconhece que você realmente tentou',
-                    `${i_nephis}`
+                    `${i_nephis}`, 
+                    `${nephis_tempo}`
+
                 )
+                resultados_game = 'Derrota'
             } else if ((score_nephis_maq > i_nephis) && i_nephis > 90) {
                 resultados_jogo_fuc('nephis',
-                    'O enemigo foi mais rápido',
+                    'Derrota',
                     'O inimigo venceu por um instante. Nephis analisará. Aprenderá. E não falhará de novo.',
-                    `${i_nephis}`
+                    `${i_nephis}`, 
+                    `${nephis_tempo}`
                 )
+                resultados_game = 'Derrota'
             } else if (score_nephis_maq > i_nephis) {
                 resultados_jogo_fuc('nephis',
-                    'Silêncio Derrotado',
+                    'Derrota',
                     'Mesmo a mais disciplinada pode cair. Mas Nephis sempre retorna — mais forte.',
-                    `${i_nephis}`
+                    `${i_nephis}`, 
+                    `${nephis_tempo}`
+
                 )
+                resultados_game = 'Derrota'
             }
             clearInterval(intervalo_maquina)
             clearInterval(cronometro_nephis)
@@ -588,10 +620,12 @@ function nephis_nivel_jogo(x) {
     const n_facil = document.getElementById("n_facil");
     const n_medio = document.getElementById("n_medio");
     const n_dificil = document.getElementById("n_dificil");
+    const n_hardcore = document.getElementById("n_hardcore");
     const selecionado = document.getElementById(`n_${x}`);
     n_facil.classList.remove("opcao_atual_jogo");
     n_medio.classList.remove("opcao_atual_jogo");
     n_dificil.classList.remove("opcao_atual_jogo");
+    n_hardcore.classList.remove("opcao_atual_jogo");
     selecionado.classList.add("opcao_atual_jogo");
     nivel_jogo_nephis = x
 }
@@ -628,21 +662,28 @@ function iniciar_jogo_nephis() {
         enemigo_nomeReal.innerHTML = 'Song of the Fallen'
         avatar_enemigo.src = "assets/img/cassie-chibi.png"
         tempo_int_maquina = 200
-        fkGame = 4
+        fkGame = 5
     } else if (nivel_jogo_nephis == 'medio') {
         enemigo_nome.innerHTML = 'Sunny'
         enemigo_nomeReal.innerHTML = 'Lost from light'
         avatar_enemigo.src = "assets/img/sunny_chibi.png"
         column_2.classList.add("column-2-medio")
         tempo_int_maquina = 180
-        fkGame = 5
-    } else {
+        fkGame = 6
+    } else if (nivel_jogo_nephis == 'dificil') {
         enemigo_nome.innerHTML = 'Mongrel'
         enemigo_nomeReal.innerHTML = 'Lost From Fate'
         avatar_enemigo.src = "assets/img/mongrel-chibi.png"
         column_2.classList.add("column-2-dificil")
         tempo_int_maquina = 160
-        fkGame = 6
+        fkGame = 7
+    } else if (nivel_jogo_nephis == 'hardcore') {
+        enemigo_nome.innerHTML = 'Mongrel'
+        enemigo_nomeReal.innerHTML = 'Lost From Fate'
+        avatar_enemigo.src = "assets/img/mongrel-chibi.png"
+        column_2.classList.add("column-2-hardcore")
+        tempo_int_maquina = 140
+        fkGame = 8
     }
     vida_usuario.style.backgroundColor = "green"
     vida_maquina.style.backgroundColor = "green"

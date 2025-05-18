@@ -1,17 +1,15 @@
-// 'Adormecido', 'Desperto', 'Transcendente' 'Ascendido', 'Santo', 'Tirano', 'Devorador'
-
 
 let fkUsuario = sessionStorage.ID_USUARIO;
 let proximaAtualizacao;
 let proximaAtualizacao_pizza;
 const sistema_progressao = {
-    'Adormecido': 100,
-    'Desperto': 200,
-    'Transcendente': 300,
-    'Ascendido': 400,
-    'Santo': 500,
-    'Tirano': 600,
-    'Devorador': 1000,
+    'Adormecido': 156.25,
+    'Desperto': 312.5,
+    'Transcendente': 625,
+    'Ascendido': 1250,
+    'Santo': 2500,
+    'Tirano': 5000,
+    'Devorador': 10000,
 }
 let estatisticas_ativo = false
 let rankUsuario_atual = sessionStorage.RANK_USUARIO;
@@ -46,12 +44,17 @@ const b_media_usuario = document.getElementById('b_media_usuario')
 const b_ganhos_usuario = document.getElementById('b_ganhos_usuario')
 const pontuacao_total_atual = document.getElementById('pontuacao_total_atual')
 const b_rank_seguinte = document.querySelector('.b_rank_seguinte')
+const limite_ranking = document.querySelector('.limite_ranking')
+const limite_ranking_div = limite_ranking.querySelector('div')
+let largura_limite_ranking = 100
+let proporcao_score = 0
 let LINHAS_USUARIO = []
 let scores = []
 let primeira_vez = true
 function exibir_kpi() {
     i_modalidade_sunny = 0
     i_modalidade_nephis = 0
+    proporcao_score = 0
     i_facil = 0
     i_facil_dois = 0
     i_medio = 0
@@ -99,10 +102,12 @@ function exibir_kpi() {
     } else {
         b_modalidade_usuario.innerHTML = 'Nephis Game'
     }
+    proporcao_score =  (i_pontuacao_total * 100) / sistema_progressao[proximoRank]
     b_jogos_usuario.innerHTML = jogosConcluidos
-    pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
-    b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
+  pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
+   b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
     b_ganhos_usuario.innerHTML = menor_tempo_sunny 
+    limite_ranking_div.style.width = proporcao_score + "%"
     if (soma_media_cliques == 0) {
         b_media_usuario.innerHTML = 0
     } else {
@@ -215,7 +220,8 @@ function plotar_graficos() {
         labels: [
             'Fácil',
             'Medio',
-            'Dificil'
+            'Dificil', 
+            'Hardcore'
         ],
         datasets: [{
             label: 'Quantidade de vezes jogada: ',
@@ -236,7 +242,7 @@ function plotar_graficos() {
             borderWidth: 2,
             hoverOffset: 20,
 
-            radius: '95%', // Padrão é '100%' — aqui você reduz para 80%
+        radius: '95%', // Padrão é '100%' — aqui você reduz para 80%
         }]
     };
     const config_dificuldade = {

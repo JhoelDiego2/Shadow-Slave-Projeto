@@ -987,7 +987,7 @@ canvas {
 
 .limite_ranking div {
     height: 100%;
-    width: 70%;
+    width: 0%;
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
@@ -996,6 +996,7 @@ canvas {
     border-radius: 20px;
     box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.301);
     align-items: center;
+    transition: 2s ease-in-out;
 
 }
 
@@ -1717,4 +1718,10 @@ div {
     background: url('../assets/img/fundo_mondrel.png');
     background-size: cover;
     background-position: right;
+}
+
+#main .column-2-hardcore {
+    background: url('../assets/img/sunny_boss.jpeg');
+    background-size: cover;
+    background-position: center;
 }

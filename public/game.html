@@ -289,7 +289,7 @@
                 </div>
                 <div class="kpi">
                     <p class="kpi-texto">Menor Tempo Sunny Game</p>
-                    <p class="dado" id="b_ganhos_usuario">20</p>
+                    <p class="dado" id="b_ganhos_usuario">30</p>
 
                 </div>
             </div>
@@ -314,16 +314,16 @@
                 </div>
                 <div class="lateral_direita">
                     <div class="progresso_rank grafico">
-                        <h3>Progresso de rank: <span id="pontuacao_total_atual">200p</span> </h3>
+                        <h3>Progresso de rank: <span id="pontuacao_total_atual"></span> </h3>
 
                         <div class="div_limite">
                             <div class="limite_ranking">
                                 <div>
                                     <p class="b_rank_atual">
-                                        Adormecido
+
                                     </p>
                                     <p style="position: absolute; right: 10vw;" class="b_rank_seguinte">
-                                        Desperto <span id="pontuacao_seguinte_rank">500p</span>
+                                        <span id="pontuacao_seguinte_rank"></span>
                                     </p>
                                 </div>
                             </div>
@@ -338,17 +338,17 @@
                 </div>
             </div>
         </section>
-        <section id="section_sunny" style="display: nne;">
+        <section id="section_sunny" style="display: none;">
             <h6>Score</h6>
             <h6 id="contador_sunny">0</h6>
             <h5 id="cronometro_sunny">0:20</h5>
             <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia" onclick="tela_cheia('sunny')">
-            <div id="sunny-carregando" style="display: none;">
+            <div id="sunny-carregando" style="display: noe;">
                 <div class="carregamento_menu">
                     <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class="menu_jogo" style="display: nne;">
+            <div class=" menu_jogo" style="display: nne;">
                     <h2>Selecione a dificuldade:</h2>
                     <p onclick="sunny_nivel_jogo('facil')" class="opcao_atual_jogo" id="s_facil">Facil</p>
                     <p onclick="sunny_nivel_jogo('medio')" id="s_medio">Medio</p>
@@ -367,85 +367,85 @@
                     <button onclick="iniciar_jogo_sunny()">Tentar Novamente</button>
                     <button onclick="ir_para_menu('sunny')"">Sair</button>
                 </div>
-                <div class="area_vida_sunny">
-                    <p>Vida Sunny</p>
-                    <div class="limitador_sunny">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                <div class=" area_vida_sunny">
+                        <p>Vida Sunny</p>
+                        <div class="limitador_sunny">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                 </div>
         </section>
         <section id="section_nephis" style="display: none;">
-                        <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia"
-                            onclick="tela_cheia('nephis')">
-                        <div id="nephis-carregando" style="display: nne;">
-                            <div class="carregamento_menu">
-                                <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
+            <img src="assets/svg/scan-outline.svg" alt="" class="botao_tela_cheia" onclick="tela_cheia('nephis')">
+            <div id="nephis-carregando" style="display: nne;">
+                <div class="carregamento_menu">
+                    <p ">CARREGANDO</p><span></span> <span></span><span></span><span></span><span></span><span></span>
                 </div>
             </div>
-            <div class="menu_jogo" style="display: noe;">
-                                <h2>Selecione a dificuldade:</h2>
-                                <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="n_facil">Facil</p>
-                                <p onclick="nephis_nivel_jogo('medio')" id="n_medio">Medio</p>
-                                <p onclick="nephis_nivel_jogo('dificil')" id="n_dificil">Dificil</p>
-                                <p onclick="iniciar_jogo_nephis()">COMECAR</p>
-                                <p onclick="ir_para_menu_geral('nephis')">SAIR</p>
+            <div class=" menu_jogo" style="display: noe;">
+                    <h2>Selecione a dificuldade:</h2>
+                    <p onclick="nephis_nivel_jogo('facil')" class="opcao_atual_jogo" id="n_facil">Facil</p>
+                    <p onclick="nephis_nivel_jogo('medio')" id="n_medio">Medio</p>
+                    <p onclick="nephis_nivel_jogo('dificil')" id="n_dificil">Dificil</p>
+                    <p onclick="nephis_nivel_jogo('hardcore')" id="n_hardcore">Hardcore</p>
+                    <p onclick="iniciar_jogo_nephis()">COMECAR</p>
+                    <p onclick="ir_para_menu_geral('nephis')">SAIR</p>
+                </div>
+                <div class="column-1">
+                    <div class="area_vida">
+                        <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo b_avatar">
+                        <div>
+                            <h5 class="b_usuario">Jhoel</h5>
+                            <div id="limite_vida">
+                                <div id="vida_usuario"></div>
                             </div>
-                            <div class="column-1">
-                                <div class="area_vida">
-                                    <img src="assets/img/sunny_chibi.png" alt="" class="icone_nephis_jogo b_avatar">
-                                    <div>
-                                        <h5 class="b_usuario">Jhoel</h5>
-                                        <div id="limite_vida">
-                                            <div id="vida_usuario"></div>
-                                        </div>
-                                        <h5 class="b_nome_real">Lost From Fate</h5>
-                                    </div>
-                                </div>
-                                <h6 id="score_leta_nephis">Score</h6>
-                                <h6 id="contador_nephis">0</h6>
-                                <button onclick="ataque_nephis()" class="botao_jogo_nephis">
+                            <h5 class="b_nome_real">Lost From Fate</h5>
+                        </div>
+                    </div>
+                    <h6 id="score_leta_nephis">Score</h6>
+                    <h6 id="contador_nephis">0</h6>
+                    <button onclick="ataque_nephis()" class="botao_jogo_nephis">
 
-                                </button>
+                    </button>
+                </div>
+                <h5 id="cronometro_nephis" onclick="ataque_maquina()">0:00</h5>
+
+                <div class="column-2" id="boss_cassie" style="display: nne;">
+                    <div class="area_vida">
+                        <div>
+                            <h5 id="enemigo_nome">Cassie</h5>
+                            <div id="limite_vida_enemigo">
+                                <div id="vida_maquina"></div>
                             </div>
-                            <h5 id="cronometro_nephis" onclick="ataque_maquina()">0:00</h5>
+                            <h5 id="enemigo_nomeReal">Song Of The Fallen</h5>
+                        </div>
+                        <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo" id="avatar_enemigo">
+                    </div>
 
-                            <div class="column-2" id="boss_cassie" style="display: nne;">
-                                <div class="area_vida">
-                                    <div>
-                                        <h5 id="enemigo_nome">Cassie</h5>
-                                        <div id="limite_vida_enemigo">
-                                            <div id="vida_maquina"></div>
-                                        </div>
-                                        <h5 id="enemigo_nomeReal">Song Of The Fallen</h5>
-                                    </div>
-                                    <img src="assets/img/cassie-chibi.png" alt="" class="icone_nephis_jogo"
-                                        id="avatar_enemigo">
-                                </div>
+                    <h6 class="score_maquina">Score</h6>
+                    <h6 class="contador_maquina">0</h6>
+                    <button id="botao_maquina" class="botao_jogo_nephis">
 
-                                <h6 class="score_maquina">Score</h6>
-                                <h6 class="contador_maquina">0</h6>
-                                <button id="botao_maquina" class="botao_jogo_nephis">
-
-                                </button>
-                            </div>
-                            <div class="resultados_jogo resultados_nephis" style="display: none;">
-                                <h2>Ascensão Sombria</h2>
-                                <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
-                                <p>score: <span>x</span></p>
-                                <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
-                                <button onclick="ir_para_menu('nephis')">Sair</button>
-                            </div>
+                    </button>
+                </div>
+                <div class="resultados_jogo resultados_nephis" style="display: none;">
+                    <h2>Ascensão Sombria</h2>
+                    <h4>Você dominou as sombreas e se tornou uma lenda entre os despertos.</h4>
+                    <p>score: <span class="resultado_score">x</span></p>
+                    <p>Tempo: <span class="resultado_tempo">x</span></p>
+                    <button onclick="iniciar_jogo_nephis()">Tentar Novamente</button>
+                    <button onclick="ir_para_menu('nephis')">Sair</button>
+                </div>
         </section>
     </main>
     <script src="js/deshbord.js"></script>
