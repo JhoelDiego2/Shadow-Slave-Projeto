@@ -116,7 +116,7 @@ function exibir_kpi() {
     }
     proporcao_score = (i_pontuacao_total * 100) / sistema_progressao[proximoRank]
     b_jogos_usuario.innerHTML = jogosConcluidos
-    pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
+    pontuacao_total_atual.innerHTML = i_pontuacao_total.toFixed(2) + 'P'
     b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
     b_ganhos_usuario.innerHTML = menor_tempo_sunny
     limite_ranking_div.style.width = proporcao_score + "%"
@@ -186,8 +186,8 @@ function mudar_deshbord(x) {
     let clique = document.getElementById(`section_${x}`)
     x == 'individual'? clique.style.display ="block": clique.style.display="flex"
 }
-window.addEventListener('load', obter_dado_linha);
-// window.addEventListener('load', exibir_kpi);
+ window.addEventListener('load', obter_dado_linha);
+ // window.addEventListener('load', exibir_kpi);
 
 function plotar_graficos() {
 
@@ -490,7 +490,7 @@ function buscar_ranking() {
             console.error(`Erro na obtenção dos dados p/ ranking : ${error.message}`);
         });
 }
-window.addEventListener('load', buscar_ranking);
+ window.addEventListener('load', buscar_ranking);
 function buscar_records() {
     fetch(`/game/listar_records`, { cache: 'no-store' })
         .then(function (response) {

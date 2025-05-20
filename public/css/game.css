@@ -1853,6 +1853,7 @@ div {
     width: 100%;
     height: 100%;
     overflow-y: auto;
+    overflow-X: hidden;
     flex-direction: column;
     gap: 3vh;
     justify-content: flex-end;
@@ -1905,7 +1906,7 @@ label p {
 .div_feed {
     display: flex;
     height: fit-content;
-    width: 40vw;
+    width: fit-content;
     gap: 20px;
 }
 
@@ -1934,7 +1935,7 @@ label p {
 
 .div_mensagem {
     background-color: var(--Cinza-metálico);
-    width: 40vw;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1977,7 +1978,7 @@ label p {
     border-top: 15px solid #658a87d0;
     transform: rotate(270deg);
     top: 2.3vh;
-    left: 5.4vw;
+    left: 8vw;
     z-index: 1;
 }
 .div_feed_usuario .mensagem_counteudo{
@@ -1989,4 +1990,13 @@ label p {
 .div_feed_usuario .div_mensagem{
     background-color: #658a87d0;
     color: black;
+}
+.div_feed{
+    animation: descer 2s ease ;
+}
+@keyframes descer {
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
 }

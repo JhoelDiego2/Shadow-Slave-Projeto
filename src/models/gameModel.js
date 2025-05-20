@@ -112,6 +112,24 @@ function listar_ranking_usuario(pontos_atual) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function publicar(mensagem, fkUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", mensagem, fkUsuario);
+    var instrucaoSql = `
+        insert into forum (mensagem, fkUsuario) values
+            ('${mensagem}', '${fkUsuario}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function listar_mensagens() {
+    console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucaoSql = `
+        SELECT u.nome, u.avatar, u.rankUsuario, f.mensagem, DATE_FORMAT(f.horario,'%d/%m %H:%i:%s') as horario, f.fkUsuario
+            from usuario u join forum f on u.idUsuario = f.fkUsuario;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -124,4 +142,6 @@ module.exports = {
     listar_records,
     listar_todos,
     listar_ranking_usuario,
+    publicar, 
+    listar_mensagens,
 };

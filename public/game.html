@@ -63,7 +63,7 @@
             </p>
             <p onclick="mostrarForum()"><img src="" alt="">
                 <img src="assets/svg/user.svg" alt="">
-                Forúm
+                Chat
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
                 <img src="assets/svg/sair_branco.svg" alt="">
@@ -360,8 +360,8 @@
 
                         </div>
                         <div class="kpi">
-                            <p class="kpi-texto">Melhor Média de cliques</p>
-                            <p class="dado" id="b_melhor_media">0 - JHORL</p>
+                            <p class="kpi-texto" style="text-align: center;">Melhor Média de cliques</p>
+                            <p class="dado" id="b_melhor_media">1.2 - nephisGirl</p>
 
                         </div>
                     </div>
@@ -487,45 +487,15 @@
                     <button onclick="ir_para_menu('nephis')">Sair</button>
                 </div>
         </section>
-        <section id="forum" style="display: non;">
-            <h2>Forúm Shadow Slave</h2>
+        <section id="forum" style="display: none;" >
+            <h2>Chat Shadow Slave</h2>
             <p>Total de Mensagens: <span>2</span> </p>
             <div class="div-results">
                 <div id="feed_container" class="feed-container">
-                    <div class="div_feed">
-                        <img src="assets/img/sunny_chibi.png" alt="" class="avatar_mensagem">
-                        <div class="div_mensagem">
-                            <p class="nome_mensagem">Jhoel</p>
-                            <p class="mensagem_counteudo">
-                                eae beleza mano tudo bem 
-                                eae beleza mano tudo bem 
-                                eae beleza mano tudo bem 
-                                eae beleza mano tudo bem 
-
-                                eae beleza mano tudo bem 
-                            </p>
-                            <p class="data_mensagem">12/20/2025</p>
-                        </div>
-                    </div>
-                    <div class="div_feed div_feed_usuario">
-                        <img src="assets/img/sunny_chibi.png" alt="" class="avatar_mensagem">
-                        <div class="div_mensagem">
-                            <p class="nome_mensagem">Jhoel</p>
-                            <p class="mensagem_counteudo">
-                                eae beleza mano tudo bem 
-                                eae beleza mano tudo bem 
-                                eae beleza mano tudo bem 
-                                eae beleza mano tudo bem 
-
-                                eae beleza mano tudo bem 
-                            </p>
-                            <p class="data_mensagem">12/20/2025</p>
-                        </div>
+        
                     </div>
                 </div>
-                
             </div>
-
             <div class="div-form">
                 <form id="form_postagem" method="post" onsubmit="return publicar()">
                     <label>

@@ -7,7 +7,6 @@ var gameController = require("../controllers/gameController");
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
-
 router.post("/pontuar_nephis", function (req, res) {
     gameController.pontuar_nephis(req, res);
 });
@@ -38,4 +37,10 @@ router.get("/listar_todos", function (req, res) {
 router.get("/listar_ranking_usuario/:pontos_atual", function (req, res) {
     gameController.listar_ranking_usuario(req, res);
 })
+router.post("/publicar/:fkUsuario", function (req, res) {
+    gameController.publicar(req, res);
+});
+router.get("/listar_mensagens", function (req, res) {
+    gameController.listar_mensagens(req, res);
+});
 module.exports = router;

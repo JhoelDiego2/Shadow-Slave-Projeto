@@ -21,7 +21,6 @@ let senha_atual_visivel = false
 let senha_nova_visivel = false
 // para colocar o avatar 
 let avatar = sessionStorage.AVATAR_USUARIO
-avatar = 'sunny'
 function prencherAvatar() {
     for (let i = 0; i < avatar_bd.length; i++) {
         avatar_bd[i].src = avatares[avatar]
@@ -627,5 +626,115 @@ function mudar_grafico() {
         grafico_um.style.display = 'none'
         grafico_dois.style.display = 'flex'
 
+    }
+}
+
+
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
+    }
+
+    function publicar() {
+        var fkUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            mensagem: form_postagem.descricao.value
+        }
+
+        fetch(`/game/publicar/${fkUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                limparFormulario();
+            } else if (resposta.status == 404) {
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+    function atualizarFeed() {
+        var fkUsuario = sessionStorage.ID_USUARIO;
+        fetch("/game/listar_mensagens").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var resultado = resposta[i];
+                        if (fkUsuario == resultado.fkUsuario) {
+
+                            feed.innerHTML+= `
+                            <div class="div_feed div_feed_usuario">
+                                <img src="${avatares[resultado.avatar]}" alt="" class="avatar_mensagem">
+                                <div class="div_mensagem">
+                                    <p class="nome_mensagem">${resultado.nome}</p>
+                                    <p class="mensagem_counteudo">
+                                        ${resultado.mensagem}
+                                    </p>
+                                    <p class="data_mensagem">${resultado.horario}</p>
+                                </div>
+                            </div>
+                            `
+                        } else {
+
+                            feed.innerHTML+= `
+                            <div class="div_feed">
+                                <img src="${avatares[resultado.avatar]}" alt="" class="avatar_mensagem">
+                                <div class="div_mensagem">
+                                    <p class="nome_mensagem">${resultado.nome}</p>
+                                    <p class="mensagem_counteudo">
+                                        ${resultado.mensagem}
+                                    </p>
+                                    <p class="data_mensagem">${resultado.horario}</p>
+                                </div>
+                            </div>
+                            `
+                        }
+
+                    }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+ window.addEventListener('load', atualizarFeed);
+
+ let forum_visivel = false
+function mostrarForum() {
+    const forum = document.getElementById("forum")
+    if (forum_visivel) {
+        forum.classList.remove("section-games-entrada")
+        forum.classList.add("section-games-saida")
+        setTimeout(() => {
+            forum.style.display = "none"
+            forum_visivel = false
+        }, 2000)
+    } else {
+        obter_dado_linha()
+        forum.classList.remove("section-games-saida")
+        forum.style.display = "flex"
+        forum.classList.add("section-games-entrada")
+        forum_visivel = true
     }
 }

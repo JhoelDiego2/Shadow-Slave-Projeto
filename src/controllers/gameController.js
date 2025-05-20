@@ -265,6 +265,43 @@ function listar_ranking_usuario(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+function publicar(req, res) {
+    var mensagem = req.body.mensagem;
+    var fkUsuario = req.params.fkUsuario;
+
+    if (mensagem == undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (fkUsuario == undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else  {
+        gameModel.publicar(mensagem, fkUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+function listar_mensagens(req, res) {
+    gameModel.listar_mensagens().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -277,4 +314,6 @@ module.exports = {
     listar_todos,
     listar_records,
     listar_ranking,
+    publicar,
+    listar_mensagens, 
 }
