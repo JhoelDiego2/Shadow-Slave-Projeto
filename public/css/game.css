@@ -16,6 +16,25 @@
     --luz: #0e2d30;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    /* Define a largura da barra de rolagem */
+    background-color: var(--Cinza-metálico);
+}
+
+::-webkit-scrollbar-track {
+
+    border-radius: 10px;
+    /* Cantos arredondados da trilha */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--azul-escverdeado-obscuro);
+    /* Cor do botão de rolagem */
+    border-radius: 20px;
+    /* Cantos arredondados */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -861,7 +880,8 @@ img {
 
 #estatisticas,
 #section_sunny,
-#section_nephis {
+#section_nephis,
+#forum {
     background-color: #000000d0;
     backdrop-filter: blur(24px);
     height: 96vh;
@@ -876,20 +896,24 @@ img {
     z-index: 204;
 }
 
-#estatisticas h2 {
+#estatisticas h2,
+#forum h2 {
     font-size: 2.3rem;
     text-transform: uppercase;
     padding: 1vh 2vw;
     display: flex;
     gap: 5vw;
 }
-.estatisticas_atual{
+
+.estatisticas_atual {
     border-bottom: solid 1px white;
 }
-.estatisticas_nao_atual{
+
+.estatisticas_nao_atual {
     color: #ffffffb7;
 }
-#estatisticas h2 span:hover{
+
+#estatisticas h2 span:hover {
     border-bottom: solid 1px white;
     color: white;
     cursor: pointer;
@@ -1044,7 +1068,7 @@ canvas {
 #select_dificuldade option {
     background-color: #000000;
     font-size: 1.2rem;
-    
+
 }
 
 
@@ -1428,7 +1452,7 @@ div {
     user-select: none;
 }
 
-.area_vida_sunny{
+.area_vida_sunny {
     position: absolute;
     bottom: 1vh;
     width: 60vw;
@@ -1441,7 +1465,8 @@ div {
     z-index: 0;
     text-transform: uppercase;
 }
-.limitador_sunny{
+
+.limitador_sunny {
     width: 76%;
     height: 40%;
     border-radius: 5px;
@@ -1452,20 +1477,22 @@ div {
     border: solid 4px rgb(255, 255, 255);
     width: 100%;
     border-image-slice: 1;
-    border-width: 3px;  
+    border-width: 3px;
     border-left: none;
     border-right: none;
     border-image-source: linear-gradient(270deg, hsla(0, 0%, 31%, 0.116), #ffffff, hsla(0, 0%, 100%, 0.123));
-    
-    
+
+
 }
-.limitador_sunny div{
+
+.limitador_sunny div {
     background-color: #08634f;
     width: 7.5%;
     height: 70%;
     border-radius: 1px;
     animation: brilho 2s infinite alternate;
 }
+
 @keyframes brilho {
     from {
         box-shadow: 0px 0px 1px 1px rgb(180, 180, 180);
@@ -1724,4 +1751,242 @@ div {
     background: url('../assets/img/sunny_boss.jpeg');
     background-size: cover;
     background-position: center;
+}
+
+/*deshbord globall-----------------*/
+#section_global {
+    width: 95%;
+    height: 90%;
+    padding: 2vh 2vh 1vh 2vh;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.global_esquerdo {
+    width: 30%;
+    height: 100%;
+    box-shadow: 0px 0px 10px 1px rgba(255, 255, 255, 0.301);
+    padding: 0;
+
+}
+
+.global_direito {
+    width: 70%;
+    height: 100%;
+}
+
+.top {
+    width: 100%;
+    height: auto;
+    padding: 0vh 1vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom {
+    height: 84%;
+    padding: 2vh 1.1vw;
+    display: flex;
+    gap: 1vw;
+    padding-bottom: 0;
+}
+
+.top_ranking {
+    background-color: #000000;
+    height: 91%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+}
+
+.avatar_top {
+    width: 7vh;
+    height: 7vh;
+    background-color: #9b9b9b;
+    border-radius: 100px;
+    margin-left: 10px;
+}
+
+.top_ranking div {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.171);
+    width: 100%;
+    position: relative;
+}
+
+.global_direito .grafico {
+    width: 60%;
+}
+
+.pontos_top {
+    position: absolute;
+    right: 0vw;
+}
+
+.nome_top {
+    margin-left: 10px;
+}
+
+#forum {
+    width: 60vw;
+}
+
+.div-results {
+    position: absolute;
+    width: 100%;
+    height: 75vh;
+    top: 5vw;
+    background:  url("../assets/img/fundo_geral.png");
+    background-repeat: repeat;
+    background-size: 40%;
+}
+
+.feed-container {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    flex-direction: column;
+    gap: 3vh;
+    justify-content: flex-end;
+    padding: 3vh 2vw;
+    background:linear-gradient(to bottom, black 1%, rgba(0, 0, 0, 0.788) 10%, rgba(0, 0, 0, 0.699))
+}
+
+.div-form {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 11vh;
+    padding-top: 10px;
+}
+
+#form_postagem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    width: 50vw;
+    height: 5vh;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 5px;
+    background-color: #fffffff6;
+}
+
+.div-form button {
+    width: 5vw;
+    height: 5vh;
+    border: none;
+    background-color: #658a87d3;
+    color: white;
+    font-size: 1.4rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    bottom: 1.5vh;
+    right: 0.3vw;
+}
+
+label p {
+    font-size: 1.5rem;
+}
+
+.div_feed {
+    display: flex;
+    height: fit-content;
+    width: 40vw;
+    gap: 20px;
+}
+
+.avatar_mensagem {
+    width: 5vw;
+    height: 5vw;
+    background-color: var(--Cinza-metálico);
+    border-radius: 1000px;
+}
+
+.nome_mensagem::after {
+    display: inline-block;
+    content: "";
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid var(--Cinza-metálico);
+    transform: rotate(90deg);
+    top: 2.3vh;
+    right: 5.4vw;
+    z-index: 1;
+
+}
+
+.div_mensagem {
+    background-color: var(--Cinza-metálico);
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    z-index: 2;
+    padding: 3px 10px;
+}
+
+.nome_mensagem {
+    letter-spacing: 3px;
+    font-weight: 800;
+}
+
+.data_mensagem {
+    text-align: end;
+}
+
+.div_feed_usuario {
+    display: flex;
+    flex-direction: row-reverse;
+    align-self: flex-end;
+}
+
+.div_feed_usuario .nome_mensagem {
+    text-align: end;
+}
+
+.div_feed_usuario .nome_mensagem::after {
+    display: none;
+}
+
+.div_feed_usuario .nome_mensagem::before {
+    display: inline-block;
+    content: "";
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #658a87d0;
+    transform: rotate(270deg);
+    top: 2.3vh;
+    left: 5.4vw;
+    z-index: 1;
+}
+.div_feed_usuario .mensagem_counteudo{
+    text-align: end;
+}
+.div_feed_usuario .data_mensagem{
+    text-align: start;
+}
+.div_feed_usuario .div_mensagem{
+    background-color: #658a87d0;
+    color: black;
 }

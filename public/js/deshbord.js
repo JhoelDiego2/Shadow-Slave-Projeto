@@ -1,4 +1,15 @@
 
+
+const avatares = {
+    sunny: 'assets/img/sunny-chibi-2.png',
+    nephis: "assets/img/nephis-chibi.png",
+    cassie: "assets/img/cassie-chibi.png",
+    effie: "assets/img/effie-chibi.png",
+    kai: "assets/img/kai-chibi.png",
+    jet: "assets/img/jet-chibi.png",
+    modret: "assets/img/modret-chibi.png",
+    mongrel: "assets/img/mongrel-chibi.png",
+}
 let fkUsuario = sessionStorage.ID_USUARIO;
 let proximaAtualizacao;
 let proximaAtualizacao_pizza;
@@ -51,6 +62,7 @@ let proporcao_score = 0
 let LINHAS_USUARIO = []
 let scores = []
 let primeira_vez = true
+let pontos_atual = 0
 function exibir_kpi() {
     i_modalidade_sunny = 0
     i_modalidade_nephis = 0
@@ -58,7 +70,7 @@ function exibir_kpi() {
     i_facil = 0
     i_facil_dois = 0
     i_medio = 0
-    i_medio_dois =0
+    i_medio_dois = 0
     i_dificil = 0
     i_dificil_dois = 0
     i_hardcore = 0
@@ -74,7 +86,7 @@ function exibir_kpi() {
         i_pontuacao_total = i_pontuacao_total + (scores[i].total_cliques)
         if (i == 0) {
             menor_tempo_sunny = scores[i].menor_tempo
-        }else if (scores[i].menor_tempo > menor_tempo_sunny) {
+        } else if (scores[i].menor_tempo > menor_tempo_sunny) {
             menor_tempo_sunny = scores[i].menor_tempo
         }
         if (scores[i].total_partidas > modalidade_moda) {
@@ -87,26 +99,26 @@ function exibir_kpi() {
             soma_media_cliques = soma_media_cliques + scores[i].media_cliques_por_segundo
             quantidade_modalidades++
         }
-        scores[i].fkGame == 1 ?  i_facil =  scores[i].total_partidas : null
-        scores[i].fkGame == 2 ? i_medio=  scores[i].total_partidas : null
+        scores[i].fkGame == 1 ? i_facil = scores[i].total_partidas : null
+        scores[i].fkGame == 2 ? i_medio = scores[i].total_partidas : null
         scores[i].fkGame == 3 ? i_dificil = scores[i].total_partidas : null
-        scores[i].fkGame == 4 ? i_hardcore =  scores[i].total_partidas : null
+        scores[i].fkGame == 4 ? i_hardcore = scores[i].total_partidas : null
 
-        scores[i].fkGame == 5 ? i_facil_dois =  scores[i].total_partidas : null
+        scores[i].fkGame == 5 ? i_facil_dois = scores[i].total_partidas : null
         scores[i].fkGame == 6 ? i_medio_dois = scores[i].total_partidas : null
-        scores[i].fkGame == 7 ? i_dificil_dois =  scores[i].total_partidas : null
-        scores[i].fkGame == 8 ? i_hardcore_dois =  scores[i].total_partidas : null
+        scores[i].fkGame == 7 ? i_dificil_dois = scores[i].total_partidas : null
+        scores[i].fkGame == 8 ? i_hardcore_dois = scores[i].total_partidas : null
     }
     if (modalidade_moda == 1 || modalidade_moda == 2 || modalidade_moda == 3 || modalidade_moda == 4) {
         b_modalidade_usuario.innerHTML = 'Sunny Game'
     } else {
         b_modalidade_usuario.innerHTML = 'Nephis Game'
     }
-    proporcao_score =  (i_pontuacao_total * 100) / sistema_progressao[proximoRank]
+    proporcao_score = (i_pontuacao_total * 100) / sistema_progressao[proximoRank]
     b_jogos_usuario.innerHTML = jogosConcluidos
-  pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
-   b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
-    b_ganhos_usuario.innerHTML = menor_tempo_sunny 
+    pontuacao_total_atual.innerHTML = i_pontuacao_total + 'P'
+    b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
+    b_ganhos_usuario.innerHTML = menor_tempo_sunny
     limite_ranking_div.style.width = proporcao_score + "%"
     if (soma_media_cliques == 0) {
         b_media_usuario.innerHTML = 0
@@ -114,7 +126,9 @@ function exibir_kpi() {
         b_media_usuario.innerHTML = (soma_media_cliques / quantidade_modalidades).toFixed(2)
     }
     if (primeira_vez) {
-        plotar_graficos();
+        pontos_atual = i_pontuacao_total
+         plotar_graficos();
+        buscar_kpi_global(pontos_atual)
         primeira_vez = false
     }
 }
@@ -160,8 +174,19 @@ function obter_dado_linha() {
     });
 }
 
-
-//window.addEventListener('load', obter_dado_linha);
+const section_individual = document.getElementById('section_individual')
+const section_global = document.getElementById('section_global')
+function mudar_deshbord(x) {
+    const estatisticas_atual = document.querySelector('.estatisticas_atual')
+    const estatisticas_nao_ativo = document.querySelector('.estatisticas_nao_atual')
+    estatisticas_atual.classList.replace('estatisticas_atual', 'estatisticas_nao_atual')
+    estatisticas_nao_ativo.classList.replace('estatisticas_nao_atual', 'estatisticas_atual')
+    section_individual.style.display = 'none'
+    section_global.style.display = 'none'
+    let clique = document.getElementById(`section_${x}`)
+    x == 'individual'? clique.style.display ="block": clique.style.display="flex"
+}
+window.addEventListener('load', obter_dado_linha);
 // window.addEventListener('load', exibir_kpi);
 
 function plotar_graficos() {
@@ -220,7 +245,7 @@ function plotar_graficos() {
         labels: [
             'Fácil',
             'Medio',
-            'Dificil', 
+            'Dificil',
             'Hardcore'
         ],
         datasets: [{
@@ -235,14 +260,14 @@ function plotar_graficos() {
             borderColor: [
                 'rgb(139, 139, 139)',      // borda do "Fácil"
                 'rgb(80, 12, 136)',    // borda do "Médio"
-                'rgb(21, 197, 174)'  ,     // borda do "Difícil"
+                'rgb(21, 197, 174)',     // borda do "Difícil"
                 'rgba(33, 62, 117, 0.43)', // vermelho
 
             ],
             borderWidth: 2,
             hoverOffset: 20,
 
-        radius: '95%', // Padrão é '100%' — aqui você reduz para 80%
+            radius: '95%', // Padrão é '100%' — aqui você reduz para 80%
         }]
     };
     const config_dificuldade = {
@@ -276,20 +301,25 @@ function plotar_graficos() {
         labels: [
             'Fácil',
             'Medio',
-            'Dificil'
+            'Dificil',
+            'Hardcore'
         ],
         datasets: [{
             label: 'Quantidade de vezes jogada: ',
-            data: [i_facil_dois, i_medio_dois, i_dificil_dois],
+            data: [i_facil_dois, i_medio_dois, i_dificil_dois, i_hardcore_dois],
             backgroundColor: [
                 'rgba(139, 139, 139, 0.4)', //verde
                 'rgba(81, 29, 124, 0.26)',  // Amarelo 
                 'rgba(33, 117, 106, 0.43)', // vermelho
+                'rgba(33, 62, 117, 0.43)', // vermelho
+
             ],
             borderColor: [
                 'rgb(139, 139, 139)',      // borda do "Fácil"
                 'rgb(80, 12, 136)',    // borda do "Médio"
-                'rgb(21, 197, 174)'       // borda do "Difícil"
+                'rgb(21, 197, 174)',     // borda do "Difícil"
+                'rgba(33, 62, 117, 0.43)', // vermelho
+
             ],
             borderWidth: 2,
             hoverOffset: 20,
@@ -416,7 +446,7 @@ function atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificul
                 graficoJogo.update()
                 data_dificuldade.datasets[0].data = [i_facil, i_medio, i_dificil, i_hardcore];
                 graficoDificuldade.update()
-                data_dificuldade_dois.datasets[0].data = [i_facil_dois, i_medio_dois, i_dificil_dois];
+                data_dificuldade_dois.datasets[0].data = [i_facil_dois, i_medio_dois, i_dificil_dois, i_hardcore_dois];
                 graficoDificuldade_dois.update()
                 proximaAtualizacao_pizza = setTimeout(() => atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificuldade, graficoDificuldade, data_dificuldade_dois, graficoDificuldade_dois), 2000);
 
@@ -435,4 +465,215 @@ function atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificul
 
 
 
-//window.addEventListener('load', plotar_graficos);*/
+const top_ranking = document.querySelector('.top_ranking')
+
+function buscar_ranking() {
+    fetch(`/game/listar_ranking`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json()
+                .then(function (response) {
+                    for (let i = 0; i <= response.length; i++) {
+                        top_ranking.innerHTML += `
+                        <div>
+                        <p class="rank">${i + 1}º</p>
+                        <img src="${avatares[response[i].avatar]}" alt="" class="avatar_top">
+                            <p class="nome_top">${response[i].nome}</p>
+                            <p class="pontos_top">${response[i].score_total}p</p>
+                        </div>`
+                    }
+                });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ ranking : ${error.message}`);
+        });
+}
+window.addEventListener('load', buscar_ranking);
+function buscar_records() {
+    fetch(`/game/listar_records`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (dados) {
+                    console.log(dados);
+                    plotar_graficos_global(dados);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ ranking: ${error.message}`);
+        });
+}
+
+window.addEventListener('load', buscar_records);
+function tempoParaSegundos(tempoStr) {
+    const [horas, minutos, segundosComMs] = tempoStr.split(":");
+    const [segundos, milissegundos] = segundosComMs.split(".");
+
+    const totalSegundos =
+        parseInt(horas) * 3600 +
+        parseInt(minutos) * 60 +
+        parseInt(segundos) +
+        (milissegundos ? parseInt(milissegundos) / 100 : 0);
+
+    return totalSegundos;
+}
+
+function plotar_graficos_global(resposta) {
+    const labels_record_sunny = [];
+
+    const data_record_sunny = {
+        labels: labels_record_sunny,
+        datasets: [{
+            label: 'Tempo: ',
+            data: [],
+
+            backgroundColor: [
+                'rgba(139, 139, 139, 0.4)', //verde
+                'rgba(33, 117, 106, 0.43)', // vermelho
+                'rgba(139, 139, 139, 0.4)', //verde
+                'rgba(33, 117, 106, 0.43)', // vermelho
+            ],
+            borderColor: [
+                'rgb(139, 139, 139)',      // borda do "Fácil"
+                'rgb(21, 197, 174)',   // borda do "Difícil"
+                'rgb(139, 139, 139)',      // borda do "Fácil"
+                'rgb(21, 197, 174)'       // borda do "Difícil"
+            ],
+            borderWidth: 2,
+            hoverOffset: 50
+        }]
+    };
+    const config_record_sunny = {
+        type: 'bar',
+        data: data_record_sunny,
+        // usando options para colocar a legenda embaixo do grafico
+        options: {
+            indexAxis: 'y',  // Essa linha deixa as barras na horizontal
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
+            },
+            responsive: false,
+            plugins: {
+                legend: {
+                    position: 'top', // Coloca a legenda embaixo do gráfico
+                    labels: {
+                        color: 'white', // Cor da fonte da legenda
+                        font: {
+                            size: 15
+                        }
+                    }
+                },
+            }
+        }
+    };
+
+
+    const labels_record_nephis = [];
+
+
+    const data_record_nephis = {
+        labels: labels_record_nephis,
+        datasets: [{
+            label: 'Tempo: ',
+            data: [],
+
+            backgroundColor: [
+                'rgba(139, 139, 139, 0.4)', //verde
+                'rgba(33, 117, 106, 0.43)', // vermelho
+            ],
+            borderColor: [
+                'rgb(139, 139, 139)',      // borda do "Fácil"
+                'rgb(21, 197, 174)'       // borda do "Difícil"
+            ],
+            borderWidth: 2,
+            hoverOffset: 50
+        }]
+    };
+
+    for (let i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        var tempo_convertido = tempoParaSegundos(registro.tempo)
+        if (registro.fkGame == 1) {
+            labels_record_sunny.push(registro.nome);
+            data_record_sunny.datasets[0].data.push(tempo_convertido);
+        } else if (registro.fkGame == 8) {
+            labels_record_nephis.push(registro.nome);
+            data_record_nephis.datasets[0].data.push(tempo_convertido);
+        }
+
+    }
+    const config_record_nephis = {
+        type: 'bar',
+        data: data_record_nephis,
+        // usando options para colocar a legenda embaixo do grafico
+        options: {
+            indexAxis: 'y',  // Essa linha deixa as barras na horizontal
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
+            },
+            responsive: false,
+            plugins: {
+                legend: {
+                    position: 'top', // Coloca a legenda embaixo do gráfico
+                    labels: {
+                        color: 'white', // Cor da fonte da legenda
+                        font: {
+                            size: 15
+                        }
+                    }
+                },
+            }
+        }
+    };
+    const ctx_record_sunny = document.getElementById('grafico_record_sunny');
+    // new Chart(ctx_record_sunny, config_record_sunny);
+    const graficoRecordSunny = new Chart(ctx_record_sunny, config_record_sunny);
+
+    const ctx_record_nephis = document.getElementById('grafico_record_nephis');
+    // new Chart(ctx_record_nephis, config_record_nephis);
+    const graficoRecordNephis = new Chart(ctx_record_nephis, config_record_nephis);
+}
+const b_ranking_usuario = document.getElementById('b_ranking_usuario')
+const b_total_jogadores = document.getElementById('b_total_jogadores')
+
+
+function buscar_kpi_global(pontos_atual) {
+    fetch(`/game/listar_ranking_usuario/${pontos_atual}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (response) {
+                        const posicoes = Number(response[0].posicoes_acima);
+                        b_ranking_usuario.innerHTML = `${posicoes + 1} º`
+                    });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .then(
+            fetch(`/game/listar_todos`, { cache: 'no-store' })
+                .then(function (resposta_todos) {
+                    if (resposta_todos.ok) {
+                        resposta_todos.json()
+                            .then(function (resposta_todos) {
+                                const total = Number(resposta_todos[0].total_usuarios);
+                                b_total_jogadores.innerHTML = `${total } `
+                            });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+        )
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ ranking : ${error.message}`);
+        });
+
+}

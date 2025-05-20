@@ -9,6 +9,7 @@ const kai = "assets/img/kai-chibi.png"
 const jet = "assets/img/jet-chibi.png"
 const modret = "assets/img/modret-chibi.png"
 const mongrel = "assets/img/mongrel-chibi.png"
+
 const main = document.getElementById("div_main")
 const configuracao = document.getElementById("configuracao")
 const conf_avatar = document.getElementById("conf_avatar")
@@ -19,50 +20,13 @@ const fundo_alertas = document.querySelector(".fundo_alertas")
 let senha_atual_visivel = false
 let senha_nova_visivel = false
 // para colocar o avatar 
+let avatar = sessionStorage.AVATAR_USUARIO
+avatar = 'sunny'
 function prencherAvatar() {
-    avatar = sessionStorage.AVATAR_USUARIO
-    if (avatar == "sunny") {
-        avatar_bd[0].src = sunny
-        avatar_bd[1].src = sunny
-        avatar_bd[2].src = sunny
-    }
-    if (avatar == "nephis") {
-        avatar_bd[0].src = nephis
-        avatar_bd[1].src = nephis
-        avatar_bd[2].src = nephis
-    }
-    if (avatar == "cassie") {
-        avatar_bd[0].src = cassie
-        avatar_bd[1].src = cassie
-        avatar_bd[2].src = cassie
-    }
-    if (avatar == "effie") {
-        avatar_bd[0].src = effie
-        avatar_bd[1].src = effie
-        avatar_bd[2].src = effie
-    }
-    if (avatar == "kai") {
-        avatar_bd[0].src = kai
-        avatar_bd[1].src = kai
-        avatar_bd[2].src = kai
-    }
-    if (avatar == "jet") {
-        avatar_bd[0].src = jet
-        avatar_bd[1].src = jet
-        avatar_bd[2].src = jet
-    }
-    if (avatar == "modret") {
-        avatar_bd[0].src = modret
-        avatar_bd[1].src = modret
-        avatar_bd[2].src = modret
-    }
-    if (avatar == "mongrel") {
-        avatar_bd[0].src = mongrel
-        avatar_bd[1].src = mongrel
-        avatar_bd[2].src = mongrel
+    for (let i = 0; i < avatar_bd.length; i++) {
+        avatar_bd[i].src = avatares[avatar]
     }
 }
-
 window.addEventListener('load', prencherAvatar);
 
 function digitando_atualizar(x) {

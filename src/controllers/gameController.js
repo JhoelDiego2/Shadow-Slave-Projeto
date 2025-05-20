@@ -38,15 +38,17 @@ function pontuar_nephis(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var fkGame= req.body.fkGameServer;
     var fkUsuario = req.body.fkUsuarioServer;
+    var resultado = req.body.resultadoServer;
     var score = req.body.scoreServer;
     var tempo = req.body.tempoServer;
 
 
-    // Faça as validações dos valores
     if (fkGame == undefined) {
         res.status(400).send("Seu fkGame está undefined!");
     } else if (fkUsuario == undefined) {
         res.status(400).send("Seu fkUsuario está undefined!");
+    } else if (resultado == undefined) {
+        res.status(400).send("Sua resultado está undefined!");
     } else if (score == undefined) {
         res.status(400).send("Sua score está undefined!");
     } else if (tempo == undefined) {
@@ -54,7 +56,7 @@ function pontuar_nephis(req, res) {
     }  else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        gameModel.pontuar_nephis(fkGame, fkUsuario, score, tempo)
+        gameModel.pontuar_nephis(fkGame, fkUsuario, resultado, score, tempo)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -109,22 +111,6 @@ function pontuar_sunny(req, res) {
             );
     }
 }
-/*
-function listar_score(req, res) {
-  var fkUsuario = req.params.idUsuario;
-
-  gameModel.listar_score(fkUsuario).then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
-    }
-  }).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao listar o score: ", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-  });
-}*/
 function listar_score(req, res) {
     var fkUsuario = req.body.fkUsuarioServer;
     if (fkUsuario == undefined) {
@@ -214,7 +200,71 @@ function atualizar_grafico_pizza(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+function listar_ranking(req, res) {
 
+    console.log(`Recuperando ranking em tempo real`);
+
+    gameModel.listar_ranking().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas ranking.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function listar_records(req, res) {
+
+    console.log(`Recuperando ranking em tempo real`);
+
+    gameModel.listar_records().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas ranking.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function listar_todos(req, res) {
+
+    console.log(`Recuperando ranking em tempo real`);
+
+    gameModel.listar_todos().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas ranking.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function listar_ranking_usuario(req, res) {
+    var pontos_atual = req.params.pontos_atual;
+
+    console.log(`Recuperando ranking em tempo real`);
+
+    gameModel.listar_ranking_usuario(pontos_atual).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas ranking.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -222,5 +272,9 @@ module.exports = {
     listar_linha,
     cadastrar,
     buscarMedidasEmTempoReal,
-    atualizar_grafico_pizza
+    atualizar_grafico_pizza,
+    listar_ranking_usuario,
+    listar_todos,
+    listar_records,
+    listar_ranking,
 }

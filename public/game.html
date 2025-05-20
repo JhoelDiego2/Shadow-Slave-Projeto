@@ -91,7 +91,7 @@
                 </p>
                 <p onclick="mostrarDeletarConta()"><img src="" alt="">
                     <img src="assets/svg/bar-chart-sharp.png" alt="">
-                    Segurança
+                    Excluir
                 </p>
             </div>
             <div class="c-direita avatar" id="conf_avatar">
@@ -270,70 +270,110 @@
             </div>
         </section>
         <section id="estatisticas" style="display: none;">
-            <h2>Estatísticas <span id="estatisticas_individual" class="estatisticas_atual">Individual</span><span
-                    id="estatisticas_regional" class="estatisticas_nao_atual">Regional</span></h2>
-            <div class="area-kpi">
-                <div class="kpi">
-                    <p class="kpi-texto">Modalidade Mais Jogada</p>
-                    <p class="dado" id="b_modalidade_usuario">Nenhuma</p>
-                </div>
-                <div class="kpi">
-                    <p class="kpi-texto">Partidas Concluídas</p>
-                    <p class="dado" id="b_jogos_usuario">0</p>
-
-                </div>
-                <div class="kpi">
-                    <p class="kpi-texto">Média de Cliques Nephis Game</p>
-                    <p class="dado" id="b_media_usuario">0</p>
-
-                </div>
-                <div class="kpi">
-                    <p class="kpi-texto">Menor Tempo Sunny Game</p>
-                    <p class="dado" id="b_ganhos_usuario">30</p>
-
-                </div>
-            </div>
-            <div class="container-graficos">
-                <div class="lateral_esquerda">
-
-                    <div class="grafico_jogo grafico">
-                        <h3>Modalidades jogadas</h3>
-                        <canvas id="grafico_jogo" width="293" height="200"></canvas>
+            <h2>Estatísticas <span id="estatisticas_individual" class="estatisticas_atual"
+                    onclick="mudar_deshbord('individual')">Individual</span><span id="estatisticas_global"
+                    class="estatisticas_nao_atual" onclick="mudar_deshbord('global')">Global</span></h2>
+            <div id="section_individual" style="display: non;">
+                <div class="area-kpi">
+                    <div class="kpi">
+                        <p class="kpi-texto">Modalidade Mais Jogada</p>
+                        <p class="dado" id="b_modalidade_usuario">Nenhuma</p>
                     </div>
-                    <div class="gradico_dificuldade grafico">
-                        <h3>Dificuldades jogadas
-                            <select id="select_dificuldade" oninput="mudar_grafico()">
-                                <option value="Sunny_Game">Sunny Game</option>
-                                <option value="Nephis_Game">Nephis Game</option>
-                            </select>
-                        </h3>
-                        <canvas id="grafico_dificuldade" width="293"" height=" 200"></canvas>
-                        <canvas id="grafico_dificuldade_dois" width="293"" height=" 200"
-                            style="display: none;"></canvas>
+                    <div class="kpi">
+                        <p class="kpi-texto">Partidas Concluídas</p>
+                        <p class="dado" id="b_jogos_usuario">0</p>
+
+                    </div>
+                    <div class="kpi">
+                        <p class="kpi-texto">Média de Cliques Nephis Game</p>
+                        <p class="dado" id="b_media_usuario">0</p>
+
+                    </div>
+                    <div class="kpi">
+                        <p class="kpi-texto">Menor Tempo Sunny Game</p>
+                        <p class="dado" id="b_ganhos_usuario">30</p>
+
                     </div>
                 </div>
-                <div class="lateral_direita">
-                    <div class="progresso_rank grafico">
-                        <h3>Progresso de rank: <span id="pontuacao_total_atual"></span> </h3>
+                <div class="container-graficos">
+                    <div class="lateral_esquerda">
 
-                        <div class="div_limite">
-                            <div class="limite_ranking">
-                                <div>
-                                    <p class="b_rank_atual">
+                        <div class="grafico_jogo grafico">
+                            <h3>Modalidades jogadas</h3>
+                            <canvas id="grafico_jogo" width="293" height="200"></canvas>
+                        </div>
+                        <div class="gradico_dificuldade grafico">
+                            <h3>Dificuldades jogadas
+                                <select id="select_dificuldade" oninput="mudar_grafico()">
+                                    <option value="Sunny_Game">Sunny Game</option>
+                                    <option value="Nephis_Game">Nephis Game</option>
+                                </select>
+                            </h3>
+                            <canvas id="grafico_dificuldade" width="293"" height=" 200"></canvas>
+                            <canvas id="grafico_dificuldade_dois" width="293"" height=" 200"
+                                style="display: none;"></canvas>
+                        </div>
+                    </div>
+                    <div class="lateral_direita">
+                        <div class="progresso_rank grafico">
+                            <h3>Progresso de rank: <span id="pontuacao_total_atual"></span> </h3>
 
-                                    </p>
-                                    <p style="position: absolute; right: 10vw;" class="b_rank_seguinte">
-                                        <span id="pontuacao_seguinte_rank"></span>
-                                    </p>
+                            <div class="div_limite">
+                                <div class="limite_ranking">
+                                    <div>
+                                        <p class="b_rank_atual">
+
+                                        </p>
+                                        <p style="position: absolute; right: 10vw;" class="b_rank_seguinte">
+                                            <span id="pontuacao_seguinte_rank"></span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="grafico_ranking grafico">
+                            <h3>
+                                Progresso de Score nas Últimas 15 partidas
+                            </h3>
+                            <canvas id="grafico_ganho" height="300" width="634"></canvas>
+                        </div>
                     </div>
-                    <div class="grafico_ranking grafico">
-                        <h3>
-                            Progresso de Score nas Últimas 15 partidas
-                        </h3>
-                        <canvas id="grafico_ganho" height="300" width="634"></canvas>
+                </div>
+            </div>
+            <div id="section_global" style="display: none;">
+                <div class="global_esquerdo">
+                    <h3 style="letter-spacing: 6px;">TOP 10 GLOBAL</h3>
+
+                    <div class="top_ranking">
+
+                    </div>
+                </div>
+                <div class="global_direito">
+                    <div class="top">
+                        <div class="kpi">
+                            <p class="kpi-texto">Ranking Atual</p>
+                            <p class="dado" id="b_ranking_usuario">10000º</p>
+                        </div>
+                        <div class="kpi">
+                            <p class="kpi-texto">Total De Jogadores</p>
+                            <p class="dado" id="b_total_jogadores">100000</p>
+
+                        </div>
+                        <div class="kpi">
+                            <p class="kpi-texto">Melhor Média de cliques</p>
+                            <p class="dado" id="b_melhor_media">0 - JHORL</p>
+
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="grafico_jogo grafico">
+                            <h3>Records sunny game</h3>
+                            <canvas id="grafico_record_sunny" style="width: 23vw; height: 61vh;"></canvas>
+                        </div>
+                        <div class="grafico_jogo grafico">
+                            <h3>Records nephis game</h3>
+                            <canvas id="grafico_record_nephis" style="width: 23vw; height: 61vh;"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -447,6 +487,57 @@
                     <button onclick="ir_para_menu('nephis')">Sair</button>
                 </div>
         </section>
+        <section id="forum" style="display: non;">
+            <h2>Forúm Shadow Slave</h2>
+            <p>Total de Mensagens: <span>2</span> </p>
+            <div class="div-results">
+                <div id="feed_container" class="feed-container">
+                    <div class="div_feed">
+                        <img src="assets/img/sunny_chibi.png" alt="" class="avatar_mensagem">
+                        <div class="div_mensagem">
+                            <p class="nome_mensagem">Jhoel</p>
+                            <p class="mensagem_counteudo">
+                                eae beleza mano tudo bem 
+                                eae beleza mano tudo bem 
+                                eae beleza mano tudo bem 
+                                eae beleza mano tudo bem 
+
+                                eae beleza mano tudo bem 
+                            </p>
+                            <p class="data_mensagem">12/20/2025</p>
+                        </div>
+                    </div>
+                    <div class="div_feed div_feed_usuario">
+                        <img src="assets/img/sunny_chibi.png" alt="" class="avatar_mensagem">
+                        <div class="div_mensagem">
+                            <p class="nome_mensagem">Jhoel</p>
+                            <p class="mensagem_counteudo">
+                                eae beleza mano tudo bem 
+                                eae beleza mano tudo bem 
+                                eae beleza mano tudo bem 
+                                eae beleza mano tudo bem 
+
+                                eae beleza mano tudo bem 
+                            </p>
+                            <p class="data_mensagem">12/20/2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="div-form">
+                <form id="form_postagem" method="post" onsubmit="return publicar()">
+                    <label>
+                        <p>
+                            Mensagem (máximo de 250 caracteres):
+                        </p>
+                        <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                        <button>Enviar</button>
+                    </label>
+                </form>
+            </div>
+        </section>
     </main>
     <script src="js/deshbord.js"></script>
     <script src="js/menu.js"></script>
@@ -461,5 +552,7 @@
             tela_inicial.style = "display:none"
         }
     }
+    const div = document.getElementById("feed_container");
+    div.scrollTop = div.scrollHeight;
 
 </script>

@@ -19,6 +19,7 @@ let intervalo_sunny_dificuldade = 0
 let tempo_sobra_sunny = 0
 let tempo_sunny_game = 0
 let resultados_game = ''
+let tempo_nephis_game = ''
 function pontuacao_sunny() {
     let fkUsuario = sessionStorage.ID_USUARIO;
     fetch("/game/pontuar_sunny", {
@@ -217,7 +218,7 @@ function comecar_cronometro() {
                 resultados_game = 'Derrota'
             }
             tempo_sobra_sunny = temp_cronometro
-            tempo_sunny_game = ((30000 - tempo_sobra_sunny) / 1000).toFixed(2)
+            tempo_sunny_game =  '00:00:' + ((30000 - tempo_sobra_sunny) / 1000).toFixed(2)
             clearInterval(intervalo_cronometro);
             cronometro.style.color = "red";
             pontuacao_sunny();
@@ -464,8 +465,9 @@ function pontuacao_nephis() {
             // Enviando os dados para o servidor
             fkGameServer: fkGame,
             fkUsuarioServer: fkUsuario,
+            resultadoServer: resultados_game,
             scoreServer: i_nephis,
-            tempoServer: nephis_tempo,
+            tempoServer: tempo_nephis_game,
         }),
     })
         .then(function (resposta) {
@@ -513,7 +515,7 @@ function ataque_nephis() {
                 'Vitoria',
                 'Você atacou com precisão cirúrgica. Nephis reconheceria sua disciplina.',
                 `${i_nephis}`, 
-                    `${nephis_tempo}`
+                    `${tempo_nephis_game}`
 
             )
             resultados_game = 'Vitoria'
@@ -522,7 +524,7 @@ function ataque_nephis() {
                 'Vitoria',
                 'O último golpe foi seu. Nephis permaneceu firme enquanto a escuridão vacilava.',
                 `${i_nephis}`, 
-                    `${nephis_tempo}`
+                    `${tempo_nephis_game}`
 
             )
             resultados_game = 'Vitoria'
@@ -532,7 +534,7 @@ function ataque_nephis() {
                 'Vitoria',
                 'Com 100 cortes precisos, Nephis não hesitou. A sombra foi vencida antes mesmo de perceber.',
                 `${i_nephis}`,
-                `${nephis_tempo}`
+                `${tempo_nephis_game}`
 
             )
             resultados_game = 'Vitoria'
@@ -541,22 +543,32 @@ function ataque_nephis() {
     }
 }
 
-let cronometro_nephis
-let nephis_tempo = 0
+let cronometro_nephis;
+let nephis_tempo = 0; 
 function iniciar_cronometro() {
-    let cronometro = document.getElementById("cronometro_nephis")
+  const cronometro = document.getElementById("cronometro_nephis");
 
-    cronometro_nephis = setInterval(() => {
-        nephis_tempo++
-        if (nephis_tempo < 10) {
-            cronometro.innerHTML = `0:0${nephis_tempo}`
-        } else {
-            cronometro.innerHTML = `0:${nephis_tempo}`
-        }
-        if (nephis_tempo == 20) {
-            clearInterval(cronometro_nephis)
-        }
-    }, 1000)
+  cronometro_nephis = setInterval(() => {
+    nephis_tempo++;
+
+    let segundos = Math.floor(nephis_tempo / 100);
+    let centesimos = nephis_tempo % 100;
+
+    // Formatação com dois dígitos
+    let segundosStr = segundos.toString();
+    if (segundosStr < 10) {
+        segundosStr = "0" + segundosStr
+    }
+    let centesimosStr = centesimos
+
+    cronometro.innerHTML = `0:${segundosStr}.${centesimosStr}`;
+    tempo_nephis_game = `00:00:${segundosStr}.${centesimosStr}`
+
+    if (segundos >= 20) {
+      clearInterval(cronometro_nephis);
+    }
+  }, 10);
+
 }
 
 
@@ -589,7 +601,7 @@ function ataque_maquina() {
                     'Derrota',
                     'O inimigo venceu por um instante. Nephis reconhece que você realmente tentou',
                     `${i_nephis}`, 
-                    `${nephis_tempo}`
+                    `${tempo_nephis_game}`
 
                 )
                 resultados_game = 'Derrota'
@@ -598,7 +610,7 @@ function ataque_maquina() {
                     'Derrota',
                     'O inimigo venceu por um instante. Nephis analisará. Aprenderá. E não falhará de novo.',
                     `${i_nephis}`, 
-                    `${nephis_tempo}`
+                    `${tempo_nephis_game}`
                 )
                 resultados_game = 'Derrota'
             } else if (score_nephis_maq > i_nephis) {
@@ -606,7 +618,7 @@ function ataque_maquina() {
                     'Derrota',
                     'Mesmo a mais disciplinada pode cair. Mas Nephis sempre retorna — mais forte.',
                     `${i_nephis}`, 
-                    `${nephis_tempo}`
+                    `${tempo_nephis_game}`
 
                 )
                 resultados_game = 'Derrota'

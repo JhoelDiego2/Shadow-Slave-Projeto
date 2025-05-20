@@ -26,4 +26,16 @@ router.get("/tempo-real/:fkUsuario", function (req, res) {
 router.get("/tempo-real-pizza/:fkUsuario", function (req, res) {
     gameController.atualizar_grafico_pizza(req, res);
 })
+router.get("/listar_ranking", function (req, res) {
+    gameController.listar_ranking(req, res);
+})
+router.get("/listar_records", function (req, res) {
+    gameController.listar_records(req, res);
+})
+router.get("/listar_todos", function (req, res) {
+    gameController.listar_todos(req, res);
+})
+router.get("/listar_ranking_usuario/:pontos_atual", function (req, res) {
+    gameController.listar_ranking_usuario(req, res);
+})
 module.exports = router;
