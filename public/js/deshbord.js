@@ -23,14 +23,18 @@ const sistema_progressao = {
     'Devorador': 10000,
 }
 let estatisticas_ativo = false
-let rankUsuario_atual = sessionStorage.RANK_USUARIO;
 let proximoRank = ''
-rankUsuario_atual == 'Adormecido' ? (proximoRank = 'Desperto') : null
-rankUsuario_atual == 'Desperto' ? (proximoRank = 'Transcendente') : null
-rankUsuario_atual == 'Transcendente' ? (proximoRank = 'Ascendido') : null
-rankUsuario_atual == 'Ascendido' ? (proximoRank = 'Santo') : null
-rankUsuario_atual == 'Santo' ? (proximoRank = 'Tirano') : null
-
+function declarar_proximo_rank() {
+    let rankUsuario_atual = sessionStorage.RANK_USUARIO;
+    rankUsuario_atual == 'Adormecido' ? (proximoRank = 'Desperto') : null
+    rankUsuario_atual == 'Desperto' ? (proximoRank = 'Transcendente') : null
+    rankUsuario_atual == 'Transcendente' ? (proximoRank = 'Ascendido') : null
+    rankUsuario_atual == 'Ascendido' ? (proximoRank = 'Santo') : null
+    rankUsuario_atual == 'Santo' ? (proximoRank = 'Tirano') : null
+    rankUsuario_atual == 'Tirano' ? (proximoRank = 'Devorador') : null
+    alert('a ' + proximoRank)
+}
+window.addEventListener('load', declarar_proximo_rank);
 
 let i_modalidade_sunny = 0
 let i_modalidade_nephis = 0
@@ -115,6 +119,9 @@ function exibir_kpi() {
         b_modalidade_usuario.innerHTML = 'Nephis Game'
     }
     proporcao_score = (i_pontuacao_total * 100) / sistema_progressao[proximoRank]
+    if (proporcao_score >= 100 ) {
+        atualizar_rank(fkUsuario, proximoRank)
+    }
     b_jogos_usuario.innerHTML = jogosConcluidos
     pontuacao_total_atual.innerHTML = i_pontuacao_total.toFixed(2) + 'P'
     b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
@@ -127,13 +134,38 @@ function exibir_kpi() {
     }
     if (primeira_vez) {
         pontos_atual = i_pontuacao_total
-         plotar_graficos();
+        plotar_graficos();
         buscar_kpi_global(pontos_atual)
         primeira_vez = false
     }
 }
+function atualizar_rank(idUsuario, rank) {
+    fetch(`/game/editar/${idUsuario}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            rank: rank
+        })
+    }).then(function (resposta) {
 
+        if (resposta.ok) {
+            console.log('atualização de ranking com sucesso')
+            sessionStorage.setItem('RANK_USUARIO', proximoRank);
+            declarar_proximo_rank()
+            exibir_kpi()
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
 function obter_dado_linha() {
+
     // Primeira requisição: listar_score
     fetch("/game/listar_score", {
         method: "POST",
@@ -161,6 +193,7 @@ function obter_dado_linha() {
                     if (resposta2.ok) {
                         resposta2.json().then(function (json2) {
                             LINHAS_USUARIO = json2.linhas; // Armazena as linhas
+
                             exibir_kpi(); // Exibe os KPIs
                         });
                     }
@@ -177,6 +210,8 @@ function obter_dado_linha() {
 const section_individual = document.getElementById('section_individual')
 const section_global = document.getElementById('section_global')
 function mudar_deshbord(x) {
+    buscar_ranking()
+    buscar_records()
     const estatisticas_atual = document.querySelector('.estatisticas_atual')
     const estatisticas_nao_ativo = document.querySelector('.estatisticas_nao_atual')
     estatisticas_atual.classList.replace('estatisticas_atual', 'estatisticas_nao_atual')
@@ -184,10 +219,9 @@ function mudar_deshbord(x) {
     section_individual.style.display = 'none'
     section_global.style.display = 'none'
     let clique = document.getElementById(`section_${x}`)
-    x == 'individual'? clique.style.display ="block": clique.style.display="flex"
+    x == 'individual' ? clique.style.display = "block" : clique.style.display = "flex"
+
 }
- window.addEventListener('load', obter_dado_linha);
- // window.addEventListener('load', exibir_kpi);
 
 function plotar_graficos() {
 
@@ -360,16 +394,18 @@ function plotar_graficos() {
 
     const data_ganho = {
         labels: labels_ganho,
-        datasets: [{
-            label: 'Score',
-            data: [],
-            fill: true,
-            borderColor: 'rgb(21, 197, 174)',
-            backgroundColor: 'rgba(33, 117, 106, 0.43)',
-            tension: 0.1,
-            borderWidth: 4,
+        datasets: [
+            {
+                label: 'Score',
+                data: [],
+                fill: true,
+                borderColor: 'rgb(21, 197, 174)',
+                backgroundColor: 'rgba(33, 117, 106, 0.43)',
+                tension: 0.1,
+                borderWidth: 4,
 
-        }]
+            }
+        ]
     };
     for (let i = LINHAS_USUARIO.length - 1; i >= 0; i--) {
         var registro = LINHAS_USUARIO[i];
@@ -387,6 +423,10 @@ function plotar_graficos() {
 
     const ctx_ganho = document.getElementById('grafico_ganho').getContext('2d');
     const graficoGanho = new Chart(ctx_ganho, config_ganho);
+
+
+
+
     setTimeout(() => {
         atualizarGrafico(fkUsuario, data_ganho, graficoGanho)
         atualizar_grafico_pizza(fkUsuario, data_jogo, graficoJogo, data_dificuldade, graficoDificuldade, data_dificuldade_dois, graficoDificuldade_dois)
@@ -479,7 +519,8 @@ function buscar_ranking() {
                         <img src="${avatares[response[i].avatar]}" alt="" class="avatar_top">
                             <p class="nome_top">${response[i].nome}</p>
                             <p class="pontos_top">${response[i].score_total}p</p>
-                        </div>`
+                        </div>
+                        `
                     }
                 });
         } else {
@@ -490,7 +531,7 @@ function buscar_ranking() {
             console.error(`Erro na obtenção dos dados p/ ranking : ${error.message}`);
         });
 }
- window.addEventListener('load', buscar_ranking);
+
 function buscar_records() {
     fetch(`/game/listar_records`, { cache: 'no-store' })
         .then(function (response) {
@@ -508,7 +549,6 @@ function buscar_records() {
         });
 }
 
-window.addEventListener('load', buscar_records);
 function tempoParaSegundos(tempoStr) {
     const [horas, minutos, segundosComMs] = tempoStr.split(":");
     const [segundos, milissegundos] = segundosComMs.split(".");
@@ -665,7 +705,7 @@ function buscar_kpi_global(pontos_atual) {
                         resposta_todos.json()
                             .then(function (resposta_todos) {
                                 const total = Number(resposta_todos[0].total_usuarios);
-                                b_total_jogadores.innerHTML = `${total } `
+                                b_total_jogadores.innerHTML = `${total} `
                             });
                     } else {
                         console.error('Nenhum dado encontrado ou erro na API');

@@ -43,4 +43,7 @@ router.post("/publicar/:fkUsuario", function (req, res) {
 router.get("/listar_mensagens", function (req, res) {
     gameController.listar_mensagens(req, res);
 });
+router.put("/editar/:idUsuario", function (req, res) {
+    gameController.atualizar_ranking(req, res);
+});
 module.exports = router;

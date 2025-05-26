@@ -49,11 +49,11 @@
             <p class="b_rank_atual">rank</p>
         </div>
         <nav>
-            <p onclick="mostrarjogos()">
+            <p onclick="trocar_modulo('section_games')">
                 <img src="assets/svg/game.png" alt="">
                 Jogar
             </p>
-            <p onclick="mostrardeshbord()"><img src="" alt="">
+            <p onclick="trocar_modulo('estatisticas')">
                 <img src="assets/svg/bar-chart-sharp.png" alt="">
                 Estatísticas
             </p>
@@ -61,7 +61,7 @@
                 <img src="assets/svg/user.svg" alt="">
                 Perfil
             </p>
-            <p onclick="mostrarForum()"><img src="" alt="">
+            <p onclick="trocar_modulo('forum')"><img src="" alt="">
                 <img src="assets/svg/user.svg" alt="">
                 Chat
             </p>
@@ -487,14 +487,14 @@
                     <button onclick="ir_para_menu('nephis')">Sair</button>
                 </div>
         </section>
-        <section id="forum" style="display: none;" >
+        <section id="forum" style="display: none;">
             <h2>Chat Shadow Slave</h2>
-            <p>Total de Mensagens: <span>2</span> </p>
+            <p>Total de Mensagens: <span id="total_mensagens">2</span> </p>
             <div class="div-results">
                 <div id="feed_container" class="feed-container">
-        
-                    </div>
+
                 </div>
+            </div>
             </div>
             <div class="div-form">
                 <form id="form_postagem" method="post" onsubmit="return publicar()">
@@ -522,7 +522,8 @@
             tela_inicial.style = "display:none"
         }
     }
+    /*
     const div = document.getElementById("feed_container");
-    div.scrollTop = div.scrollHeight;
+    div.scrollTop = div.scrollHeight;*/
 
 </script>

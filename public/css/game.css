@@ -1852,13 +1852,12 @@ div {
     bottom: 0;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    overflow-X: hidden;
     flex-direction: column;
     gap: 3vh;
     justify-content: flex-end;
     padding: 3vh 2vw;
-    background:linear-gradient(to bottom, black 1%, rgba(0, 0, 0, 0.788) 10%, rgba(0, 0, 0, 0.699))
+    background:linear-gradient(to bottom, black 1%, rgba(0, 0, 0, 0.788) 10%, rgba(0, 0, 0, 0.699));
+    overflow-y: auto;
 }
 
 .div-form {

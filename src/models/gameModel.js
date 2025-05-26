@@ -1,11 +1,8 @@
 var database = require("../database/config")
 
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
+
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
@@ -14,8 +11,6 @@ function cadastrar(nome, email, senha) {
 }
 function pontuar_nephis(fkGame, fkUsuario,resultado,  score, tempo) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_nephis():", fkGame,fkUsuario, resultado,  score, tempo);
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO score (fkGame, fkUsuario, resultado,  score, tempo) VALUES
             ('${fkGame}','${fkUsuario}', '${resultado}', '${score}', '${tempo}');
@@ -25,8 +20,6 @@ function pontuar_nephis(fkGame, fkUsuario,resultado,  score, tempo) {
 }
 function pontuar_sunny(fkGame, fkUsuario,resultado,  score, tempo) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_sunny():", fkGame,fkUsuario,resultado, score, tempo);
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO score (fkGame, fkUsuario, resultado, score, tempo) VALUES
             ('${fkGame}','${fkUsuario}', '${resultado}', '${score}', '${tempo}');
@@ -130,6 +123,14 @@ function listar_mensagens() {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function atualizar_ranking(rankUsuario, idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", rankUsuario, idUsuario);
+    var instrucaoSql = `
+        UPDATE usuario SET rankUsuario = '${rankUsuario}' WHERE idUsuario = ${idUsuario}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -144,4 +145,5 @@ module.exports = {
     listar_ranking_usuario,
     publicar, 
     listar_mensagens,
+    atualizar_ranking
 };

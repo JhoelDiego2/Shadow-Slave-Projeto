@@ -302,6 +302,25 @@ function listar_mensagens(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+function atualizar_ranking(req, res) {
+    var rankUsuario = req.body.rank;
+    var idUsuario = req.params.idUsuario;
+
+    gameModel.atualizar_ranking(rankUsuario, idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -316,4 +335,5 @@ module.exports = {
     listar_ranking,
     publicar,
     listar_mensagens, 
+    atualizar_ranking, 
 }

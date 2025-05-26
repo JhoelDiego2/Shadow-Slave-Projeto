@@ -1,6 +1,5 @@
 //icones url 
 const avatar_bd = document.querySelectorAll(".b_avatar")
-console.log(avatar_bd)
 const sunny = "assets/img/sunny-chibi-2.png"
 const nephis = "assets/img/nephis-chibi.png"
 const cassie = "assets/img/cassie-chibi.png"
@@ -9,7 +8,6 @@ const kai = "assets/img/kai-chibi.png"
 const jet = "assets/img/jet-chibi.png"
 const modret = "assets/img/modret-chibi.png"
 const mongrel = "assets/img/mongrel-chibi.png"
-
 const main = document.getElementById("div_main")
 const configuracao = document.getElementById("configuracao")
 const conf_avatar = document.getElementById("conf_avatar")
@@ -19,7 +17,6 @@ const alerta_suceso = document.getElementById("div_cad_sucesso")
 const fundo_alertas = document.querySelector(".fundo_alertas")
 let senha_atual_visivel = false
 let senha_nova_visivel = false
-// para colocar o avatar 
 let avatar = sessionStorage.AVATAR_USUARIO
 function prencherAvatar() {
     for (let i = 0; i < avatar_bd.length; i++) {
@@ -27,6 +24,7 @@ function prencherAvatar() {
     }
 }
 window.addEventListener('load', prencherAvatar);
+
 
 function digitando_atualizar(x) {
     var texto_x = document.getElementById(`texto_${x}`);
@@ -73,37 +71,7 @@ function mostrarSenhaNova() {
 
     }
 }
-let configuracao_visivel = false
 
-function fechar_tudo() {
-    fechar_configuracao()
-}
-// area geral
-function fechar_configuracao() {
-    configuracao.style.animation = "pop_up_saida 1s ease-out"
-
-    setTimeout(() => {
-        configuracao.style.display = "none"
-        main.style.display = "none"
-
-        main.classList.remove("main_embassado");
-        configuracao.style.animation = "pop_up_animacao 1s ease-out "
-    }, 1000);
-    configuracao_visivel = false
-}
-function mostrarConfiguracao() {
-    if (configuracao_visivel) {
-        fechar_configuracao()
-        configuracao_visivel = false
-    } else {
-        configuracao.style.display = "flex"
-        main.style.display = "flex"
-        main.classList.add("main_embassado")
-        configuracao_visivel = true
-
-    }
-
-}
 ///areaconfiguracoes
 
 function ocultar_conf_direito() {
@@ -277,12 +245,12 @@ function atualizar_senha() {
                             }),
                         });
                     } else {
-                        const div_alerta =document.getElementById("div_alerta")
-                        const titulo =document.getElementById("titulo_erro")
-                        const mensagem =document.getElementById("mensagem_erro")
-                        div_alerta.style.display="flex"
-                        titulo.innerHTML="Senha Atual Incorreta"
-                        mensagem.innerHTML="enha atual não coincide com a senha do banco de dados"
+                        const div_alerta = document.getElementById("div_alerta")
+                        const titulo = document.getElementById("titulo_erro")
+                        const mensagem = document.getElementById("mensagem_erro")
+                        div_alerta.style.display = "flex"
+                        titulo.innerHTML = "Senha Atual Incorreta"
+                        mensagem.innerHTML = "enha atual não coincide com a senha do banco de dados"
 
                         throw "Senha atual não coincide com a senha do banco de dados";
                     }
@@ -400,8 +368,8 @@ function atualizar_conta() {
                     fundo_alertas.style.display = "flex"
                     sessionStorage.setItem('NOME_USUARIO', nome_usuario_atualizar);
                     sessionStorage.setItem('NOME_REAL_USUARIO', nome_real);
-                    b_nome_real.innerHTML=nome_real
-                    b_usuario.innerHTML=nome_usuario_atualizar
+                    b_nome_real.innerHTML = nome_real
+                    b_usuario.innerHTML = nome_usuario_atualizar
                     /*  setTimeout(() => {
                           window.location = "login.html";
                       }, "2000");
@@ -474,35 +442,6 @@ function atualizar_avatar() {
     return false;
 }
 
-function fechar_alerta_atualizacao() {
-    alerta_suceso.style.display = "none"
-    fundo_alertas.style.display = "none"
-}
-
-function fechar_alertas_geral() {
-    fechar_alerta_atualizacao()
-    tirar_alerta()
-}
-let section_jogos_visivel = false
-const section_games = document.getElementById("section_games")
-function mostrarjogos() {
-    const primeiro = document.querySelector(".primeiro")
-    const primeiro_desc = primeiro.querySelector(".descricao_jogo")
-
-    if (section_jogos_visivel == false) {
-        section_games.classList.remove("section-games-saida")
-        section_games.style.display = "flex"
-        section_games.classList.add("section-games-entrada")
-        section_jogos_visivel = true
-    } else {
-        section_games.classList.remove("section-games-entrada")
-        section_games.classList.add("section-games-saida")
-        setTimeout(() => {
-            section_games.style.display = "none"
-            section_jogos_visivel = false
-        }, 2000)
-    }
-}
 function seguinte_jogo() {
     const primeiro = document.querySelector(".primeiro")
     const segundo = document.querySelector(".segundo")
@@ -537,27 +476,10 @@ function seguinte_jogo() {
     }, 2000)
 }
 
-let estatisticas_visivel = false
-function mostrardeshbord() {
-    const estatisticas = document.getElementById("estatisticas")
-    if (estatisticas_visivel) {
-        estatisticas.classList.remove("section-games-entrada")
-        estatisticas.classList.add("section-games-saida")
-        setTimeout(() => {
-            estatisticas.style.display = "none"
-            estatisticas_visivel = false
-        }, 2000)
-    } else {
-        obter_dado_linha()
-        estatisticas.classList.remove("section-games-saida")
-        estatisticas.style.display = "flex"
-        estatisticas.classList.add("section-games-entrada")
-        estatisticas_visivel = true
-    }
-}
+
 function bolinha(nome) {
     let index = 0; // Começa do 0, já que os arrays começam do índice 0
-    const seccao = document.getElementById(`section_${nome}`) 
+    const seccao = document.getElementById(`section_${nome}`)
     const carregamento = seccao.querySelector(".carregamento_menu");
     const bolinhas = carregamento.querySelectorAll("span");
     //for para q depois eu condiga ativar novamente a função
@@ -575,44 +497,28 @@ function bolinha(nome) {
 }
 
 function abrir_jogo_sunny() {
-    const seccao_menu = document.getElementById("section_games") 
-    const seccao = document.getElementById("section_sunny") 
+    const seccao_menu = document.getElementById("section_games")
+    const seccao = document.getElementById("section_sunny")
     const menu_carregando = document.getElementById("sunny-carregando")
-    seccao_menu.style.display="none"
-    seccao.style.display="flex"
-    
+    seccao_menu.style.display = "none"
+    seccao.style.display = "flex"
+
     bolinha('sunny')
     setTimeout(
-        ()=>  menu_carregando.style.display="none", 3000
+        () => menu_carregando.style.display = "none", 3000
     )
 }
 function abrir_jogo_nephis() {
-    const seccao_menu = document.getElementById("section_games") 
-    const seccao = document.getElementById("section_nephis") 
+    const seccao_menu = document.getElementById("section_games")
+    const seccao = document.getElementById("section_nephis")
     const menu_carregando = document.getElementById("nephis-carregando")
-    seccao_menu.style.display="none"
-    seccao.style.display="flex"
+    seccao_menu.style.display = "none"
+    seccao.style.display = "flex"
     bolinha('nephis')
     setTimeout(
-        ()=>  menu_carregando.style.display="none", 3000
+        () => menu_carregando.style.display = "none", 3000
     )
 }
-
-
-
-/*
-function ativar_pop_u(x, y, z) {
-    const div_alerta = document.getElementById("div_alerta")
-    const titulo =document.getElementById("titulo_erro")
-    const mensagem =document.getElementById("mensagem_erro")
-    const botom = document.getElementById("bottom_mensagem")
-    div_alerta.style.display = "flex"
-    fundo_alertas.style.display = "flex"
-    titulo.innerHTML= x
-    mensagem.innerHTML= y
-    buttom.innerHTML=z
-
-}*/
 
 function mudar_grafico() {
     var grafico_atual = document.getElementById('select_dificuldade').value
@@ -630,56 +536,58 @@ function mudar_grafico() {
 }
 
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
+function limparFormulario() {
+    document.getElementById("form_postagem").reset();
+}
+
+function publicar() {
+    var fkUsuario = sessionStorage.ID_USUARIO;
+
+    var corpo = {
+        mensagem: form_postagem.descricao.value
     }
 
-    function publicar() {
-        var fkUsuario = sessionStorage.ID_USUARIO;
+    fetch(`/game/publicar/${fkUsuario}`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(corpo)
+    }).then(function (resposta) {
 
-        var corpo = {
-            mensagem: form_postagem.descricao.value
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            atualizarFeed();
+            limparFormulario();
+        } else if (resposta.status == 404) {
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
         }
-
-        fetch(`/game/publicar/${fkUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                limparFormulario();
-            } else if (resposta.status == 404) {
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+    return false;
+}
+function atualizarFeed() {
+    var fkUsuario = sessionStorage.ID_USUARIO;
+    fetch("/game/listar_mensagens").then(function (resposta) {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
+                throw "Nenhum resultado encontrado!!";
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-        return false;
-    }
-    function atualizarFeed() {
-        var fkUsuario = sessionStorage.ID_USUARIO;
-        fetch("/game/listar_mensagens").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    throw "Nenhum resultado encontrado!!";
-                }
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+            resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+                var total = document.getElementById('total_mensagens')
+                var feed = document.getElementById("feed_container");
+                total.innerHTML = resposta.lenght
+                feed.innerHTML = "";
+                for (let i = 0; i < resposta.length; i++) {
+                    var resultado = resposta[i];
+                    if (fkUsuario == resultado.fkUsuario) {
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var resultado = resposta[i];
-                        if (fkUsuario == resultado.fkUsuario) {
-
-                            feed.innerHTML+= `
+                        feed.innerHTML += `
                             <div class="div_feed div_feed_usuario">
                                 <img src="${avatares[resultado.avatar]}" alt="" class="avatar_mensagem">
                                 <div class="div_mensagem">
@@ -691,9 +599,8 @@ function mudar_grafico() {
                                 </div>
                             </div>
                             `
-                        } else {
-
-                            feed.innerHTML+= `
+                    } else {
+                        feed.innerHTML += `
                             <div class="div_feed">
                                 <img src="${avatares[resultado.avatar]}" alt="" class="avatar_mensagem">
                                 <div class="div_mensagem">
@@ -705,36 +612,91 @@ function mudar_grafico() {
                                 </div>
                             </div>
                             `
-                        }
-
                     }
+                }
 
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
- window.addEventListener('load', atualizarFeed);
+            });
+        } else {
+            throw ('Houve um erro na API!');
+        }
+    }).catch(function (resposta) {
+        console.error(resposta);
+    });
+}
+window.addEventListener('load', atualizarFeed);
 
- let forum_visivel = false
-function mostrarForum() {
-    const forum = document.getElementById("forum")
-    if (forum_visivel) {
-        forum.classList.remove("section-games-entrada")
-        forum.classList.add("section-games-saida")
-        setTimeout(() => {
-            forum.style.display = "none"
-            forum_visivel = false
-        }, 2000)
+
+function fechar_alertas_geral() {
+    fechar_alerta_atualizacao()
+    tirar_alerta()
+}
+let configuracao_visivel = false
+
+function fechar_tudo() {
+    fechar_configuracao()
+}
+// area geral
+function fechar_configuracao() {
+    configuracao.style.animation = "pop_up_saida 1s ease-out"
+
+    setTimeout(() => {
+        configuracao.style.display = "none"
+        main.style.display = "none"
+
+        main.classList.remove("main_embassado");
+        configuracao.style.animation = "pop_up_animacao 1s ease-out "
+    }, 1000);
+    configuracao_visivel = false
+}
+function mostrarConfiguracao() {
+    if (configuracao_visivel) {
+        fechar_configuracao()
+        configuracao_visivel = false
     } else {
-        obter_dado_linha()
-        forum.classList.remove("section-games-saida")
-        forum.style.display = "flex"
-        forum.classList.add("section-games-entrada")
-        forum_visivel = true
+        configuracao.style.display = "flex"
+        main.style.display = "flex"
+        main.classList.add("main_embassado")
+        configuracao_visivel = true
+
     }
+
+}
+function fechar_alerta_atualizacao() {
+    alerta_suceso.style.display = "none"
+    fundo_alertas.style.display = "none"
+}
+const seccoes = ['section_games', 'estatisticas', 'section_sunny', 'section_nephis', 'forum'];
+let secaoAtiva = null;
+function fecharTodasSecoes() {
+    for (let i = 0; i < seccoes.length; i++) {
+        const secao = document.getElementById(seccoes[i]);
+        if (secao.style.display != "none") {
+            secao.classList.remove("section-games-entrada");
+            secao.classList.add("section-games-saida");
+            setTimeout(() => {
+                secao.style.display = "none";
+            }, 2000);
+        }
+    }
+    secaoAtiva = null;
+}
+
+function trocar_modulo(nome_section) {
+    const novaSecao = document.getElementById(nome_section);
+    if (secaoAtiva === nome_section) {
+        fecharTodasSecoes();
+        return;
+    }
+    fecharTodasSecoes();
+
+    novaSecao.style.display = "flex";
+    novaSecao.classList.remove("section-games-saida");
+    novaSecao.classList.add("section-games-entrada");
+    if (nome_section == 'estatisticas') {
+        obter_dado_linha()
+    } else if (nome_section == 'forum') {
+        atualizarFeed()
+    }
+    secaoAtiva = nome_section;
+
 }
