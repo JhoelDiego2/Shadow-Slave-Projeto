@@ -38,7 +38,7 @@ function procurar_senha_atualizar(idUsuario) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        SELECT senha FROM usuario WHERE idUsuario = ${idUsuario};
+        SELECT senha, email FROM usuario WHERE idUsuario = ${idUsuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -69,6 +69,14 @@ function atualizar_avatar( avatar, idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function deletar(idUsuario, email, senha) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idUsuario, email, senha);
+    var instrucaoSql = `
+        DELETE FROM usuario WHERE idUsuario = ${idUsuario} AND email = '${email}' AND senha = '${senha}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     autenticar,
@@ -76,5 +84,6 @@ module.exports = {
     atualizar_senha,
     procurar_senha_atualizar,
     atualizar_conta, 
-    atualizar_avatar
+    atualizar_avatar, 
+    deletar,
 };

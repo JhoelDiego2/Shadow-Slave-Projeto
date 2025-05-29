@@ -12,11 +12,13 @@ const main = document.getElementById("div_main")
 const configuracao = document.getElementById("configuracao")
 const conf_avatar = document.getElementById("conf_avatar")
 const conf_conta = document.getElementById("conf_conta")
+const conf_deletar = document.getElementById("conf_deletar")
 const conf_seguranca = document.getElementById("conf_seguranca")
 const alerta_suceso = document.getElementById("div_cad_sucesso")
 const fundo_alertas = document.querySelector(".fundo_alertas")
 let senha_atual_visivel = false
 let senha_nova_visivel = false
+let configuracao_visivel = false
 let avatar = sessionStorage.AVATAR_USUARIO
 function prencherAvatar() {
     for (let i = 0; i < avatar_bd.length; i++) {
@@ -78,6 +80,7 @@ function ocultar_conf_direito() {
     conf_avatar.style.display = "none"
     conf_conta.style.display = "none"
     conf_seguranca.style.display = "none"
+    conf_deletar.style.display = "none"
 }
 function mostrarAvatares() {
     ocultar_conf_direito()
@@ -92,6 +95,11 @@ function mostrarConta() {
 function mostrarAlterSenha() {
     ocultar_conf_direito()
     conf_seguranca.style.display = "flex"
+
+}
+function mostrarDeletarConta() {
+    ocultar_conf_direito()
+    conf_deletar.style.display = "flex"
 
 }
 function tirar_alerta() {
@@ -441,38 +449,19 @@ function atualizar_avatar() {
         });
     return false;
 }
-
-function seguinte_jogo() {
-    const primeiro = document.querySelector(".primeiro")
-    const segundo = document.querySelector(".segundo")
-    const terceiro = document.querySelector(".terceiro")
-    const quarto = document.querySelector(".quarto")
-    const quinto = document.querySelector(".quinto")
-    const segundo_desc = segundo.querySelector(".descricao_jogo")
-    const primeiro_desc = primeiro.querySelector(".descricao_jogo")
-    const quinto_desc = quinto.querySelector(".descricao_jogo")
-
-    segundo_desc.style.display = "flex"
-    quinto_desc.style.display = "none"
-    primeiro_desc.classList.add("descricao_jogo_primeiro")
-    primeiro.classList.add("card-segundo")
-    segundo.classList.add("card-segundo")
-    terceiro.classList.add("card-segundo")
-    quarto.classList.add("card-segundo")
-    quinto.classList.add("card-segundo")
-
+//klç´~jkj
+function abrir_descricao(nome) {
+    const nome_card = document.getElementById(`jogo_${nome}`)
+    const descricao = nome_card.querySelector(".descricao_jogo")
+    descricao.style.display = "flex"
+}
+function fechar_descricao(nome) {
+    const nome_card = document.getElementById(`jogo_${nome}`)
+    const descricao = nome_card.querySelector(".descricao_jogo")
+    descricao.classList.add("descricao_jogo_primeiro")
     setTimeout(() => {
-        primeiro.classList.replace("primeiro", "quinto")
-        segundo.classList.replace("segundo", "primeiro")
-        terceiro.classList.replace("terceiro", "segundo")
-        quarto.classList.replace("quarto", "terceiro")
-        quinto.classList.replace("quinto", "quarto")
-        primeiro.classList.remove("card-segundo")
-        segundo.classList.remove("card-segundo")
-        terceiro.classList.remove("card-segundo")
-        quarto.classList.remove("card-segundo")
-        quinto.classList.remove("card-segundo")
-        primeiro_desc.classList.remove("descricao_jogo_primeiro")
+        descricao.classList.remove("descricao_jogo_primeiro")
+        descricao.style.display = 'none'
     }, 2000)
 }
 
@@ -630,7 +619,7 @@ function fechar_alertas_geral() {
     fechar_alerta_atualizacao()
     tirar_alerta()
 }
-let configuracao_visivel = false
+
 
 function fechar_tudo() {
     fechar_configuracao()
@@ -698,5 +687,49 @@ function trocar_modulo(nome_section) {
         atualizarFeed()
     }
     secaoAtiva = nome_section;
+
+}
+function deletar_conta() {
+    let email = ipt_email_deletar.value
+    let senha = ipt_senha_deletar.value
+    let conf_senha = document.getElementById('ipt_conf_deletar').value
+    div_alerta.style.display = "flex"
+    fundo_alertas.style.display = "flex"
+    console.log(senha + conf_senha)
+    if (email == '' || senha == '' || conf_senha == '') {
+        titulo_erro.innerHTML = "Campos vazios"
+        mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+    } else if (!email.includes('@')) {
+        titulo_erro.innerHTML = "E-mail invalido"
+        mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+
+    } else if (senha != conf_senha) {
+        titulo_erro.innerHTML = "Confirmação de senha errada"
+        mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+
+    } else {
+        console.log(fkUsuario)
+        fetch(`/usuarios/deletar/${fkUsuario}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "emailserver": email,
+                "senhaserver": senha
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                titulo_erro.innerHTML = "Deletação de conta com sucesso"
+                mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
 
 }

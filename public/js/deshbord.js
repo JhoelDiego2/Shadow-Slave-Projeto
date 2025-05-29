@@ -32,7 +32,6 @@ function declarar_proximo_rank() {
     rankUsuario_atual == 'Ascendido' ? (proximoRank = 'Santo') : null
     rankUsuario_atual == 'Santo' ? (proximoRank = 'Tirano') : null
     rankUsuario_atual == 'Tirano' ? (proximoRank = 'Devorador') : null
-    alert('a ' + proximoRank)
 }
 window.addEventListener('load', declarar_proximo_rank);
 
@@ -512,6 +511,7 @@ function buscar_ranking() {
         if (response.ok) {
             response.json()
                 .then(function (response) {
+                    top_ranking.innerHTML = ''
                     for (let i = 0; i <= response.length; i++) {
                         top_ranking.innerHTML += `
                         <div>

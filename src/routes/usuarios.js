@@ -23,5 +23,8 @@ router.post("/atualizar_conta", function (req, res) {
 router.post("/atualizar_avatar", function (req, res) {
     usuarioController.atualizar_avatar(req, res);
 });
+router.delete("/deletar/:fkUsuario", function (req, res) {
+    usuarioController.deletar(req, res);
+});
 
 module.exports = router;

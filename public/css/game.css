@@ -650,7 +650,7 @@ img {
     bottom: 2vw;
     left: 0;
     overflow-x: hidden;
-
+    overflow-y: hidden;
 }
 
 .carrosel .card {
@@ -798,28 +798,14 @@ img {
 
 }
 
-#jogo_kai div {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%), linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
-        url('../assets/img/Kai\ -\ Nightingale.jpeg');
-    background-size: cover;
-    background-position: right;
-}
-
 #jogo_cassie div {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%), linear-gradient(to top, rgb(0, 0, 0) 8%, rgba(0, 0, 0, 0)),
-        url('../assets/img/Cassie.jpeg');
+    background: radial-gradient(circle, rgba(80, 80, 80, 0.781) 1%, rgba(80, 80, 80, 0.781) 20%, rgba(80, 80, 80, 0.781)100%),     url('../assets/img/Cassie.jpeg');
     background-size: cover;
     background-position: center;
 
 }
 
-#jogo_jet div {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 1%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.288) 100%), linear-gradient(to top, rgb(0, 0, 0) 15%, rgba(0, 0, 0, 0)),
-        url('../assets/img/jet-jogo-img.jpeg');
-    background-size: cover;
-    background-position: left;
 
-}
 
 #section_games .card-segundo {
     animation: prueba 2s ease;
@@ -1832,9 +1818,6 @@ div {
     margin-left: 10px;
 }
 
-#forum {
-    width: 60vw;
-}
 
 .div-results {
     position: absolute;
@@ -1927,7 +1910,7 @@ label p {
     border-top: 15px solid var(--Cinza-metálico);
     transform: rotate(90deg);
     top: 2.3vh;
-    right: 5.4vw;
+    right: 7.5vw;
     z-index: 1;
 
 }
@@ -1977,7 +1960,7 @@ label p {
     border-top: 15px solid #658a87d0;
     transform: rotate(270deg);
     top: 2.3vh;
-    left: 8vw;
+    left: 5.4vw;
     z-index: 1;
 }
 .div_feed_usuario .mensagem_counteudo{

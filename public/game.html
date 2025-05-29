@@ -182,6 +182,34 @@
                 </div>
                 <p class="botao" onclick="atualizar_senha()">Alterar Senha</p>
             </div>
+            <div class="c-direita conta seguranca" style="display: none;" id="conf_deletar">
+                <h3>Deletar Conta</h3>
+                <div class="conta-form">
+                    <div>
+                        <img src="assets/svg/senha_grey.svg" alt="">
+                        <p id="texto_email_deletar">E-mail</p>
+                    </div>
+                    <input type="text" id="ipt_email_deletar" onclick="digitando_atualizar('email_deletar')">
+                    <div>
+                        <img src="assets/svg/senha_grey.svg" alt="">
+                        <p id="texto_senha_deletar">Senha</p>
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
+                            onclick="mostrarSenhaNova()" id="icone_senha_deletar">
+
+                    </div>
+                    <input type="password" id="ipt_senha_deletar" onclick="digitando_atualizar('senha_deletar')">
+                    <div>
+                        <img src="assets/svg/senha_grey.svg" alt="">
+                        <p id="texto_conf_deletar">Confirmar Senha</p>
+                        <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
+                            onclick="mostrarSenhaNova()" id="icone_conf_deletar">
+
+                    </div>
+                    <input type="password" id="ipt_conf_deletar" onclick="digitando_atualizar('conf_deletar')">
+
+                </div>
+                <p class="botao" onclick="deletar_conta()"> DELETAR CONTA</p>
+            </div>
         </section>
         <section id="section_games" style="display: none;">
             <div class="parte-cima">
@@ -195,22 +223,21 @@
             </div>
 
             <div class="carrosel">
-                <div class="div_carrosel_desfocado">
-                    <img src="assets/img/switch.svg" alt="" onclick="seguinte_jogo()" id="voltar_seguinte_jogo">
-                </div>
-                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo_sunny()">
+                <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo_sunny()"
+                    onmouseenter="abrir_descricao('sunny')" onmouseleave="fechar_descricao('sunny')">
                     <div>
                         <h4>
                             Sunny
                         </h4>
                         <p class="nome_jogo">Sombras Fugitivas</p>
-                        <p class="descricao_jogo " style="display: flex;">Clique em Sunny antes que ele desapareça nas
+                        <p class="descricao_jogo ">Clique em Sunny antes que ele desapareça nas
                             sombras — seja rápido ou
                             perca o rastro!</p>
                         <img src="assets/img/cassie-chibi.png" alt="">
                     </div>
                 </div>
-                <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo_nephis()">
+                <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo_nephis()"
+                    onmouseenter="abrir_descricao('nephis')" onmouseleave="fechar_descricao('nephis')">
                     <div>
 
                         <h4>
@@ -224,21 +251,8 @@
                     </div>
 
                 </div>
-                <div class="card terceiro" id="jogo_kai" onclick="abrir_jogo(kai, 'kai')">
-                    <div>
-
-                        <h4>
-                            kai
-                        </h4>
-                        <p class="nome_jogo"> Verdade Oculta</p>
-                        <p class="descricao_jogo">Responda ao quiz de Kai com sabedoria — ele enxerga mentiras, e
-                            mentirosos
-                            pagarão o preço.</p>
-                        <img src="assets/img/cassie-chibi.png" alt="">
-                    </div>
-
-                </div>
-                <div class="card quarto" id="jogo_cassie" onclick="abrir_jogo(cassie, 'cassie')">
+                <div class="card quarto" id="jogo_cassie" onclick="abrir_jogo(cassie, 'cassie')"
+                    onmouseenter="abrir_descricao('cassie')" onmouseleave="fechar_descricao('cassie')">
                     <div>
 
                         <h4>
@@ -250,19 +264,6 @@
                             mesmo sem ver.
 
                         </p>
-                        <img src="assets/img/cassie-chibi.png" alt="">
-                    </div>
-
-                </div>
-                <div class="card quinto" id="jogo_jet" onclick="abrir_jogo(jet, 'jet')">
-                    <div>
-
-                        <h4>
-                            jet
-                        </h4>
-                        <p class="nome_jogo">Código Quebrado</p>
-                        <p class="descricao_jogo">Ajude Jet a decodificar sequências em binário antes que o firewall te
-                            alcance — só os rápidos e precisos sobrevivem.</p>
                         <img src="assets/img/cassie-chibi.png" alt="">
                     </div>
 
@@ -522,8 +523,7 @@
             tela_inicial.style = "display:none"
         }
     }
-    /*
     const div = document.getElementById("feed_container");
-    div.scrollTop = div.scrollHeight;*/
+    div.scrollTop = div.scrollHeight;
 
 </script>

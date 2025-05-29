@@ -237,12 +237,6 @@ function cadastrar() {
                     text_senha.style.transition = "0.7s ease-in-out";
                     senha_login.style.borderBottom = "solid 4px black";
 
-                    /*  setTimeout(() => {
-                          window.location = "login.html";
-                      }, "2000");
-  
-                      limparFormulario();
-                      finalizarAguardar();*/
                 } else {
                     div_alerta.style.display = "flex"
                     titulo_erro.innerHTML = "Opa, algo deu errado no cadastro "
@@ -378,7 +372,6 @@ function verificar() {
 
 let senha_visivel = false
 function mostrar_senha() {
-    alert('aaaaaa')
     const senha = document.getElementById("ipt_senha_cad")
     const conf_senha = document.getElementById("ipt_conf_senha")
     const icone = document.getElementById("icone_senha_cad")

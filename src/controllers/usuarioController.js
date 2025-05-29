@@ -198,6 +198,45 @@ function atualizar_avatar(req, res) {
             );
     }
 }
+function deletar(req, res) {
+    var idUsuario = req.params.fkUsuario;
+    var email = req.headers['emailserver'];
+    var senha = req.headers['senhaserver'];
+    if (idUsuario == undefined) {
+        res.status(400).send("O id do usuário está undefined!");
+    } else if (email == undefined || senha == undefined) {
+        res.status(400).send("Email ou senha estão undefined nos headers!");
+    } else {
+        usuarioModel.procurar_senha_atualizar(idUsuario)
+            .then(function (resultado) {
+                if (resultado.length > 0) {
+                    const senhaBanco = resultado[0].senha;
+                    const emailBanco = resultado[0].email;
+                    if (senhaBanco == senha && emailBanco == email) {
+                        usuarioModel.deletar(idUsuario, email, senha)
+                            .then(function (resultado_deletar) {
+                                res.json({
+                                    mensagem: "Conta deletada com sucesso.",
+                                    resultado: resultado_deletar
+                                });
+                            })
+                            .catch(function (erro) {
+                                console.log(erro);
+                                res.status(500).json(erro.sqlMessage);
+                            });
+                    } else {
+                        res.status(401).send("Senha incorreta. Não foi possível deletar a conta.");
+                    }
+                } else {
+                    res.status(404).send("Usuário não encontrado.");
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
 
 module.exports = {
     autenticar,
@@ -205,5 +244,6 @@ module.exports = {
     atualizar_senha,
     procurar_senha_atualizar,
     atualizar_conta,
-    atualizar_avatar
+    atualizar_avatar,
+    deletar,
 }
