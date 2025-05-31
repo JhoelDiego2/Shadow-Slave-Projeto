@@ -20,7 +20,7 @@ Este projeto combina desenvolvimento web, design narrativo e gamificação, func
 ## 🕹️ Demonstração
 
 - 🎨 **Site estatico:**  
-[🔗 Acessar Site]( https://shadow-slave-projeto.vercel.app/index.html1)
+[🔗 Acessar Site](https://shadow-slave-projeto.vercel.app/)
 - 🎨 **Protótipo no Figma:**  
 [🔗 Acessar Protótipo](https://www.figma.com/design/frLpg3PeeuufFIJGKqezuV/Projeto_definitivo?node-id=0-1&t=XrTYFsDKielO3pnb-1)
 
