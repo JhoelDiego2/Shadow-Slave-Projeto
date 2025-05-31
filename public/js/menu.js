@@ -678,8 +678,8 @@ function trocar_modulo(nome_section) {
     }
     fecharTodasSecoes();
 
-    novaSecao.style.display = "flex";
     novaSecao.classList.remove("section-games-saida");
+    novaSecao.style.display = "flex";
     novaSecao.classList.add("section-games-entrada");
     if (nome_section == 'estatisticas') {
         obter_dado_linha()

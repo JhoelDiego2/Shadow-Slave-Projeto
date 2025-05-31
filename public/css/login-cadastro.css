@@ -737,3 +737,25 @@ input:focus{
     top:2vh;
     z-index: 3;
 }
+#conv_esquerda{
+    position: absolute;
+    color: black;
+    bottom: 1vh;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    left: 2vw;
+}
+#conv_esquerda:hover{
+    color: #7aa7a4;
+}
+#conv_direita{
+    position: absolute;
+    color: #0e2d30;
+    bottom: 1vh;
+    letter-spacing: 2px;
+    right:2vw;
+    font-size: 1.5rem;
+}
+#conv_direita:hover{
+    color: #ffffff;
+}

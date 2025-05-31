@@ -51,7 +51,7 @@ function atualizar_conta( nome, email, nomeReal, idUsuario) {
     var instrucaoSql = `
         UPDATE usuario SET
             nome = '${nome}', 
-            email = '${email}', 
+            email = '${email}',
             nomeReal = '${nomeReal}'
         WHERE idUsuario = ${idUsuario};
     `;

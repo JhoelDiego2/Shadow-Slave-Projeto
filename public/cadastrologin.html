@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <a href="index.html"><img src="assets/svg/sair.svg" alt="" id="sair_icone" ></a>
+  <a href="index.html"><img src="assets/svg/sair.svg" alt="" id="sair_icone"></a>
   <main id="main">
     <div class="imagem_fundo" id="imagem_de_fundo"></div>
     <!--FORMULARIO DE LOGIN_________________________________________________________-->
@@ -23,11 +23,11 @@
           <div><img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario">Nome de usúario</p>
           </div>
-          <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')" >
+          <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')">
           <div><img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha">Senha</p>
           </div>
-          <input type="password" id="ipt_senha" onclick="digitando_login('senha')" >
+          <input type="password" id="ipt_senha" onclick="digitando_login('senha')">
           <button onclick="verificar()">ENTRAR</button>
           <p id="subtitulo">Esqueceu a senha?<span><a onclick="activar_esqueci()"
                 style="color: grey; text-decoration: underline;">Acesse aqui</a></span></p>
@@ -41,30 +41,31 @@
             <img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario_cad">Nome de usúario</p>
           </div>
-          <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')" >
+          <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')">
           <div>
             <img src="assets/svg/mail.svg" alt="">
             <p id="texto_email">Email</p>
           </div>
           <span id="email_condicao"></span>
-          <input type="text" id="ipt_email" onclick="digitando_cad('email')" >
+          <input type="text" id="ipt_email" onclick="digitando_cad('email')">
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha_cad">Senha </p>
-            <img src="assets/svg/invisible-password-icon.svg" style="width: 1.5vw; position: absolute; right: 0.8vw; z-index: 2; cursor: pointer;" 
-            onclick="msotrar_senha()" id="icone_senha_cad">
+            <img src="assets/svg/invisible-password-icon.svg"
+              style="width: 1.5vw; position: absolute; right: 0.8vw; z-index: 2; cursor: pointer;"
+              onclick="msotrar_senha()" id="icone_senha_cad">
 
           </div>
           <input type="password" id="ipt_senha_cad" onclick="digitando_cad('senha_cad')" style="z-index: 1;">
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_conf_senha">Confirmar Senha</p>
-            <img src="assets/svg/invisible-password-icon.svg" style="width: 1.5vw; position: absolute; right: 0.8vw; z-index: 10;" 
-              onclick="msotrar_senha()" id="icone_senha_cad_conf"
-            >
+            <img src="assets/svg/invisible-password-icon.svg"
+              style="width: 1.5vw; position: absolute; right: 0.8vw; z-index: 10;" onclick="msotrar_senha()"
+              id="icone_senha_cad_conf">
           </div>
-          <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')" >
-          <button onclick="cadastrar()">CADASTRAR-SE</button >
+          <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')">
+          <button onclick="cadastrar()">CADASTRAR-SE</button>
           <p id="subtitulo">Já possui uma conta?<span onclick="trocar_login()"
               style="color: #658a87; text-decoration: underline;">Acesse aqui</span></p>
         </div>
@@ -91,16 +92,18 @@
     </p>
     <button onclick="tirar_alerta()" id="bottom_mensagem">OK</button>
   </div>
-  <div id="div_cad_sucesso"  style="display: none;">
+  <div id="div_cad_sucesso" style="display: none;">
     <img src="assets/img/sunny_feliz.png" alt="" id="sunny_cad">
     <p id="titulo_cad">
-        Cadastro realizado com sucesso
+      Cadastro realizado com sucesso
     </p>
     <p id="mensagem_cad">
-        Sunny sorri nas trevas — o pacto está feito e o ouro já brilha no seu destino!
+      Sunny sorri nas trevas — o pacto está feito e o ouro já brilha no seu destino!
     </p>
-    <p   id="bottom_mensagem_cad" onclick="trocar_login_alerta()">FAZER LOGIN</p>
-</div>
+    <p id="bottom_mensagem_cad" onclick="trocar_login_alerta()">FAZER LOGIN</p>
+  </div>
+  <a href="game.html" id="conv_esquerda">Entrar como convidado</a>
+  <a href="game.html" id="conv_direita">Entrar como convidado</a>
   <script src="js/login-cadastro.js"></script>
 </body>
 
