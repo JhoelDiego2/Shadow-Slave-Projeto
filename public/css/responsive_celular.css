@@ -1,0 +1,44 @@
+@media (max-width: 360px) {
+    #pagina_mongrel #saber_mais {
+        position: absolute;
+        bottom: 5vh;
+        font-size: 1.4rem
+
+    }
+    #pagina_mongrel .titulo {
+        
+        font-family: 'Night';
+        position: absolute;
+        top: 5vh;
+        font-size: 3rem
+    }
+    #pagina_mongrel #logo_letra {
+        font-family: 'Night';
+        font-size: 3rem;
+    }
+    #pagina_mongrel #texto_sombras {
+    font-size: 1.4rem;
+    position: absolute;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    bottom: 14vh;
+}
+
+#pagina_mongrel .column-2 {
+    width: 230vw;
+    left: -60vw;
+    transform: scale(0.7);
+    top: 0;
+}
+
+
+
+
+
+
+
+
+
+}
