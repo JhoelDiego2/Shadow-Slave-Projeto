@@ -1,0 +1,89 @@
+@media (max-width: 768px) {
+    #pagina_mongrel .column-2 {
+        position: absolute;
+        width: 135vw;
+        z-index: -1;
+        left: -18vw;
+        top: 1vh;
+        transform: scale(0.9);
+    }
+
+    .link_saber_mais {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #pagina_mongrel #saber_mais {
+        position: absolute;
+        bottom: 6vh;
+        padding: 2vh 15vw;
+    }
+
+    #pagina_mongrel #saber_mais:hover {
+        padding: 2vh 22vw;
+        border-width: 2.2px;
+    }
+
+    @keyframes headMove {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotate(1deg);
+        }
+
+        50% {
+            transform: rotate(-1deg);
+        }
+
+        75% {
+            transform: rotate(1deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+
+    }
+
+    #pagina_mongrel .column-1 {
+        width: 100%;
+
+    }
+
+    #pagina_mongrel .titulo {
+
+        font-family: 'Night';
+        position: absolute;
+        top: 5vh;
+        font-size: 4rem
+    }
+
+    #pagina_mongrel #logo_letra {
+        font-family: 'Night';
+        font-size: 4rem;
+    }
+
+    #pagina_mongrel #texto_sombras {
+        font-size: 2.2rem;
+        position: absolute;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        bottom: 15vh;
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

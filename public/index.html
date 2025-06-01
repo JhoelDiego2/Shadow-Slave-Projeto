@@ -8,6 +8,8 @@
     <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
     <script src="js/sessao.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive_tablet.css">
+    <link rel="stylesheet" href="css/responsive_celular.css">
 </head>
 
 <body id="body">
@@ -53,7 +55,7 @@
                     <!--primeiro-->
                     <div class="titulo">
                         <p id="logo_letra"><span>Shadow Slave</span></p>
-                        <p><span id="sombras">A Jornada das sombras</span></p>
+                        <p><span id="sombras" onclick="mostrar_console()">A Jornada das sombras</span></p>
                     </div>
                     <div class="sub-titulo  " >
                         <p><i id="texto_sombras">
@@ -61,13 +63,13 @@
                                 capazes."
                             </i> </p>
                     </div>
-                    <a href="#" >
-                        <p id="saber_mais" onclick="tirar_inicio()" data-aos="fade-up" data-aos-duration="1000">Saber mais</p>
+                    <a href="#" class="link_saber_mais" >
+                        <p id="saber_mais" onclick="tirar_inicio()">Saber mais</p>
                     </a>
                     <!--segundo-->
 
                 </div>
-                <div class=" column-2" data-aos="fade-left" data-aos-duration="1000">
+                <div class=" column-2">
                     <div class="mongrel moving-head " id="div_mongrel">
                     </div>
                 </div>
@@ -107,7 +109,7 @@
                 </div>
                 <div class="tabela" data-aos="fade-right" data-aos-duration="1500">
                     <div class="caxa_menor">
-                        <div>
+                        <div class="guarda_caixa">
                             <div>
                                 <p class="titulo verde" style="border-right: none;">Quantidade de capitulos
                                 </p>

@@ -1,4 +1,10 @@
 history.scrollRestoration = 'manual'
+function mostrar_console() {
+    console.log("Largura: " + window.innerWidth + "px");
+    console.log("Altura: " + window.innerHeight + "px");
+
+}
+
 
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('nav_principal');
