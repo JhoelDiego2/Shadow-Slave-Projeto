@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/responsive_celular.css">
 </head>
 
-<body id="body">
+<body id="body" class="body_after">
     <audio id="ost" src="assets/audio/ost_shadow_slave.mp3"></audio>
     <div class="carregamento_pagina"></div>
     <p class="logo_normal" id="logo_que_sube"><span>Shadow Slave</span></p>
@@ -50,7 +50,7 @@
             <div class="barra_hamburger " ></div>
             <div class="barra_hamburger "></div>
         </div>
-        <nav class="nav" id="nav_oculta" style="display: none;">
+        <nav class="nav" id="nav_oculta" style="display: none;" onclick="mostrar_menu()">
             <p class="logo_normal logo_menu"><span>Shadow Slave</span></p>
 
             <a href="#">
@@ -498,7 +498,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/sunny-ineteiro.png" alt="" id="sunny">
+                        <img src="assets/img/sunny-ineteiro.png" alt="" id="sunny" class="imagem_personagens">
                     </div>
                     <div class="column-3" data-aos="fade-left" data-aos-duration="2000">
                         <p>
@@ -534,7 +534,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/nephis_aba_imagem.png" alt="" id="nephis">
+                        <img src="assets/img/nephis_aba_imagem.png" alt="" id="nephis" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -572,7 +572,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/imagem_cassie.png" alt="" id="cassie">
+                        <img src="assets/img/imagem_cassie.png" alt="" id="cassie" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -611,7 +611,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/effie_perso.png" alt="" id="effie">
+                        <img src="assets/img/effie_perso.png" alt="" id="effie" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -649,7 +649,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/kai_perso.png" alt="" id="kai">
+                        <img src="assets/img/kai_perso.png" alt="" id="kai" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -687,7 +687,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/jet_perso.png" alt="" id="jet">
+                        <img src="assets/img/jet_perso.png" alt="" id="jet" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -724,7 +724,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/modret_perso.png" alt="" id="modret">
+                        <img src="assets/img/modret_perso.png" alt="" id="modret" class="imagem_personagens">
                     </div>
                     <div class="column-3 fade-direita">
                         <p>
@@ -742,7 +742,7 @@
                 </div>
             </div>
         </section>
-        <section id="mapa">
+        <section id="mapa" style="display: none;">
             <h1 data-aos="fade-up" data-aos-duration="2000" style="letter-spacing: 10px;">MAPA</h1>
             <div class="container">
                 <div class="imagem_mapa">
@@ -852,7 +852,7 @@
     <footer>
         <div>
             <img src="assets/img/logotipo.png" alt="" id="logotipo-footer">
-            <p>© 2025 Shadow Slave | Jhoel</p>
+            <p>© 2025 Shadow Slave & griffin morgan</p>
         </div>
         <div>
             <p id="f-info">Informações</p>

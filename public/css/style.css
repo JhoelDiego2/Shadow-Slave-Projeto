@@ -427,9 +427,10 @@ section {
     padding: 0vh 2vw;
     padding-top: 10vh;
     gap: 5vw;
-    height: 95vh;
+    min-height: 95dvh;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
 }
 
 .esquerda {
@@ -459,8 +460,6 @@ section {
 
 .tabela .caxa_menor {
     display: flex;
-    flex-wrap: wrap;
-
 }
 
 .tabela .caxa_menor div div {
@@ -530,8 +529,7 @@ section {
     border: solid 1px #3DB3A2;
     width: 20vw;
     transform: scale(0.9);
-    height: 29vh;
-
+    height: auto;
 }
 
 .terceiro {
@@ -733,7 +731,7 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 78vh;
+    min-height: 78dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
