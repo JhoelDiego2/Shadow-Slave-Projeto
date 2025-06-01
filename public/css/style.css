@@ -278,7 +278,7 @@ section {
     font-size: 1rem;
     position: fixed;
     z-index: 30;
-    min-width:100dvw;
+    min-width: 100dvw;
     height: 10vh;
     color: white;
     gap: 1vw;
@@ -319,6 +319,9 @@ section {
 .nav a:hover::after {
     width: 100%;
     border-radius: 2px;
+}
+#nav_oculta{
+    display: none;
 }
 
 .scrolled {
@@ -1459,4 +1462,23 @@ h2,
 h3,
 img {
     user-select: none;
+}
+
+.menu_hamburger {
+    position: fixed;
+    top: 3vh;
+    right:4vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    display: none;
+
+}
+
+.barra_hamburger {
+    width: 40px;
+    height: 5px;
+    background-color: white;
+    border-radius: 4px;
+    transition: 1s ease;
 }

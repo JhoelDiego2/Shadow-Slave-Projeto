@@ -29,8 +29,8 @@ function tirar_inicio() {
     const inicio = document.getElementById("inicio")
     const header = document.getElementById("header")
     const body = document.getElementById("body")
-    inicio.style.display="flex"
-    header.style.display="flex"
+    inicio.style.display = "flex"
+    header.style.display = "flex"
     pagina_mongrel.style.display = "none"
     logo_encima.classList.add("logo_animacao")
     body.classList.add("body_after")
@@ -45,13 +45,13 @@ function tocar() {
         musica.play();
         ativo = true
         musica
-        icone_musica.src="assets/svg/volume-high-sharp.svg"
-        icone_inicial.src="assets/svg/volume-high-sharp.svg"
+        icone_musica.src = "assets/svg/volume-high-sharp.svg"
+        icone_inicial.src = "assets/svg/volume-high-sharp.svg"
     } else {
         musica.pause();
         ativo = false
-        icone_musica.src="assets/svg/volume-mute-sharp.svg"
-        icone_inicial.src="assets/svg/volume-mute-sharp.svg"
+        icone_musica.src = "assets/svg/volume-mute-sharp.svg"
+        icone_inicial.src = "assets/svg/volume-mute-sharp.svg"
     }
 
 }
@@ -131,12 +131,12 @@ var jet_aba = document.getElementById("jet_aba");
 var modret_aba = document.getElementById("modret_aba");
 ///containers
 var sunny_container = document.querySelector(".aba-sunny");
-var nephis_container  = document.querySelector(".aba-nephis");
-var cassie_container  = document.querySelector(".aba-cassie");
-var effie_container  = document.querySelector(".aba-effie");
-var kai_container  = document.querySelector(".aba-kai");
-var jet_container  = document.querySelector(".aba-jet");
-var modret_container  = document.querySelector(".aba-modret");
+var nephis_container = document.querySelector(".aba-nephis");
+var cassie_container = document.querySelector(".aba-cassie");
+var effie_container = document.querySelector(".aba-effie");
+var kai_container = document.querySelector(".aba-kai");
+var jet_container = document.querySelector(".aba-jet");
+var modret_container = document.querySelector(".aba-modret");
 
 function tirar_classe() {
     sunny_aba.classList.remove("atual")
@@ -197,4 +197,31 @@ function modret_trocar() {
     tirar_display()
     modret_aba.classList.add("atual")
     modret_container.style.display = "flex"
+}
+let menu_visivel = false;
+
+function mostrar_menu() {
+    const nav = document.getElementById('nav_oculta');
+    const barras = document.querySelectorAll('.barra_hamburger')
+    if (menu_visivel) {
+        nav.classList.remove('nav-entrada');
+        nav.classList.add('nav-saida');
+        barras[0].classList.remove('barra1')
+        barras[1].classList.remove('barra2')
+        barras[2].classList.remove('barra3')
+
+        setTimeout(() => {
+            nav.style.display = 'none';
+            menu_visivel = false;
+        }, 500);
+
+    } else {
+        nav.style.display = 'flex';
+        nav.classList.remove('nav-saida');
+        nav.classList.add('nav-entrada');
+        menu_visivel = true;
+        barras[0].classList.add('barra1')
+        barras[1].classList.add('barra2')
+        barras[2].classList.add('barra3')
+    }
 }

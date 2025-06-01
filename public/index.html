@@ -16,8 +16,43 @@
     <audio id="ost" src="assets/audio/ost_shadow_slave.mp3"></audio>
     <div class="carregamento_pagina"></div>
     <p class="logo_normal" id="logo_que_sube"><span>Shadow Slave</span></p>
-    <header id="header" style="display: none;">
+    <header id="header" style="display: noe;">
         <nav class="nav" id="nav_principal">
+            <a href="#">
+                <p>INICIO</p>
+            </a>
+            <a href="#sobre">
+                <p>SOBRE</p>
+            </a>
+            <a href="#historia">
+                <p>HISTORIA</p>
+            </a>
+            <a href="#personagens">
+                <p>PERSONAGENS</p>
+            </a>
+            <a href="#mapa">
+                <p>MAPA</p>
+            </a>
+            <a href="#jogo">
+                <p>JOGO</p>
+            </a>
+            <a href="#desenvolvedor">
+                <p>DESENVOLVEDOR</p>
+            </a>
+
+            <a href="cadastrologin.html">
+                <p id="entrar">ENTRAR</p>
+            </a>
+            <img src="assets/svg/volume-mute-sharp.svg" alt="" id="icone_musica" onclick="tocar()">
+        </nav> 
+        <div class="menu_hamburger" onclick="mostrar_menu()">
+            <div class="barra_hamburger "></div>
+            <div class="barra_hamburger " ></div>
+            <div class="barra_hamburger "></div>
+        </div>
+        <nav class="nav" id="nav_oculta" style="display: none;">
+            <p class="logo_normal logo_menu"><span>Shadow Slave</span></p>
+
             <a href="#">
                 <p>INICIO</p>
             </a>
@@ -47,7 +82,7 @@
         </nav>
     </header>
     <main>
-        <section id="pagina_mongrel">
+        <section id="pagina_mongrel" style="display: none;">
             <img src="assets/svg/volume-mute-sharp.svg" alt="" id="icone_inicial" onclick="tocar()">
             <div class="header-container">
                 <div class="column-1" id="primeira_tela" data-aos="fade-right" data-aos-duration="1000">
@@ -57,13 +92,13 @@
                         <p id="logo_letra"><span>Shadow Slave</span></p>
                         <p><span id="sombras" onclick="mostrar_console()">A Jornada das sombras</span></p>
                     </div>
-                    <div class="sub-titulo  " >
+                    <div class="sub-titulo  ">
                         <p><i id="texto_sombras">
                                 "Somente aqueles que abraçam sua sombra descobrem a verdadeira essência do que são
                                 capazes."
                             </i> </p>
                     </div>
-                    <a href="#" class="link_saber_mais" >
+                    <a href="#" class="link_saber_mais">
                         <p id="saber_mais" onclick="tirar_inicio()">Saber mais</p>
                     </a>
                     <!--segundo-->
@@ -75,10 +110,10 @@
                 </div>
             </div>
         </section>
-        <section id="inicio" style="display: none">
+        <section id="inicio" style="display: noe">
             <div class="imagem_fundo">
             </div>
-            <div class="conteudo fade-esquerda" >
+            <div class="conteudo fade-esquerda">
                 <p id="inicio_titulo" data-aos="fade-right" data-aos-duration="1000"><span class="1_letra">S</span>EJA
                     <span class="vermelho"><span class="1_letra">B</span>EM</span>-<span class="1_letra">V</span>INDO!
                 </p>
