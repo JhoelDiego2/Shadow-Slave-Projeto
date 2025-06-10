@@ -268,7 +268,9 @@ body {
 }
 
 section {
-    height: 90vh;
+    min-height: 90vh;
+    max-width: 100dvw;
+
 }
 
 .nav {
@@ -320,7 +322,8 @@ section {
     width: 100%;
     border-radius: 2px;
 }
-#nav_oculta{
+
+#nav_oculta {
     display: none;
 }
 
@@ -364,6 +367,9 @@ section {
     background-size: cover;
     background-position: center;
     z-index: -1;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+
 }
 
 #inicio .conteudo {
@@ -735,11 +741,11 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
 }
 
 #personagens .conteudo .column-1 {
     width: 40%;
-    height: 100%;
 
     padding: 3vh 2vw;
     display: flex;
@@ -751,22 +757,21 @@ section {
 .conteudo {
     display: flex;
     position: relative;
-    height: 100%;
+    min-height: 56vh;
 }
 
 #personagens .conteudo .column-2 {
     width: 30%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    bottom: 0;
+    position: relative;
 
 }
 
 #personagens .conteudo .column-3 {
     width: 30%;
-    height: 50%;
     padding: 3vh 2vw;
     display: flex;
     flex-direction: column;
@@ -776,7 +781,7 @@ section {
 }
 
 #sunny {
-    height: 90vh;
+    max-height: 90vh;
 }
 
 #personagens .conteudo .column-2 img {
@@ -795,6 +800,7 @@ section {
     justify-content: space-between;
     padding: 6vh;
     animation: fade-up 2s ease-out;
+    position: relative;
 }
 
 .nome_real h2 {
@@ -802,14 +808,13 @@ section {
 }
 
 .nome_real .esquerda {
-    padding-left: 6%;
     width: 50%;
     z-index: 2;
 }
 
 .nome_real .direita {
-    padding-left: 15%;
     width: 50%;
+    text-align: center;
 }
 
 #personagens p {
@@ -841,9 +846,9 @@ section {
     color: #bd2c00;
 }
 
-.aba-nephis .esquerda {
-    margin-left: 2vw;
-    z-index: 2;
+.aba-nephis .direita {
+    z-index: 0;
+    padding-left: 7vw;
 }
 
 .aba-nephis {
@@ -869,6 +874,7 @@ section {
 
 .aba-cassie .esquerda {
     padding: 0;
+    text-align: center;
 }
 
 .aba-effie {
@@ -892,7 +898,11 @@ section {
 }
 
 .aba-effie .esquerda {
-    padding: 3;
+    padding-left: 3vw;
+}
+
+.aba-effie .direita {
+    padding-left: 7vw;
 }
 
 .aba-kai {
@@ -936,7 +946,7 @@ section {
 }
 
 .aba-jet .esquerda {
-    padding-left: 25vw;
+    text-align: center;
 }
 
 .aba-modret {
@@ -956,7 +966,11 @@ section {
 }
 
 .aba-modret .esquerda {
-    padding-left: 9vw;
+    text-align: center;
+}
+
+.aba-modret .direita {
+    padding-left: 10vw;
 }
 
 .fade-direita {
@@ -1464,13 +1478,13 @@ img {
 
 .menu_hamburger {
     position: fixed;
-    top: 3vh;
-    right:4vw;
     display: flex;
     flex-direction: column;
     gap: 1vh;
     display: none;
-
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0vh 3vw;
 }
 
 .barra_hamburger {

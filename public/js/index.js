@@ -8,11 +8,14 @@ function mostrar_console() {
 
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('nav_principal');
+    const navbar_burguer = document.querySelector('.menu_hamburger');
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
+        navbar_burguer.classList.add('scrolled');
 
     } else {
         navbar.classList.remove('scrolled');
+        navbar_burguer.classList.remove('scrolled');
     }
 });
 const musica = document.getElementById("ost");
@@ -225,3 +228,27 @@ function mostrar_menu() {
         barras[2].classList.add('barra3')
     }
 }
+const imagem_fundo = document.querySelector('.imagem_fundo')
+const texto_1 = document.getElementById('texto_1')
+const vt_imagens = [ 'assets/img/fundo _principal_inicio.png','assets/img/luta 1.png','assets/img/sunnt_sent.png','assets/img/cidadelaperdida 1.png','assets/img/footenshore 1 1.png',
+    'assets/img/cidade_flutuante 1.png', 'assets/img/sunny_verde 1.png', 'assets/img/gigantedeacesrro 1.png', 'assets/img/anotacoes 1.png', 'assets/img/lordofshadows 1.png' 
+  ]
+const vt_cores = ['red','black', 'green', 'red', 'red', 'blue', 'green', 'orange',  'brown', 'grey' ]
+let i_imagem = 1;
+
+setInterval(() => {
+  imagem_fundo.style.opacity = 0; 
+
+  setTimeout(() => {
+    if (i_imagem >= vt_imagens.length) {
+      i_imagem = 0;
+    }
+   imagem_fundo.style.background = `
+  linear-gradient(to bottom, #000000 4%, #000000c9 15%, #00000000 40%),
+  url('${vt_imagens[i_imagem]}') center/cover no-repeat
+`;
+    texto_1.style.color = `${vt_cores[i_imagem]}`
+    imagem_fundo.style.opacity = 1; 
+    i_imagem++;
+  }, 1000);
+}, 4000); 

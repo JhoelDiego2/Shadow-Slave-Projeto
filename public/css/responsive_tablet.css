@@ -86,6 +86,8 @@
     .menu_hamburger {
         display: flex;
         z-index: 31;
+    height: 8vh;
+        
 
     }
 
@@ -242,7 +244,9 @@
     min-height: 60vh;
 }
 
-
+.imagem_personagens{
+    transform: scale(0.4);
+}
 
 
 }
