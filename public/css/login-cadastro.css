@@ -507,8 +507,9 @@ footer .list div {
     color: var(--azul-escverdeado-obscuro);
     border-radius: 0.5rem;
     border-bottom: solid 4px var(--luz);
-  z-index: 3;
+  z-index: 1;
   padding-left: 3.3vw;
+  position: relative;
 } 
 .card-login ::placeholder{
     color: #bebebe;
@@ -758,4 +759,15 @@ input:focus{
 }
 #conv_direita:hover{
     color: #ffffff;
+}
+#icone_senha_cad, #icone_senha_cad_conf{
+    cursor: pointer;
+    width: 1px;
+    z-index: 4;
+    position: relative;
+    transform: scale(36.0);
+    bottom:3.4vh;
+    justify-self: flex-end;
+    align-self: flex-end;
+    right: 1.1vw;
 }

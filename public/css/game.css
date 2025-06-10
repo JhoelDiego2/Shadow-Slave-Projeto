@@ -158,6 +158,7 @@ header div img {
     border: solid 1px black;
     box-shadow: 1px -1px 20px 1px rgb(99, 97, 97);
     padding: 4px;
+    min-height: 8vw;
 }
 
 main {
@@ -194,7 +195,7 @@ main {
 
 @keyframes pop_up_saida {
     55% {
-        z-index: 2;
+        z-index: 100;
     }
 
     100% {
@@ -218,7 +219,7 @@ main {
     }
 
     55% {
-        z-index: 2;
+        z-index: 100;
     }
 
 }
@@ -268,6 +269,7 @@ main {
 
 #avatar_atual {
     width: 6vw;
+    height: 6vw;
     border-radius: 1000px;
     align-self: center;
     padding: 2px;
@@ -642,7 +644,7 @@ img {
 .carrosel {
     display: flex;
     height: 65vh;
-    width: auto;
+    width: 78vw;
     gap: 3vw;
     position: absolute;
     padding-left: 3vw;
@@ -651,6 +653,7 @@ img {
     left: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+    justify-content: center;
 }
 
 .carrosel .card {
@@ -664,7 +667,7 @@ img {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     animation: radiante-lateral 4s infinite linear alternate;
-    box-shadow: 1px 15px 10px 3px rgb(0, 0, 0);
+    box-shadow: 1px 15px 10px 3px rgb(51, 51, 51);
 }
 
 @keyframes radiante-lateral {
@@ -879,7 +882,7 @@ img {
     margin-top: 2vh;
     position: relative;
     box-shadow: -9px 1px 10px 1px rgb(44, 44, 44);
-    z-index: 204;
+    z-index: 99;
 }
 
 #estatisticas h2,

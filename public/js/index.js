@@ -1,10 +1,56 @@
 history.scrollRestoration = 'manual'
-function mostrar_console() {
-    console.log("Largura: " + window.innerWidth + "px");
-    console.log("Altura: " + window.innerHeight + "px");
-
+let menu_visivel = false;
+var ativo = true
+const abas_container = {
+    abas:['sunny_aba', 'nephis_aba', 'cassie_aba', 'effie_aba', 'kai_aba', 'jet_aba', 'modret_aba'],
+    container:['aba-sunny', 'aba-nephis', 'aba-cassie', 'aba-effie', 'aba-kai', 'aba-jet', 'aba-modret'],
 }
 
+
+const imagem_fundo = document.querySelector('.imagem_fundo')
+const texto_1 = document.getElementById('texto_1')
+const vt_imagens = ['assets/img/fundo _principal_inicio.png', 'assets/img/luta 1.png', 'assets/img/sunnt_sent.png', 'assets/img/cidadelaperdida 1.png', 'assets/img/footenshore 1 1.png',
+    'assets/img/cidade_flutuante 1.png', 'assets/img/sunny_verde 1.png', 'assets/img/gigantedeacesrro 1.png', 'assets/img/imagem_valor.webp', 'assets/img/lordofshadows 1.png'
+]
+const vt_cores = ['red', 'white', 'green', 'purple', 'red', 'blue', 'green', 'orange', 'black', 'grey']
+let i_imagem = 1;
+
+setInterval(() => {
+    imagem_fundo.style.opacity = 0;
+
+    setTimeout(() => {
+        if (i_imagem >= vt_imagens.length) {
+            i_imagem = 0;
+        }
+        imagem_fundo.style.background = `
+  linear-gradient(to bottom, #000000 4%, #000000c9 15%, #00000000 40%),
+  url('${vt_imagens[i_imagem]}') center/cover no-repeat
+`;
+        texto_1.style.color = `${vt_cores[i_imagem]}`
+        imagem_fundo.style.opacity = 1;
+        i_imagem++;
+    }, 1000);
+}, 4000);
+
+const jogo_1 = document.getElementById('jogo_1')
+const jogo_2 = document.getElementById('jogo_2')
+
+let jogo_1_visivel = true
+function voltar_jogo() {
+    const jogo_1_imagem = document.querySelector('.jogo1')
+    const jogo_2_imagem = document.querySelector('.jogo2')
+    jogo_1_imagem.classList.replace('jogo1', 'jogo2')
+    jogo_2_imagem.classList.replace('jogo2', 'jogo1')
+    if (jogo_1_visivel) {
+        jogo_1.style.display = 'none'
+        jogo_2.style.display = 'flex'
+        jogo_1_visivel = false
+    } else {
+        jogo_1.style.display = 'flex'
+        jogo_2.style.display = 'none'
+        jogo_1_visivel = true
+    }
+}
 
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('nav_principal');
@@ -39,7 +85,6 @@ function tirar_inicio() {
     body.classList.add("body_after")
 
 }
-var ativo = true
 function tocar() {
     const icone_musica = document.getElementById("icone_musica")
     const icone_inicial = document.getElementById("icone_inicial")
@@ -119,89 +164,22 @@ function mudar_caixinhas() {
     }
 
 }
-
-
-
-
-
-
-var sunny_aba = document.getElementById("sunny_aba");
-var nephis_aba = document.getElementById("nephis_aba");
-var cassie_aba = document.getElementById("cassie_aba");
-var effie_aba = document.getElementById("effie_aba");
-var kai_aba = document.getElementById("kai_aba");
-var jet_aba = document.getElementById("jet_aba");
-var modret_aba = document.getElementById("modret_aba");
-///containers
-var sunny_container = document.querySelector(".aba-sunny");
-var nephis_container = document.querySelector(".aba-nephis");
-var cassie_container = document.querySelector(".aba-cassie");
-var effie_container = document.querySelector(".aba-effie");
-var kai_container = document.querySelector(".aba-kai");
-var jet_container = document.querySelector(".aba-jet");
-var modret_container = document.querySelector(".aba-modret");
-
-function tirar_classe() {
-    sunny_aba.classList.remove("atual")
-    cassie_aba.classList.remove("atual")
-    effie_aba.classList.remove("atual")
-    kai_aba.classList.remove("atual")
-    nephis_aba.classList.remove("atual")
-    jet_aba.classList.remove("atual")
-    modret_aba.classList.remove("atual")
+function tirar_tudo() {
+    for (let i = 0; i < abas_container.abas.length; i++) {
+        let aba = document.getElementById(`${abas_container.abas[i]}`)
+        let container = document.querySelector(`.${abas_container.container[i]}`)
+        aba.classList.remove('atual')
+        container.style.display = 'none'
+    }
 }
-function tirar_display() {
-    sunny_container.style.display = "none"
-    nephis_container.style.display = "none"
-    cassie_container.style.display = "none"
-    effie_container.style.display = "none"
-    jet_container.style.display = "none"
-    kai_container.style.display = "none"
-    modret_container.style.display = "none"
+function trocar_tudo(indice) {
+    alert(indice)
+    console.log(abas_container.abas[indice])
+    let aba = document.getElementById(`${abas_container.abas[indice]}`)
+    let container = document.querySelector(`.${abas_container.container[indice]}`)
+    aba.classList.add("atual")
+    container.style.display = "flex"
 }
-function sunny_trocar() {
-    tirar_classe()
-    tirar_display()
-    sunny_aba.classList.add("atual")
-    sunny_container.style.display = "flex"
-}
-function nephis_trocar() {
-    tirar_classe()
-    tirar_display()
-    nephis_aba.classList.add("atual")
-    nephis_container.style.display = "flex"
-}
-function cassie_trocar() {
-    tirar_classe()
-    tirar_display()
-    cassie_aba.classList.add("atual")
-    cassie_container.style.display = "flex"
-}
-function effie_trocar() {
-    tirar_classe()
-    tirar_display()
-    effie_aba.classList.add("atual")
-    effie_container.style.display = "flex"
-}
-function kai_trocar() {
-    tirar_classe()
-    tirar_display()
-    kai_aba.classList.add("atual")
-    kai_container.style.display = "flex"
-}
-function jet_trocar() {
-    tirar_classe()
-    tirar_display()
-    jet_aba.classList.add("atual")
-    jet_container.style.display = "flex"
-}
-function modret_trocar() {
-    tirar_classe()
-    tirar_display()
-    modret_aba.classList.add("atual")
-    modret_container.style.display = "flex"
-}
-let menu_visivel = false;
 
 function mostrar_menu() {
     const nav = document.getElementById('nav_oculta');
@@ -228,27 +206,3 @@ function mostrar_menu() {
         barras[2].classList.add('barra3')
     }
 }
-const imagem_fundo = document.querySelector('.imagem_fundo')
-const texto_1 = document.getElementById('texto_1')
-const vt_imagens = [ 'assets/img/fundo _principal_inicio.png','assets/img/luta 1.png','assets/img/sunnt_sent.png','assets/img/cidadelaperdida 1.png','assets/img/footenshore 1 1.png',
-    'assets/img/cidade_flutuante 1.png', 'assets/img/sunny_verde 1.png', 'assets/img/gigantedeacesrro 1.png', 'assets/img/anotacoes 1.png', 'assets/img/lordofshadows 1.png' 
-  ]
-const vt_cores = ['red','black', 'green', 'red', 'red', 'blue', 'green', 'orange',  'brown', 'grey' ]
-let i_imagem = 1;
-
-setInterval(() => {
-  imagem_fundo.style.opacity = 0; 
-
-  setTimeout(() => {
-    if (i_imagem >= vt_imagens.length) {
-      i_imagem = 0;
-    }
-   imagem_fundo.style.background = `
-  linear-gradient(to bottom, #000000 4%, #000000c9 15%, #00000000 40%),
-  url('${vt_imagens[i_imagem]}') center/cover no-repeat
-`;
-    texto_1.style.color = `${vt_cores[i_imagem]}`
-    imagem_fundo.style.opacity = 1; 
-    i_imagem++;
-  }, 1000);
-}, 4000); 
