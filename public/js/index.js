@@ -2,17 +2,17 @@ history.scrollRestoration = 'manual'
 let menu_visivel = false;
 var ativo = true
 const abas_container = {
-    abas:['sunny_aba', 'nephis_aba', 'cassie_aba', 'effie_aba', 'kai_aba', 'jet_aba', 'modret_aba'],
-    container:['aba-sunny', 'aba-nephis', 'aba-cassie', 'aba-effie', 'aba-kai', 'aba-jet', 'aba-modret'],
+    abas: ['sunny_aba', 'nephis_aba', 'cassie_aba', 'effie_aba', 'kai_aba', 'jet_aba', 'modret_aba'],
+    container: ['aba-sunny', 'aba-nephis', 'aba-cassie', 'aba-effie', 'aba-kai', 'aba-jet', 'aba-modret'],
 }
 
 
 const imagem_fundo = document.querySelector('.imagem_fundo')
 const texto_1 = document.getElementById('texto_1')
-const vt_imagens = ['assets/img/fundo _principal_inicio.png', 'assets/img/luta 1.png', 'assets/img/sunnt_sent.png', 'assets/img/cidadelaperdida 1.png', 'assets/img/footenshore 1 1.png',
-    'assets/img/cidade_flutuante 1.png', 'assets/img/sunny_verde 1.png', 'assets/img/gigantedeacesrro 1.png', 'assets/img/imagem_valor.webp', 'assets/img/lordofshadows 1.png'
-]
-const vt_cores = ['red', 'white', 'green', 'purple', 'red', 'blue', 'green', 'orange', 'black', 'grey']
+const vt_imagens = ['assets/img/fundo _principal_inicio.png', 'assets/img/fundo_1.png', 'assets/img/fundo_2.png', 'assets/img/fundo_3.png', 'assets/img/fundo_4.png', 'assets/img/fundo_5.png',
+    'assets/img/fundo_6.png', 'assets/img/fundo_7.png', 'assets/img/fundo_8.png', 'assets/img/fundo_9.png', 'assets/img/fundo_10.png', 'assets/img/fundo_11.png', 'assets/img/fundo_12.png',
+    'assets/img/footenshore 1 1.png', 'assets/img/imagem_valor.webp']
+const vt_cores = ['red', 'white', 'green', 'purple', 'red', 'blue', 'green', 'orange', 'black', 'grey', 'red', 'red', 'red', 'red',]
 let i_imagem = 1;
 
 setInterval(() => {
@@ -173,7 +173,7 @@ function tirar_tudo() {
     }
 }
 function trocar_tudo(indice) {
-    alert(indice)
+    tirar_tudo()
     console.log(abas_container.abas[indice])
     let aba = document.getElementById(`${abas_container.abas[indice]}`)
     let container = document.querySelector(`.${abas_container.container[indice]}`)

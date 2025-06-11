@@ -23,7 +23,8 @@
           <div><img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario">Nome de usúario</p>
           </div>
-          <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')" oninput="digitando_login('nome_usuario')">
+          <input type="text" id="ipt_nome_usuario" onclick="digitando_login('nome_usuario')"
+            oninput="digitando_login('nome_usuario')">
           <div><img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha">Senha</p>
           </div>
@@ -41,7 +42,9 @@
             <img src="assets/svg/user.svg" alt="">
             <p id="texto_nome_usuario_cad">Nome de usúario</p>
           </div>
-          <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')" oninput="digitando_cad('nome_usuario_cad')">
+          <input type="text" id="ipt_nome_usuario_cad" onclick="digitando_cad('nome_usuario_cad')"
+            oninput="digitando_cad('nome_usuario_cad')" oninput="procurar_nome()">
+          <span id="resultado_nome"></span>
           <div>
             <img src="assets/svg/mail.svg" alt="">
             <p id="texto_email">Email</p>
@@ -51,21 +54,32 @@
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_senha_cad">Senha </p>
-  
+
 
           </div>
-          <input type="password" id="ipt_senha_cad" onclick="digitando_cad('senha_cad')" oninput="digitando_cad('senha_cad')" >
-                    <img src="assets/svg/invisible-password-icon.svg" class="imagem_cad"
-
-              onclick="mostrar_senha()" id="icone_senha_cad">
+          <input type="password" id="ipt_senha_cad" onclick="digitando_cad('senha_cad')"
+            oninput="digitando_cad('senha_cad')">
+          <img src="assets/svg/invisible-password-icon.svg" class="imagem_cad" onclick="mostrar_senha()"
+            id="icone_senha_cad">
           <div>
             <img src="assets/svg/lock-closed.svg" alt="">
             <p id="texto_conf_senha">Confirmar Senha</p>
-
           </div>
-          <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')" oninput="digitando_cad('conf_senha')">
-                      <img src="assets/svg/invisible-password-icon.svg" onclick="mostrar_senha()" class="imagem_cad"
-              id="icone_senha_cad_conf">
+          <input type="password" id="ipt_conf_senha" onclick="digitando_cad('conf_senha')"
+            oninput="digitando_cad('conf_senha')">
+          <img src="assets/svg/invisible-password-icon.svg" onclick="mostrar_senha()" class="imagem_cad"
+            id="icone_senha_cad_conf">
+          <div id="recomendacao_senha">
+            <ul>
+              <li id="minusculo">Um caractere minúsculo </li>
+              <li id="maiusculo">Um caractere maiúsculo</li>
+              <li id="numero">Um número</li>
+            </ul>
+            <ul>
+              <li id="especial">Um caractere especial</li>
+              <li id="minimo">Mínimo de 8 caracteres</li>
+            </ul>
+          </div>
           <button onclick="cadastrar()">CADASTRAR-SE</button>
           <p id="subtitulo">Já possui uma conta?<span onclick="trocar_login()"
               style="color: #658a87; text-decoration: underline; cursor: pointer;">Acesse aqui</span></p>

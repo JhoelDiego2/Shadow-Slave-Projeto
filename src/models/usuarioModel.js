@@ -78,12 +78,22 @@ function deletar(idUsuario, email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function procurar_nome(nome, ) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticar(): ", nome)
+    var instrucaoSql = `
+        SELECT nome FROM usuario WHERE nome = '${nome}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar, 
+    cadastrar,
     atualizar_senha,
     procurar_senha_atualizar,
-    atualizar_conta, 
-    atualizar_avatar, 
+    atualizar_conta,
+    atualizar_avatar,
     deletar,
+    procurar_nome,
 };

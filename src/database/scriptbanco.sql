@@ -106,6 +106,8 @@ SELECT
 FROM score
 GROUP BY fkGame
 ORDER BY fkGame;
+use ShadowSlave;
+select * from Usuario;
 
 SELECT score, DATE_FORMAT(horario,'%H:%i:%s') as horario  FROM score  WHERE fkUsuario = 19
                     ORDER BY horario asc  LIMIT 15;
