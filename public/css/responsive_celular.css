@@ -33,11 +33,23 @@
     top: 0;
 }
 
+#inicio .conteudo {
+    max-width: 100vw;
+    gap: 1vh;
+    background: linear-gradient(to right, #000000 4%, #0000005d 40%, #00000000 100%);
 
+}
 
-
-
-
+#inicio_titulo{
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+justify-content: center;
+}
+#body .conteudo #texto{
+    padding: 10vh 1vw;
+    font-size: 1rem;
+}
 
 
 

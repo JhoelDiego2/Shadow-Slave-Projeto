@@ -7,6 +7,12 @@ function digitando_cad(x) {
     texto_x.style.transform = "translate(-2.4vw, -6vh)";
     texto_x.style.transition = "0.7s ease-in-out";
     ipt_x.style.borderBottom = "solid 4px #7aa7a4";
+    if (x == 'nome_usuario_cad') {
+        procurar_nome()
+    }
+    if (x == 'senha_cad') {
+        digitando_senha()
+    }
 }
 function digitando_login(x) {
     var texto_x = document.getElementById(`texto_${x}`);
@@ -30,7 +36,6 @@ function trocar_cadastro() {
     let imagem_de_fundo = document.getElementById("imagem_de_fundo");
     let sair_icone = document.getElementById("sair_icone")
     sair_icone.src = "assets/svg/sair_branco.svg"
-
     imagem_de_fundo.style.background = "url('./assets/img/imagem_inicial.png')"
     imagem_de_fundo.style.transform = "translateX(0%)"
     imagem_de_fundo.style.backgroundSize = "cover"
@@ -391,4 +396,42 @@ function mostrar_senha() {
         senha_visivel = false
 
     }
+}
+function procurar_nome() {
+    var nome = document.getElementById('ipt_nome_usuario_cad').value
+    if (nome == '') {
+        return
+    }
+    fetch(`/usuarios/verificar_nome/${nome}`, { cache: 'no-store' }).then(function (response) {
+        console.log(response)
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                document.getElementById('resultado_nome').style.color = `#5a5a5a`
+                document.getElementById('resultado_nome').innerHTML = `Já existe um úsuario com com este nome`
+            });
+        } else {
+            document.getElementById('resultado_nome').style.color = `#7aa7a4`
+            document.getElementById('resultado_nome').innerHTML = 'Nome de usuario disponivel';
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+function digitando_senha() {
+    var senha = document.getElementById('ipt_senha_cad').value;
+    var especiais = "!#$%&'()*+,-:;<=>?@[]^_`{|}~´`^~¨§ªº°";
+    let temMaiusculo = false, temMinusculo = false, temNumero = false, temEspecial = false;
+    for (let i = 0; i < senha.length; i++) {
+        var c = senha[i];
+        if (c >= 'A' && c <= 'Z') temMaiusculo = true;
+        if (c >= 'a' && c <= 'z') temMinusculo = true;
+        if (!isNaN(c)) temNumero = true;
+        if (especiais.includes(c)) temEspecial = true;
+    }
+    document.getElementById('maiusculo').style.color = temMaiusculo ? "#7aa7a4" : "#5a5a5a";
+    document.getElementById('minusculo').style.color = temMinusculo ? "#7aa7a4" : "#5a5a5a";
+    document.getElementById('numero').style.color = temNumero ? "#7aa7a4" : "#5a5a5a";
+    document.getElementById('especial').style.color = temEspecial ? "#7aa7a4" : "#5a5a5a";
+    document.getElementById('minimo').style.color = senha.length >= 8 ? "#7aa7a4" : "#5a5a5a";
 }

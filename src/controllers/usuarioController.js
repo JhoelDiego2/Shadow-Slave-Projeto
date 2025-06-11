@@ -237,6 +237,39 @@ function deletar(req, res) {
             });
     }
 }
+function procurar_nome(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nome = req.params.nome;
+
+    // Faça as validações dos valores
+    if (nome == undefined) {
+        res.status(400).send("Seu id usuario está undefined!");
+    } else {
+        usuarioModel.procurar_nome(nome)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length == 1) {
+                        res.json({
+                            nome: resultado[0].nome,
+                        });
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Nome de usuario disponivel");
+                    } else {
+                        res.status(403).send("erro na procura de dados");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 
 module.exports = {
     autenticar,
@@ -246,4 +279,5 @@ module.exports = {
     atualizar_conta,
     atualizar_avatar,
     deletar,
+    procurar_nome,
 }

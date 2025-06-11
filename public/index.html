@@ -30,7 +30,42 @@
             <a href="#personagens">
                 <p>PERSONAGENS</p>
             </a>
-            <a href="#mapa">
+            <a href="#mapa" style="display: none;">
+                <p>MAPA</p>
+            </a>
+            <a href="#jogo">
+                <p>JOGO</p>
+            </a>
+            <a href="#desenvolvedor">
+                <p>DESENVOLVEDOR</p>
+            </a>
+
+            <a href="cadastrologin.html">
+                <p id="entrar">ENTRAR</p>
+            </a>
+            <img src="assets/svg/volume-mute-sharp.svg" alt="" id="icone_musica" onclick="tocar()">
+        </nav>
+        <div class="nav menu_hamburger " onclick="mostrar_menu()">
+            <div class="barra_hamburger "></div>
+            <div class="barra_hamburger "></div>
+            <div class="barra_hamburger "></div>
+        </div>
+        <nav class="nav" id="nav_oculta" style="display: none;" onclick="mostrar_menu()">
+            <p class="logo_normal logo_menu"><span>Shadow Slave</span></p>
+
+            <a href="#">
+                <p>INICIO</p>
+            </a>
+            <a href="#sobre">
+                <p>SOBRE</p>
+            </a>
+            <a href="#historia">
+                <p>HISTORIA</p>
+            </a>
+            <a href="#personagens">
+                <p>PERSONAGENS</p>
+            </a>
+            <a href="#mapa" style="display: none;">
                 <p>MAPA</p>
             </a>
             <a href="#jogo">
@@ -47,7 +82,7 @@
         </nav>
     </header>
     <main>
-        <section id="pagina_mongrel">
+        <section id="pagina_mongrel" style="display: one;">
             <img src="assets/svg/volume-mute-sharp.svg" alt="" id="icone_inicial" onclick="tocar()">
             <div class="header-container">
                 <div class="column-1" id="primeira_tela" data-aos="fade-right" data-aos-duration="1000">
@@ -57,13 +92,13 @@
                         <p id="logo_letra"><span>Shadow Slave</span></p>
                         <p><span id="sombras" onclick="mostrar_console()">A Jornada das sombras</span></p>
                     </div>
-                    <div class="sub-titulo  " >
+                    <div class="sub-titulo  ">
                         <p><i id="texto_sombras">
                                 "Somente aqueles que abraçam sua sombra descobrem a verdadeira essência do que são
                                 capazes."
                             </i> </p>
                     </div>
-                    <a href="#" class="link_saber_mais" >
+                    <a href="#" class="link_saber_mais">
                         <p id="saber_mais" onclick="tirar_inicio()">Saber mais</p>
                     </a>
                     <!--segundo-->
@@ -78,9 +113,10 @@
         <section id="inicio" style="display: none">
             <div class="imagem_fundo">
             </div>
-            <div class="conteudo fade-esquerda" >
+            <div class="conteudo fade-esquerda">
                 <p id="inicio_titulo" data-aos="fade-right" data-aos-duration="1000"><span class="1_letra">S</span>EJA
-                    <span class="vermelho"><span class="1_letra">B</span>EM</span>-<span class="1_letra">V</span>INDO!
+                    <span class="vermelho" id="texto_1"><span class="1_letra">B</span>EM</span>-<span
+                        class="1_letra">V</span>INDO!
                 </p>
                 <p id="texto" data-aos="fade-right" data-aos-duration="2200">
                     Você já ouviu falar de um mundo onde sombras caminham ao lado dos vivos, e a sobrevivência é o único
@@ -427,21 +463,41 @@
                         </div>
                     </div>
                 </div>
+                <div class="container">
+                    <div class="column-1">
+                        <div class="img-container">
+                            <img src="assets/img/imagem_valor.webp">
+                        </div>
+                    </div>
+                    <div class="column-2">
+                        <div></div>
+                        <div class="line">
+                            <div></div>
+                        </div>
+                        <div></div>
+                    </div>
+                    <div class="column-3 ">
+                        <h2 data-aos="fade-right" data-aos-duration="1300"> Nem todas as sombras são vazias... </h2>
+                        <p data-aos="fade-right" data-aos-duration="1300">
+                            <a href="https://centralnovel.com/series/shadow-slave-20230928/">Saber mais...</a>
+                        </p>
+                    </div>
+                </div>
 
         </section>
         <section id="personagens">
             <h1 data-aos="fade-right" data-aos-duration="1000">PERSONAGENS</h1>
             <nav class="nav-personagem" data-aos="fade-up" data-aos-duration="3000">
                 <div>
-                    <p onclick="sunny_trocar()" class="atual" id="sunny_aba">SUNNY</p>
-                    <p onclick="nephis_trocar()" id="nephis_aba">NEPHIS</p>
-                    <p onclick="cassie_trocar()" id="cassie_aba">CASSIE</p>
-                    <p onclick="effie_trocar()" id="effie_aba">EFFIE</p>
+                    <p onclick="trocar_tudo(0)" class="atual" id="sunny_aba">SUNNY</p>
+                    <p onclick="trocar_tudo(1)" id="nephis_aba">NEPHIS</p>
+                    <p onclick="trocar_tudo(2)" id="cassie_aba">CASSIE</p>
+                    <p onclick="trocar_tudo(3)" id="effie_aba">EFFIE</p>
                 </div>
                 <div>
-                    <p onclick="kai_trocar()" id="kai_aba">KAI</p>
-                    <p onclick="jet_trocar()" id="jet_aba">JET</p>
-                    <p onclick="modret_trocar()" id="modret_aba">MODRET</p>
+                    <p onclick="trocar_tudo(4)" id="kai_aba">KAI</p>
+                    <p onclick="trocar_tudo(5)" id="jet_aba">JET</p>
+                    <p onclick="trocar_tudo(6)" id="modret_aba">MODRET</p>
                 </div>
             </nav>
             <div class="container aba-sunny">
@@ -463,7 +519,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/sunny-ineteiro.png" alt="" id="sunny">
+                        <img src="assets/img/sunny-ineteiro.png" alt="" id="sunny" class="imagem_personagens">
                     </div>
                     <div class="column-3" data-aos="fade-left" data-aos-duration="2000">
                         <p>
@@ -499,7 +555,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/nephis_aba_imagem.png" alt="" id="nephis">
+                        <img src="assets/img/nephis_aba_imagem.png" alt="" id="nephis" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -537,7 +593,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/imagem_cassie.png" alt="" id="cassie">
+                        <img src="assets/img/imagem_cassie.png" alt="" id="cassie" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -576,7 +632,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/effie_perso.png" alt="" id="effie">
+                        <img src="assets/img/effie_perso.png" alt="" id="effie" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -614,7 +670,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/kai_perso.png" alt="" id="kai">
+                        <img src="assets/img/kai_perso.png" alt="" id="kai" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -652,7 +708,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/jet_perso.png" alt="" id="jet">
+                        <img src="assets/img/jet_perso.png" alt="" id="jet" class="imagem_personagens">
                     </div>
                     <div class="column-3">
                         <p>
@@ -689,7 +745,7 @@
                         </p>
                     </div>
                     <div class="column-2">
-                        <img src="assets/img/modret_perso.png" alt="" id="modret">
+                        <img src="assets/img/modret_perso.png" alt="" id="modret" class="imagem_personagens">
                     </div>
                     <div class="column-3 fade-direita">
                         <p>
@@ -707,7 +763,7 @@
                 </div>
             </div>
         </section>
-        <section id="mapa">
+        <section id="mapa" style="display: none;">
             <h1 data-aos="fade-up" data-aos-duration="2000" style="letter-spacing: 10px;">MAPA</h1>
             <div class="container">
                 <div class="imagem_mapa">
@@ -740,9 +796,9 @@
             </div>
         </section>
         <section id="jogo">
-            <h1 data-aos="fade-up" data-aos-duration="2000">MINI - JOGOS DISPONIVEIS</h1>
+            <h1 data-aos="fade-up" data-aos-duration="2000">JOGOS DISPONIVEIS</h1>
             <div class="container">
-                <div class="column-1 ativo" data-aos="fade-right" data-aos-duration="1200">
+                <div class="column-1 ativo" data-aos="fade-right" data-aos-duration="1200" id="jogo_1">
                     <h2>Capture o sunny sombra</h2>
                     <p>Treine seus reflexos capturando Sunny enquanto ele se move nas sombras!
                         Sunny aparecerá em diferentes pontos da tela e mudará rapidamente de
@@ -753,23 +809,31 @@
                         <p>Jogar Agora</p>
                     </a>
                 </div>
+                <div class="column-1 inativo" data-aos="fade-right" data-aos-duration="1200" id="jogo_2">
+                    <h2>Desafie Nephis na Espada</h2>
+                    <p>Teste sua velocidade e precisão em um duelo com Nephis! Clique rapidamente para desferir golpes
+                        no momento certo e desviar dos ataques dela. Cada rodada aumenta a dificuldade, exigindo foco
+                        total para vencer.
+                        Habilidade Trabalhada: Reflexos e tempo de reação.
+                    </p>
+                    <a href="cadastrologin.html" data-aos="fade-up" data-aos-duration="2000">
+                        <p>Jogar Agora</p>
+                    </a>
+                </div>
                 <div class="column-2">
                     <div class="content">
                         <div class="voltar" id="voltar_jogo">
                             <img src="assets/img/switch.svg" alt="" onclick="voltar_jogo()">
                         </div>
-                        <img src="assets/img/sunny_xom_fundo.webp" alt="" class="jogo1" width="450">
-                        <img src="assets/img/imagem_inicial.png" alt="" class="jogo2" width="450">
-                        <img src="assets/img/fundo_nephis.png" alt="" class="jogo3" width="450">
+                        <img src="assets/img/print_sunnt.png" alt="" class="jogo1">
+                        <img src="assets/img/print_nephis.png" alt="" class="jogo2">
                         <div class="seguinte" id="voltar_jogo">
-                            <img src="assets/img/switch.svg" alt="" onclick="">
+                            <img src="assets/img/switch.svg" alt="" onclick="voltar_jogo()">
                         </div>
                     </div>
 
                     <div class="caixinhas ">
                         <div id="jogo_atual_c"></div>
-                        <div></div>
-                        <div></div>
                         <div></div>
                     </div>
                 </div>
@@ -817,7 +881,7 @@
     <footer>
         <div>
             <img src="assets/img/logotipo.png" alt="" id="logotipo-footer">
-            <p>© 2025 Shadow Slave | Jhoel</p>
+            <p>© 2025 Shadow Slave & griffin morgan</p>
         </div>
         <div>
             <p id="f-info">Informações</p>
@@ -849,11 +913,11 @@
         <div class="projeto">
             <p>
                 <span>Projeto individual</span>
-                Site desenvolvido para nota nas materias de Pesquisa & inovação e Socioemocional
+                desenvolvido para fins educacionais todos os direitos de autor pertencem aos devidos artistas.
             </p>
         </div>
         <div class="contatos">
-            <div class="verde contato"><a href="">
+            <div class="verde contato"><a href="mailto:jhoel.mita@sptech">
                     <div id="email_imagem">
                     </div>
                     <p>jhoel.mita@sptech.school</p>
@@ -865,19 +929,20 @@
                     <p>JhoelDiego2 | Github</p>
                 </a>
             </div>
-            <div class="verde contato"><a href="">
+            <div class="verde contato"><a href="https://www.linkedin.com/in/jhoeldiego/
+">
                     <div id="linkediin_imagem">
                     </div>
                     <p>linkediin</p>
                 </a>
             </div>
-            <div class="verde contato"><a href="">
+            <div class="verde contato"><a href="https://api.whatsapp.com/send?phone=5511946787175">
                     <div id="numero_imagem">
                     </div>
-                    <p> (11) 84678-7175</p>
+                    <p> (11) 94678-7175</p>
                 </a>
             </div>
-            <div class="verde contato"><a href="">
+            <div class="verde contato"><a href="https://www.instagram.com/_jhoeldiego/">
                     <div id="instagram_imagem">
                     </div>
                     <p> instagram</p>

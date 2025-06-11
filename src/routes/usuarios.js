@@ -26,5 +26,8 @@ router.post("/atualizar_avatar", function (req, res) {
 router.delete("/deletar/:fkUsuario", function (req, res) {
     usuarioController.deletar(req, res);
 });
+router.get("/verificar_nome/:nome", function (req, res) {
+    usuarioController.procurar_nome(req, res);
+});
 
 module.exports = router;

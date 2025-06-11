@@ -268,7 +268,9 @@ body {
 }
 
 section {
-    height: 90vh;
+    min-height: 90vh;
+    max-width: 100dvw;
+
 }
 
 .nav {
@@ -278,7 +280,7 @@ section {
     font-size: 1rem;
     position: fixed;
     z-index: 30;
-    min-width:100dvw;
+    min-width: 100dvw;
     height: 10vh;
     color: white;
     gap: 1vw;
@@ -321,6 +323,10 @@ section {
     border-radius: 2px;
 }
 
+#nav_oculta {
+    display: none;
+}
+
 .scrolled {
     backdrop-filter: blur(8px);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.212);
@@ -361,6 +367,9 @@ section {
     background-size: cover;
     background-position: center;
     z-index: -1;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+
 }
 
 #inicio .conteudo {
@@ -424,9 +433,10 @@ section {
     padding: 0vh 2vw;
     padding-top: 10vh;
     gap: 5vw;
-    height: 95vh;
+    min-height: 95dvh;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
 }
 
 .esquerda {
@@ -456,8 +466,6 @@ section {
 
 .tabela .caxa_menor {
     display: flex;
-    flex-wrap: wrap;
-
 }
 
 .tabela .caxa_menor div div {
@@ -517,6 +525,8 @@ section {
     z-index: 4;
     border: solid 1px #3DB3A2;
     width: 20vw;
+    height: auto;
+
 }
 
 .segunda {
@@ -527,8 +537,7 @@ section {
     border: solid 1px #3DB3A2;
     width: 20vw;
     transform: scale(0.9);
-    height: 29vh;
-
+    height: auto;
 }
 
 .terceiro {
@@ -539,6 +548,8 @@ section {
     width: 20vw;
     left: 6vw;
     transform: scale(0.8);
+    height: auto;
+
 }
 
 .quarto {
@@ -549,6 +560,8 @@ section {
     width: 20vw;
     left: 9vw;
     transform: scale(0.7);
+    height: auto;
+
 
 }
 
@@ -730,15 +743,15 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 78vh;
+    min-height: 78dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
 }
 
 #personagens .conteudo .column-1 {
     width: 40%;
-    height: 100%;
 
     padding: 3vh 2vw;
     display: flex;
@@ -750,22 +763,21 @@ section {
 .conteudo {
     display: flex;
     position: relative;
-    height: 100%;
+    min-height: 56vh;
 }
 
 #personagens .conteudo .column-2 {
     width: 30%;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    bottom: 0;
+    position: relative;
 
 }
 
 #personagens .conteudo .column-3 {
     width: 30%;
-    height: 50%;
     padding: 3vh 2vw;
     display: flex;
     flex-direction: column;
@@ -775,7 +787,7 @@ section {
 }
 
 #sunny {
-    height: 90vh;
+    max-height: 90vh;
 }
 
 #personagens .conteudo .column-2 img {
@@ -794,6 +806,7 @@ section {
     justify-content: space-between;
     padding: 6vh;
     animation: fade-up 2s ease-out;
+    position: relative;
 }
 
 .nome_real h2 {
@@ -801,14 +814,13 @@ section {
 }
 
 .nome_real .esquerda {
-    padding-left: 6%;
     width: 50%;
     z-index: 2;
 }
 
 .nome_real .direita {
-    padding-left: 15%;
     width: 50%;
+    text-align: center;
 }
 
 #personagens p {
@@ -840,9 +852,9 @@ section {
     color: #bd2c00;
 }
 
-.aba-nephis .esquerda {
-    margin-left: 2vw;
-    z-index: 2;
+.aba-nephis .direita {
+    z-index: 0;
+    padding-left: 7vw;
 }
 
 .aba-nephis {
@@ -868,6 +880,7 @@ section {
 
 .aba-cassie .esquerda {
     padding: 0;
+    text-align: center;
 }
 
 .aba-effie {
@@ -891,7 +904,11 @@ section {
 }
 
 .aba-effie .esquerda {
-    padding: 3;
+    padding-left: 3vw;
+}
+
+.aba-effie .direita {
+    padding-left: 7vw;
 }
 
 .aba-kai {
@@ -935,7 +952,7 @@ section {
 }
 
 .aba-jet .esquerda {
-    padding-left: 25vw;
+    text-align: center;
 }
 
 .aba-modret {
@@ -955,7 +972,11 @@ section {
 }
 
 .aba-modret .esquerda {
-    padding-left: 9vw;
+    text-align: center;
+}
+
+.aba-modret .direita {
+    padding-left: 10vw;
 }
 
 .fade-direita {
@@ -1093,7 +1114,7 @@ section {
 
 
 #jogo {
-    min-height: 100vh;
+    min-height: 30vh;
 
 }
 
@@ -1102,7 +1123,7 @@ section {
 
 #jogo .container {
     display: flex;
-    gap: 12vw;
+    gap: 7vw;
     padding: 1% 0%;
 }
 
@@ -1125,29 +1146,22 @@ section {
 .jogo1 {
     z-index: 5;
     border: solid 1px #3DB3A2;
-    width: 23vw;
-    margin-left: 20%;
+    width: 35vw;
+    height: auto;
 }
 
 .jogo2 {
     position: absolute;
-    right: 17.5%;
     z-index: 4;
     border: solid 1px #3DB3A2;
-    width: 26vw;
-    height: 18vw;
-}
-
-.jogo3 {
-    position: absolute;
-    right: 16.3%;
-    z-index: 3;
-    border: solid 1px #3DB3A2;
-    width: 29vw;
-    height: 17vw;
-
+    width: 40vw;
+    height: 40vh;
 
 }
+#jogo .seguinte{
+    padding: 0;
+}
+
 
 #jogo p {
     font-size: 1.7rem;
@@ -1164,7 +1178,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1vw;
+    gap: 3.4vw;
 }
 
 
@@ -1459,4 +1473,26 @@ h2,
 h3,
 img {
     user-select: none;
+}
+
+.menu_hamburger {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    display: none;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0vh 3vw;
+}
+
+.barra_hamburger {
+    width: 40px;
+    height: 5px;
+    background-color: white;
+    border-radius: 4px;
+    transition: 1s ease;
+}
+.inativo{
+    display: none;
 }
