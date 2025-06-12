@@ -36,27 +36,27 @@ function cadastrar(req, res) {
 }
 function pontuar_nephis(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var fkGame= req.body.fkGameServer;
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkGame = req.body.fkGameServer;
     var fkUsuario = req.body.fkUsuarioServer;
     var resultado = req.body.resultadoServer;
     var score = req.body.scoreServer;
-    var tempo = req.body.tempoServer;
+    var idPontuacao = req.body.idPontuacaoServer;
 
-
+    // Faça as validações dos valores
     if (fkGame == undefined) {
         res.status(400).send("Seu fkGame está undefined!");
     } else if (fkUsuario == undefined) {
         res.status(400).send("Seu fkUsuario está undefined!");
-    } else if (resultado == undefined) {
-        res.status(400).send("Sua resultado está undefined!");
     } else if (score == undefined) {
         res.status(400).send("Sua score está undefined!");
-    } else if (tempo == undefined) {
-        res.status(400).send("Sua score está undefined!");
-    }  else {
-
+    } else if (idPontuacao == undefined) {
+        res.status(400).send("Sua id está undefined!");
+    } else if (resultado == undefined) {
+        res.status(400).send("Sua resultado está undefined!");
+    } else{
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        gameModel.pontuar_nephis(fkGame, fkUsuario, resultado, score, tempo)
+        gameModel.pontuar_nephis(fkGame, fkUsuario, resultado, score, idPontuacao)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -74,13 +74,13 @@ function pontuar_nephis(req, res) {
     }
 }
 function pontuar_sunny(req, res) {
+
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var fkGame= req.body.fkGameServer;
+    var fkGame = req.body.fkGameServer;
     var fkUsuario = req.body.fkUsuarioServer;
     var resultado = req.body.resultadoServer;
     var score = req.body.scoreServer;
-    var tempo = req.body.tempoServer;
-
+    var idPontuacao = req.body.idPontuacaoServer;
 
     // Faça as validações dos valores
     if (fkGame == undefined) {
@@ -89,12 +89,13 @@ function pontuar_sunny(req, res) {
         res.status(400).send("Seu fkUsuario está undefined!");
     } else if (score == undefined) {
         res.status(400).send("Sua score está undefined!");
-    } else if (tempo == undefined) {
-        res.status(400).send("Sua score está undefined!");
-    }  else {
-
+    } else if (idPontuacao == undefined) {
+        res.status(400).send("Sua id está undefined!");
+    } else if (resultado == undefined) {
+        res.status(400).send("Sua resultado está undefined!");
+    } else{
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        gameModel.pontuar_sunny(fkGame, fkUsuario, resultado, score, tempo)
+        gameModel.pontuar_sunny(fkGame, fkUsuario, resultado, score, idPontuacao)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -217,10 +218,11 @@ function listar_ranking(req, res) {
     });
 }
 function listar_records(req, res) {
+    var fkJogo = req.params.fkJogo;
 
     console.log(`Recuperando ranking em tempo real`);
 
-    gameModel.listar_records().then(function (resultado) {
+    gameModel.listar_records(fkJogo).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -273,7 +275,7 @@ function publicar(req, res) {
         res.status(400).send("O título está indefinido!");
     } else if (fkUsuario == undefined) {
         res.status(400).send("A descrição está indefinido!");
-    } else  {
+    } else {
         gameModel.publicar(mensagem, fkUsuario)
             .then(
                 function (resultado) {
@@ -321,6 +323,27 @@ function atualizar_ranking(req, res) {
         );
 
 }
+function comecar_jogo(req, res) {
+    var fkGame = req.body.fkGameServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+
+    if (fkGame === undefined) {
+        res.status(400).send("O título está indefinido!");
+    } else if (fkUsuario === undefined) {
+        res.status(400).send("A descrição está indefinido!");
+    } else {
+        gameModel.comecar_jogo(fkGame, fkUsuario)
+            .then(function (resultado) {
+                var idPontuacao = resultado.insertId;
+                res.json({ id: idPontuacao });
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -334,6 +357,7 @@ module.exports = {
     listar_records,
     listar_ranking,
     publicar,
-    listar_mensagens, 
-    atualizar_ranking, 
+    listar_mensagens,
+    atualizar_ranking,
+    comecar_jogo, 
 }

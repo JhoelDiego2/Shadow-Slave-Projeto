@@ -233,7 +233,8 @@
                         <p class="descricao_jogo ">Clique em Sunny antes que ele desapareça nas
                             sombras — seja rápido ou
                             perca o rastro!</p>
-                        <img src="assets/img/sunny_chibi.png" alt="" style="background-color: white; border-radius: 100px;">
+                        <img src="assets/img/sunny_chibi.png" alt=""
+                            style="background-color: white; border-radius: 100px;">
                     </div>
                 </div>
                 <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo_nephis()"
@@ -368,11 +369,28 @@
                     </div>
                     <div class="bottom">
                         <div class="grafico_jogo grafico">
-                            <h3>Records sunny game</h3>
+                            <h3>Records Sunny Game
+                                <select id="select_sunny_records" onchange="mudar_grafico_rec()" class="sel_global">
+                                    <option value="1">Fácil</option>
+                                    <option value="2">Médio</option>
+                                    <option value="3">Díficil</option>
+                                    <option value="4">Hardcore</option>
+                                </select>
+                            </h3>
+
                             <canvas id="grafico_record_sunny" style="width: 23vw; height: 61vh;"></canvas>
                         </div>
                         <div class="grafico_jogo grafico">
-                            <h3>Records nephis game</h3>
+                            <h3>Records Nephis Game
+                                <select id="select_nephis_records" onchange="mudar_grafico_rec_2()" class="sel_global">
+                                    <option value="5">Fácil</option>
+                                    <option value="6">Médio</option>
+                                    <option value="7">Díficil</option>
+                                    <option value="8">Hardcore</option>
+                                </select>
+
+                            </h3>
+
                             <canvas id="grafico_record_nephis" style="width: 23vw; height: 61vh;"></canvas>
                         </div>
                     </div>

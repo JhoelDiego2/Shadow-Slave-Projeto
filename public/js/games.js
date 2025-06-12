@@ -21,9 +21,9 @@ let tempo_sunny_game = 0
 let resultados_game = ''
 let tempo_nephis_game = ''
 function pontuacao_sunny() {
-    let fkUsuario = sessionStorage.ID_USUARIO;
+    let fkUsuario = Number(sessionStorage.ID_USUARIO);
     fetch("/game/pontuar_sunny", {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
@@ -33,7 +33,7 @@ function pontuacao_sunny() {
             fkUsuarioServer: fkUsuario,
             resultadoServer: resultados_game,
             scoreServer: i_sunny,
-            tempoServer: tempo_sunny_game,
+            idPontuacaoServer: idPontuacao
         }),
     })
         .then(function (resposta) {
@@ -273,6 +273,7 @@ function iniciar_jogo_sunny() {
     resultados_jogo.style.display = "none"
     s_sunny.classList.remove("section_preta")
     comecar_cronometro()
+    comecar_jogo()
     if (nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'medio' || nivel_jogo_sunny == 'hardcore') {
 
         interval_maquina_sunny = setInterval(() => {
@@ -452,12 +453,43 @@ function ir_para_menu_geral(x) {
     }, 3000);
 
 }
+let idPontuacao = 0;
 
+function comecar_jogo() {
+    let fkUsuario = Number(sessionStorage.ID_USUARIO);
+
+    fetch("/game/comecar_jogo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkGameServer: fkGame,
+            fkUsuarioServer: fkUsuario,
+        }),
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro do score da nephis!";
+            }
+        })
+        .then(function (dados) {
+            console.log("Resposta da API:", dados);
+            idPontuacao = dados.id;
+        })
+        .catch(function (erro) {
+            console.log(`#ERRO: ${erro}`);
+        });
+
+    return false;
+}
 // acabou sunny -----------------------------
 function pontuacao_nephis() {
-    let fkUsuario = sessionStorage.ID_USUARIO;
+    let fkUsuario = Number(sessionStorage.ID_USUARIO);
     fetch("/game/pontuar_nephis", {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
@@ -467,7 +499,7 @@ function pontuacao_nephis() {
             fkUsuarioServer: fkUsuario,
             resultadoServer: resultados_game,
             scoreServer: i_nephis,
-            tempoServer: tempo_nephis_game,
+            idPontuacaoServer: idPontuacao,
         }),
     })
         .then(function (resposta) {
@@ -506,7 +538,6 @@ function ataque_nephis() {
 
     if (vida_maquina_largura <= 0) {
         botom_nephis_game[1].style.animation = "none"
-        pontuacao_nephis()
         clearInterval(intervalo_maquina)
         clearInterval(cronometro_nephis)
         if ((i_nephis > score_nephis_maq) && nivel_jogo_nephis == 'dificil') {
@@ -539,6 +570,8 @@ function ataque_nephis() {
             resultados_game = 'Vitoria'
 
         }
+        pontuacao_nephis()
+
     }
 }
 
@@ -593,7 +626,6 @@ function ataque_maquina() {
 
         if (vida_usuario_largura <= 0) {
             jogo_nephis_ativo = false
-            pontuacao_nephis()
             botom_nephis_game[1].style.animation = "none"
             if ((score_nephis_maq > i_nephis) && (nivel_jogo_nephis == 'dificil' && i_nephis > 90)) {
                 resultados_jogo_fuc('nephis',
@@ -622,6 +654,7 @@ function ataque_maquina() {
                 )
                 resultados_game = 'Derrota'
             }
+            pontuacao_nephis()
             clearInterval(intervalo_maquina)
             clearInterval(cronometro_nephis)
         }
@@ -704,6 +737,7 @@ function iniciar_jogo_nephis() {
     botom_nephis_game[0].classList.remove("section_preta")
     botom_nephis_game[0].onclick = ataque_nephis;
     botom_nephis_game[1].classList.remove("section_preta")
+    comecar_jogo()
     ataque_maquina()
 }
 

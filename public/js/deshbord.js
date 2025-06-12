@@ -48,8 +48,8 @@ let i_hardcore_dois = 0
 let i_pontuacao_total = 0
 let jogosConcluidos = 0
 let modalidade_moda = 0
-let soma_media_cliques = 0
 let quantidade_modalidades = 0
+let total_segundos = 0
 //////conexão bd
 
 const b_modalidade_usuario = document.getElementById('b_modalidade_usuario')
@@ -66,6 +66,8 @@ let LINHAS_USUARIO = []
 let scores = []
 let primeira_vez = true
 let pontos_atual = 0
+let i_soma_cliques = 0
+let toal_nephis_index = 0
 function exibir_kpi() {
     i_modalidade_sunny = 0
     i_modalidade_nephis = 0
@@ -84,33 +86,37 @@ function exibir_kpi() {
     soma_media_cliques = 0
     quantidade_modalidades = 0
     menor_tempo_sunny = 0
+    i_soma_cliques = 0
+    total_segundos = 0
     for (let i = 0; i < scores.length; i++) {
         jogosConcluidos = jogosConcluidos + scores[i].total_partidas
-        i_pontuacao_total = i_pontuacao_total + (scores[i].total_cliques)
+        i_pontuacao_total = i_pontuacao_total + Number(scores[i].total_pontos)
         if (i == 0) {
             menor_tempo_sunny = scores[i].menor_tempo
         } else if (scores[i].menor_tempo > menor_tempo_sunny) {
             menor_tempo_sunny = scores[i].menor_tempo
         }
         if (scores[i].total_partidas > modalidade_moda) {
-            modalidade_moda = scores[i].fkGame
+            modalidade_moda = scores[i].fkJogo
         }
-        if (scores[i].fkGame == 1 || scores[i].fkGame == 2 || scores[i].fkGame == 3 || scores[i] == 4) {
+        if (scores[i].fkJogo == 1 || scores[i].fkJogo == 2 || scores[i].fkJogo == 3 || scores[i] == 4) {
             i_modalidade_sunny = i_modalidade_sunny + scores[i].total_partidas
-        } else if (scores[i].fkGame == 5 || scores[i].fkGame == 6 || scores[i].fkGame == 7 || scores[i].fkGame == 8) {
+        } else if (scores[i].fkJogo == 5 || scores[i].fkJogo == 6 || scores[i].fkJogo == 7 || scores[i].fkJogo == 8) {
             i_modalidade_nephis = i_modalidade_nephis + scores[i].total_partidas
-            soma_media_cliques = soma_media_cliques + scores[i].media_cliques_por_segundo
             quantidade_modalidades++
+            toal_nephis_index++
+            total_segundos = total_segundos + Number(scores[i].tempo_total_segundos)
+            i_soma_cliques = i_soma_cliques + Number(scores[i].total_cliques)
         }
-        scores[i].fkGame == 1 ? i_facil = scores[i].total_partidas : null
-        scores[i].fkGame == 2 ? i_medio = scores[i].total_partidas : null
-        scores[i].fkGame == 3 ? i_dificil = scores[i].total_partidas : null
-        scores[i].fkGame == 4 ? i_hardcore = scores[i].total_partidas : null
+        scores[i].fkJogo == 1 ? i_facil = scores[i].total_partidas : null
+        scores[i].fkJogo == 2 ? i_medio = scores[i].total_partidas : null
+        scores[i].fkJogo == 3 ? i_dificil = scores[i].total_partidas : null
+        scores[i].fkJogo == 4 ? i_hardcore = scores[i].total_partidas : null
 
-        scores[i].fkGame == 5 ? i_facil_dois = scores[i].total_partidas : null
-        scores[i].fkGame == 6 ? i_medio_dois = scores[i].total_partidas : null
-        scores[i].fkGame == 7 ? i_dificil_dois = scores[i].total_partidas : null
-        scores[i].fkGame == 8 ? i_hardcore_dois = scores[i].total_partidas : null
+        scores[i].fkJogo == 5 ? i_facil_dois = scores[i].total_partidas : null
+        scores[i].fkJogo == 6 ? i_medio_dois = scores[i].total_partidas : null
+        scores[i].fkJogo == 7 ? i_dificil_dois = scores[i].total_partidas : null
+        scores[i].fkJogo == 8 ? i_hardcore_dois = scores[i].total_partidas : null
     }
     if (modalidade_moda == 1 || modalidade_moda == 2 || modalidade_moda == 3 || modalidade_moda == 4) {
         b_modalidade_usuario.innerHTML = 'Sunny Game'
@@ -118,7 +124,7 @@ function exibir_kpi() {
         b_modalidade_usuario.innerHTML = 'Nephis Game'
     }
     proporcao_score = (i_pontuacao_total * 100) / sistema_progressao[proximoRank]
-    if (proporcao_score >= 100 ) {
+    if (proporcao_score >= 100) {
         atualizar_rank(fkUsuario, proximoRank)
     }
     b_jogos_usuario.innerHTML = jogosConcluidos
@@ -126,10 +132,11 @@ function exibir_kpi() {
     b_rank_seguinte.innerHTML = proximoRank + ' ' + sistema_progressao[proximoRank] + 'P'
     b_ganhos_usuario.innerHTML = menor_tempo_sunny
     limite_ranking_div.style.width = proporcao_score + "%"
-    if (soma_media_cliques == 0) {
+    if (i_soma_cliques == 0) {
         b_media_usuario.innerHTML = 0
     } else {
-        b_media_usuario.innerHTML = (soma_media_cliques / quantidade_modalidades).toFixed(2)
+
+        b_media_usuario.innerHTML = (i_soma_cliques / total_segundos).toFixed(2)
     }
     if (primeira_vez) {
         pontos_atual = i_pontuacao_total
@@ -192,7 +199,6 @@ function obter_dado_linha() {
                     if (resposta2.ok) {
                         resposta2.json().then(function (json2) {
                             LINHAS_USUARIO = json2.linhas; // Armazena as linhas
-
                             exibir_kpi(); // Exibe os KPIs
                         });
                     }
@@ -210,7 +216,10 @@ const section_individual = document.getElementById('section_individual')
 const section_global = document.getElementById('section_global')
 function mudar_deshbord(x) {
     buscar_ranking()
-    buscar_records()
+    if (x == 'global') {
+        buscar_records(1)
+        buscar_records(5)
+    }
     const estatisticas_atual = document.querySelector('.estatisticas_atual')
     const estatisticas_nao_ativo = document.querySelector('.estatisticas_nao_atual')
     estatisticas_atual.classList.replace('estatisticas_atual', 'estatisticas_nao_atual')
@@ -511,8 +520,9 @@ function buscar_ranking() {
         if (response.ok) {
             response.json()
                 .then(function (response) {
+
                     top_ranking.innerHTML = ''
-                    for (let i = 0; i <= response.length; i++) {
+                    for (let i = 0; i < response.length; i++) {
                         top_ranking.innerHTML += `
                         <div>
                         <p class="rank">${i + 1}º</p>
@@ -531,9 +541,16 @@ function buscar_ranking() {
             console.error(`Erro na obtenção dos dados p/ ranking : ${error.message}`);
         });
 }
-
-function buscar_records() {
-    fetch(`/game/listar_records`, { cache: 'no-store' })
+function mudar_grafico_rec() {
+    var fkJogo = document.getElementById('select_sunny_records').value
+    buscar_records(fkJogo)
+}
+function mudar_grafico_rec_2() {
+    var fkJogo = document.getElementById('select_nephis_records').value
+    buscar_records(fkJogo)
+}
+function buscar_records(fkJogo) {
+    fetch(`/game/listar_records/${fkJogo}`, { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (dados) {
@@ -563,6 +580,13 @@ function tempoParaSegundos(tempoStr) {
 }
 
 function plotar_graficos_global(resposta) {
+    if (Chart.getChart('grafico_record_sunny') && (resposta[0].fkJogo == 1 || resposta[0].fkJogo == 2 || resposta[0].fkJogo == 3 || resposta[0].fkJogo == 4)) {
+        Chart.getChart('grafico_record_sunny').destroy();
+    }
+    if (Chart.getChart('grafico_record_nephis') && (resposta[0].fkJogo == 5 || resposta[0].fkJogo == 6 || resposta[0].fkJogo == 7 || resposta[0].fkJogo == 8)) {
+        Chart.getChart('grafico_record_nephis').destroy();
+    }
+
     const labels_record_sunny = [];
 
     const data_record_sunny = {
@@ -614,72 +638,27 @@ function plotar_graficos_global(resposta) {
     };
 
 
-    const labels_record_nephis = [];
 
-
-    const data_record_nephis = {
-        labels: labels_record_nephis,
-        datasets: [{
-            label: 'Tempo: ',
-            data: [],
-
-            backgroundColor: [
-                'rgba(139, 139, 139, 0.4)', //verde
-                'rgba(33, 117, 106, 0.43)', // vermelho
-            ],
-            borderColor: [
-                'rgb(139, 139, 139)',      // borda do "Fácil"
-                'rgb(21, 197, 174)'       // borda do "Difícil"
-            ],
-            borderWidth: 2,
-            hoverOffset: 50
-        }]
-    };
 
     for (let i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        var tempo_convertido = tempoParaSegundos(registro.tempo)
-        if (registro.fkGame == 1) {
-            labels_record_sunny.push(registro.nome);
-            data_record_sunny.datasets[0].data.push(tempo_convertido);
-        } else if (registro.fkGame == 8) {
-            labels_record_nephis.push(registro.nome);
-            data_record_nephis.datasets[0].data.push(tempo_convertido);
-        }
+        var tempo_convertido = (registro.tempo)
+
+        labels_record_sunny.push(registro.nomeJogador);
+        data_record_sunny.datasets[0].data.push(tempo_convertido);
+
 
     }
-    const config_record_nephis = {
-        type: 'bar',
-        data: data_record_nephis,
-        // usando options para colocar a legenda embaixo do grafico
-        options: {
-            indexAxis: 'y',  // Essa linha deixa as barras na horizontal
-            scales: {
-                x: {
-                    beginAtZero: true
-                }
-            },
-            responsive: false,
-            plugins: {
-                legend: {
-                    position: 'top', // Coloca a legenda embaixo do gráfico
-                    labels: {
-                        color: 'white', // Cor da fonte da legenda
-                        font: {
-                            size: 15
-                        }
-                    }
-                },
-            }
-        }
-    };
-    const ctx_record_sunny = document.getElementById('grafico_record_sunny');
-    // new Chart(ctx_record_sunny, config_record_sunny);
-    const graficoRecordSunny = new Chart(ctx_record_sunny, config_record_sunny);
+    if (resposta[0].fkJogo == 1 || resposta[0].fkJogo == 2 || resposta[0].fkJogo == 3 || resposta[0].fkJogo == 4) {
+        const ctx_record_sunny = document.getElementById('grafico_record_sunny');
+        // new Chart(ctx_record_sunny, config_record_sunny);
+        const graficoRecordSunny = new Chart(ctx_record_sunny, config_record_sunny);
+    } else {
+        const ctx_record_nephis = document.getElementById('grafico_record_nephis');
+        // new Chart(ctx_record_nephis, config_record_nephis);
+        const graficoRecordNephis = new Chart(ctx_record_nephis, config_record_sunny);
+    }
 
-    const ctx_record_nephis = document.getElementById('grafico_record_nephis');
-    // new Chart(ctx_record_nephis, config_record_nephis);
-    const graficoRecordNephis = new Chart(ctx_record_nephis, config_record_nephis);
 }
 const b_ranking_usuario = document.getElementById('b_ranking_usuario')
 const b_total_jogadores = document.getElementById('b_total_jogadores')
