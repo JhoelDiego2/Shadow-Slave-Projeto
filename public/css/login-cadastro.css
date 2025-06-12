@@ -852,7 +852,8 @@ input:focus {
 }
 
 #icone_senha_cad,
-#icone_senha_cad_conf {
+#icone_senha_cad_conf, 
+#icone_senha_log {
     cursor: pointer;
     width: 1px;
     z-index: 4;

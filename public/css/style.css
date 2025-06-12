@@ -207,7 +207,7 @@ body {
 }
 
 #pagina_mongrel #saber_mais:hover {
-    padding: 3vh 18vw;
+    padding: 3vh 20vw;
     border-width: 2.2px;
 }
 
@@ -385,6 +385,7 @@ section {
 
 .vermelho {
     color: #b12828d8;
+    transition: 500ms ease;
 }
 
 #inicio #texto {
@@ -1399,7 +1400,7 @@ footer .list div {
 }
 
 #email_imagem {
-    background: url("../assets/img/github.png");
+    background: url("../assets/svg/email_branco.svg");
     background-size: cover;
     min-height: 4vh;
     min-width: 4vh;
@@ -1438,31 +1439,31 @@ footer .list div {
 }
 
 .verde:hover #email_imagem {
-    background: url("../assets/img/logo-instagram_verde.png") no-repeat;
-    background-size: cover;
+    background: url("../assets/svg/email_verde.png") no-repeat;
+    background-size: contain;
 }
 
 .verde:hover #github_imagem {
     background: url("../assets/img/github_verder.png") no-repeat;
-    background-size: cover;
+    background-size: contain;
 
 }
 
 .verde:hover #linkediin_imagem {
     background: url("../assets/img/Vector_verde.png") no-repeat;
-    background-size: cover;
+    background-size: contain;
 
 }
 
 .verde:hover #numero_imagem {
     background: url("../assets/img/logo-whatsapp_verde.png") no-repeat;
-    background-size: cover;
+    background-size: contain;
 
 }
 
 .verde:hover #instagram_imagem {
     background: url("../assets/img/logo-instagram_verde.png") no-repeat;
-    background-size: cover;
+    background-size: contain;
 
 }
 

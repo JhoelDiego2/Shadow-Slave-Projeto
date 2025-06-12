@@ -83,11 +83,11 @@ function atualizar_grafico_pizza(fkUsuario) {
             SELECT 
                 fkJogo,
                 COUNT(idPontuacao) AS total_partidas,
+                SUM(pontuacao) as total_pontos,
                 SUM(cliques) AS total_cliques,
                 SUM(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)) AS tempo_total_segundos,
-                ROUND(SUM(cliques) / SUM(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)), 2) AS media_cliques_por_segundo,
                 MIN(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)) AS menor_tempo
-            FROM pontuacao  WHERE  fkUsuario = '${fkUsuario}' GROUP BY  fkJogo ORDER BY fkJogo;
+            FROM    pontuacao   WHERE  fkUsuario = '${fkUsuario}'   GROUP BY   fkJogo  ORDER BY   fkJogo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

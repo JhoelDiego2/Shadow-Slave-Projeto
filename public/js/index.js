@@ -12,7 +12,7 @@ const texto_1 = document.getElementById('texto_1')
 const vt_imagens = ['assets/img/fundo _principal_inicio.png', 'assets/img/fundo_1.png', 'assets/img/fundo_2.png', 'assets/img/fundo_3.png', 'assets/img/fundo_4.png', 'assets/img/fundo_5.png',
     'assets/img/fundo_6.png', 'assets/img/fundo_7.png', 'assets/img/fundo_8.png', 'assets/img/fundo_9.png', 'assets/img/fundo_10.png', 'assets/img/fundo_11.png', 'assets/img/fundo_12.png',
     'assets/img/footenshore 1 1.png', 'assets/img/imagem_valor.webp']
-const vt_cores = ['red', 'white', 'green', 'purple', 'red', 'blue', 'green', 'orange', 'black', 'grey', 'red', 'red', 'red', 'red',]
+const vt_cores = ['red', 'green', 'orange', 'purple', 'red', '#658a87', 'red', 'orange', 'white', 'blue', 'blue', 'orange', 'orange', 'red', 'brown',]
 let i_imagem = 1;
 
 setInterval(() => {

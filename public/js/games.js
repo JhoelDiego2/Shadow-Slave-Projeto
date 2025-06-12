@@ -192,7 +192,7 @@ function parar_jogo_sunny() {
     }
 
 }
-let temp_cronometro = 30 * 1000;
+let temp_cronometro = 20 * 1000;
 function comecar_cronometro() {
     let cronometro = document.getElementById("cronometro_sunny");
 
@@ -218,7 +218,7 @@ function comecar_cronometro() {
                 resultados_game = 'Derrota'
             }
             tempo_sobra_sunny = temp_cronometro
-            tempo_sunny_game = '00:00:' + ((30000 - tempo_sobra_sunny) / 1000).toFixed(2)
+            tempo_sunny_game = '00:00:' + ((2000 - tempo_sobra_sunny) / 1000).toFixed(2)
             clearInterval(intervalo_cronometro);
             cronometro.style.color = "red";
             pontuacao_sunny();
@@ -239,6 +239,7 @@ function iniciar_jogo_sunny() {
     const menu_jogo = s_sunny.querySelector(".menu_jogo")
     const botao_tela = s_sunny.querySelector(".botao_tela_cheia")
     let contador_sunny = document.getElementById("contador_sunny")
+    contador_sunny.style.color="white"
     let score_atual = 0
     div_atual = 11
     let div_atual_momento = 0

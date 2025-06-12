@@ -570,12 +570,11 @@ function atualizarFeed() {
                 console.log("Dados recebidos: ", JSON.stringify(resposta));
                 var total = document.getElementById('total_mensagens')
                 var feed = document.getElementById("feed_container");
-                total.innerHTML = resposta.lenght
+                total.innerHTML = resposta.length
                 feed.innerHTML = "";
                 for (let i = 0; i < resposta.length; i++) {
                     var resultado = resposta[i];
                     if (fkUsuario == resultado.fkUsuario) {
-
                         feed.innerHTML += `
                             <div class="div_feed div_feed_usuario">
                                 <img src="${avatares[resultado.avatar]}" alt="" class="avatar_mensagem">

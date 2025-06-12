@@ -435,3 +435,20 @@ function digitando_senha() {
     document.getElementById('especial').style.color = temEspecial ? "#7aa7a4" : "#5a5a5a";
     document.getElementById('minimo').style.color = senha.length >= 8 ? "#7aa7a4" : "#5a5a5a";
 }
+
+let senha_log_visivel = false
+function mostrar_senha_log() {
+    const senha = document.getElementById("ipt_senha")
+    const icone = document.getElementById("icone_senha_log")
+    if (senha_log_visivel == false) {
+        senha.type = "text"
+        icone.src = "assets/svg/icon/ionicons/sharp/eye-sharp.svg"
+        senha_log_visivel = true
+
+    } else {
+        senha.type = "password"
+        icone.src = "assets/svg/olho_fechado.svg"
+        senha_log_visivel = false
+
+    }
+}
