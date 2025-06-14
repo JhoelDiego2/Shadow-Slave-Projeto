@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-function autenticar(nome, senha) {/*ebaixo troquei entrqar() com atuenticar() caso der errado*/
+function autenticar(nome, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function autenticar(): ", nome, senha)
     var instrucaoSql = `
         SELECT idUsuario, nome, avatar, nomeReal, rankUsuario FROM usuario WHERE nome = '${nome}' AND senha = '${senha}';
@@ -8,13 +8,8 @@ function autenticar(nome, senha) {/*ebaixo troquei entrqar() com atuenticar() ca
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
@@ -23,9 +18,6 @@ function cadastrar(nome, email, senha) {
 }
 function atualizar_senha(senhaNova, idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizar_senha():",senhaNova, idUsuario);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         UPDATE usuario SET senha = '${senhaNova}' WHERE idUsuario = ${idUsuario};
     `;
@@ -34,9 +26,6 @@ function atualizar_senha(senhaNova, idUsuario) {
 }
 function procurar_senha_atualizar(idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizar_senha():", idUsuario);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         SELECT senha, email FROM usuario WHERE idUsuario = ${idUsuario};
     `;
@@ -45,9 +34,6 @@ function procurar_senha_atualizar(idUsuario) {
 }
 function atualizar_conta( nome, email, nomeReal, idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function aatualizar_conta():", nome,email,nomeReal, idUsuario);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         UPDATE usuario SET
             nome = '${nome}', 
@@ -60,9 +46,6 @@ function atualizar_conta( nome, email, nomeReal, idUsuario) {
 }
 function atualizar_avatar( avatar, idUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function aatualizar_avatar():", avatar, idUsuario);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         UPDATE usuario SET avatar = '${avatar}' where idUsuario = ${idUsuario}
     `;
@@ -86,7 +69,6 @@ function procurar_nome(nome, ) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
 module.exports = {
     autenticar,
     cadastrar,

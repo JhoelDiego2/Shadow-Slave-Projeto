@@ -13,7 +13,6 @@ const cont_nephis = document.getElementById("contador_nephis")
 const contador_maq = document.querySelector(".contador_maquina")
 const vida_maquina = document.getElementById("vida_maquina")
 const vida_usuario = document.getElementById("vida_usuario")
-const fkUsuario = Number(sessionStorage.ID_USUARIO);
 let tela_cheia_ativo = false
 let fkGame = 0
 let idPontuacao = 0;

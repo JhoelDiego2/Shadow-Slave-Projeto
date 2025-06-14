@@ -17,7 +17,7 @@ const sistema_progressao = {
     'Tirano': 5000,
     'Devorador': 10000,
 };
-const fkUsuario = sessionStorage.ID_USUARIO;
+const fkUsuario = Number(sessionStorage.ID_USUARIO);
 const b_modalidade_usuario = document.getElementById('b_modalidade_usuario');
 const b_jogos_usuario = document.getElementById('b_jogos_usuario');
 const b_media_usuario = document.getElementById('b_media_usuario');
@@ -31,6 +31,7 @@ const section_global = document.getElementById('section_global');
 const top_ranking = document.querySelector('.top_ranking');
 const b_ranking_usuario = document.getElementById('b_ranking_usuario');
 const b_total_jogadores = document.getElementById('b_total_jogadores');
+const b_melhor_media = document.getElementById('b_melhor_media')
 const largura_limite_ranking = 100;
 let proximaAtualizacao;
 let proximaAtualizacao_pizza;
@@ -204,6 +205,7 @@ function mudar_deshbord(x) {
     if (x == 'global') {
         buscar_records(1)
         buscar_records(5)
+        buscar_melhor_media()
     }
     const estatisticas_atual = document.querySelector('.estatisticas_atual')
     const estatisticas_nao_ativo = document.querySelector('.estatisticas_nao_atual')
@@ -495,6 +497,21 @@ function buscar_records(fkJogo) {
                 response.json().then(function (dados) {
                     console.log(dados);
                     plotar_graficos_global(dados);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ ranking: ${error.message}`);
+        });
+}
+function buscar_melhor_media() {
+    fetch(`/game/melhor_media`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (dados) {
+                    b_melhor_media.innerHTML= `${Number(dados[0].media_cps) + 1}-${dados[0].nome}`
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');

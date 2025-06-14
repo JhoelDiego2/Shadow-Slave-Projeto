@@ -18,6 +18,7 @@ const alerta_suceso = document.getElementById("div_cad_sucesso")
 const fundo_alertas = document.querySelector(".fundo_alertas")
 const total_mensagens_chat = document.getElementById('total_mensagens')
 const feed = document.getElementById("feed_container");
+const feed_pai = document.querySelector('.div-results')
 const caracteresEspeciais = "!@#$%^&*()_+-=[]{};':|,.<>/?";
 const letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
 const letrasMaiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -30,8 +31,9 @@ let configuracao_visivel = false
 let secaoAtiva = null;
 window.addEventListener('load', atualizarFeed);
 window.addEventListener('load', prencherAvatar);
-
-
+var b_usuario = document.getElementById("b_usuario");
+var b_nome_real = document.getElementById("b_nome_real");
+const cad_sucesso = document.getElementById("div_cad_sucesso")
 function prencherAvatar() {
     for (let i = 0; i < avatar_bd.length; i++) {
         avatar_bd[i].src = avatares[avatar]
@@ -253,10 +255,6 @@ function atualizar_senha() {
         procurar_senha_atualizar(idUsuario, senha_atual, senha_nova);
     }
 }
-var b_usuario = document.getElementById("b_usuario");
-var b_nome_real = document.getElementById("b_nome_real");
-const cad_sucesso = document.getElementById("div_cad_sucesso")
-
 function atualizar_conta() {
     let nome_usuario_atualizar = document.getElementById("ipt_nome_atualizar").value
     let email_atualizar = document.getElementById("ipt_email_atualizar").value
@@ -455,7 +453,7 @@ function mudar_grafico() {
 function limparFormulario() {
     document.getElementById("form_postagem").reset();
 }
-const fkUsuario = sessionStorage.ID_USUARIO;
+
 function publicar() {
     var corpo = {
         mensagem: form_postagem.descricao.value
@@ -521,6 +519,7 @@ function atualizarFeed() {
                             `
                     }
                 }
+                feed_pai.scrollTop = feed_pai.scrollHeight;
 
             });
         } else {
@@ -580,7 +579,6 @@ function fecharTodasSecoes() {
     }
     secaoAtiva = null;
 }
-
 function trocar_modulo(nome_section) {
     const novaSecao = document.getElementById(nome_section);
     if (secaoAtiva === nome_section) {

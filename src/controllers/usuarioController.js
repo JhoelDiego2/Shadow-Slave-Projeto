@@ -10,11 +10,9 @@ function autenticar(req, res) {
         usuarioModel.autenticar(nome, senha)
             .then(function (resultadoAutenticar) {
                 console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
+                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); 
                 if (resultadoAutenticar.length == 1) {
                     console.log(resultadoAutenticar);
-
                     res.json({
                         idUsuario: resultadoAutenticar[0].idUsuario,
                         nome: resultadoAutenticar[0].nome,
@@ -36,12 +34,9 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-
-    // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
@@ -49,8 +44,6 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.cadastrar(nome, email, senha)
             .then(
                 function (resultado) {
@@ -69,18 +62,13 @@ function cadastrar(req, res) {
     }
 }
 function atualizar_senha(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var senhaNova = req.body.senhaNovaServer;
     var idUsuario = req.body.idUsuarioServer;
-
-    // Faça as validações dos valores
     if (senhaNova == undefined) {
         res.status(400).send("Sua senha nova está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
     } else {
-
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.atualizar_senha(senhaNova, idUsuario)
             .then(
                 function (resultado) {
@@ -99,10 +87,7 @@ function atualizar_senha(req, res) {
     }
 }
 function procurar_senha_atualizar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var idUsuario = req.body.idUsuarioServer;
-
-    // Faça as validações dos valores
     if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
     } else {
@@ -110,14 +95,14 @@ function procurar_senha_atualizar(req, res) {
             .then(
                 function (resultadoProcuraSenha) {
                     console.log(`\nResultados encontrados: ${resultadoProcuraSenha.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoProcuraSenha)}`); // transforma JSON em String
+                    console.log(`Resultados: ${JSON.stringify(resultadoProcuraSenha)}`); 
 
                     if (resultadoProcuraSenha.length == 1) {
                         res.json({
                             senha: resultadoProcuraSenha[0].senha,
                         });
                     } else if (resultadoProcuraSenha.length == 0) {
-                        res.status(403).send("senha nao coincide eu acho ");
+                        res.status(403).send("senha nao coincide ");
                     } else {
                         res.status(403).send("nao faco ideia !");
                     }
@@ -132,13 +117,10 @@ function procurar_senha_atualizar(req, res) {
     }
 }
 function atualizar_conta(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var nomeReal = req.body.nomeRealServer;
     var idUsuario = req.body.idUsuarioServer;
-
-    // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome de usuario novo está undefined!");
     } else if (email == undefined) {
@@ -149,7 +131,6 @@ function atualizar_conta(req, res) {
         res.status(400).send("Seu id usuario está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.atualizar_conta(nome, email, nomeReal, idUsuario)
             .then(
                 function (resultado) {
@@ -168,17 +149,13 @@ function atualizar_conta(req, res) {
     }
 }
 function atualizar_avatar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var avatar = req.body.avatarServer;
     var idUsuario = req.body.idUsuarioServer;
-
-    // Faça as validações dos valores
     if (avatar == undefined) {
         res.status(400).send("Seu novo avatar está undefined!");
     } else if (idUsuario == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
     } else {
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.atualizar_avatar(avatar, idUsuario)
             .then(
                 function (resultado) {
@@ -236,10 +213,7 @@ function deletar(req, res) {
     }
 }
 function procurar_nome(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.params.nome;
-
-    // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu id usuario está undefined!");
     } else {
@@ -247,7 +221,7 @@ function procurar_nome(req, res) {
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); 
 
                     if (resultado.length == 1) {
                         res.json({
@@ -268,7 +242,6 @@ function procurar_nome(req, res) {
             );
     }
 }
-
 module.exports = {
     autenticar,
     cadastrar,

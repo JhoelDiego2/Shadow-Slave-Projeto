@@ -37,6 +37,9 @@ router.get("/listar_records/:fkJogo", function (req, res) {
 router.get("/listar_todos", function (req, res) {
     gameController.listar_todos(req, res);
 })
+router.get("/melhor_media", function (req, res) {
+    gameController.melhor_media(req, res);
+})
 router.get("/listar_ranking_usuario/:pontos_atual", function (req, res) {
     gameController.listar_ranking_usuario(req, res);
 })

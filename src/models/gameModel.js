@@ -2,7 +2,6 @@ var database = require("../database/config")
 
 function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
@@ -133,8 +132,8 @@ function listar_ranking_usuario(pontos_atual) {
 function publicar(mensagem, fkUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", mensagem, fkUsuario);
     var instrucaoSql = `
-        insert into mensagem (mensagem, fkUsuario) values
-            ('${mensagem}', '${fkUsuario}');
+        insert into mensagem (mensagem, fkUsuario, horario) values
+            ('${mensagem}', '${fkUsuario}', NOW());
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -156,6 +155,19 @@ function atualizar_ranking(rankUsuario, idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function melhor_media(rankUsuario, idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", rankUsuario, idUsuario);
+    var instrucaoSql = `
+       SELECT u.nome, ROUND(SUM(p.cliques) / SUM(TIMESTAMPDIFF(SECOND, p.horarioInicio, p.horarioFinal)), 2) AS media_cps
+            FROM usuario u JOIN pontuacao p ON u.idUsuario = p.fkUsuario
+            WHERE p.horarioFinal IS NOT NULL   AND p.cliques > 0 AND p.fkJogo IN (5, 6, 7, 8)
+            GROUP BY u.idUsuario
+            HAVING  media_cps IS NOT NULL
+            ORDER BY media_cps asc LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     pontuar_nephis,
     pontuar_sunny,
@@ -171,5 +183,6 @@ module.exports = {
     publicar, 
     listar_mensagens,
     atualizar_ranking, 
-    comecar_jogo
+    comecar_jogo, 
+    melhor_media
 };
