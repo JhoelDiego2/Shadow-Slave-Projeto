@@ -1,9 +1,7 @@
 var usuarioModel = require("../models/usuarioModel");
-//////
 function autenticar(req, res) {
     var nome = req.body.nomeServer;
     var senha = req.body.senhaServer;
-
     if (nome == undefined) {
         res.status(400).send("Seu usuario está undefined!");
     } else if (senha == undefined) {

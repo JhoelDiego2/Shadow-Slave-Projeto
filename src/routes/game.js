@@ -16,10 +16,10 @@ router.put("/pontuar_nephis", function (req, res) {
 router.put("/pontuar_sunny", function (req, res) {
     gameController.pontuar_sunny(req, res);
 });
-router.post("/listar_score", function (req, res) {
+router.get("/listar_score/:fkUsuario", function (req, res) {
     gameController.listar_score(req, res);
 });
-router.post("/listar_linha", function (req, res) {
+router.get("/listar_linha/:fkUsuario", function (req, res) {
     gameController.listar_linha(req, res);
 });
 router.get("/tempo-real/:fkUsuario", function (req, res) {

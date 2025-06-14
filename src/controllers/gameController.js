@@ -113,7 +113,7 @@ function pontuar_sunny(req, res) {
     }
 }
 function listar_score(req, res) {
-    var fkUsuario = req.body.fkUsuarioServer;
+    var fkUsuario = req.params.fkUsuario;
     if (fkUsuario == undefined) {
         res.status(400).send("Seu fkusuario está undefined!");
     } else {
@@ -137,7 +137,7 @@ function listar_score(req, res) {
     }
 }
 function listar_linha(req, res) {
-    var fkUsuario = req.body.fkUsuarioServer;
+    var fkUsuario = req.params.fkUsuario;
     if (fkUsuario == undefined) {
         res.status(400).send("Seu fkusuario está undefined!");
     } else {

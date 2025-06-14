@@ -1,4 +1,4 @@
-//icones url 
+const seccoes = ['section_games', 'estatisticas', 'section_sunny', 'section_nephis', 'forum'];
 const avatar_bd = document.querySelectorAll(".b_avatar")
 const sunny = "assets/img/sunny-chibi-2.png"
 const nephis = "assets/img/nephis-chibi.png"
@@ -9,25 +9,34 @@ const jet = "assets/img/jet-chibi.png"
 const modret = "assets/img/modret-chibi.png"
 const mongrel = "assets/img/mongrel-chibi.png"
 const main = document.getElementById("div_main")
-const configuracao = document.getElementById("configuracao")
+const configuracao = document.getElementById("configuracao");
 const conf_avatar = document.getElementById("conf_avatar")
 const conf_conta = document.getElementById("conf_conta")
 const conf_deletar = document.getElementById("conf_deletar")
 const conf_seguranca = document.getElementById("conf_seguranca")
 const alerta_suceso = document.getElementById("div_cad_sucesso")
 const fundo_alertas = document.querySelector(".fundo_alertas")
+const total_mensagens_chat = document.getElementById('total_mensagens')
+const feed = document.getElementById("feed_container");
+const caracteresEspeciais = "!@#$%^&*()_+-=[]{};':|,.<>/?";
+const letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
+const letrasMaiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numeros = "0123456789";
+const avatar = sessionStorage.AVATAR_USUARIO
+const idUsuario = sessionStorage.ID_USUARIO;
 let senha_atual_visivel = false
 let senha_nova_visivel = false
 let configuracao_visivel = false
-let avatar = sessionStorage.AVATAR_USUARIO
+let secaoAtiva = null;
+window.addEventListener('load', atualizarFeed);
+window.addEventListener('load', prencherAvatar);
+
+
 function prencherAvatar() {
     for (let i = 0; i < avatar_bd.length; i++) {
         avatar_bd[i].src = avatares[avatar]
     }
 }
-window.addEventListener('load', prencherAvatar);
-
-
 function digitando_atualizar(x) {
     var texto_x = document.getElementById(`texto_${x}`);
     var ipt_x = document.getElementById(`ipt_${x}`);
@@ -37,16 +46,15 @@ function digitando_atualizar(x) {
     texto_x.style.transition = "0.7s ease-in-out";
     ipt_x.style.borderBottom = "solid 2px white";
 }
-
 function mostrarSenhaAtual() {
-    const atual = document.getElementById("ipt_senha_atual")
+    const senha_atual = document.getElementById("ipt_senha_atual")
     const icone = document.getElementById("icone_senha_atual")
     if (senha_atual_visivel == false) {
-        atual.type = "text"
+        senha_atual.type = "text"
         icone.src = "assets/svg/visible-password-icon.svg"
         senha_atual_visivel = true
     } else {
-        atual.type = "password"
+        senha_atual.type = "password"
         icone.src = "assets/svg/invisible-password-icon.svg"
         senha_atual_visivel = false
 
@@ -63,7 +71,6 @@ function mostrarSenhaNova() {
         icone.src = "assets/svg/visible-password-icon.svg"
         icone_conf.src = "assets/svg/visible-password-icon.svg"
         senha_nova_visivel = true
-
     } else {
         nova.type = "password"
         nova_conf.type = "password"
@@ -73,9 +80,6 @@ function mostrarSenhaNova() {
 
     }
 }
-
-///areaconfiguracoes
-
 function ocultar_conf_direito() {
     conf_avatar.style.display = "none"
     conf_conta.style.display = "none"
@@ -106,60 +110,35 @@ function tirar_alerta() {
     div_alerta.style = "display:none"
     fundo_alertas.style.display = "none"
 }
-
-//senha----------------------
 function atualizar_senha() {
-    // variaveis das input do cadastro
     let senha_atual = document.getElementById("ipt_senha_atual").value
     let senha_nova = document.getElementById("ipt_senha_nova").value
     let conf_senha = document.getElementById("ipt_senha_conf").value
-    let idUsuario = sessionStorage.ID_USUARIO;
-    // Variaveis booleanas para  validar a senha
     var valido = false;
     var contem_Maiuscula = false;
     var contem_Minuscula = false;
     var contem_Numero = false;
     var contem_Especial = false;
-
-    // regras para a senha 
-    var caracteresEspeciais = "!@#$%^&*()_+-=[]{};':|,.<>/?";
-    var numeros = "0123456789";
-    var letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
-    var letrasMaiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    // variaveis para o for
     var i = 0
     var caracter = 0
-
-    // varre a string 'senha' aplicando a verificação de todas as regras da senha 
     for (i; i < senha_nova.length; i++) {
         caracter = senha_nova[i];
-
         if (letrasMaiusculas.includes(caracter)) {
             contem_Maiuscula = true;
-
         }
         if (letrasMinusculas.includes(caracter)) {
             contem_Minuscula = true;
-
         }
         if (numeros.includes(caracter)) {
             contem_Numero = true;
-
         }
         if (caracteresEspeciais.includes(caracter)) {
             contem_Especial = true;
-
         }
     }
-    //verificar um email_atualizarvalido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
-
     div_alerta.style.display = "flex"
     fundo_alertas.style.display = "flex"
-
-
     while (valido == false) {
-
         if (senha_atual == '' && senha_nova == '' && conf_senha == '') {
             titulo_erro.innerHTML = "Campos vazios"
             mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
@@ -212,7 +191,6 @@ function atualizar_senha() {
 
         }
     }
-    //verifica se os inputs estao vazios
     if (valido) {
         function procurar_senha_atualizar(idUsuario, senha_atual, senha_nova) {
             fetch("/usuarios/procurar_senha_atualizar", {
@@ -237,13 +215,10 @@ function atualizar_senha() {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     console.log("procura_de_senha_deu_certo");
-
                     let senha_atual_bd = json.senha;
-
                     if (senha_atual_bd == senha_atual) {
-                        // Se a senha atual confere, faz a atualização
                         return fetch("/usuarios/atualizar_senha", {
-                            method: "POST",
+                            method: "PUT",
                             headers: {
                                 "Content-Type": "application/json",
                             },
@@ -259,8 +234,6 @@ function atualizar_senha() {
                         div_alerta.style.display = "flex"
                         titulo.innerHTML = "Senha Atual Incorreta"
                         mensagem.innerHTML = "enha atual não coincide com a senha do banco de dados"
-
-                        throw "Senha atual não coincide com a senha do banco de dados";
                     }
                 })
                 .then(function (resposta) {
@@ -277,25 +250,20 @@ function atualizar_senha() {
                     alert(erro);
                 });
         }
-
         procurar_senha_atualizar(idUsuario, senha_atual, senha_nova);
     }
 }
+var b_usuario = document.getElementById("b_usuario");
+var b_nome_real = document.getElementById("b_nome_real");
+const cad_sucesso = document.getElementById("div_cad_sucesso")
 
 function atualizar_conta() {
-    // variaveis das input do cadastro
     let nome_usuario_atualizar = document.getElementById("ipt_nome_atualizar").value
     let email_atualizar = document.getElementById("ipt_email_atualizar").value
     let nome_real = document.getElementById("ipt_nome_real").value
-    let idUsuario = sessionStorage.ID_USUARIO;
     var valido = false;
-    var b_usuario = document.getElementById("b_usuario");
-    var b_nome_real = document.getElementById("b_nome_real");
-
-    //verificar um email_atualizarvalido ou seja nao pode ter dois @ e tem que ter 1 ponto depois do @
     var umarroba = false
     var arroba_invalido = false
-
     for (let i = 1; i <= email_atualizar.lenght; i++) {
         if (email[i] == '@' && umarroba == false) {
             umarroba = true
@@ -305,12 +273,9 @@ function atualizar_conta() {
             arroba_invalido = true
         }
     }
-
     div_alerta.style.display = "flex"
     fundo_alertas.style.display = "flex"
-
     while (valido == false) {
-
         if (nome_usuario_atualizar == '' && email_atualizar == '' && nome_real == '') {
             titulo_erro.innerHTML = "Campos vazios"
             mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
@@ -348,28 +313,22 @@ function atualizar_conta() {
             fundo_alertas.style.display = "none"
 
         }
-
     }
     if (valido) {
-        // Enviando o valor da nova input
         fetch("/usuarios/atualizar_conta", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nome_usuario_atualizar,
                 emailServer: email_atualizar,
                 nomeRealServer: nome_real,
                 idUsuarioServer: idUsuario
-                //  idEmpresaVincularServer: idEmpresaVincular
             }),
         })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
-
                 if (resposta.ok) {
                     let cad_sucesso = document.getElementById("div_cad_sucesso")
                     cad_sucesso.style.display = "flex"
@@ -378,78 +337,51 @@ function atualizar_conta() {
                     sessionStorage.setItem('NOME_REAL_USUARIO', nome_real);
                     b_nome_real.innerHTML = nome_real
                     b_usuario.innerHTML = nome_usuario_atualizar
-                    /*  setTimeout(() => {
-                          window.location = "login.html";
-                      }, "2000");
-  
-                      limparFormulario();
-                      finalizarAguardar();*/
                 } else {
                     throw "Houve um erro ao tentar atualizar a conta!";
                 }
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                //finalizarAguardar();
             });
         return false;
     }
 }
-
-
-/*avatar comeca aqui -----------*/
-
 function trocar_avatar(x, y) {
     avatar_atual.src = x
     ultimo_avatar = x
     ultimo_avatar_nome = y
 }
-
 function atualizar_avatar() {
-    let idUsuario = sessionStorage.ID_USUARIO;
     avatar_bd[0].src = ultimo_avatar
     avatar_bd[1].src = ultimo_avatar
     avatar_bd[2].src = ultimo_avatar
     fetch("/usuarios/atualizar_avatar", {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
             avatarServer: ultimo_avatar_nome,
             idUsuarioServer: idUsuario
         }),
     })
         .then(function (resposta) {
             console.log("resposta: ", resposta);
-
             if (resposta.ok) {
-                let cad_sucesso = document.getElementById("div_cad_sucesso")
                 cad_sucesso.style.display = "flex"
                 fundo_alertas.style.display = "flex"
                 sessionStorage.setItem('AVATAR_USUARIO', ultimo_avatar_nome);
-
                 sessionStorage.AVATAR_USUARIO = json.avatar;
-
-                /*  setTimeout(() => {
-                      window.location = "login.html";
-                  }, "2000");
-
-                  limparFormulario();
-                  finalizarAguardar();*/
             } else {
                 throw "Houve um erro ao tentar atualizarO AVATAR!";
             }
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            //finalizarAguardar();
         });
     return false;
 }
-//klç´~jkj
 function abrir_descricao(nome) {
     const nome_card = document.getElementById(`jogo_${nome}`)
     const descricao = nome_card.querySelector(".descricao_jogo")
@@ -467,26 +399,26 @@ function fechar_descricao(nome) {
 
 
 function bolinha(nome) {
-    let index = 0; // Começa do 0, já que os arrays começam do índice 0
+    let index = 0;
     const seccao = document.getElementById(`section_${nome}`)
     const carregamento = seccao.querySelector(".carregamento_menu");
     const bolinhas = carregamento.querySelectorAll("span");
-    //for para q depois eu condiga ativar novamente a função
     for (let index = 0; index < bolinhas.length; index++) {
         bolinhas[index].classList.remove("pula")
     }
     function animar() {
         if (index < bolinhas.length) {
-            bolinhas[index].classList.add("pula"); // Corrigido: "pula" com aspas corretas
+            bolinhas[index].classList.add("pula");
             index++;
-            setTimeout(animar, 100); // Chama a si mesmo a cada 600ms
+            setTimeout(animar, 100);
         }
     }
     animar();
 }
-
+const seccao_menu = document.getElementById("section_games")
+const grafico_um = document.getElementById('grafico_dificuldade')
+const grafico_dois = document.getElementById('grafico_dificuldade_dois')
 function abrir_jogo_sunny() {
-    const seccao_menu = document.getElementById("section_games")
     const seccao = document.getElementById("section_sunny")
     const menu_carregando = document.getElementById("sunny-carregando")
     seccao_menu.style.display = "none"
@@ -498,7 +430,6 @@ function abrir_jogo_sunny() {
     )
 }
 function abrir_jogo_nephis() {
-    const seccao_menu = document.getElementById("section_games")
     const seccao = document.getElementById("section_nephis")
     const menu_carregando = document.getElementById("nephis-carregando")
     seccao_menu.style.display = "none"
@@ -511,8 +442,6 @@ function abrir_jogo_nephis() {
 
 function mudar_grafico() {
     var grafico_atual = document.getElementById('select_dificuldade').value
-    const grafico_um = document.getElementById('grafico_dificuldade')
-    const grafico_dois = document.getElementById('grafico_dificuldade_dois')
     if (grafico_atual == 'Sunny_Game') {
         grafico_um.style.display = 'flex'
         grafico_dois.style.display = 'none'
@@ -523,19 +452,14 @@ function mudar_grafico() {
 
     }
 }
-
-
 function limparFormulario() {
     document.getElementById("form_postagem").reset();
 }
-
+const fkUsuario = sessionStorage.ID_USUARIO;
 function publicar() {
-    var fkUsuario = sessionStorage.ID_USUARIO;
-
     var corpo = {
         mensagem: form_postagem.descricao.value
     }
-
     fetch(`/game/publicar/${fkUsuario}`, {
         method: "post",
         headers: {
@@ -543,9 +467,7 @@ function publicar() {
         },
         body: JSON.stringify(corpo)
     }).then(function (resposta) {
-
         console.log("resposta: ", resposta);
-
         if (resposta.ok) {
             atualizarFeed();
             limparFormulario();
@@ -565,12 +487,9 @@ function atualizarFeed() {
             if (resposta.status == 204) {
                 throw "Nenhum resultado encontrado!!";
             }
-
             resposta.json().then(function (resposta) {
                 console.log("Dados recebidos: ", JSON.stringify(resposta));
-                var total = document.getElementById('total_mensagens')
-                var feed = document.getElementById("feed_container");
-                total.innerHTML = resposta.length
+                total_mensagens_chat.innerHTML = resposta.length
                 feed.innerHTML = "";
                 for (let i = 0; i < resposta.length; i++) {
                     var resultado = resposta[i];
@@ -611,19 +530,13 @@ function atualizarFeed() {
         console.error(resposta);
     });
 }
-window.addEventListener('load', atualizarFeed);
-
-
 function fechar_alertas_geral() {
     fechar_alerta_atualizacao()
     tirar_alerta()
 }
-
-
 function fechar_tudo() {
     fechar_configuracao()
 }
-// area geral
 function fechar_configuracao() {
     configuracao.style.animation = "pop_up_saida 1s ease-out"
 
@@ -653,8 +566,7 @@ function fechar_alerta_atualizacao() {
     alerta_suceso.style.display = "none"
     fundo_alertas.style.display = "none"
 }
-const seccoes = ['section_games', 'estatisticas', 'section_sunny', 'section_nephis', 'forum'];
-let secaoAtiva = null;
+
 function fecharTodasSecoes() {
     for (let i = 0; i < seccoes.length; i++) {
         const secao = document.getElementById(seccoes[i]);
@@ -729,6 +641,4 @@ function deletar_conta() {
             console.log(`#ERRO: ${resposta}`);
         });
     }
-
-
 }
