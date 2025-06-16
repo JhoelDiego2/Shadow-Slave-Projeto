@@ -82,6 +82,27 @@ function mostrarSenhaNova() {
 
     }
 }
+let senha_deletar_visivel = false;
+function mostrar_deletar() {
+    const deletar = document.getElementById("ipt_senha_deletar")
+    const deletar_conf = document.getElementById("ipt_conf_deletar")
+    const icone = document.getElementById("icone_senha_deletar")
+    const icone_conf = document.getElementById("icone_conf_deletar")
+    if (senha_deletar_visivel == false) {
+        deletar.type = "text"
+        deletar_conf.type = "text"
+        icone.src = "assets/svg/visible-password-icon.svg"
+        icone_conf.src = "assets/svg/visible-password-icon.svg"
+        senha_deletar_visivel = true
+    } else {
+        deletar.type = "password"
+        deletar_conf.type = "password"
+        icone.src = "assets/svg/invisible-password-icon.svg"
+        icone_conf.src = "assets/svg/invisible-password-icon.svg"
+        senha_deletar_visivel = false
+
+    }
+}
 function ocultar_conf_direito() {
     conf_avatar.style.display = "none"
     conf_conta.style.display = "none"
@@ -599,12 +620,14 @@ function trocar_modulo(nome_section) {
 
 }
 function deletar_conta() {
+    titulo_erro.innerHTML = "Deletação de conta com sucesso"
+    mensagem_erro.innerHTML = "quem é você?"
     let email = ipt_email_deletar.value
     let senha = ipt_senha_deletar.value
     let conf_senha = document.getElementById('ipt_conf_deletar').value
     div_alerta.style.display = "flex"
     fundo_alertas.style.display = "flex"
-    console.log(senha + conf_senha)
+    console.log(senha, conf_senha)
     if (email == '' || senha == '' || conf_senha == '') {
         titulo_erro.innerHTML = "Campos vazios"
         mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
@@ -629,7 +652,10 @@ function deletar_conta() {
 
             if (resposta.ok) {
                 titulo_erro.innerHTML = "Deletação de conta com sucesso"
-                mensagem_erro.innerHTML = "Nem ao menos tentou. O vazio responde com silêncio."
+                mensagem_erro.innerHTML = "quem é você?"
+                setTimeout(() => {
+                    limparSessao(), 1000
+                })
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

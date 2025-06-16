@@ -14,6 +14,7 @@ const contador_maq = document.querySelector(".contador_maquina")
 const vida_maquina = document.getElementById("vida_maquina")
 const vida_usuario = document.getElementById("vida_usuario")
 let tela_cheia_ativo = false
+let jogo_nephis_ativo = false
 let fkGame = 0
 let idPontuacao = 0;
 let resultados_game = ''
@@ -218,7 +219,7 @@ function comecar_cronometro() {
                 resultados_game = 'Derrota'
             }
             tempo_sobra_sunny = temp_cronometro
-            tempo_sunny_game = '00:00:' + ((2000 - tempo_sobra_sunny) / 1000).toFixed(2)
+            tempo_sunny_game = '00:00:' + ((20000 - tempo_sobra_sunny) / 1000).toFixed(2)
             clearInterval(intervalo_cronometro);
             cronometro.style.color = "red";
             pontuacao_sunny();
@@ -292,11 +293,9 @@ function iniciar_jogo_sunny() {
     }
     if ((nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'hardcore') && tela_cheia_ativo == false) {
         s_sunny.classList.add("section_jogo_dificil")
-        //   sunny_player.classList.add("sunny_player_dificil")
     }
     if ((nivel_jogo_sunny == 'dificil' || nivel_jogo_sunny == 'hardcore') && tela_cheia_ativo == true) {
         s_sunny.classList.add("section_jogo_dificil_cheia")
-        //  sunny_player.classList.add("sunny_player_dificil")
     }
 
 }
@@ -493,8 +492,9 @@ function pontuacao_nephis() {
     return false;
 }
 function ataque_nephis() {
+    column_1.style.boxShadow = '-10px 0px 20px 1px #ffffff2a'
     botom_nephis_game[0].style.transform = "scale(0.9)"
-    setTimeout(() => botom_nephis_game[0].style.transform = "scale(1)", 20)
+    setTimeout(() => { botom_nephis_game[0].style.transform = "scale(1)"; column_1.style.boxShadow = '' }, 20)
     vida_maquina_largura--
     i_nephis++
     if (vida_maquina_largura > 20 && vida_maquina_largura < 50) {
@@ -507,6 +507,10 @@ function ataque_nephis() {
     vida_maquina.style.width = `${vida_maquina_largura}%`
 
     if (vida_maquina_largura <= 0) {
+        document.removeEventListener("keydown", tecla_usuario);
+        document.removeEventListener("keyup", liberar_tecla);
+        jogo_nephis_ativo = false
+        column_2.style.animation = ''
         botom_nephis_game[1].style.animation = "none"
         clearInterval(intervalo_maquina)
         clearInterval(cronometro_nephis)
@@ -578,6 +582,9 @@ function ataque_maquina() {
         contador_maq.innerHTML = score_nephis_maq
 
         if (vida_usuario_largura <= 0) {
+            document.removeEventListener("keydown", tecla_usuario);
+            document.removeEventListener("keyup", liberar_tecla);
+            column_2.style.animation = ''
             jogo_nephis_ativo = false
             botom_nephis_game[1].style.animation = "none"
             if ((score_nephis_maq > i_nephis) && (nivel_jogo_nephis == 'dificil' && i_nephis > 90)) {
@@ -637,6 +644,7 @@ function iniciar_jogo_nephis() {
     const vida_maquina = document.getElementById('vida_maquina')
     const vida_usuario = document.getElementById('vida_usuario')
     let cronometro = document.getElementById("cronometro_nephis")
+    jogo_nephis_ativo = true
     nephis_tempo = 0
     cronometro.innerHTML = "0:00"
     botao_tela.style.display = "none"
@@ -657,30 +665,31 @@ function iniciar_jogo_nephis() {
         enemigo_nome.innerHTML = 'Cassie'
         enemigo_nomeReal.innerHTML = 'Song of the Fallen'
         avatar_enemigo.src = "assets/img/cassie-chibi.png"
-        tempo_int_maquina = 200
+        tempo_int_maquina = 180
         fkGame = 5
     } else if (nivel_jogo_nephis == 'medio') {
         enemigo_nome.innerHTML = 'Sunny'
         enemigo_nomeReal.innerHTML = 'Lost from light'
         avatar_enemigo.src = "assets/img/sunny_chibi.png"
         column_2.classList.add("column-2-medio")
-        tempo_int_maquina = 180
+        tempo_int_maquina = 160
         fkGame = 6
     } else if (nivel_jogo_nephis == 'dificil') {
         enemigo_nome.innerHTML = 'Mongrel'
         enemigo_nomeReal.innerHTML = 'Lost From Fate'
         avatar_enemigo.src = "assets/img/mongrel-chibi.png"
         column_2.classList.add("column-2-dificil")
-        tempo_int_maquina = 160
+        tempo_int_maquina = 120
         fkGame = 7
     } else if (nivel_jogo_nephis == 'hardcore') {
         enemigo_nome.innerHTML = 'Mongrel'
         enemigo_nomeReal.innerHTML = 'Lost From Fate'
         avatar_enemigo.src = "assets/img/mongrel-chibi.png"
         column_2.classList.add("column-2-hardcore")
-        tempo_int_maquina = 140
+        tempo_int_maquina = 95
         fkGame = 8
     }
+    column_2.style.animation = 'pulse_enemigo 100ms infinite alternate';
     vida_usuario.style.backgroundColor = "green"
     vida_maquina.style.backgroundColor = "green"
     column_1.classList.remove("section_preta")
@@ -690,10 +699,22 @@ function iniciar_jogo_nephis() {
     botom_nephis_game[1].classList.remove("section_preta")
     comecar_jogo()
     ataque_maquina()
+    document.addEventListener("keydown", tecla_usuario);
+    document.addEventListener("keyup", liberar_tecla);
 }
 
+let pode_atacar = true;
 
+function tecla_usuario(event) {
+    if (!jogo_nephis_ativo) return;
+    if (pode_atacar && (event.key === " " || event.key === "Enter")) {
+        ataque_nephis();
+        pode_atacar = false; 
+    }
+}
 
-
-
-
+function liberar_tecla(event) {
+    if (event.key === " " || event.key === "Enter") {
+        pode_atacar = true;
+    }
+}

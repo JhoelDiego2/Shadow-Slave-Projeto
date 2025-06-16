@@ -44,6 +44,7 @@
 a {
     all: unset;
     cursor: pointer;
+
 }
 
 body {
@@ -55,6 +56,7 @@ body {
     overflow: hidden;
     height: 100vh;
     width: 100vw;
+    cursor: url(../assets/svg/cursor_game.cur), auto;
 }
 
 #tela_inicial {
@@ -668,6 +670,7 @@ img {
     border-bottom-right-radius: 30px;
     animation: radiante-lateral 4s infinite linear alternate;
     box-shadow: 1px 15px 10px 3px rgb(51, 51, 51);
+    cursor: pointer;
 }
 
 @keyframes radiante-lateral {
@@ -1377,6 +1380,7 @@ section .opcao_atual_jogo {
     border-radius: 10px;
     position: absolute;
     z-index: 9;
+    cursor: url(../assets/svg/cursosr_espada.cur), auto;
 }
 
 #main .section_jogo_dificil_cheia {
@@ -1634,8 +1638,9 @@ div {
 #section_nephis #cronometro_nephis {
     font-size: 3rem;
     position: absolute;
-    top: 8vh;
-    right: 37vw;
+    top: 10vh;
+    width: 100%;
+    text-align: center;
 }
 
 .score_maquina {
@@ -1735,6 +1740,23 @@ div {
     background-size: cover;
     background-position: right;
 }
+ @keyframes pulse {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: -10px 0px 20px 1px #ffffff2a
+    }
+} 
+ @keyframes pulse_enemigo {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: 10px 0px 20px 1px #7aa7a460
+    }
+} 
+
 
 #main .column-2-hardcore {
     background: url('../assets/img/sunny_boss.jpeg');
