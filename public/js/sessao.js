@@ -1,5 +1,4 @@
 
-// sessão
 function validarSessao() {
     var idUsuario = sessionStorage.ID_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
@@ -9,8 +8,6 @@ function validarSessao() {
     var b_usuario = document.querySelectorAll(".b_usuario");
     var b_nome_real = document.querySelectorAll(".b_nome_real");
     var b_rank_atual = document.querySelectorAll(".b_rank_atual")
-    //console.log(b_usuario)
-    //console.log(b_nome_real)
     if (idUsuario != null && nome != null && nomeReal != null) {
         b_usuario[0].innerHTML = nome;
         b_usuario[1].innerHTML = nome;
@@ -20,10 +17,8 @@ function validarSessao() {
         b_rank_atual[1].innerHTML = rankUsuario
     } else {
         console.log("usuario nao cadastrado ou elemenetos nao encontrados ")
-        // window.location = "../login.html";
     }
 }
-
 function limparSessao() {
     sessionStorage.clear();
     window.location = "cadastrologin.html";

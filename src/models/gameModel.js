@@ -2,27 +2,43 @@ var database = require("../database/config")
 
 function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function pontuar_nephis(fkGame, fkUsuario,resultado,  score, tempo) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_nephis():", fkGame,fkUsuario, resultado,  score, tempo);
+function comecar_jogo(fkGame, fkUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_nephis():", );
     var instrucaoSql = `
-        INSERT INTO score (fkGame, fkUsuario, resultado,  score, tempo) VALUES
-            ('${fkGame}','${fkUsuario}', '${resultado}', '${score}', '${tempo}');
+        INSERT INTO pontuacao (fkJogo, fkUsuario, horarioInicio) VALUES
+            ('${fkGame}','${fkUsuario}', NOW());
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function pontuar_sunny(fkGame, fkUsuario,resultado,  score, tempo) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_sunny():", fkGame,fkUsuario,resultado, score, tempo);
+function pontuar_nephis(fkGame, fkUsuario,resultado,  score, idPontuacao) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_nephis():", fkGame, fkUsuario,resultado,  score, idPontuacao);
     var instrucaoSql = `
-        INSERT INTO score (fkGame, fkUsuario, resultado, score, tempo) VALUES
-            ('${fkGame}','${fkUsuario}', '${resultado}', '${score}', '${tempo}');
+        UPDATE pontuacao set resultado = '${resultado}' , 
+                    pontuacao = ${score}, 
+                    horarioFinal = NOW(), 
+                    cliques = ${score}
+                    where fkUsuario = ${fkUsuario} and fkJogo = ${fkGame} and idPontuacao = ${idPontuacao}
+
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function pontuar_sunny(fkGame, fkUsuario,resultado,  score,idPontuacao ) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pontuar_sunny():", fkGame,fkUsuario,resultado, score, idPontuacao);
+    var instrucaoSql = `
+
+                UPDATE pontuacao set resultado = '${resultado}' , 
+                    pontuacao = ${score}, 
+                    horarioFinal = NOW(), 
+                    cliques = null
+                    where fkUsuario = ${fkUsuario} and fkJogo = ${fkGame} and idPontuacao = ${idPontuacao}
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -30,10 +46,14 @@ function pontuar_sunny(fkGame, fkUsuario,resultado,  score, tempo) {
 function listar_score(fkUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_score(): ", fkUsuario)
     var instrucaoSql = `
-        SELECT fkGame, COUNT(idScore) AS total_partidas, SUM(score) AS total_cliques,
-                SUM(tempo) AS tempo_total_segundos, SUM(score) / SUM(tempo) AS media_cliques_por_segundo,
-                MIN(tempo) AS menor_tempo
-        FROM score  WHERE fkUsuario = '${fkUsuario}'  GROUP BY fkGame  ORDER BY fkGame;
+            SELECT 
+                fkJogo,
+                COUNT(idPontuacao) AS total_partidas,
+                SUM(pontuacao) as total_pontos,
+                SUM(cliques) AS total_cliques,
+                SUM(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)) AS tempo_total_segundos,
+                MIN(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)) AS menor_tempo
+            FROM    pontuacao   WHERE  fkUsuario = '${fkUsuario}'   GROUP BY   fkJogo  ORDER BY   fkJogo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -41,8 +61,8 @@ function listar_score(fkUsuario) {
 function listar_linha(fkUsuario) {
 console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_linha(): ", fkUsuario)
 
-    var instrucaoSql = ` SELECT score, DATE_FORMAT(horario,'%d/%m %H:%i:%s') as horario  FROM score  WHERE fkUsuario = ${fkUsuario}
-                    ORDER BY horario DESC  LIMIT 15`;
+    var instrucaoSql = ` SELECT pontuacao as score, DATE_FORMAT(horarioFinal,'%d/%m %H:%i:%s') as horario  FROM pontuacao  WHERE fkUsuario = ${fkUsuario}
+                    ORDER BY horarioFinal DESC  LIMIT 15`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -50,8 +70,8 @@ console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: co
 function buscarMedidasEmTempoReal(fkUsuario) {
 console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscar_medidas_tempo_real_linha(): ", fkUsuario)
 
-    var instrucaoSql = ` SELECT score, DATE_FORMAT(horario,'%d/%m %H:%i:%s') as horario  FROM score  WHERE fkUsuario = ${fkUsuario}
-                    ORDER BY horario DESC         LIMIT 1`;
+    var instrucaoSql = ` SELECT pontuacao, DATE_FORMAT(horarioFinal,'%d/%m %H:%i:%s') as horario  FROM pontuacao  WHERE fkUsuario = ${fkUsuario}
+                    ORDER BY horarioFinal DESC         LIMIT 1`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -59,10 +79,14 @@ console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: co
 function atualizar_grafico_pizza(fkUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizar_grafico_pizza(): ", fkUsuario)
     var instrucaoSql = `
-        SELECT fkGame, COUNT(idScore) AS total_partidas, SUM(score) AS total_cliques,
-                SUM(tempo) AS tempo_total_segundos, SUM(score) / SUM(tempo) AS media_cliques_por_segundo,
-                MIN(tempo) AS menor_tempo
-        FROM score WHERE fkUsuario = '${fkUsuario}'   GROUP BY fkGame  ORDER BY fkGame;
+            SELECT 
+                fkJogo,
+                COUNT(idPontuacao) AS total_partidas,
+                SUM(pontuacao) as total_pontos,
+                SUM(cliques) AS total_cliques,
+                SUM(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)) AS tempo_total_segundos,
+                MIN(TIMESTAMPDIFF(SECOND, horarioInicio, horarioFinal)) AS menor_tempo
+            FROM    pontuacao   WHERE  fkUsuario = '${fkUsuario}'   GROUP BY   fkJogo  ORDER BY   fkJogo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -70,17 +94,17 @@ function atualizar_grafico_pizza(fkUsuario) {
 function listar_ranking() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_ranking(): ", )
     var instrucaoSql = `
-        SELECT u.avatar, u.nome, ROUND(SUM(s.score),2) AS score_total FROM score s
+        SELECT u.avatar, u.nome, ROUND(SUM(s.pontuacao),2) AS score_total FROM pontuacao s
             JOIN usuario u ON s.fkUsuario = u.idUsuario
         GROUP BY fkUsuario ORDER BY score_total DESC LIMIT 10;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    console.log("Executando a instrução SQL------------------------------------: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function listar_records() {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_records(): ", )
+function listar_records(fkJogo) {
+    console.log("----------------------------------------------------------ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_records(): ", )
     var instrucaoSql = `
-        select * from ranking;
+    select * from records where fkJogo =${fkJogo};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -97,8 +121,8 @@ function listar_ranking_usuario(pontos_atual) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_ranking_usuario(): ", pontos_atual )
     var instrucaoSql = `
         SELECT  COUNT(*) AS posicoes_acima
-        FROM ( SELECT  s.fkUsuario, SUM(s.score) AS score_total
-            FROM  score s GROUP BY  s.fkUsuario
+        FROM ( SELECT  s.fkUsuario, SUM(s.pontuacao) AS score_total
+            FROM  pontuacao s GROUP BY  s.fkUsuario
             HAVING  score_total > ${pontos_atual}
         ) as subConsulta;
     `;
@@ -108,8 +132,8 @@ function listar_ranking_usuario(pontos_atual) {
 function publicar(mensagem, fkUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", mensagem, fkUsuario);
     var instrucaoSql = `
-        insert into forum (mensagem, fkUsuario) values
-            ('${mensagem}', '${fkUsuario}');
+        insert into mensagem (mensagem, fkUsuario, horario) values
+            ('${mensagem}', '${fkUsuario}', NOW());
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -118,7 +142,7 @@ function listar_mensagens() {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucaoSql = `
         SELECT u.nome, u.avatar, u.rankUsuario, f.mensagem, DATE_FORMAT(f.horario,'%d/%m %H:%i:%s') as horario, f.fkUsuario
-            from usuario u join forum f on u.idUsuario = f.fkUsuario;
+            from usuario u join mensagem f on u.idUsuario = f.fkUsuario;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -127,6 +151,19 @@ function atualizar_ranking(rankUsuario, idUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", rankUsuario, idUsuario);
     var instrucaoSql = `
         UPDATE usuario SET rankUsuario = '${rankUsuario}' WHERE idUsuario = ${idUsuario}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+function melhor_media(rankUsuario, idUsuario) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", rankUsuario, idUsuario);
+    var instrucaoSql = `
+       SELECT u.nome, ROUND(SUM(p.cliques) / SUM(TIMESTAMPDIFF(SECOND, p.horarioInicio, p.horarioFinal)), 2) AS media_cps
+            FROM usuario u JOIN pontuacao p ON u.idUsuario = p.fkUsuario
+            WHERE p.horarioFinal IS NOT NULL   AND p.cliques > 0 AND p.fkJogo IN (5, 6, 7, 8)
+            GROUP BY u.idUsuario
+            HAVING  media_cps IS NOT NULL
+            ORDER BY media_cps asc LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -145,5 +182,7 @@ module.exports = {
     listar_ranking_usuario,
     publicar, 
     listar_mensagens,
-    atualizar_ranking
+    atualizar_ranking, 
+    comecar_jogo, 
+    melhor_media
 };

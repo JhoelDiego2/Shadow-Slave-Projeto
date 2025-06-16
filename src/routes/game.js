@@ -7,16 +7,19 @@ var gameController = require("../controllers/gameController");
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
-router.post("/pontuar_nephis", function (req, res) {
+router.post("/comecar_jogo", function (req, res) {
+    gameController.comecar_jogo(req, res);
+});
+router.put("/pontuar_nephis", function (req, res) {
     gameController.pontuar_nephis(req, res);
 });
-router.post("/pontuar_sunny", function (req, res) {
+router.put("/pontuar_sunny", function (req, res) {
     gameController.pontuar_sunny(req, res);
 });
-router.post("/listar_score", function (req, res) {
+router.get("/listar_score/:fkUsuario", function (req, res) {
     gameController.listar_score(req, res);
 });
-router.post("/listar_linha", function (req, res) {
+router.get("/listar_linha/:fkUsuario", function (req, res) {
     gameController.listar_linha(req, res);
 });
 router.get("/tempo-real/:fkUsuario", function (req, res) {
@@ -28,11 +31,14 @@ router.get("/tempo-real-pizza/:fkUsuario", function (req, res) {
 router.get("/listar_ranking", function (req, res) {
     gameController.listar_ranking(req, res);
 })
-router.get("/listar_records", function (req, res) {
+router.get("/listar_records/:fkJogo", function (req, res) {
     gameController.listar_records(req, res);
 })
 router.get("/listar_todos", function (req, res) {
     gameController.listar_todos(req, res);
+})
+router.get("/melhor_media", function (req, res) {
+    gameController.melhor_media(req, res);
 })
 router.get("/listar_ranking_usuario/:pontos_atual", function (req, res) {
     gameController.listar_ranking_usuario(req, res);

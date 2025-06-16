@@ -44,6 +44,7 @@
 a {
     all: unset;
     cursor: pointer;
+
 }
 
 body {
@@ -55,6 +56,7 @@ body {
     overflow: hidden;
     height: 100vh;
     width: 100vw;
+    cursor: url(../assets/svg/cursor_game.cur), auto;
 }
 
 #tela_inicial {
@@ -434,7 +436,7 @@ main {
     gap: 3vh;
     align-items: center;
     box-shadow: 0 15px 50px var(--luz);
-    z-index: 200;
+    z-index: 1000;
 }
 
 #sunny_chibi {
@@ -484,7 +486,7 @@ main {
     gap: 3vh;
     align-items: center;
     box-shadow: 0 15px 50px var(--luz);
-    z-index: 50;
+    z-index: 500;
 }
 
 #sunny_cad {
@@ -668,6 +670,7 @@ img {
     border-bottom-right-radius: 30px;
     animation: radiante-lateral 4s infinite linear alternate;
     box-shadow: 1px 15px 10px 3px rgb(51, 51, 51);
+    cursor: pointer;
 }
 
 @keyframes radiante-lateral {
@@ -1377,6 +1380,7 @@ section .opcao_atual_jogo {
     border-radius: 10px;
     position: absolute;
     z-index: 9;
+    cursor: url(../assets/svg/cursosr_espada.cur), auto;
 }
 
 #main .section_jogo_dificil_cheia {
@@ -1634,8 +1638,9 @@ div {
 #section_nephis #cronometro_nephis {
     font-size: 3rem;
     position: absolute;
-    top: 8vh;
-    right: 37vw;
+    top: 10vh;
+    width: 100%;
+    text-align: center;
 }
 
 .score_maquina {
@@ -1735,6 +1740,23 @@ div {
     background-size: cover;
     background-position: right;
 }
+ @keyframes pulse {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: -10px 0px 20px 1px #ffffff2a
+    }
+} 
+ @keyframes pulse_enemigo {
+    from {
+        box-shadow: none;
+    }
+    to {
+        box-shadow: 10px 0px 20px 1px #7aa7a460
+    }
+} 
+
 
 #main .column-2-hardcore {
     background: url('../assets/img/sunny_boss.jpeg');
@@ -1823,27 +1845,23 @@ div {
 
 
 .div-results {
-    position: absolute;
+    position: relative; /* muda de absolute para relative */
     width: 100%;
     height: 75vh;
-    top: 5vw;
-    background:  url("../assets/img/fundo_geral.png");
+    background: url("../assets/img/fundo_geral.png");
     background-repeat: repeat;
     background-size: 40%;
+    overflow-y: auto; /* habilita rolagem vertical */
 }
 
 .feed-container {
     display: flex;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
     flex-direction: column;
     gap: 3vh;
     justify-content: flex-end;
     padding: 3vh 2vw;
-    background:linear-gradient(to bottom, black 1%, rgba(0, 0, 0, 0.788) 10%, rgba(0, 0, 0, 0.699));
-    overflow-y: auto;
+    background: linear-gradient(to bottom, black 1%, rgba(0, 0, 0, 0.788) 10%, rgba(0, 0, 0, 0.699));
+    height: max-content;
 }
 
 .div-form {
@@ -1902,21 +1920,7 @@ label p {
     border-radius: 1000px;
 }
 
-.nome_mensagem::after {
-    display: inline-block;
-    content: "";
-    position: relative;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid var(--Cinza-metálico);
-    transform: rotate(90deg);
-    top: 2.3vh;
-    right: 7.5vw;
-    z-index: 1;
 
-}
 
 .div_mensagem {
     background-color: var(--Cinza-metálico);
@@ -1948,24 +1952,7 @@ label p {
     text-align: end;
 }
 
-.div_feed_usuario .nome_mensagem::after {
-    display: none;
-}
 
-.div_feed_usuario .nome_mensagem::before {
-    display: inline-block;
-    content: "";
-    position: relative;
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid #658a87d0;
-    transform: rotate(270deg);
-    top: 2.3vh;
-    left: 5.4vw;
-    z-index: 1;
-}
 .div_feed_usuario .mensagem_counteudo{
     text-align: end;
 }
@@ -1984,4 +1971,20 @@ label p {
         opacity: 0;
         transform: translateY(-100%);
     }
+}
+.sel_global{
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border-color: #00000000;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.sel_global option {
+    background-color: #000000;
+    font-size: 1.2rem;
+
+}
+.carrosel .card:hover{
+    transform: translateY(-5%)
 }

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game | Shadow Slave</title>
+    <link rel="icon" href="assets/img/img_topo.png">
+
     <script src="js/sessao.js"></script>
     <link rel="stylesheet" href="css/game.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -62,7 +64,7 @@
                 Perfil
             </p>
             <p onclick="trocar_modulo('forum')"><img src="" alt="">
-                <img src="assets/svg/user.svg" alt="">
+                <img src="assets/svg/chat.png" alt="">
                 Chat
             </p>
             <p onclick="limparSessao()"><img src="" alt="">
@@ -82,15 +84,15 @@
                     Avatar
                 </p>
                 <p onclick="mostrarConta()"><img src="" alt="">
-                    <img src="assets/svg/bar-chart-sharp.png" alt="">
+                    <img src="assets/svg/user.svg" alt="">
                     Conta
                 </p>
                 <p onclick="mostrarAlterSenha()"><img src="" alt="">
-                    <img src="assets/svg/bar-chart-sharp.png" alt="">
+                    <img src="assets/svg/user.svg" alt="">
                     Segurança
                 </p>
                 <p onclick="mostrarDeletarConta()"><img src="" alt="">
-                    <img src="assets/svg/bar-chart-sharp.png" alt="">
+                    <img src="assets/svg/sair_branco.svg" alt="">
                     Excluir
                 </p>
             </div>
@@ -194,7 +196,7 @@
                         <img src="assets/svg/senha_grey.svg" alt="">
                         <p id="texto_senha_deletar">Senha</p>
                         <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
-                            onclick="mostrarSenhaNova()" id="icone_senha_deletar">
+                            onclick="mostrar_deletar()" id="icone_senha_deletar">
 
                     </div>
                     <input type="password" id="ipt_senha_deletar" onclick="digitando_atualizar('senha_deletar')">
@@ -202,7 +204,7 @@
                         <img src="assets/svg/senha_grey.svg" alt="">
                         <p id="texto_conf_deletar">Confirmar Senha</p>
                         <img src="assets/svg/invisible-password-icon.svg" alt="" width="24" class="icone_senha"
-                            onclick="mostrarSenhaNova()" id="icone_conf_deletar">
+                            onclick="mostrar_deletar()" id="icone_conf_deletar">
 
                     </div>
                     <input type="password" id="ipt_conf_deletar" onclick="digitando_atualizar('conf_deletar')">
@@ -224,7 +226,7 @@
 
             <div class="carrosel">
                 <div class="card primeiro" id="jogo_sunny" onclick="abrir_jogo_sunny()"
-                    onmouseenter="abrir_descricao('sunny')" onmouseleave="fechar_descricao('sunny')">
+                    onmouseenter="abrir_descricao('sunny')" >
                     <div>
                         <h4>
                             Sunny
@@ -233,11 +235,12 @@
                         <p class="descricao_jogo ">Clique em Sunny antes que ele desapareça nas
                             sombras — seja rápido ou
                             perca o rastro!</p>
-                        <img src="assets/img/sunny_chibi.png" alt="" style="background-color: white; border-radius: 100px;">
+                        <img src="assets/img/sunny_chibi.png" alt=""
+                            style="background-color: white; border-radius: 100px;">
                     </div>
                 </div>
                 <div class="card segundo" id="jogo_nephis" onclick="abrir_jogo_nephis()"
-                    onmouseenter="abrir_descricao('nephis')" onmouseleave="fechar_descricao('nephis')">
+                    onmouseenter="abrir_descricao('nephis')" >
                     <div>
 
                         <h4>
@@ -286,7 +289,7 @@
 
                     </div>
                     <div class="kpi">
-                        <p class="kpi-texto">Média de Cliques Nephis Game</p>
+                        <p class="kpi-texto">Média de Cliques Por Segundo Nephis Game</p>
                         <p class="dado" id="b_media_usuario">0</p>
 
                     </div>
@@ -353,26 +356,43 @@
                     <div class="top">
                         <div class="kpi">
                             <p class="kpi-texto">Ranking Atual</p>
-                            <p class="dado" id="b_ranking_usuario">100º</p>
+                            <p class="dado" id="b_ranking_usuario">1º</p>
                         </div>
                         <div class="kpi">
                             <p class="kpi-texto">Total De Jogadores</p>
-                            <p class="dado" id="b_total_jogadores">100</p>
+                            <p class="dado" id="b_total_jogadores">1</p>
 
                         </div>
                         <div class="kpi">
-                            <p class="kpi-texto" style="text-align: center;">Melhor Média de cliques</p>
-                            <p class="dado" id="b_melhor_media">1.2 - nephisGirl</p>
+                            <p class="kpi-texto" style="text-align: center;">Melhor Média De Cliques Por Segundo </p>
+                            <p class="dado" id="b_melhor_media">Nenhuma</p>
 
                         </div>
                     </div>
                     <div class="bottom">
                         <div class="grafico_jogo grafico">
-                            <h3>Records sunny game</h3>
+                            <h3>Records Sunny Game
+                                <select id="select_sunny_records" onchange="mudar_grafico_rec()" class="sel_global">
+                                    <option value="1">Fácil</option>
+                                    <option value="2">Médio</option>
+                                    <option value="3">Díficil</option>
+                                    <option value="4">Hardcore</option>
+                                </select>
+                            </h3>
+
                             <canvas id="grafico_record_sunny" style="width: 23vw; height: 61vh;"></canvas>
                         </div>
                         <div class="grafico_jogo grafico">
-                            <h3>Records nephis game</h3>
+                            <h3>Records Nephis Game
+                                <select id="select_nephis_records" onchange="mudar_grafico_rec_2()" class="sel_global">
+                                    <option value="5">Fácil</option>
+                                    <option value="6">Médio</option>
+                                    <option value="7">Díficil</option>
+                                    <option value="8">Hardcore</option>
+                                </select>
+
+                            </h3>
+
                             <canvas id="grafico_record_nephis" style="width: 23vw; height: 61vh;"></canvas>
                         </div>
                     </div>
