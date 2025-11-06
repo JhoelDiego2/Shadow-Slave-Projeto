@@ -72,9 +72,6 @@ jobs:
             
             echo "APP_HOST=${{ secrets.APP_HOST_PROD }}" >> .env
             echo "APP_PORT=${{ secrets.APP_PORT_PROD }}" >> .env
-            echo "EMAIL_USER=${{ secrets.EMAIL_USER_PROD }}" >> .env
-            echo "EMAIL_PASS=${{ secrets.EMAIL_PASS_PROD }}" >> .env
-            echo "FRONTEND_URL=${{ secrets.FRONTEND_URL_PROD }}" >> .env
 
 
             # Fazendo o pull da imagem 
@@ -82,4 +79,3 @@ jobs:
             
             sudo docker compose up -d web --no-deps --force-recreate
             
-            sudo docker image prune -f
