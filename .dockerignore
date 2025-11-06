@@ -1,0 +1,13 @@
+# .dockerignore
+# Arquivos ignorados durante o build
+
+node_modules
+# O .env nunca deve ser incluído na imagem
+.env
+.env.dev
+# Arquivos de controle de versão
+.git
+.gitignore
+# Arquivos de debug/logs
+*.log
+npm-debug.log*

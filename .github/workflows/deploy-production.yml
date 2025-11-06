@@ -1,0 +1,79 @@
+name: Deploy para Production (EC2 Container)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    environment: Production 
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Definir Tag da Imagem (usando o SHA do commit)
+        id: set_tag
+        run: echo "IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+        
+      - name: Login no Docker Hub (no runner do GitHub Actions)
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build e Push da Imagem Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/oberon-app-web:${{ env.IMAGE_TAG }}, ${{ secrets.DOCKER_USERNAME }}/oberon-app-web:staging
+
+      # --- 3. DEPLOY PARA EC2 VIA SSH ---
+      - name: Deploy para EC2 e Rodar Container (Staging)
+        uses: appleboy/ssh-action@v1.0.3 
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            CONTAINER_NAME=oberon-web-c
+            APP_USER=${{ secrets.EC2_USERNAME }}
+            IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/oberon-app-web
+            # Usando a tag do SHA do commit (IMAGE_TAG) para garantir a versão correta
+            IMAGE_TAG=${{ env.IMAGE_TAG }}
+            
+            cd /home/$APP_USER/oberon || exit 1 
+
+            echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            sudo docker pull $IMAGE_NAME:$IMAGE_TAG
+
+            # 2. CRIAÇÃO/SOBRESCRITA DO ARQUIVO .ENV NO SERVIDOR EC2
+            echo "# Arquivo .env gerado pelo GitHub Actions (Staging)" > .env
+            
+            echo "AMBIENTE_PROCESSO=producao" >> .env
+            echo "DB_HOST=${{ secrets.DB_HOST_PROD }}" >> .env
+            echo "DB_USER=${{ secrets.DB_USER_PROD }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD_PROD }}" >> .env
+            echo "DB_DATABASE=${{ secrets.DB_DATABASE_PROD }}" >> .env
+            echo "DB_PORT=${{ secrets.DB_PORT_PROD }}" >> .env
+            echo "APP_HOST=${{ secrets.APP_HOST_PROD }}" >> .env
+            echo "APP_PORT=${{ secrets.APP_PORT_PROD }}" >> .env
+            echo "EMAIL_USER=${{ secrets.EMAIL_USER_PROD }}" >> .env
+            echo "EMAIL_PASS=${{ secrets.EMAIL_PASS_PROD }}" >> .env
+            echo "FRONTEND_URL=${{ secrets.FRONTEND_URL_PROD }}" >> .env
+
+
+            # 3. Gerenciamento do Container Antigo
+            if [ $(sudo docker ps -a -q -f name=$CONTAINER_NAME) ]; then 
+              sudo docker stop $CONTAINER_NAME 
+              sudo docker rm $CONTAINER_NAME 
+            fi
+
+            # 4. Roda o Novo Container
+            sudo docker run -d --name $CONTAINER_NAME -p 80:80 --restart always --env-file .env $IMAGE_NAME:$IMAGE_TAG
+            sudo docker image prune -f
