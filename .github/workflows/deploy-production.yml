@@ -23,7 +23,7 @@ jobs:
           VERSION_TAG=${{ github.ref_name }}
 
           echo "IMAGE_TAG=$VERSION_TAG" >> $GITHUB_ENV
-          echo "IMAGE_FULL_NAME=${{ secrets.DOCKER_USERNAME }}/oberon-app-web" >> $GITHUB_ENV
+          echo "IMAGE_FULL_NAME=${{ secrets.DOCKER_USERNAME }}/shadow-app-web" >> $GITHUB_ENV
           
       # --- 2. Build e Push da Imagem para o Docker Hub ---
       - name: Login no Docker Hub
