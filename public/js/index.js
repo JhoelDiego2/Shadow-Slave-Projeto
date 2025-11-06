@@ -33,22 +33,22 @@ let menu_visivel = false;
 var ativo = true;
 let jogo_1_visivel = true;
 let i_imagem = 1;
-setInterval(() => {
-    imagem_fundo.style.opacity = 0;
+// setInterval(() => {
+//     imagem_fundo.style.opacity = 0;
 
-    setTimeout(() => {
-        if (i_imagem >= vt_imagens.length) {
-            i_imagem = 0;
-        }
-        imagem_fundo.style.background = `
-            linear-gradient(to bottom, #000000 4%, #000000c9 15%, #00000000 40%),
-            url('${vt_imagens[i_imagem]}') center/cover no-repeat
-        `;
-        texto_1.style.color = `${vt_cores[i_imagem]}`
-        imagem_fundo.style.opacity = 1;
-        i_imagem++;
-    }, 1000);
-}, 4000);
+//     setTimeout(() => {
+//         if (i_imagem >= vt_imagens.length) {
+//             i_imagem = 0;
+//         }
+//         imagem_fundo.style.background = `
+//             linear-gradient(to bottom, #000000 4%, #000000c9 15%, #00000000 40%),
+//             url('${vt_imagens[i_imagem]}') center/cover no-repeat
+//         `;
+//         texto_1.style.color = `${vt_cores[i_imagem]}`
+//         imagem_fundo.style.opacity = 1;
+//         i_imagem++;
+//     }, 1000);
+// }, 4000);
 function voltar_jogo() {
     jogo_1_imagem.classList.replace('jogo1', 'jogo2')
     jogo_2_imagem.classList.replace('jogo2', 'jogo1')
