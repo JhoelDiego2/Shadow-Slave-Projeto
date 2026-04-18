@@ -1,9 +1,10 @@
+# 🗡️ Shadow Slave Project
 
-# 🌑 Shadow Slave Project
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
-Projeto inspirado na web novel Shadow Slave, trazendo uma experiência interativa e imersiva com estética sombria, mini jogos baseados nos personagens e dashboards de desempenho.
-
-Este projeto combina desenvolvimento web, design narrativo e gamificação, funcionando tanto como uma homenagem à obra quanto como um portfólio prático de programação.
+Aplicação web desenvolvida no padrão MVC (Model-View-Controller) para gerenciamento de usuários e sistema de jogo.
 
 <div align="center"> <img src="https://i.imgur.com/YZBdD7r.png" width="700"/> </div>
 <div align="center" >
@@ -16,121 +17,100 @@ Este projeto combina desenvolvimento web, design narrativo e gamificação, func
 <img src="https://i.imgur.com/2J3pTHN.png"width="230">
 <img src="https://i.imgur.com/DEvbP49.png" width="230">
 </div>
+<br>
 
-## 🕹️ Demonstração
-
-- 🎨 **Site estatico:**  
-[🔗 Acessar Site](https://shadow-slave-projeto.vercel.app/)
-- 🎨 **Protótipo no Figma:**  
-[🔗 Acessar Protótipo](https://www.figma.com/design/frLpg3PeeuufFIJGKqezuV/Projeto_definitivo?node-id=0-1&t=XrTYFsDKielO3pnb-1)
-
-- ✅ **Organização no Trello:**  
-[🔗 Acessar Quadro no Trello](https://trello.com/invite/b/680bcf05c7fda8c25044eb0e/ATTIca06ef652b8e9ff7b230c23da9b1bd743753FC0A/shadow-slave-pi)
-
+🔗 **Links Úteis:**
+* [Documentação de Escopo e Requisitos](https://bandteccom-my.sharepoint.com/:w:/g/personal/jhoel_mita_sptech_school/IQBliekllwnlRK-s8dLnT0i3AanPjIKroSmJP6ROe6ViFyY?e=ad4jVy)
+* [Apresentação Executiva (Slides)](https://canva.link/wwcsesweydbhp8p)
+* [Repositório do Banco de Dados (Scripts SQL)](https://github.com/JhoelDiego2/shadow_slave_banco/blob/main/Arquivos_Sql_Servidor/01_scriptbanco.sql)
+* [Site estatico](https://shadow-slave-projeto.vercel.app/)
+* [Protótipo no figma](https://www.figma.com/design/frLpg3PeeuufFIJGKqezuV/Projeto_definitivo?node-id=0-1&t=XrTYFsDKielO3pnb-1)
+* [Dicas projeto individual](sptecher.md)
 
 
-## 📖 Sobre o Projeto
+---
 
-> “Quando tudo é sombra... é nela que aprendemos a brilhar.”
+## 🏗️ Arquitetura do Sistema
 
-O **Shadow Slave Project** é um site interativo que combina narrativa, jogos e dashboards, inspirado no universo sombrio da web novel *Shadow Slave*. A proposta é criar uma experiência onde o usuário interage com mini jogos baseados nos personagens principais, visualiza seu desempenho e se envolve com a história de forma lúdica.
+Abaixo está o diagrama de funcionamento da aplicação (Contexto e Integrações):
 
+>  ![Diagrama de Arquitetura](./public/assets/img/image-3.png)
 
-## 🚩 Funcionalidades
+**Fluxo de Funcionamento:**
+1. O cliente interage com os arquivos estáticos (`HTML/CSS/JS`) na camada de **View**.
+2. As requisições são enviadas para a **API (Node.js/Express)** através das rotas (`src/routes`).
+3. O **Controller** processa a regra de negócio e aciona o **Model**.
+4. O **Model** se comunica com o banco de dados relacional para persistência de dados.
 
-### 🎮 Jogos Interativos
-- **Sunny Game:**  
-Capture Sunny antes que o tempo acabe. Modos: Fácil, Médio, Difícil e Hardcore.
+---
 
-- **Nephis Game:**  
-Derrote o inimigo clicando o mais rápido possível antes que ele te derrote. Modos: Fácil, Médio, Difícil e Hardcore.
+## 🛠️ Stack Tecnológica
 
-### 📊 Dashboards
-- **Dashboard Individual:**  
-Estatísticas como partidas jogadas, menor tempo, média de cliques e rank atual.
+* **Backend:** Node.js, Express.js
+* **Frontend:** HTML5, CSS3, JavaScript Vanilla
+* **Infraestrutura:** Docker
+* **Banco de Dados:** (Ex: MySQL / SQL Server) - *Ver repositório de DB*
 
-- **Dashboard Global:**  
-Ranking dos 10 melhores jogadores, maiores médias, melhores tempos e progresso geral da comunidade.
+---
 
-### 🌌 Outras Funcionalidades
-- Página inicial com introdução ao universo.
-- Login e cadastro.
-- Sistema de navegação com seções: Jogar, Estatísticas, Perfil, Chat e Sair.
-- Dark Theme nativo, inspirado na estética da obra.
-- Chat entre jogadores.
-- Sistema de ranks.
+## 📂 Estrutura do Projeto
 
+A organização segue o padrão arquitetural MVC. *(Nota: A pasta de `assets` não está versionada neste repositório devido ao tamanho dos arquivos de mídia).*
 
-## 🚧 Status do Projeto
+```text
+📦 shadow-slave-projeto
+ ┣ 📂 public          # View: Arquivos estáticos (HTML, CSS, JS do cliente)
+ ┣ 📂 src
+ ┃ ┣ 📂 controllers   # Controllers: Lógica de negócio e intermediação
+ ┃ ┣ 📂 database      # Configurações de conexão (config.js)
+ ┃ ┣ 📂 models        # Models: Consultas e manipulação do banco de dados
+ ┃ ┗ 📂 routes        # Rotas da API (game.js, usuarios.js, index.js)
+ ┣ 📜 app.js          # Arquivo de inicialização do servidor
+ ┣ 📜 Dockerfile      # Configuração para containerização da aplicação
+ ┗ 📜 package.json    # Dependências do projeto
+````
 
-🔨 **Em desenvolvimento**  
+-----
 
-### ✔️ Funcionalidades já disponíveis:
-- Início, Login, Dashboard Individual, Dashboard Global, Sunny Game e Nephis Game.
+## 🚀 Como Executar
 
-### 🔜 Próximas etapas:
-- [ ] Desenvolvimento de jogos dos personagens: Cassie, Jet, Effie e Modret.
-- [ ] Responsividade para mobile e tablets.
-- [ ] Sistema conquistas.
+### Pré-requisitos
 
+  * Node.js (v14+)
+  * Docker (Opcional, para rodar via container)
+  * Banco de Dados configurado (conforme [repositório de DB](https://www.google.com/search?q=link_aqui_do_banco))
 
-## 🛠️ Tecnologias Utilizadas
+### Rodando Localmente
 
-| Stack            | Ferramentas                                |
-|------------------|--------------------------------------------|
-| **Front-End**    | HTML5, CSS3, JavaScript, Chart.js         |
-| **Back-End**     | Node.js, MySQL                            |
-| **Design**       | Figma, Photoshop, Canva                   |
-| **Bibliotecas**    | Fade-on-Scroll, Chartjs                            |
-| **Ambiente Dev** | VM Virtual (Linux)                        |
+1.  Clone o repositório:
 
+<!-- end list -->
 
-## 🚀 Instalação e Execução
+```bash
+git clone [https://github.com/seu-usuario/shadow-slave-projeto.git](https://github.com/seu-usuario/shadow-slave-projeto.git)
+```
 
-### Pré-requisitos:
-- Node.js
-- Navegador atualizado
-- MySQL configurado
+2.  Instale as dependências:
 
-### 🔧 Instalação:
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/shadow-slave-project
-   cd shadow-slave-project
-2. Instale as dependências:
-   ```bash
-    npm install
+<!-- end list -->
 
-3. Configure o banco de dados (arquivo .sql disponível na pasta /database).
+```bash
+npm install
+```
 
-4. Crie um arquivo .env na raiz do projeto com as seguintes informações:
-   ```ini
-    DB_HOST=localhost
-    DB_USER=seu_usuario
-    DB_PASSWORD=sua_senha
-    DB_DATABASE=nome_do_banco
-5. Execute o servidor:
-   ```bash
-    npm start
-6. Abra o arquivo index.html no seu navegador para iniciar o site.
+3.  Configure as variáveis de conexão do banco em `src/database/config.js`.
+4.  Inicie o servidor:
 
-## 💡 Inspiração
+<!-- end list -->
 
-Este projeto nasceu como uma forma de homenagear a web novel Shadow Slave, que impactou profundamente minha vida e trajetória na programação. Assim como Sunny transforma suas sombras em força, este projeto representa minha transformação pessoal através do aprendizado de tecnologia.
+```bash
+npm start
+```
 
-## 🤝 Contribuição
-Sinta-se livre para contribuir!
-- Abra uma issue para relatar problemas ou sugerir melhorias.
+*A aplicação estará disponível em `http://localhost:3333` (ou a porta definida no app.js).*
 
-- Envie um pull request com novas funcionalidades, melhorias nos jogos ou correções.
+### Rodando via Docker
 
-- Sugestões para novos recursos, ajustes de balanceamento ou melhorias visuais são bem-vindas.
-
-## ✒️ Autor
-
-Desenvolvido por Jhoel Diego Mamani Mita.  
-Este projeto faz parte de um estudo de front-end e design narrativo.
-
-
-> *"Quando tudo é sombra... é nela que aprendemos a brilhar."*
-
+```bash
+docker build -t shadow-slave-app .
+docker run -p 3333:3333 shadow-slave-app
