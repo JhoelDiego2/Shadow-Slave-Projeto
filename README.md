@@ -6,6 +6,9 @@
 
 Aplicação web desenvolvida no padrão MVC (Model-View-Controller) para gerenciamento de usuários e sistema de jogo.
 
+https://github.com/user-attachments/assets/d30c814e-c467-44db-8822-36219b817502
+
+
 <div align="center"> <img src="https://i.imgur.com/YZBdD7r.png" width="700"/> </div>
 <div align="center" >
 <img src="https://i.imgur.com/vhi10os.png" width="230">
